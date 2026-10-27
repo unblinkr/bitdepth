@@ -1,6 +1,6 @@
 # Bitdepth probe harness
 
-Nightly probe of OpenRouter inference endpoints. Private repository. Nothing here is a public surface.
+Nightly probe of OpenRouter inference endpoints. The repository is public so that GitHub Actions minutes are free, but it is not a published surface: scorecards here are working data, not findings, and nothing in this repository is linked from anywhere.
 
 ## Rules
 

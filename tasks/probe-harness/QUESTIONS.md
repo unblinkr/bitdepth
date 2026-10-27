@@ -22,6 +22,10 @@ The session cannot read the repository secret (the proxy blocks that path), so n
 
 The chat completion response names the serving provider, not the endpoint variant. A row is `misrouted` when the returned provider differs from the pinned endpoint's provider. Two variants of the same provider (for example `baseten/fp4` and `baseten/fp4/us`) cannot be told apart from the response alone.
 
+## 7. Repository made public (founder decision, Oct 27, 2026)
+
+The brief said the repository stays private. GitHub would not start the first job on a private repository because the account's free private Actions minutes were nearly used by another private repository and the Actions budget was $0. Rather than add a payment method, the founder chose to make the repository public, which gives unlimited free Actions minutes. The data in it is working output of an experiment in progress; nothing links to it and no scorecard is a finding until the founder has read the fourteen nights.
+
 ## 6. Fewer than six endpoints
 
 If a configured model ever lists fewer than six endpoints, the run records `short: true` for it and probes it anyway rather than substituting a third model.
