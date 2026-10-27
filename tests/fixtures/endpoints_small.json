@@ -1,0 +1,6 @@
+{
+  "alpha": [
+    {"provider_name": "Cheap", "tag": "cheap/fp4", "quantization": "fp4", "price_in": 0.0000001, "price_out": 0.0000005, "context_length": 131072, "max_completion_tokens": 4096, "supported_parameters": ["seed", "temperature"], "status": 0},
+    {"provider_name": "Full", "tag": "full/bf16", "quantization": "bf16", "price_in": 0.000001, "price_out": 0.000002, "context_length": 131072, "max_completion_tokens": 4096, "supported_parameters": ["temperature"], "status": 0}
+  ]
+}
