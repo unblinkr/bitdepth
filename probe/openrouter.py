@@ -17,7 +17,7 @@ from probe import MAX_TOKENS, SEED
 
 BASE = "https://openrouter.ai/api/v1"
 RETRY_STATUSES = {429, 500, 502, 503, 504}
-MAX_RETRIES = 3
+MAX_RETRIES = 5
 REQUEST_TIMEOUT = 120.0
 
 # Reasoning is turned off where the endpoint allows it so the probe measures the served
@@ -84,7 +84,8 @@ def list_endpoints(slug: str, client: httpx.Client | None = None) -> list[dict[s
 
 
 def _sleep_backoff(attempt: int) -> None:
-    time.sleep((2**attempt) + random.uniform(0, 0.5))
+    # 2, 4, 8, 16, 32 seconds plus jitter; rate limits are waited out, never hammered
+    time.sleep((2**(attempt + 1)) + random.uniform(0, 0.5))
 
 
 def _result(status: str, mode: str, **kw: Any) -> dict[str, Any]:
