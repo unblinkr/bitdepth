@@ -3,6 +3,8 @@ name: nightly
 on:
   schedule:
     - cron: "17 7 * * *"
+    # backup slot: GitHub skipped the 07:17 slot on 2026-10-28; run.py exits early when the date already has a run
+    - cron: "17 11 * * *"
   workflow_dispatch:
     inputs:
       date:
