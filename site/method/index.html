@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bitdepth Method</title>
+<meta name="description" content="How a Bitdepth grade is made: unit, nightly procedure, reference rule, noise floor, rubric v0, publication policy.">
+<meta name="color-scheme" content="light">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: a reading column with a side index; the rubric, the worked example and the publication policy sit in pine bands. Plain by design: this is the page people check. */
+:root{
+  --bg:#F4EEE2; --panel:#FBF8F1; --ink:#14291F; --pine:#1E3B2F; --pine-ink:#F4EEE2; --muted:#4E5B53; --line:#D9CFB8; --line-dark:#3C5A4C; --gold:#B8902A; --gold-ink:#14291F; --burgundy:#7A2A35; --soft:#EDE5D3;
+  --display:Georgia,"Times New Roman",serif; --body:Inter,system-ui,-apple-system,"Segoe UI",sans-serif; --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.narrow{max-width:860px}
+a{color:inherit}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+header.top{border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5}
+header.top .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 24px;padding-block:14px}
+.brand{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.wordmark{font-family:var(--display);font-size:26px;letter-spacing:-.4px;text-decoration:none}
+.line-tag{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted)}
+nav{display:flex;align-items:center;gap:20px;font-size:14px;flex-wrap:wrap}
+nav a{text-decoration:none;border-bottom:1px solid transparent}
+nav a[aria-current]{border-bottom-color:var(--gold)}
+nav a:hover,nav a:focus-visible{border-bottom-color:var(--ink);outline:none}
+.eyebrow{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold);font-weight:600}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(34px,5vw,54px);line-height:1.06;letter-spacing:-.8px;margin:12px 0 16px;text-wrap:balance}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(24px,3vw,30px);line-height:1.15;margin:0 0 12px;text-wrap:balance}
+h3{font-family:var(--display);font-weight:400;font-size:20px;margin:18px 0 6px}
+p{margin:0 0 14px;max-width:66ch}
+.muted{color:var(--muted)}
+section{padding-block:40px}
+.band{background:var(--pine);color:var(--pine-ink)}
+.band .muted{color:#BFCBC2}
+.band .eyebrow{color:var(--gold)}
+.band p{color:var(--pine-ink)}
+.toc{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;margin-top:18px}
+.toc a{text-decoration:none;border-bottom:1px solid var(--line)}
+.toc a:hover{border-bottom-color:var(--ink)}
+ol,ul{max-width:66ch;padding-left:22px}
+li{margin-bottom:8px}
+.unit{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0 6px}
+.chip{border:1px solid var(--line);padding:8px 14px;font-family:var(--display);font-size:18px}
+.chip small{display:block;font-family:var(--body);font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.times{font-family:var(--display);font-size:20px;color:var(--gold)}
+.tablewrap{overflow-x:auto;margin-top:18px}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+th{font-size:11px;letter-spacing:1px;text-transform:uppercase;text-align:left;color:#BFCBC2;padding:8px 12px 10px 0;border-bottom:1px solid var(--line-dark);font-weight:600}
+td{padding:10px 12px 10px 0;border-bottom:1px solid var(--line-dark);vertical-align:top;color:var(--pine-ink);font-variant-numeric:tabular-nums}
+td.g{font-family:var(--display);font-size:20px;width:3.5em}
+.light th{color:var(--muted);border-bottom-color:var(--line)}
+.light td{color:var(--ink);border-bottom-color:var(--line)}
+code{font-family:var(--mono);font-size:13px;background:var(--panel);border:1px solid var(--line);padding:1px 6px}
+.band code{background:rgba(255,255,255,.06);border-color:var(--line-dark);color:var(--pine-ink)}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:16px}
+@media (max-width:760px){.ex{grid-template-columns:1fr}}
+.exc{border:1px solid var(--line-dark);padding:18px 20px;min-width:0;font-size:14px}
+.exc .t{font-family:var(--display);font-size:20px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.exc .grade{font-family:var(--display);font-size:26px;border:2px solid var(--gold);color:var(--gold);width:44px;height:44px;display:grid;place-items:center}
+.exc .grade.c{border-color:#BFCBC2;color:#BFCBC2}
+.exc .r{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed var(--line-dark);padding:5px 0;color:#BFCBC2}
+.exc .r b{color:var(--pine-ink);font-weight:500;text-align:right;font-variant-numeric:tabular-nums}
+.exc .why{margin-top:10px;color:#BFCBC2;font-size:13px}
+footer{border-top:1px solid var(--line)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;padding-block:20px;font-size:13px;color:var(--muted)}
+footer .fm{font-family:var(--display);font-size:16px;color:var(--ink)}
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><a class="wordmark" href="/">Bitdepth</a><span class="line-tag">a Paddock data line</span></div>
+    <nav aria-label="Site"><a href="/">Grades</a><a href="/#compare">Compare</a><a href="/market">Market</a><a href="/method" aria-current="page">Method</a></nav>
+  </div>
+</header>
+
+<section>
+  <div class="wrap narrow">
+    <div class="eyebrow">Method v0</div>
+    <h1>How an endpoint gets a grade</h1>
+    <p>This page does not change to sell anything. Every grade on any Bitdepth surface is produced by the procedure below, and the procedure is versioned; the version prints with every grade.</p>
+    <div class="toc">
+      <a href="#unit">The unit</a><a href="#procedure">What runs every night</a><a href="#rubric">Rubric</a><a href="#difference">How a difference is decided</a><a href="#example">Worked example</a><a href="#declared">Declared versus measured</a><a href="#limits">What a grade does not measure</a><a href="#status">Provisional and final</a><a href="#policy">Publication policy</a><a href="#where">What is published where</a>
+    </div>
+  </div>
+</section>
+
+<section id="unit">
+  <div class="wrap narrow">
+    <h2>The unit</h2>
+    <div class="unit">
+      <div class="chip">model<small>as listed by the router</small></div><span class="times">×</span>
+      <div class="chip">declared precision<small>provider's claim, recorded nightly</small></div><span class="times">×</span>
+      <div class="chip">grade<small>measured output, A to D or U</small></div><span class="times">×</span>
+      <div class="chip">context · latency<small>as served</small></div>
+    </div>
+    <p class="muted">A unit is a model at a provider-declared precision with a Bitdepth grade, plus the context and latency class it was observed serving. The declared precision and the grade are different attributes: one is a claim held to consistency, the other is a measurement. Anything written on a unit says which of the two it depends on.</p>
+  </div>
+</section>
+
+<section class="band" id="procedure">
+  <div class="wrap narrow">
+    <div class="eyebrow">Procedure</div>
+    <h2>What runs every night</h2>
+    <ol>
+      <li><b>Probes.</b> 120 fixed prompts, generated once by seeded code and never changed during an experiment, plus 24 prompts generated that night from the same generators with a recorded seed, so they differ every night and can be reproduced later but not predicted. Five families: arithmetic word problems, structured records to JSON, string puzzles, a planted code inside about 2,500 words, and exact repetition of text with diacritics, CJK characters and emoji. No prompt is copied from a public benchmark.</li>
+      <li><b>Requests.</b> Every prompt goes to every endpoint of the model on the router, pinned to one provider with fallbacks off, at temperature 0, top_p 1, seed 42, max 512 tokens. A response from a provider other than the pinned one is marked misrouted and excluded. Concurrency is capped at 4 and nightly spend is capped in code.</li>
+      <li><b>Reference.</b> For each prompt, the reference output is the one shared by the plurality of endpoints declaring bf16 or fp16. If fewer than two endpoints declare either, the plurality across all endpoints is used and the scorecard says so. A prompt with no plurality is excluded and counted. If the set of reference endpoints changes between nights, the change is dated on the record.</li>
+      <li><b>Answer keys.</b> Each family has its own key: the arithmetic result, the JSON values, the string result, the planted code, the exact text. Task accuracy is scored against the key, with no reference to other endpoints.</li>
+      <li><b>Self-agreement.</b> Each endpoint is compared with itself on the fixed prompts across consecutive nights (and, on the first night, one hour apart). The share of prompts on which an endpoint disagrees with itself is its noise.</li>
+      <li><b>Record.</b> Every raw response, every declared label and every listed price is kept, and each night's folder is hashed and timestamped.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="band" id="rubric" style="padding-top:0">
+  <div class="wrap narrow">
+    <div class="eyebrow">Rubric v0</div>
+    <h2>Four columns, lowest wins, reason printed</h2>
+    <p class="muted">One grade per model, endpoint and window (7 nights by default). M: match on the model's stable families. T: task accuracy, as points below the best endpoint for that model in the window. D: declared precision present and unchanged. R: reliability. Latency class and price are shown, not graded. All four column values print with the letter.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Grade</th><th>M: match against reference</th><th>T: task accuracy</th><th>D: declared precision</th><th>R: reliability</th></tr></thead>
+        <tbody>
+          <tr><td class="g">A</td><td>Within the noise floor every night of the window</td><td>Within 2 points of the best endpoint</td><td>Present and unchanged</td><td>Errors under 1%, truncation under 2%, misrouted 0</td></tr>
+          <tr><td class="g">B</td><td>Within the noise floor every night</td><td>Within 5 points</td><td>Present or absent, unchanged</td><td>Errors under 3%</td></tr>
+          <tr><td class="g">C</td><td>Outside the floor on 1 to 3 nights of 7</td><td>5 to 10 points below</td><td>Changed during the window, dated</td><td>Errors 3% to under 10%</td></tr>
+          <tr><td class="g">D</td><td>Outside the floor on 4 or more nights of 7</td><td>More than 10 points below</td><td></td><td>Errors at or above 10%</td></tr>
+          <tr><td class="g">U</td><td colspan="4">Unrated: fewer than 7 nights, endpoint absent on 3 or more nights, or the model had no reference on more than 20% of prompts</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="difference">
+  <div class="wrap narrow">
+    <h2>How a difference is decided</h2>
+    <p>Separately for each model and each probe family, every endpoint's night-to-night disagreement with itself on the fixed prompts is recorded over the window. The noise floor for that model and family is the 75th percentile of those disagreements across endpoints. An endpoint's match is within noise when it is at or above 100 minus that floor.</p>
+    <p>The 75th percentile is used rather than the maximum so that one or two highly variable endpoints cannot widen the tolerance for everyone else; an endpoint whose own variation sits above the floor is, by construction, outside noise and reads C or D on M. A family is stable for a model when the median endpoint agrees with itself at or above the stability threshold; M is computed on stable families only, so a family that is noisy for everyone (on night one, arithmetic on one model) does not drag the match column for a model it cannot separate.</p>
+    <p>A difference smaller than the floor is not reported as a difference, anywhere.</p>
+  </div>
+</section>
+
+<section class="band" id="example">
+  <div class="wrap narrow">
+    <div class="eyebrow">Worked example</div>
+    <h2>Two hypothetical endpoints, one model, one window</h2>
+    <p class="muted">Numbers are invented to show the arithmetic. Model X, seven nights. Night-to-night self-disagreement on the arithmetic family across its eleven endpoints: 0, 0, 1, 1, 2, 2, 3, 4, 6, 8 and 11 percent. The 75th percentile is 4, so the floor is 4 and within-noise means a match of 96 or better.</p>
+    <div class="ex">
+      <div class="exc">
+        <div class="t"><span>Endpoint E</span><span class="grade">A</span></div>
+        <div class="r"><span>M · match, stable families</span><b>97.2, within noise 7 of 7</b></div>
+        <div class="r"><span>T · task accuracy vs best</span><b>98.6 vs 99.3, 0.7 below</b></div>
+        <div class="r"><span>D · declared precision</span><b>bf16, unchanged</b></div>
+        <div class="r"><span>R · errors / truncation / misrouted</span><b>0.4% / 0.7% / 0</b></div>
+        <div class="why">Every column reads A. Reason printed: "all columns A; floor 4.0; method v0."</div>
+      </div>
+      <div class="exc">
+        <div class="t"><span>Endpoint F</span><span class="grade c">C</span></div>
+        <div class="r"><span>M · match, stable families</span><b>91.0, outside noise 3 of 7</b></div>
+        <div class="r"><span>T · task accuracy vs best</span><b>97.2 vs 99.3, 2.1 below</b></div>
+        <div class="r"><span>D · declared precision</span><b>fp8, changed night 5</b></div>
+        <div class="r"><span>R · errors / truncation / misrouted</span><b>0.9% / 1.1% / 0</b></div>
+        <div class="why">M reads C, T reads B, D reads C, R reads A. Lowest wins. Reason printed: "match outside floor 3 of 7 nights; declared precision changed night 5."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="declared">
+  <div class="wrap narrow">
+    <h2>Declared versus measured</h2>
+    <p>Declared precision is what the provider publishes on the router. It is recorded every night and treated as a claim: a grade holds it to consistency over time, not to truth. Measured behavior is what the endpoint returned. Agreement with the plurality is evidence that an endpoint served the same thing the reference endpoints served; it is not proof of the weights, quantization or serving configuration behind it, and Bitdepth does not claim to have verified those.</p>
+    <h2 id="limits" style="margin-top:28px">What a grade does not measure</h2>
+    <p>A grade is not a ranking of models and does not say which endpoint is best. Agreement with the plurality is not the same as correctness, which is why task accuracy is a separate column with its own answer keys. The probe families are narrow by design so that a difference is attributable; they do not cover reasoning depth, coding, tool use or long-task instruction following, and a grade is not a claim about them. The 24 prompts generated each night from a recorded seed limit tuning to the set.</p>
+    <h2 id="status" style="margin-top:28px">Provisional and final</h2>
+    <p>A grade reads U until seven nights exist for the endpoint. Letters are provisional until the first calibration publishes the thresholds from the first fourteen nights; from then they are final under that version of the method, and the method version prints with every grade. A later version re-grades the archive and says so.</p>
+  </div>
+</section>
+
+<section class="band" id="policy">
+  <div class="wrap narrow">
+    <div class="eyebrow">Publication policy</div>
+    <h2>The same rules for every endpoint</h2>
+    <ul>
+      <li>Every graded endpoint's provider receives its results five business days before publication and may flag factual errors: a misattributed endpoint, a wrong price, a wrong declared label.</li>
+      <li>The review does not change a grade. A verified factual correction is applied and published on the same schedule; it does not restart the five days.</li>
+      <li>No response within five business days means publication as scheduled.</li>
+      <li>Publication then follows the same rules for every endpoint regardless of grade or commercial relationship. A provider cannot choose which of its grades appear.</li>
+      <li>Grades are computed by code from this method. Who pays for a grade, a badge, the feed or a block listing cannot change a letter.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="where">
+  <div class="wrap narrow">
+    <h2>What is published where</h2>
+    <ul>
+      <li><b>The Grades board</b> lists endpoints holding A or B, with the window, the floor and the reference rule. Endpoints below B are absent from the board and are not named there. The board is not the complete dataset, and says so.</li>
+      <li><b>The feed</b> carries every endpoint's grade with its four columns, reason, window, floor and method version, because a buyer asking about one endpoint needs the answer.</li>
+      <li><b>The archive</b> keeps every nightly input unchanged, with a hashed, timestamped manifest per night.</li>
+    </ul>
+    <p class="muted" style="margin-top:18px">Numbers against a stated reference. Not a claim about intent. Nothing on this site describes why any provider serves the way it does.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div><span class="fm">Bitdepth</span> · a Paddock data line · bitdepth.dev · Autumn Sun LLC, Sheridan, WY</div>
+    <div>Method v0 · hello@bitdepth.dev</div>
+  </div>
+</footer>
+
+</body>
+</html>
