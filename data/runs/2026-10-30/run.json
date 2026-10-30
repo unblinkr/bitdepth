@@ -1,0 +1,50 @@
+{
+ "run_id": "2026-10-30-live",
+ "date": "2026-10-30",
+ "source": "live",
+ "started": "2026-10-30T14:15:48Z",
+ "models": {
+  "gpt-oss-120b": {
+   "slug": "openai/gpt-oss-120b",
+   "endpoints": 26,
+   "short": false
+  },
+  "deepseek-v4-pro": {
+   "slug": "deepseek/deepseek-v4-pro",
+   "endpoints": 15,
+   "short": false
+  }
+ },
+ "prompts": {
+  "fixed": 120,
+  "fresh": 24,
+  "kept": 144,
+  "dropped": 0
+ },
+ "dropped_prompt_ids": [],
+ "estimate": {
+  "usd": 3.4988,
+  "per_model": {
+   "gpt-oss-120b": 0.5378,
+   "deepseek-v4-pro": 2.961
+  }
+ },
+ "cap_usd": 5.0,
+ "aborted_on_estimate": false,
+ "summary": {
+  "rows": 5904,
+  "by_status": {
+   "ok": 5884,
+   "error": 20
+  },
+  "errors": 20,
+  "misrouted": 0,
+  "skipped_budget": 0,
+  "truncated": 21,
+  "billed_cost_usd": 1.9996,
+  "estimated_cost_rows": 0
+ },
+ "runtime_budget_stop": false,
+ "finished": "2026-10-30T15:28:27Z",
+ "total_billed_usd": 1.9996
+}
