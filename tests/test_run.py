@@ -96,3 +96,23 @@ def test_abort_on_estimate_sends_nothing_and_records_estimate(tmp_path, monkeypa
     assert rec["aborted_on_estimate"] is True
     assert rec["estimate"]["usd"] > 5.0
     assert not Path("data/runs/2026-10-27/responses.jsonl").exists()
+
+
+def test_selfcheck_sends_n_prompts_per_endpoint_per_pass_and_records_them(tmp_path):
+    calls = []
+
+    def completer(slug, tag, messages):
+        calls.append(tag)
+        return _ok()
+
+    models = {"alpha": {"slug": "a/b", "endpoints": [_endpoint(), _endpoint(tag="cheap/fp4", provider="Cheap", quant="fp4")]}}
+    fixed = [_prompt(f"fixed-math-{i:03d}") for i in range(1, 41)]
+    spend = Spend(cap=5.0)
+    block = run_mod.run_selfcheck("r", models, fixed, 36, tmp_path / "selfcheck.jsonl", spend, wait_seconds=0, completer=completer)
+    assert block["prompts"] == 36
+    assert block["prompt_ids"] == [f"fixed-math-{i:03d}" for i in range(1, 37)]
+    assert len(calls) == 36 * 2 * 2
+    rows = [json.loads(line) for line in (tmp_path / "selfcheck.jsonl").read_text().splitlines()]
+    assert sum(1 for r in rows if r["pass"] == "A") == 72
+    assert sum(1 for r in rows if r["pass"] == "B") == 72
+    assert block["pass_a"]["rows"] == 72 and block["pass_b"]["rows"] == 72
