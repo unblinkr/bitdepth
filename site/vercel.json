@@ -1,1 +1,17 @@
-{"cleanUrls": true, "trailingSlash": false}
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.bitdepth.dev"
+        }
+      ],
+      "destination": "https://bitdepth.dev/$1",
+      "permanent": true
+    }
+  ]
+}
