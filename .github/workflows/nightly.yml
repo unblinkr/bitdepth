@@ -12,9 +12,14 @@ on:
         required: false
         default: ""
       selfcheck:
-        description: "Also run the two-pass self-check (night one only)"
+        description: "Also run the two-pass self-check (36 prompts, one hour apart)"
         required: false
         default: "false"
+
+env:
+  # UTC dates whose cron run includes the two-pass self-check. Night one (2026-10-27) ran it by dispatch on 12 prompts.
+  SELFCHECK_DATES: "2026-11-02 2026-11-09"
+  SELFCHECK_PROMPTS: "36"
 
 permissions:
   contents: write
@@ -59,11 +64,20 @@ jobs:
           else
             echo "source=live" >> "$GITHUB_OUTPUT"
           fi
+          RUN_DATE="${{ github.event.inputs.date }}"
+          if [ -z "$RUN_DATE" ]; then RUN_DATE="$(date -u +%Y-%m-%d)"; fi
+          SELFCHECK=""
           if [ "${{ github.event.inputs.selfcheck }}" = "true" ]; then
-            echo "selfcheck=--selfcheck" >> "$GITHUB_OUTPUT"
+            SELFCHECK="--selfcheck --selfcheck-prompts $SELFCHECK_PROMPTS"
           else
-            echo "selfcheck=" >> "$GITHUB_OUTPUT"
+            for d in $SELFCHECK_DATES; do
+              if [ "$d" = "$RUN_DATE" ]; then
+                SELFCHECK="--selfcheck --selfcheck-prompts $SELFCHECK_PROMPTS"
+              fi
+            done
           fi
+          echo "selfcheck=$SELFCHECK" >> "$GITHUB_OUTPUT"
+          echo "date $RUN_DATE selfcheck '$SELFCHECK'"
 
       - name: Probe
         env:
@@ -75,11 +89,16 @@ jobs:
         run: |
           python -m probe.score --date "${{ steps.vars.outputs.date }}"
 
+      - name: Trend
+        continue-on-error: true
+        run: |
+          python -m probe.trend --date "${{ steps.vars.outputs.date }}"
+
       - name: Commit results
         run: |
           git config user.name "bitdepth-bot"
           git config user.email "bitdepth-bot@users.noreply.github.com"
-          git add data/runs data/scorecard
+          git add data/runs data/scorecard data/trend
           if git diff --cached --quiet; then
             echo "nothing to commit"
             exit 0

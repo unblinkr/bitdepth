@@ -1,6 +1,6 @@
 """Nightly run.
 
-    python -m probe.run --date YYYY-MM-DD [--dry-run] [--source live|dispatch|local] [--selfcheck]
+    python -m probe.run --date YYYY-MM-DD [--dry-run] [--source live|dispatch|local] [--selfcheck] [--selfcheck-prompts N]
 
 Steps: resolve the models, list endpoints, build the prompt set, estimate cost and
 apply the cap, send every kept prompt to every endpoint at concurrency 4, write rows as
@@ -169,6 +169,34 @@ def send_all(
     return rows
 
 
+def run_selfcheck(
+    run_id: str,
+    models: dict[str, dict[str, Any]],
+    fixed: list[dict[str, Any]],
+    n_prompts: int,
+    sc_path: Path,
+    spend: Spend,
+    wait_seconds: int,
+    completer=openrouter.complete,
+) -> dict[str, Any]:
+    """Send the first n_prompts fixed prompts to every endpoint twice, wait_seconds apart.
+    Pass A and pass B rows go to sc_path with a `pass` marker. Returns the run.json block."""
+    sc_prompts = fixed[:n_prompts]
+    print(f"self-check pass A: {len(sc_prompts)} prompts")
+    rows_a = send_all(run_id, models, sc_prompts, sc_path, spend, completer=completer, extra={"pass": "A"})
+    print(f"waiting {wait_seconds} seconds before pass B")
+    time.sleep(wait_seconds)
+    print("self-check pass B")
+    rows_b = send_all(run_id, models, sc_prompts, sc_path, spend, completer=completer, extra={"pass": "B"})
+    return {
+        "prompts": len(sc_prompts),
+        "prompt_ids": [p["id"] for p in sc_prompts],
+        "wait_seconds": wait_seconds,
+        "pass_a": summarise(rows_a),
+        "pass_b": summarise(rows_b),
+    }
+
+
 def summarise(rows: list[dict[str, Any]]) -> dict[str, Any]:
     by_status: dict[str, int] = {}
     for r in rows:
@@ -193,6 +221,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--source", choices=["live", "dispatch", "local"], default="local")
     ap.add_argument("--selfcheck", action="store_true")
     ap.add_argument("--selfcheck-wait", type=int, default=SELFCHECK_WAIT_SECONDS)
+    ap.add_argument("--selfcheck-prompts", type=int, default=SELFCHECK_PROMPTS,
+                    help="how many fixed prompts the two self-check passes send, from the top of the fixed set")
     args = ap.parse_args(argv)
 
     rd = runs_dir(args.date)
@@ -270,20 +300,9 @@ def main(argv: list[str] | None = None) -> int:
     record["runtime_budget_stop"] = spend.stopped
 
     if args.selfcheck and not spend.stopped:
-        sc_prompts = fixed[:SELFCHECK_PROMPTS]
-        sc_path = rd / "selfcheck.jsonl"
-        print(f"self-check pass A: {len(sc_prompts)} prompts")
-        rows_a = send_all(run_id, models, sc_prompts, sc_path, spend, extra={"pass": "A"})
-        print(f"waiting {args.selfcheck_wait} seconds before pass B")
-        time.sleep(args.selfcheck_wait)
-        print("self-check pass B")
-        rows_b = send_all(run_id, models, sc_prompts, sc_path, spend, extra={"pass": "B"})
-        record["selfcheck"] = {
-            "prompts": len(sc_prompts),
-            "wait_seconds": args.selfcheck_wait,
-            "pass_a": summarise(rows_a),
-            "pass_b": summarise(rows_b),
-        }
+        record["selfcheck"] = run_selfcheck(
+            run_id, models, fixed, args.selfcheck_prompts, rd / "selfcheck.jsonl", spend, args.selfcheck_wait
+        )
         record["runtime_budget_stop"] = spend.stopped
 
     record["finished"] = now_iso()
