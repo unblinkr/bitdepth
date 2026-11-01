@@ -147,6 +147,68 @@ def _mv(r: dict[str, Any]) -> str:
     return s + " *" if r["movement_flag"] else s
 
 
+def _grade_col(m: dict[str, Any]) -> str:
+    """The column that separates endpoints on this model: String when math wording is unstable, else Exact."""
+    fam = m.get("families", {})
+    return "string" if fam.get("math") and not fam["math"]["stable"] else "exact_mean"
+
+
+def _col_name(field: str) -> str:
+    return "String" if field == "string" else "Exact"
+
+
+def headlines(name: str, group: str, nights: int, per_model: list[dict[str, Any]]) -> list[str]:
+    """Three to five sentences, computed from the rows, that say what the tables show for this recipient.
+
+    Only ranks, spreads, prices and movement. Nothing about why.
+    """
+    out: list[str] = []
+    for pm in per_model:
+        m, all_rows = pm["model"], pm["all_rows"]
+        mine = [r for r in pm["rows"] if r["marked"]]
+        field = _grade_col(m)
+        col = _col_name(field)
+        scored = sorted([r for r in all_rows if r[field] is not None], key=lambda r: -r[field])
+        if not scored:
+            continue
+        n = len(scored)
+        label = m["label"]
+        if group == "buyer":
+            if not mine:
+                out.append(f"{label}: none of the providers {name} lists serves this model on OpenRouter; the field of {n} runs from {scored[0]['endpoint']} {scored[0][field]:.1f} to {scored[-1]['endpoint']} {scored[-1][field]:.1f} by {col}.")
+                continue
+            ms = sorted([r for r in mine if r[field] is not None], key=lambda r: -r[field])
+            if not ms:
+                continue
+            best, worst = ms[0], ms[-1]
+            rb, rw = rank(all_rows, field, best["endpoint"]), rank(all_rows, field, worst["endpoint"])
+            if len(ms) == 1:
+                out.append(f"{label}: {best['endpoint']} scores {best[field]:.1f} by {col}, {rb[0]} of {n} in the field (top {scored[0][field]:.1f}, bottom {scored[-1][field]:.1f}).")
+            else:
+                spread = best[field] - worst[field]
+                out.append(f"{label}: your {len(ms)} endpoints run from {best['endpoint']} {best[field]:.1f} ({rb[0]} of {n}) to {worst['endpoint']} {worst[field]:.1f} ({rw[0]} of {n}) by {col}, a {spread:.1f} point spread under one model name.")
+            priced = [r for r in ms if r["price_out_per_m"] is not None]
+            if len(priced) >= 2:
+                dear = max(priced, key=lambda r: r["price_out_per_m"])
+                cheap = min(priced, key=lambda r: r["price_out_per_m"])
+                if dear is not cheap:
+                    verdict = "and scores higher" if dear[field] > cheap[field] else "and scores lower" if dear[field] < cheap[field] else "and scores the same"
+                    out.append(f"{label} price: {dear['endpoint']} costs ${dear['price_out_per_m']:.2f} per million output against {cheap['endpoint']} at ${cheap['price_out_per_m']:.2f} {verdict} by {col} ({dear[field]:.1f} vs {cheap[field]:.1f}).")
+        else:
+            for r in sorted(mine, key=lambda r: r["endpoint"]):
+                re_, rs = rank(all_rows, "exact_mean", r["endpoint"]), rank(all_rows, "string", r["endpoint"])
+                if re_ and rs:
+                    out.append(f"{label}: {r['endpoint']} is {re_[0]} of {re_[1]} by Exact and {rs[0]} of {rs[1]} by String (field top {scored[0][field]:.1f}, bottom {scored[-1][field]:.1f} by {col}).")
+        moved_mine = [r for r in mine if r["movement_flag"]]
+        moved_field = [r for r in all_rows if r["movement_flag"]]
+        if moved_mine:
+            out.append(f"{label} movement: " + "; ".join(f"{r['endpoint']} moved {r['movement']:+.1f} points between the first and last three nights" for r in moved_mine) + ".")
+        elif moved_field and group == "buyer":
+            who = ", ".join(f"{r['endpoint']} {r['movement']:+.1f}" for r in moved_field)
+            out.append(f"{label} movement: none of your endpoints moved more than the flag threshold in {nights} nights; {len(moved_field)} in the field did ({who}).")
+    return out
+
+
 def render(name: str, group: str, date: str, t: dict[str, Any], per_model: list[dict[str, Any]], providers: list[str]) -> str:
     dates = t["dates"]
     span = f"{dates[0]} to {dates[-1]}"
@@ -155,6 +217,13 @@ def render(name: str, group: str, date: str, t: dict[str, Any], per_model: list[
     L.append("")
     L.append(f"Prepared {date}. Private to {name}; please do not forward. {len(dates)} nights of a fourteen-night capture ({span}). Not a finding: the fourteen-night read is the decision point.")
     L.append("")
+    heads = headlines(name, group, len(dates), per_model)
+    if heads:
+        L.append("## What the rows say")
+        L.append("")
+        for h in heads:
+            L.append(f"- {h}")
+        L.append("")
     L.append("## What the numbers are")
     L.append("")
     L.append("- Each row is one OpenRouter endpoint serving the named model, probed every night with the same prompt set (math, JSON, string, needle, echo families).")

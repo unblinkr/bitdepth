@@ -70,6 +70,8 @@ def test_provider_packet_names_only_its_own_rows(tmp_path):
     assert "a/bf16" not in md and "b/fp4" not in md
     assert "c/fp8: 3 of 3 by Exact, 3 of 3 by String." in md
     assert "Field by Exact: top 97.0, median 95.0, bottom 90.0" in md
+    assert "m: c/fp8 is 3 of 3 by Exact and 3 of 3 by String (field top 97.0, bottom 90.0 by Exact)." in md
+    assert "m movement: c/fp8 moved -12.0 points" in md
 
 
 def test_csv_and_slug(tmp_path):
