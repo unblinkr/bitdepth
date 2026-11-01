@@ -1,0 +1,11 @@
+# Bitdepth
+
+> Independent nightly grades for AI inference endpoints. Every endpoint serving the same open-weight model is probed each night with the same prompt set, scored against a published reference, and shown beside its price.
+
+Bitdepth is a Paddock data line. Contact: hello@bitdepth.dev
+
+## Pages
+
+- [Home](https://bitdepth.dev/): what a grade is, what it answers, and how to request a model.
+- [Method](https://bitdepth.dev/method): the unit, the nightly procedure, the reference rule, the noise floor, rubric v0 and the publication policy.
+- [Market](https://bitdepth.dev/market): reserving inference capacity at a fixed price with the grade checked nightly.
