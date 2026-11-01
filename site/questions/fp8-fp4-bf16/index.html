@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>fp8 vs fp4 vs bf16: what the precision field tells you and what it doesn't</title>
+<meta name="description" content="The precision field is the provider's declaration of the number format its copy of the model runs at. It tells you the format. It does not tell you what the endpoint returns.">
+<meta name="color-scheme" content="light">
+<link rel="canonical" href="https://bitdepth.dev/questions/fp8-fp4-bf16">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Bitdepth">
+<meta property="og:url" content="https://bitdepth.dev/questions/fp8-fp4-bf16">
+<meta property="og:title" content="fp8 vs fp4 vs bf16: what the precision field tells you and what it doesn't">
+<meta property="og:description" content="The precision field is the provider's declaration of the number format its copy of the model runs at. It tells you the format. It does not tell you what the endpoint returns.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="fp8 vs fp4 vs bf16: what the precision field tells you and what it doesn't">
+<meta name="twitter:description" content="The precision field is the provider's declaration of the number format its copy of the model runs at. It tells you the format. It does not tell you what the endpoint returns.">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: a reading column with a side index; the rubric, the worked example and the publication policy sit in pine bands. Plain by design: this is the page people check. */
+:root{
+  --bg:#F4EEE2; --panel:#FBF8F1; --ink:#14291F; --pine:#1E3B2F; --pine-ink:#F4EEE2; --muted:#4E5B53; --line:#D9CFB8; --line-dark:#3C5A4C; --gold:#B8902A; --gold-ink:#14291F; --burgundy:#7A2A35; --soft:#EDE5D3;
+  --display:Georgia,"Times New Roman",serif; --body:Inter,system-ui,-apple-system,"Segoe UI",sans-serif; --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.narrow{max-width:860px}
+a{color:inherit}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+header.top{border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5}
+header.top .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 24px;padding-block:14px}
+.brand{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.wordmark{font-family:var(--display);font-size:26px;letter-spacing:-.4px;text-decoration:none}
+.line-tag{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted)}
+nav{display:flex;align-items:center;gap:20px;font-size:14px;flex-wrap:wrap}
+nav a{text-decoration:none;border-bottom:1px solid transparent}
+nav a[aria-current]{border-bottom-color:var(--gold)}
+nav a:hover,nav a:focus-visible{border-bottom-color:var(--ink);outline:none}
+.eyebrow{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold);font-weight:600}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(34px,5vw,54px);line-height:1.06;letter-spacing:-.8px;margin:12px 0 16px;text-wrap:balance}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(24px,3vw,30px);line-height:1.15;margin:0 0 12px;text-wrap:balance}
+h3{font-family:var(--display);font-weight:400;font-size:20px;margin:18px 0 6px}
+p{margin:0 0 14px;max-width:66ch}
+.muted{color:var(--muted)}
+section{padding-block:40px}
+.band{background:var(--pine);color:var(--pine-ink)}
+.band .muted{color:#BFCBC2}
+.band .eyebrow{color:var(--gold)}
+.band p{color:var(--pine-ink)}
+.toc{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;margin-top:18px}
+.toc a{text-decoration:none;border-bottom:1px solid var(--line)}
+.toc a:hover{border-bottom-color:var(--ink)}
+ol,ul{max-width:66ch;padding-left:22px}
+li{margin-bottom:8px}
+.unit{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0 6px}
+.chip{border:1px solid var(--line);padding:8px 14px;font-family:var(--display);font-size:18px}
+.chip small{display:block;font-family:var(--body);font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.times{font-family:var(--display);font-size:20px;color:var(--gold)}
+.tablewrap{overflow-x:auto;margin-top:18px}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+th{font-size:11px;letter-spacing:1px;text-transform:uppercase;text-align:left;color:#BFCBC2;padding:8px 12px 10px 0;border-bottom:1px solid var(--line-dark);font-weight:600}
+td{padding:10px 12px 10px 0;border-bottom:1px solid var(--line-dark);vertical-align:top;color:var(--pine-ink);font-variant-numeric:tabular-nums}
+td.g{font-family:var(--display);font-size:20px;width:3.5em}
+.light th{color:var(--muted);border-bottom-color:var(--line)}
+.light td{color:var(--ink);border-bottom-color:var(--line)}
+code{font-family:var(--mono);font-size:13px;background:var(--panel);border:1px solid var(--line);padding:1px 6px}
+.band code{background:rgba(255,255,255,.06);border-color:var(--line-dark);color:var(--pine-ink)}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:16px}
+@media (max-width:760px){.ex{grid-template-columns:1fr}}
+.exc{border:1px solid var(--line-dark);padding:18px 20px;min-width:0;font-size:14px}
+.exc .t{font-family:var(--display);font-size:20px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.exc .grade{font-family:var(--display);font-size:26px;border:2px solid var(--gold);color:var(--gold);width:44px;height:44px;display:grid;place-items:center}
+.exc .grade.c{border-color:#BFCBC2;color:#BFCBC2}
+.exc .r{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed var(--line-dark);padding:5px 0;color:#BFCBC2}
+.exc .r b{color:var(--pine-ink);font-weight:500;text-align:right;font-variant-numeric:tabular-nums}
+.exc .why{margin-top:10px;color:#BFCBC2;font-size:13px}
+footer{border-top:1px solid var(--line)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;padding-block:20px;font-size:13px;color:var(--muted)}
+footer .fm{font-family:var(--display);font-size:16px;color:var(--ink)}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What does fp8 mean on an inference provider's model page?", "acceptedAnswer": {"@type": "Answer", "text": "It is the provider's declaration that its copy of the model's weights runs at eight bits per value, half the memory of bf16. Some models are trained and released in fp8, in which case it is the original format. The field is a declaration of format, not a measurement of output."}}, {"@type": "Question", "name": "Is an fp4 endpoint worse than a bf16 endpoint?", "acceptedAnswer": {"@type": "Answer", "text": "Not automatically. Quantization quality depends on calibration, which layers stay at higher precision, whether activations and the key-value cache are reduced, and the kernels used. A careful four-bit endpoint can track the full-precision reference more closely than a careless eight-bit one. Measure the output rather than reading the bit count."}}, {"@type": "Question", "name": "What does the precision field not tell you?", "acceptedAnswer": {"@type": "Answer", "text": "The inference engine and kernels, whether activations and the cache are reduced too, how the quantization was calibrated, the context length actually honored, and anything that changed after listing. Each changes outputs; none appears in the response."}}]}</script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><a class="wordmark" href="/">Bitdepth</a><span class="line-tag">Independent grades for inference endpoints</span></div>
+    <nav aria-label="Site"><a href="/">Grades</a><a href="/#compare">Compare</a><a href="/market">Market</a><a href="/method">Method</a><a href="/questions" aria-current="page">Questions</a></nav>
+  </div>
+</header>
+
+<section>
+  <div class="wrap narrow">
+    <div class="eyebrow">Questions</div>
+    <h1>fp8 vs fp4 vs bf16: what the precision field tells you and what it doesn't</h1>
+    <p>The precision field next to an endpoint is the provider's declaration of the number format its copy of the model's weights runs at. bf16 is 16 bits per value, fp8 is 8, fp4 and int4 are 4. Fewer bits means less memory, faster serving and a lower price, and in principle less fidelity to the original weights. The field tells you the format the provider reports. It does not tell you what the endpoint returns, and many endpoints declare nothing at all.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>The formats</h2>
+    <ul>
+      <li><b>bf16 and fp16.</b> Sixteen bits per value. The format most open-weight models are released in. Twice the memory of fp8.</li>
+      <li><b>fp8.</b> Eight bits. Supported natively on recent accelerators, so it is both smaller and faster. Some models are trained in fp8 and released that way, in which case fp8 is the original, not a reduction.</li>
+      <li><b>fp4, mxfp4, int4, nvfp4.</b> Four bits, usually with a shared scale per small block of values. Some models are released with their largest layers already in a four-bit block format. Done carefully on a large model, the loss on many tasks is small; done carelessly, it is not.</li>
+      <li><b>Unknown.</b> No declaration. Common. It means the provider has not said, not that the endpoint is full precision.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>Why fewer bits is not automatically worse</h2>
+    <p>Quantization is a conversion, and conversions vary. The calibration data, which layers are left at higher precision, whether activations and the key-value cache are reduced too, and which kernels run the result all matter more than the headline bit count. A careful four-bit endpoint can track the full-precision reference more closely than a careless eight-bit one. And when a model's maker released it at 8 or 4 bits, an endpoint declaring that format is serving the original.</p>
+    <p>So the declared precision is a format, not a quality. Two endpoints at the same declared precision can return different text, and an endpoint at a lower declared precision can return the same text as the reference.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>What the field cannot show</h2>
+    <ul>
+      <li>Which inference engine and kernels serve the request.</li>
+      <li>Whether activations and the key-value cache are reduced, not only the weights.</li>
+      <li>How the quantization was calibrated.</li>
+      <li>The context length the endpoint actually honors, which is sometimes shorter than the model's.</li>
+      <li>Anything that changed after the listing went up.</li>
+    </ul>
+    <p>Each of these changes outputs. None of them appears in the response.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <h2>How to read it</h2>
+    <p>Treat the field as a declaration and pair it with a measurement. Bitdepth's measurement is the same prompt set, every endpoint of the model, every night, scored against a reference built from the endpoints that declare full precision, with each endpoint's night-to-night disagreement with itself as the noise floor. The declared precision prints beside the measured grade so that the two can be compared, and a change in the declaration is recorded on the night it happens. <a href="/method">How a grade is made.</a> <a href="/questions/same-model-different-answers">Why the same model answers differently on different providers.</a></p>
+    <p class="muted" style="margin-top:18px">Numbers against a stated reference. Not a claim about intent. Nothing on this site describes why any provider serves the way it does.</p>
+  </div>
+</section>
+
+
+<footer>
+  <div class="wrap">
+    <div><span class="fm">Bitdepth</span> · bitdepth.dev · Autumn Sun LLC, Sheridan, WY</div>
+    <div>Method v0 · hello@bitdepth.dev</div>
+  </div>
+</footer>
+
+</body>
+</html>
