@@ -2,7 +2,7 @@
 
 > Independent nightly grades for AI inference endpoints. Every endpoint serving the same open-weight model is probed each night with the same prompt set, scored against a published reference, and shown beside its price.
 
-Bitdepth is a Paddock data line. Contact: hello@bitdepth.dev
+Contact: hello@bitdepth.dev
 
 ## Pages
 
