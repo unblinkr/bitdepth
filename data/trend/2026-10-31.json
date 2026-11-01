@@ -1,0 +1,2644 @@
+{
+ "dates": [
+  "2026-10-27",
+  "2026-10-28",
+  "2026-10-29",
+  "2026-10-30",
+  "2026-10-31"
+ ],
+ "selfcheck_dates": [
+  "2026-10-27"
+ ],
+ "thresholds": {
+  "STABLE_MIN": 95.0,
+  "MOVE_MIN": 10.0
+ },
+ "window": 3,
+ "models": [
+  {
+   "label": "gpt-oss-120b",
+   "slug": "openai/gpt-oss-120b",
+   "rules": [
+    "plurality among endpoints declaring bf16 or fp16"
+   ],
+   "endpoints": [
+    {
+     "tag": "crusoe/bf16",
+     "declared_quant": "bf16",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 97.2,
+      "2026-10-28": 97.9,
+      "2026-10-29": 98.6,
+      "2026-10-30": 97.9,
+      "2026-10-31": 98.6
+     },
+     "exact_mean": 98.0,
+     "exact_sd": 0.5,
+     "exact_min": 97.2,
+     "exact_max": 98.6,
+     "movement": 0.5,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 100.0,
+      "json": 100.0,
+      "string": 80.8,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 480,
+      "agree_pct": 96.2,
+      "by_family": {
+       "math": {
+        "pairs": 160,
+        "agree_pct": 100.0
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 95.0
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 82.5
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "crusoe/bf16",
+       "n": 12,
+       "agree": 10,
+       "agree_pct": 83.3
+      }
+     }
+    },
+    {
+     "tag": "baseten/fp4/us",
+     "declared_quant": "fp4",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 97.9,
+      "2026-10-28": 98.6,
+      "2026-10-29": 97.9,
+      "2026-10-30": 97.2,
+      "2026-10-31": 96.5
+     },
+     "exact_mean": 97.6,
+     "exact_sd": 0.7,
+     "exact_min": 96.5,
+     "exact_max": 98.6,
+     "movement": -0.9,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 99.6,
+      "json": 100.0,
+      "string": 85.0,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 478,
+      "agree_pct": 96.9,
+      "by_family": {
+       "math": {
+        "pairs": 158,
+        "agree_pct": 100.0
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 98.8
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 82.5
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "baseten/fp4/us",
+       "n": 12,
+       "agree": 11,
+       "agree_pct": 91.7
+      }
+     }
+    },
+    {
+     "tag": "deepinfra/bf16",
+     "declared_quant": "bf16",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 97.2,
+      "2026-10-28": 97.9,
+      "2026-10-29": 97.9,
+      "2026-10-30": 97.9,
+      "2026-10-31": 97.2
+     },
+     "exact_mean": 97.6,
+     "exact_sd": 0.3,
+     "exact_min": 97.2,
+     "exact_max": 97.9,
+     "movement": 0.0,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 100.0,
+      "json": 100.0,
+      "string": 85.8,
+      "needle": 99.2,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 476,
+      "agree_pct": 97.3,
+      "by_family": {
+       "math": {
+        "pairs": 160,
+        "agree_pct": 100.0
+       },
+       "json": {
+        "pairs": 76,
+        "agree_pct": 92.1
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 93.8
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 97.5
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "deepinfra/bf16",
+       "n": 10,
+       "agree": 9,
+       "agree_pct": 90.0
+      }
+     }
+    },
+    {
+     "tag": "baseten/fp4",
+     "declared_quant": "fp4",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 97.2,
+      "2026-10-28": 96.5,
+      "2026-10-29": 98.6,
+      "2026-10-30": 97.9,
+      "2026-10-31": 97.2
+     },
+     "exact_mean": 97.5,
+     "exact_sd": 0.7,
+     "exact_min": 96.5,
+     "exact_max": 98.6,
+     "movement": 0.5,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 99.6,
+      "json": 100.0,
+      "string": 86.7,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 480,
+      "agree_pct": 97.1,
+      "by_family": {
+       "math": {
+        "pairs": 160,
+        "agree_pct": 100.0
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 97.5
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 85.0
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "baseten/fp4",
+       "n": 12,
+       "agree": 11,
+       "agree_pct": 91.7
+      }
+     }
+    },
+    {
+     "tag": "together",
+     "declared_quant": "unknown",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 97.9,
+      "2026-10-28": 97.2,
+      "2026-10-29": 97.2,
+      "2026-10-30": 97.2,
+      "2026-10-31": 97.9
+     },
+     "exact_mean": 97.5,
+     "exact_sd": 0.3,
+     "exact_min": 97.2,
+     "exact_max": 97.9,
+     "movement": 0.0,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 100.0,
+      "json": 100.0,
+      "string": 75.0,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 480,
+      "agree_pct": 97.9,
+      "by_family": {
+       "math": {
+        "pairs": 160,
+        "agree_pct": 100.0
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 97.5
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 90.0
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "together",
+       "n": 12,
+       "agree": 10,
+       "agree_pct": 83.3
+      }
+     }
+    },
+    {
+     "tag": "deepinfra/fp8",
+     "declared_quant": "fp8",
+     "declared_changed": false,
+     "nights": 2,
+     "exact_by_night": {
+      "2026-10-30": 96.9,
+      "2026-10-31": 97.7
+     },
+     "exact_mean": 97.3,
+     "exact_sd": 0.4,
+     "exact_min": 96.9,
+     "exact_max": 97.7,
+     "movement": 0.0,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 100.0,
+      "json": 100.0,
+      "string": 84.1,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 99,
+      "agree_pct": 96.0,
+      "by_family": {
+       "math": {
+        "pairs": 33,
+        "agree_pct": 100.0
+       },
+       "json": {
+        "pairs": 16,
+        "agree_pct": 93.8
+       },
+       "string": {
+        "pairs": 16,
+        "agree_pct": 81.2
+       },
+       "needle": {
+        "pairs": 18,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 16,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": null
+     }
+    },
+    {
+     "tag": "amazon-bedrock",
+     "declared_quant": "unknown",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 95.8,
+      "2026-10-28": 97.9,
+      "2026-10-29": 97.9,
+      "2026-10-30": 96.5,
+      "2026-10-31": 97.9
+     },
+     "exact_mean": 97.2,
+     "exact_sd": 0.9,
+     "exact_min": 95.8,
+     "exact_max": 97.9,
+     "movement": 0.2,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 100.0,
+      "json": 100.0,
+      "string": 80.8,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 480,
+      "agree_pct": 95.4,
+      "by_family": {
+       "math": {
+        "pairs": 160,
+        "agree_pct": 100.0
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 82.5
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 90.0
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "amazon-bedrock",
+       "n": 12,
+       "agree": 12,
+       "agree_pct": 100.0
+      }
+     }
+    },
+    {
+     "tag": "parasail/fp4",
+     "declared_quant": "fp4",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 95.1,
+      "2026-10-28": 97.9,
+      "2026-10-29": 97.9,
+      "2026-10-30": 98.6,
+      "2026-10-31": 95.8
+     },
+     "exact_mean": 97.1,
+     "exact_sd": 1.4,
+     "exact_min": 95.1,
+     "exact_max": 98.6,
+     "movement": 0.5,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 100.0,
+      "json": 100.0,
+      "string": 79.2,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 478,
+      "agree_pct": 95.8,
+      "by_family": {
+       "math": {
+        "pairs": 160,
+        "agree_pct": 100.0
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 91.2
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 83.8
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 78,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "parasail/fp4",
+       "n": 8,
+       "agree": 8,
+       "agree_pct": 100.0
+      }
+     }
+    },
+    {
+     "tag": "cerebras/fp16",
+     "declared_quant": "fp16",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 96.5,
+      "2026-10-28": 97.2,
+      "2026-10-29": 95.8,
+      "2026-10-30": 95.8,
+      "2026-10-31": 97.9
+     },
+     "exact_mean": 96.6,
+     "exact_sd": 0.8,
+     "exact_min": 95.8,
+     "exact_max": 97.9,
+     "movement": 0.0,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 99.6,
+      "json": 100.0,
+      "string": 87.5,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 480,
+      "agree_pct": 95.6,
+      "by_family": {
+       "math": {
+        "pairs": 160,
+        "agree_pct": 98.8
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 90.0
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 86.2
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "cerebras/fp16",
+       "n": 12,
+       "agree": 12,
+       "agree_pct": 100.0
+      }
+     }
+    },
+    {
+     "tag": "groq",
+     "declared_quant": "unknown",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 97.2,
+      "2026-10-28": 96.5,
+      "2026-10-29": 97.2,
+      "2026-10-30": 95.1,
+      "2026-10-31": 97.2
+     },
+     "exact_mean": 96.6,
+     "exact_sd": 0.8,
+     "exact_min": 95.1,
+     "exact_max": 97.2,
+     "movement": -0.5,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 100.0,
+      "json": 100.0,
+      "string": 80.8,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 480,
+      "agree_pct": 98.8,
+      "by_family": {
+       "math": {
+        "pairs": 160,
+        "agree_pct": 100.0
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 97.5
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 95.0
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "groq",
+       "n": 12,
+       "agree": 12,
+       "agree_pct": 100.0
+      }
+     }
+    },
+    {
+     "tag": "mara",
+     "declared_quant": "unknown",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 95.8,
+      "2026-10-28": 95.8,
+      "2026-10-29": 97.9,
+      "2026-10-30": 96.5,
+      "2026-10-31": 97.2
+     },
+     "exact_mean": 96.6,
+     "exact_sd": 0.8,
+     "exact_min": 95.8,
+     "exact_max": 97.9,
+     "movement": 0.7,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 100.0,
+      "json": 100.0,
+      "string": 81.4,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 472,
+      "agree_pct": 96.2,
+      "by_family": {
+       "math": {
+        "pairs": 158,
+        "agree_pct": 100.0
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 88.8
+       },
+       "string": {
+        "pairs": 76,
+        "agree_pct": 88.2
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 78,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "mara",
+       "n": 12,
+       "agree": 12,
+       "agree_pct": 100.0
+      }
+     }
+    },
+    {
+     "tag": "mancer/fp8",
+     "declared_quant": "fp8",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 95.1,
+      "2026-10-28": 95.8,
+      "2026-10-29": 97.9,
+      "2026-10-30": 94.4,
+      "2026-10-31": 99.3
+     },
+     "exact_mean": 96.5,
+     "exact_sd": 1.8,
+     "exact_min": 94.4,
+     "exact_max": 99.3,
+     "movement": 0.9,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 100.0,
+      "json": 100.0,
+      "string": 83.3,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 480,
+      "agree_pct": 93.8,
+      "by_family": {
+       "math": {
+        "pairs": 160,
+        "agree_pct": 100.0
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 81.2
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 81.2
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "mancer/fp8",
+       "n": 12,
+       "agree": 10,
+       "agree_pct": 83.3
+      }
+     }
+    },
+    {
+     "tag": "sambanova",
+     "declared_quant": "unknown",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 95.8,
+      "2026-10-28": 95.1,
+      "2026-10-29": 97.2,
+      "2026-10-30": 96.5,
+      "2026-10-31": 97.2
+     },
+     "exact_mean": 96.4,
+     "exact_sd": 0.8,
+     "exact_min": 95.1,
+     "exact_max": 97.2,
+     "movement": 0.9,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 100.0,
+      "json": 100.0,
+      "string": 81.7,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 480,
+      "agree_pct": 95.6,
+      "by_family": {
+       "math": {
+        "pairs": 160,
+        "agree_pct": 100.0
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 86.2
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 87.5
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "sambanova",
+       "n": 12,
+       "agree": 12,
+       "agree_pct": 100.0
+      }
+     }
+    },
+    {
+     "tag": "nebius/fp4",
+     "declared_quant": "fp4",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 93.8,
+      "2026-10-28": 97.2,
+      "2026-10-29": 95.8,
+      "2026-10-30": 96.5,
+      "2026-10-31": 97.9
+     },
+     "exact_mean": 96.2,
+     "exact_sd": 1.4,
+     "exact_min": 93.8,
+     "exact_max": 97.9,
+     "movement": 1.1,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 100.0,
+      "json": 100.0,
+      "string": 79.2,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 480,
+      "agree_pct": 95.8,
+      "by_family": {
+       "math": {
+        "pairs": 160,
+        "agree_pct": 100.0
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 90.0
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 85.0
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "nebius/fp4",
+       "n": 12,
+       "agree": 11,
+       "agree_pct": 91.7
+      }
+     }
+    },
+    {
+     "tag": "sail-research/fp4",
+     "declared_quant": "fp4",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 95.6,
+      "2026-10-28": 95.1,
+      "2026-10-29": 94.4,
+      "2026-10-30": 95.8,
+      "2026-10-31": 100.0
+     },
+     "exact_mean": 96.2,
+     "exact_sd": 2.0,
+     "exact_min": 94.4,
+     "exact_max": 100.0,
+     "movement": 1.7,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 100.0,
+      "json": 100.0,
+      "string": 76.1,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 449,
+      "agree_pct": 93.5,
+      "by_family": {
+       "math": {
+        "pairs": 154,
+        "agree_pct": 100.0
+       },
+       "json": {
+        "pairs": 73,
+        "agree_pct": 78.1
+       },
+       "string": {
+        "pairs": 74,
+        "agree_pct": 82.4
+       },
+       "needle": {
+        "pairs": 74,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 74,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "sail-research/fp4",
+       "n": 12,
+       "agree": 11,
+       "agree_pct": 91.7
+      }
+     }
+    },
+    {
+     "tag": "amazon-bedrock/eu-west-1",
+     "declared_quant": "unknown",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 92.4,
+      "2026-10-28": 95.8,
+      "2026-10-29": 96.5,
+      "2026-10-30": 97.2,
+      "2026-10-31": 98.6
+     },
+     "exact_mean": 96.1,
+     "exact_sd": 2.1,
+     "exact_min": 92.4,
+     "exact_max": 98.6,
+     "movement": 2.5,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 100.0,
+      "json": 100.0,
+      "string": 74.2,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 480,
+      "agree_pct": 95.2,
+      "by_family": {
+       "math": {
+        "pairs": 160,
+        "agree_pct": 100.0
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 87.5
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 83.8
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "amazon-bedrock/eu-west-1",
+       "n": 12,
+       "agree": 11,
+       "agree_pct": 91.7
+      }
+     }
+    },
+    {
+     "tag": "dekallm/bf16",
+     "declared_quant": "bf16",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 96.5,
+      "2026-10-28": 95.8,
+      "2026-10-29": 95.8,
+      "2026-10-30": 94.4,
+      "2026-10-31": 97.2
+     },
+     "exact_mean": 95.9,
+     "exact_sd": 0.9,
+     "exact_min": 94.4,
+     "exact_max": 97.2,
+     "movement": -0.2,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 99.6,
+      "json": 100.0,
+      "string": 82.5,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 480,
+      "agree_pct": 94.6,
+      "by_family": {
+       "math": {
+        "pairs": 160,
+        "agree_pct": 100.0
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 70.0
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 97.5
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "dekallm/bf16",
+       "n": 12,
+       "agree": 9,
+       "agree_pct": 75.0
+      }
+     }
+    },
+    {
+     "tag": "akashml/bf16",
+     "declared_quant": "bf16",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 95.1,
+      "2026-10-28": 96.5,
+      "2026-10-29": 95.1,
+      "2026-10-30": 95.8,
+      "2026-10-31": 95.8
+     },
+     "exact_mean": 95.7,
+     "exact_sd": 0.5,
+     "exact_min": 95.1,
+     "exact_max": 96.5,
+     "movement": 0.0,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 100.0,
+      "json": 100.0,
+      "string": 80.8,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 480,
+      "agree_pct": 93.3,
+      "by_family": {
+       "math": {
+        "pairs": 160,
+        "agree_pct": 100.0
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 72.5
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 87.5
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "akashml/bf16",
+       "n": 12,
+       "agree": 12,
+       "agree_pct": 100.0
+      }
+     }
+    },
+    {
+     "tag": "coreweave/fp4",
+     "declared_quant": "fp4",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 93.8,
+      "2026-10-28": 95.8,
+      "2026-10-29": 95.8,
+      "2026-10-30": 94.4,
+      "2026-10-31": 97.2
+     },
+     "exact_mean": 95.4,
+     "exact_sd": 1.2,
+     "exact_min": 93.8,
+     "exact_max": 97.2,
+     "movement": 0.7,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 99.6,
+      "json": 100.0,
+      "string": 77.5,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 475,
+      "agree_pct": 93.9,
+      "by_family": {
+       "math": {
+        "pairs": 160,
+        "agree_pct": 100.0
+       },
+       "json": {
+        "pairs": 79,
+        "agree_pct": 77.2
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 86.2
+       },
+       "needle": {
+        "pairs": 76,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "coreweave/fp4",
+       "n": 12,
+       "agree": 8,
+       "agree_pct": 66.7
+      }
+     }
+    },
+    {
+     "tag": "near-ai/fp4",
+     "declared_quant": "fp4",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 97.2,
+      "2026-10-28": 95.1,
+      "2026-10-29": 95.8,
+      "2026-10-30": 92.4,
+      "2026-10-31": 95.8
+     },
+     "exact_mean": 95.3,
+     "exact_sd": 1.6,
+     "exact_min": 92.4,
+     "exact_max": 97.2,
+     "movement": -1.4,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 100.0,
+      "json": 100.0,
+      "string": 81.7,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 480,
+      "agree_pct": 92.7,
+      "by_family": {
+       "math": {
+        "pairs": 160,
+        "agree_pct": 100.0
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 77.5
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 78.8
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "near-ai/fp4",
+       "n": 12,
+       "agree": 11,
+       "agree_pct": 91.7
+      }
+     }
+    },
+    {
+     "tag": "venice/int4",
+     "declared_quant": "int4",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 91.0,
+      "2026-10-28": 95.8,
+      "2026-10-29": 97.2,
+      "2026-10-30": 94.4,
+      "2026-10-31": 96.5
+     },
+     "exact_mean": 95.0,
+     "exact_sd": 2.2,
+     "exact_min": 91.0,
+     "exact_max": 97.2,
+     "movement": 1.4,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 98.7,
+      "json": 100.0,
+      "string": 80.8,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 478,
+      "agree_pct": 94.1,
+      "by_family": {
+       "math": {
+        "pairs": 158,
+        "agree_pct": 98.1
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 85.0
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 83.8
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "venice/int4",
+       "n": 11,
+       "agree": 10,
+       "agree_pct": 90.9
+      }
+     }
+    },
+    {
+     "tag": "siliconflow/fp8",
+     "declared_quant": "fp8",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 93.1,
+      "2026-10-28": 93.1,
+      "2026-10-29": 95.0,
+      "2026-10-30": 95.8,
+      "2026-10-31": 95.7
+     },
+     "exact_mean": 94.5,
+     "exact_sd": 1.2,
+     "exact_min": 93.1,
+     "exact_max": 95.8,
+     "movement": 1.8,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 97.9,
+      "json": 100.0,
+      "string": 89.9,
+      "needle": 99.2,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 470,
+      "agree_pct": 95.1,
+      "by_family": {
+       "math": {
+        "pairs": 158,
+        "agree_pct": 97.5
+       },
+       "json": {
+        "pairs": 77,
+        "agree_pct": 89.6
+       },
+       "string": {
+        "pairs": 77,
+        "agree_pct": 88.3
+       },
+       "needle": {
+        "pairs": 79,
+        "agree_pct": 97.5
+       },
+       "echo": {
+        "pairs": 79,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "siliconflow/fp8",
+       "n": 12,
+       "agree": 11,
+       "agree_pct": 91.7
+      }
+     }
+    },
+    {
+     "tag": "google-vertex/global",
+     "declared_quant": "unknown",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 94.4,
+      "2026-10-28": 95.1,
+      "2026-10-29": 91.0,
+      "2026-10-30": 93.8,
+      "2026-10-31": 97.2
+     },
+     "exact_mean": 94.3,
+     "exact_sd": 2.0,
+     "exact_min": 91.0,
+     "exact_max": 97.2,
+     "movement": 0.5,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 93.7,
+      "json": 99.2,
+      "string": 80.8,
+      "needle": 100.0,
+      "echo": 98.3
+     },
+     "self": {
+      "pairs": 478,
+      "agree_pct": 93.5,
+      "by_family": {
+       "math": {
+        "pairs": 158,
+        "agree_pct": 97.5
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 86.2
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 85.0
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 95.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "google-vertex/global",
+       "n": 12,
+       "agree": 12,
+       "agree_pct": 100.0
+      }
+     }
+    },
+    {
+     "tag": "novita/fp4",
+     "declared_quant": "fp4",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 93.8,
+      "2026-10-28": 91.0,
+      "2026-10-29": 93.8,
+      "2026-10-30": 95.1,
+      "2026-10-31": 91.6
+     },
+     "exact_mean": 93.1,
+     "exact_sd": 1.5,
+     "exact_min": 91.0,
+     "exact_max": 95.1,
+     "movement": 0.6,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 98.7,
+      "json": 100.0,
+      "string": 80.8,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 480,
+      "agree_pct": 90.8,
+      "by_family": {
+       "math": {
+        "pairs": 160,
+        "agree_pct": 97.5
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 66.2
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 83.8
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "novita/fp4",
+       "n": 12,
+       "agree": 10,
+       "agree_pct": 83.3
+      }
+     }
+    },
+    {
+     "tag": "phala",
+     "declared_quant": "unknown",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 90.8,
+      "2026-10-28": 91.7,
+      "2026-10-29": 92.4,
+      "2026-10-30": 93.8,
+      "2026-10-31": 95.8
+     },
+     "exact_mean": 92.9,
+     "exact_sd": 1.8,
+     "exact_min": 90.8,
+     "exact_max": 95.8,
+     "movement": 2.4,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 98.7,
+      "json": 100.0,
+      "string": 78.3,
+      "needle": 99.2,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 478,
+      "agree_pct": 91.4,
+      "by_family": {
+       "math": {
+        "pairs": 159,
+        "agree_pct": 99.4
+       },
+       "json": {
+        "pairs": 79,
+        "agree_pct": 69.6
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 82.5
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 97.5
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "phala",
+       "n": 12,
+       "agree": 10,
+       "agree_pct": 83.3
+      }
+     }
+    },
+    {
+     "tag": "digitalocean",
+     "declared_quant": "unknown",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 94.4,
+      "2026-10-28": 91.0,
+      "2026-10-29": 90.3,
+      "2026-10-30": 92.4,
+      "2026-10-31": 90.2
+     },
+     "exact_mean": 91.7,
+     "exact_sd": 1.6,
+     "exact_min": 90.2,
+     "exact_max": 94.4,
+     "movement": -0.9,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 99.6,
+      "json": 100.0,
+      "string": 83.3,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 480,
+      "agree_pct": 89.4,
+      "by_family": {
+       "math": {
+        "pairs": 160,
+        "agree_pct": 100.0
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 53.8
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 82.5
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "digitalocean",
+       "n": 12,
+       "agree": 10,
+       "agree_pct": 83.3
+      }
+     }
+    }
+   ],
+   "families": {
+    "math": {
+     "endpoints": 26,
+     "median_agree_pct": 100.0,
+     "p75_disagree_pct": 0.0,
+     "noise_floor": 100.0,
+     "stable": true
+    },
+    "json": {
+     "endpoints": 26,
+     "median_agree_pct": 86.8,
+     "p75_disagree_pct": 22.4,
+     "noise_floor": 77.6,
+     "stable": false
+    },
+    "string": {
+     "endpoints": 26,
+     "median_agree_pct": 85.0,
+     "p75_disagree_pct": 17.5,
+     "noise_floor": 82.5,
+     "stable": false
+    },
+    "needle": {
+     "endpoints": 26,
+     "median_agree_pct": 100.0,
+     "p75_disagree_pct": 0.0,
+     "noise_floor": 100.0,
+     "stable": true
+    },
+    "echo": {
+     "endpoints": 26,
+     "median_agree_pct": 100.0,
+     "p75_disagree_pct": 0.0,
+     "noise_floor": 100.0,
+     "stable": true
+    }
+   }
+  },
+  {
+   "label": "deepseek-v4-pro",
+   "slug": "deepseek/deepseek-v4-pro",
+   "rules": [
+    "plurality across all endpoints (fewer than two declare bf16 or fp16)"
+   ],
+   "endpoints": [
+    {
+     "tag": "streamlake/fp8",
+     "declared_quant": "fp8",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 86.2,
+      "2026-10-28": 78.0,
+      "2026-10-29": 79.5,
+      "2026-10-30": 78.8,
+      "2026-10-31": 78.9
+     },
+     "exact_mean": 80.3,
+     "exact_sd": 3.0,
+     "exact_min": 78.0,
+     "exact_max": 86.2,
+     "movement": -2.2,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 100.0,
+      "json": 100.0,
+      "string": 59.2,
+      "needle": 100.0,
+      "echo": 96.6
+     },
+     "self": {
+      "pairs": 480,
+      "agree_pct": 68.3,
+      "by_family": {
+       "math": {
+        "pairs": 160,
+        "agree_pct": 34.4
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 68.8
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 75.0
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 97.5
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "deepseek-v4-pro",
+       "tag": "streamlake/fp8",
+       "n": 12,
+       "agree": 9,
+       "agree_pct": 75.0
+      }
+     }
+    },
+    {
+     "tag": "alibaba/fp8/us-east-1",
+     "declared_quant": "fp8",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 80.3,
+      "2026-10-28": 80.3,
+      "2026-10-29": 77.3,
+      "2026-10-30": 81.1,
+      "2026-10-31": 81.2
+     },
+     "exact_mean": 80.0,
+     "exact_sd": 1.4,
+     "exact_min": 77.3,
+     "exact_max": 81.2,
+     "movement": 0.6,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 100.0,
+      "json": 100.0,
+      "string": 60.8,
+      "needle": 100.0,
+      "echo": 95.0
+     },
+     "self": {
+      "pairs": 476,
+      "agree_pct": 70.0,
+      "by_family": {
+       "math": {
+        "pairs": 158,
+        "agree_pct": 34.2
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 76.2
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 75.0
+       },
+       "needle": {
+        "pairs": 79,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 79,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "deepseek-v4-pro",
+       "tag": "alibaba/fp8/us-east-1",
+       "n": 12,
+       "agree": 10,
+       "agree_pct": 83.3
+      }
+     }
+    },
+    {
+     "tag": "alibaba/fp8",
+     "declared_quant": "fp8",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 82.3,
+      "2026-10-28": 75.0,
+      "2026-10-29": 78.0,
+      "2026-10-30": 81.8,
+      "2026-10-31": 80.5
+     },
+     "exact_mean": 79.5,
+     "exact_sd": 2.7,
+     "exact_min": 75.0,
+     "exact_max": 82.3,
+     "movement": 1.7,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 100.0,
+      "json": 100.0,
+      "string": 59.2,
+      "needle": 100.0,
+      "echo": 95.0
+     },
+     "self": {
+      "pairs": 480,
+      "agree_pct": 67.3,
+      "by_family": {
+       "math": {
+        "pairs": 160,
+        "agree_pct": 30.0
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 72.5
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 71.2
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "deepseek-v4-pro",
+       "tag": "alibaba/fp8",
+       "n": 12,
+       "agree": 9,
+       "agree_pct": 75.0
+      }
+     }
+    },
+    {
+     "tag": "atlas-cloud/fp4",
+     "declared_quant": "fp4",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 78.7,
+      "2026-10-28": 78.0,
+      "2026-10-29": 72.7,
+      "2026-10-30": 78.8,
+      "2026-10-31": 76.7
+     },
+     "exact_mean": 77.0,
+     "exact_sd": 2.3,
+     "exact_min": 72.7,
+     "exact_max": 78.8,
+     "movement": -0.4,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 100.0,
+      "json": 100.0,
+      "string": 59.2,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 477,
+      "agree_pct": 69.4,
+      "by_family": {
+       "math": {
+        "pairs": 159,
+        "agree_pct": 34.0
+       },
+       "json": {
+        "pairs": 78,
+        "agree_pct": 71.8
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 76.2
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "deepseek-v4-pro",
+       "tag": "atlas-cloud/fp4",
+       "n": 12,
+       "agree": 7,
+       "agree_pct": 58.3
+      }
+     }
+    },
+    {
+     "tag": "relace/fp4",
+     "declared_quant": "fp4",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 78.5,
+      "2026-10-28": 78.6,
+      "2026-10-29": 74.0,
+      "2026-10-30": 74.8,
+      "2026-10-31": 71.4
+     },
+     "exact_mean": 75.5,
+     "exact_sd": 2.8,
+     "exact_min": 71.4,
+     "exact_max": 78.6,
+     "movement": -3.6,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 100.0,
+      "json": 100.0,
+      "string": 63.1,
+      "needle": 100.0,
+      "echo": 96.6
+     },
+     "self": {
+      "pairs": 474,
+      "agree_pct": 67.1,
+      "by_family": {
+       "math": {
+        "pairs": 158,
+        "agree_pct": 27.2
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 71.2
+       },
+       "string": {
+        "pairs": 78,
+        "agree_pct": 78.2
+       },
+       "needle": {
+        "pairs": 78,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 98.8
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "deepseek-v4-pro",
+       "tag": "relace/fp4",
+       "n": 12,
+       "agree": 10,
+       "agree_pct": 83.3
+      }
+     }
+    },
+    {
+     "tag": "venice",
+     "declared_quant": "unknown",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 80.2,
+      "2026-10-28": 72.7,
+      "2026-10-29": 75.0,
+      "2026-10-30": 68.9,
+      "2026-10-31": 80.5
+     },
+     "exact_mean": 75.5,
+     "exact_sd": 4.4,
+     "exact_min": 68.9,
+     "exact_max": 80.5,
+     "movement": -1.2,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 100.0,
+      "json": 100.0,
+      "string": 60.0,
+      "needle": 100.0,
+      "echo": 98.3
+     },
+     "self": {
+      "pairs": 476,
+      "agree_pct": 63.4,
+      "by_family": {
+       "math": {
+        "pairs": 158,
+        "agree_pct": 28.5
+       },
+       "json": {
+        "pairs": 79,
+        "agree_pct": 59.5
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 67.5
+       },
+       "needle": {
+        "pairs": 79,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 96.2
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "deepseek-v4-pro",
+       "tag": "venice",
+       "n": 12,
+       "agree": 8,
+       "agree_pct": 66.7
+      }
+     }
+    },
+    {
+     "tag": "deepinfra/fp8",
+     "declared_quant": "fp8",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 71.5,
+      "2026-10-28": 76.5,
+      "2026-10-29": 72.7,
+      "2026-10-30": 77.3,
+      "2026-10-31": 73.7
+     },
+     "exact_mean": 74.3,
+     "exact_sd": 2.2,
+     "exact_min": 71.5,
+     "exact_max": 77.3,
+     "movement": 1.0,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 100.0,
+      "json": 100.0,
+      "string": 64.2,
+      "needle": 100.0,
+      "echo": 95.0
+     },
+     "self": {
+      "pairs": 480,
+      "agree_pct": 66.0,
+      "by_family": {
+       "math": {
+        "pairs": 160,
+        "agree_pct": 30.6
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 67.5
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 75.0
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 92.5
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "deepseek-v4-pro",
+       "tag": "deepinfra/fp8",
+       "n": 12,
+       "agree": 8,
+       "agree_pct": 66.7
+      }
+     }
+    },
+    {
+     "tag": "siliconflow/fp8",
+     "declared_quant": "fp8",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 73.0,
+      "2026-10-28": 71.2,
+      "2026-10-29": 69.7,
+      "2026-10-30": 68.9,
+      "2026-10-31": 70.7
+     },
+     "exact_mean": 70.7,
+     "exact_sd": 1.4,
+     "exact_min": 68.9,
+     "exact_max": 73.0,
+     "movement": -1.5,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 100.0,
+      "json": 100.0,
+      "string": 59.2,
+      "needle": 100.0,
+      "echo": 97.5
+     },
+     "self": {
+      "pairs": 477,
+      "agree_pct": 66.0,
+      "by_family": {
+       "math": {
+        "pairs": 159,
+        "agree_pct": 32.1
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 66.2
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 67.5
+       },
+       "needle": {
+        "pairs": 79,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 79,
+        "agree_pct": 98.7
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "deepseek-v4-pro",
+       "tag": "siliconflow/fp8",
+       "n": 12,
+       "agree": 8,
+       "agree_pct": 66.7
+      }
+     }
+    },
+    {
+     "tag": "baidu/fp8",
+     "declared_quant": "fp8",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 75.4,
+      "2026-10-28": 68.9,
+      "2026-10-29": 75.0,
+      "2026-10-30": 53.8,
+      "2026-10-31": 51.9
+     },
+     "exact_mean": 65.0,
+     "exact_sd": 10.2,
+     "exact_min": 51.9,
+     "exact_max": 75.4,
+     "movement": -12.9,
+     "movement_overlap": true,
+     "movement_flag": true,
+     "families": {
+      "math": 98.7,
+      "json": 100.0,
+      "string": 42.0,
+      "needle": 100.0,
+      "echo": 96.6
+     },
+     "self": {
+      "pairs": 472,
+      "agree_pct": 57.8,
+      "by_family": {
+       "math": {
+        "pairs": 152,
+        "agree_pct": 27.0
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 40.0
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 51.2
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 98.8
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "deepseek-v4-pro",
+       "tag": "baidu/fp8",
+       "n": 12,
+       "agree": 12,
+       "agree_pct": 100.0
+      }
+     }
+    },
+    {
+     "tag": "digitalocean",
+     "declared_quant": "unknown",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 58.5,
+      "2026-10-28": 55.3,
+      "2026-10-29": 58.3,
+      "2026-10-30": 59.1,
+      "2026-10-31": 57.1
+     },
+     "exact_mean": 57.7,
+     "exact_sd": 1.3,
+     "exact_min": 55.3,
+     "exact_max": 59.1,
+     "movement": 0.8,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 99.6,
+      "json": 100.0,
+      "string": 52.5,
+      "needle": 100.0,
+      "echo": 95.8
+     },
+     "self": {
+      "pairs": 480,
+      "agree_pct": 50.6,
+      "by_family": {
+       "math": {
+        "pairs": 160,
+        "agree_pct": 0.0
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 56.2
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 52.5
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 95.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "deepseek-v4-pro",
+       "tag": "digitalocean",
+       "n": 12,
+       "agree": 6,
+       "agree_pct": 50.0
+      }
+     }
+    },
+    {
+     "tag": "azure/us",
+     "declared_quant": "unknown",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 53.9,
+      "2026-10-28": 59.5,
+      "2026-10-29": 57.6,
+      "2026-10-30": 53.0,
+      "2026-10-31": 58.6
+     },
+     "exact_mean": 56.5,
+     "exact_sd": 2.6,
+     "exact_min": 53.0,
+     "exact_max": 59.5,
+     "movement": -0.6,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 99.2,
+      "json": 100.0,
+      "string": 53.8,
+      "needle": 100.0,
+      "echo": 94.7
+     },
+     "self": {
+      "pairs": 452,
+      "agree_pct": 50.7,
+      "by_family": {
+       "math": {
+        "pairs": 149,
+        "agree_pct": 0.0
+       },
+       "json": {
+        "pairs": 76,
+        "agree_pct": 55.3
+       },
+       "string": {
+        "pairs": 76,
+        "agree_pct": 52.6
+       },
+       "needle": {
+        "pairs": 77,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 74,
+        "agree_pct": 94.6
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "deepseek-v4-pro",
+       "tag": "azure/us",
+       "n": 10,
+       "agree": 2,
+       "agree_pct": 20.0
+      }
+     }
+    },
+    {
+     "tag": "crusoe/fp8",
+     "declared_quant": "fp8",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 50.4,
+      "2026-10-28": 50.0,
+      "2026-10-29": 50.0,
+      "2026-10-30": 53.4,
+      "2026-10-31": 57.9
+     },
+     "exact_mean": 52.3,
+     "exact_sd": 3.1,
+     "exact_min": 50.0,
+     "exact_max": 57.9,
+     "movement": 3.6,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 99.6,
+      "json": 100.0,
+      "string": 30.5,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 472,
+      "agree_pct": 79.4,
+      "by_family": {
+       "math": {
+        "pairs": 159,
+        "agree_pct": 56.0
+       },
+       "json": {
+        "pairs": 78,
+        "agree_pct": 85.9
+       },
+       "string": {
+        "pairs": 78,
+        "agree_pct": 79.5
+       },
+       "needle": {
+        "pairs": 78,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 79,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "deepseek-v4-pro",
+       "tag": "crusoe/fp8",
+       "n": 12,
+       "agree": 10,
+       "agree_pct": 83.3
+      }
+     }
+    },
+    {
+     "tag": "novita/fp8",
+     "declared_quant": "fp8",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 47.2,
+      "2026-10-28": 48.5,
+      "2026-10-29": 49.2,
+      "2026-10-30": 50.8,
+      "2026-10-31": 53.4
+     },
+     "exact_mean": 49.8,
+     "exact_sd": 2.1,
+     "exact_min": 47.2,
+     "exact_max": 53.4,
+     "movement": 2.8,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 96.2,
+      "json": 100.0,
+      "string": 29.1,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 477,
+      "agree_pct": 73.8,
+      "by_family": {
+       "math": {
+        "pairs": 159,
+        "agree_pct": 43.4
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 80.0
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 76.2
+       },
+       "needle": {
+        "pairs": 79,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 79,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "deepseek-v4-pro",
+       "tag": "novita/fp8",
+       "n": 12,
+       "agree": 8,
+       "agree_pct": 66.7
+      }
+     }
+    },
+    {
+     "tag": "gmicloud/fp8",
+     "declared_quant": "fp8",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 44.6,
+      "2026-10-28": 47.7,
+      "2026-10-29": 48.5,
+      "2026-10-30": 53.8,
+      "2026-10-31": 54.1
+     },
+     "exact_mean": 49.7,
+     "exact_sd": 3.7,
+     "exact_min": 44.6,
+     "exact_max": 54.1,
+     "movement": 5.2,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 98.7,
+      "json": 100.0,
+      "string": 29.2,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 480,
+      "agree_pct": 68.1,
+      "by_family": {
+       "math": {
+        "pairs": 160,
+        "agree_pct": 34.4
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 75.0
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 65.0
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "deepseek-v4-pro",
+       "tag": "gmicloud/fp8",
+       "n": 12,
+       "agree": 9,
+       "agree_pct": 75.0
+      }
+     }
+    },
+    {
+     "tag": "cloudflare",
+     "declared_quant": "unknown",
+     "declared_changed": false,
+     "nights": 5,
+     "exact_by_night": {
+      "2026-10-27": 45.4,
+      "2026-10-28": 44.7,
+      "2026-10-29": 49.5,
+      "2026-10-30": 48.5,
+      "2026-10-31": 50.4
+     },
+     "exact_mean": 47.7,
+     "exact_sd": 2.3,
+     "exact_min": 44.7,
+     "exact_max": 50.4,
+     "movement": 2.9,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 93.2,
+      "json": 100.0,
+      "string": 21.4,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 480,
+      "agree_pct": 79.6,
+      "by_family": {
+       "math": {
+        "pairs": 160,
+        "agree_pct": 52.5
+       },
+       "json": {
+        "pairs": 80,
+        "agree_pct": 98.8
+       },
+       "string": {
+        "pairs": 80,
+        "agree_pct": 73.8
+       },
+       "needle": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 80,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "deepseek-v4-pro",
+       "tag": "cloudflare",
+       "n": 12,
+       "agree": 9,
+       "agree_pct": 75.0
+      }
+     }
+    }
+   ],
+   "families": {
+    "math": {
+     "endpoints": 15,
+     "median_agree_pct": 32.1,
+     "p75_disagree_pct": 72.2,
+     "noise_floor": 27.8,
+     "stable": false
+    },
+    "json": {
+     "endpoints": 15,
+     "median_agree_pct": 71.2,
+     "p75_disagree_pct": 37.1,
+     "noise_floor": 62.9,
+     "stable": false
+    },
+    "string": {
+     "endpoints": 15,
+     "median_agree_pct": 73.8,
+     "p75_disagree_pct": 33.8,
+     "noise_floor": 66.2,
+     "stable": false
+    },
+    "needle": {
+     "endpoints": 15,
+     "median_agree_pct": 100.0,
+     "p75_disagree_pct": 0.0,
+     "noise_floor": 100.0,
+     "stable": true
+    },
+    "echo": {
+     "endpoints": 15,
+     "median_agree_pct": 98.8,
+     "p75_disagree_pct": 3.1,
+     "noise_floor": 96.9,
+     "stable": true
+    }
+   }
+  }
+ ]
+}
