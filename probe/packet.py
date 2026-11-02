@@ -4,6 +4,13 @@
                            [--date YYYY-MM-DD] [--runs data/runs] [--trend data/trend]
                            [--scorecards data/scorecard] [--out packets]
 
+    python -m probe.packet --attestation --month 2026-11 --buyer "Requesty"
+                           --providers together,nebius,amazon-bedrock,azure,google-vertex
+
+The attestation form adds a dated cover, a monthly summary line per marked
+endpoint (nights inside the floor out of nights run in that month) and the
+proposal page from probe/templates/proposal.md as the last section.
+
 Cuts the cross-night trend into a one-page Markdown packet plus a CSV for one
 recipient: every endpoint of every probed model, with the recipient's own
 providers marked and listed first (buyer), or the recipient's own endpoints
@@ -21,6 +28,8 @@ import argparse
 import csv
 import json
 import re
+import shutil
+import subprocess
 import sys
 from pathlib import Path
 from typing import Any
@@ -316,9 +325,70 @@ def write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
             w.writerow({k: ("" if r[k] is None else r[k]) for k in COLUMNS})
 
 
+PROPOSAL = Path(__file__).parent / "templates" / "proposal.md"
+
+
+def night_within(exact: float | None, self_agree: float | None) -> bool | None:
+    """One night against the endpoint's own self-agreement, by the emit state rule."""
+    from probe.emit import GAP_MAX
+    if exact is None or self_agree is None:
+        return None
+    return (self_agree - exact) <= GAP_MAX
+
+
+def attestation_summary(t: dict[str, Any], month: str, marked: set[str]) -> list[str]:
+    out = []
+    for m in t["models"]:
+        for e in m["endpoints"]:
+            if not (provider_of(e["tag"]) in marked or e["tag"] in marked):
+                continue
+            nights = {d: v for d, v in e.get("exact_by_night", {}).items() if d.startswith(month)}
+            if not nights:
+                continue
+            ok = [night_within(v, e["self"]["agree_pct"]) for v in nights.values()]
+            n_in = sum(1 for x in ok if x)
+            out.append(f"| {m['label']} | {e['tag']} | {fmt(e['declared_quant'])} | {n_in} of {len(nights)} | {fmt(e['self']['agree_pct'])} |")
+    return out
+
+
+def render_attestation(name: str, month: str, date: str, t: dict[str, Any], marked: set[str], body: str, proposal: str | None) -> str:
+    month_dates = [d for d in t["dates"] if d.startswith(month)]
+    L = [
+        f"# Bitdepth attestation: {name}, {month}",
+        "",
+        f"- Buyer: {name}",
+        f"- Month: {month}",
+        f"- Models: {', '.join(m['slug'] for m in t['models'])}",
+        f"- Nights counted in the month: {len(month_dates)}" + (f" ({month_dates[0]} to {month_dates[-1]})" if month_dates else ""),
+        f"- Generated: {date}",
+        "",
+        "## Monthly summary",
+        "",
+        "A night counts as inside the floor when the endpoint's agreement with the reference that night is within "
+        "10 points of its own night-to-night self-agreement. Provisional rule; calibrated on 2026-11-10.",
+        "",
+        "| Model | Endpoint | Declared quant | Nights inside the floor | Self-agree |",
+        "|---|---|---|---|---|",
+    ]
+    rows = attestation_summary(t, month, marked)
+    L += rows if rows else ["| | No marked endpoint has nights in this month. | | | |"]
+    L += ["", "---", ""]
+    body = body.split("\n", 1)[1] if body.startswith("# ") else body  # drop the packet's own title
+    L.append(body.rstrip())
+    L += ["", "---", ""]
+    if proposal:
+        L.append(proposal.replace("{Company}", name).rstrip())
+    else:
+        L.append("PROPOSAL COPY PENDING")
+    L.append("")
+    return "\n".join(L)
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--for", dest="name", required=True, help="recipient name, used in the title and file name")
+    ap.add_argument("--for", "--buyer", dest="name", required=True, help="recipient name, used in the title and file name")
+    ap.add_argument("--attestation", action="store_true", help="monthly dated attestation for a buyer")
+    ap.add_argument("--month", default=None, help="YYYY-MM for --attestation; default the trend date's month")
     ap.add_argument("--group", choices=GROUPS, default="buyer")
     ap.add_argument("--providers", default="", help="comma list of provider slugs or endpoint tags to mark (e.g. deepinfra,together,baseten/fp4)")
     ap.add_argument("--date", default=None, help="trend date; default latest")
@@ -335,6 +405,26 @@ def main(argv: list[str] | None = None) -> int:
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
     stem = f"{slugify(a.name)}-{a.group}-{date}"
+    if a.attestation:
+        if not providers:
+            print("an attestation needs --providers", file=sys.stderr)
+            return 2
+        _, t = load_trend(Path(a.trend), a.date)
+        month = a.month or date[:7]
+        proposal = PROPOSAL.read_text() if PROPOSAL.exists() else None
+        md = render_attestation(a.name, month, date, t, {p.lower() for p in providers}, md, proposal)
+        stem = f"{slugify(a.name)}-attestation-{month}"
+        md_path = out / f"{stem}.md"
+        md_path.write_text(md)
+        write_csv(out / f"{stem}.csv", rows)
+        print(md_path)
+        print(out / f"{stem}.csv")
+        if shutil.which("pandoc"):
+            pdf = out / f"{stem}.pdf"
+            r = subprocess.run(["pandoc", str(md_path), "-o", str(pdf)], capture_output=True)
+            if r.returncode == 0:
+                print(pdf)
+        return 0
     (out / f"{stem}.md").write_text(md)
     write_csv(out / f"{stem}.csv", rows)
     print(out / f"{stem}.md")

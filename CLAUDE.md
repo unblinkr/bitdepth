@@ -21,10 +21,11 @@ Nightly probe of OpenRouter inference endpoints. The repository is public so tha
 
 ## Layout
 
-- `probe/` the package: `openrouter.py` (client), `generators.py` (prompt families and graders), `budget.py` (cost estimate and cap), `run.py` (nightly run), `score.py` (scorecard), `trend.py` (cross-night trend; reads files only), `packet.py` (private rows packet for one recipient, written to `packets/`, which git ignores; reads files only).
+- `probe/` the package: `openrouter.py` (client), `generators.py` (prompt families and graders), `budget.py` (cost estimate and cap), `run.py` (nightly run), `score.py` (scorecard), `trend.py` (cross-night trend; reads files only), `packet.py` (private rows packet for one recipient, written to `packets/`, which git ignores; reads files only; `--attestation` adds the monthly cover, summary and the proposal page in `probe/templates/proposal.md`), `emit.py` (public JSON per model, index and drift list into `data/public/v1/`; reads files only), `badge.py` (badge SVG on request, into `packets/badges/`).
 - `data/prompts/fixed.jsonl` the fixed probe set, written once, never changed during an experiment.
 - `data/runs/<date>/` one folder per night: `endpoints.json`, `prompts.jsonl`, `responses.jsonl`, `run.json`, and `selfcheck.jsonl` on a self-check night.
 - `data/scorecard/<date>.md` and `latest.md`.
+- `data/public/v1/` the machine-readable files the site and MCP server read: `or/<author>/<slug>.json`, `index.json`, `drift.json` (schema `bitdepth.or.v1`).
 - `data/trend/<date>.md`, `<date>.json` and the `latest` copies: the cross-night view, rewritten every night from every run folder.
 - `tasks/<slug>/` one folder per task brief with `TASK.md`, `QUESTIONS.md`, `REPORT.md`.
 - `.github/workflows/nightly.yml` the schedule.

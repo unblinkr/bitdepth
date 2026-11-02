@@ -1,0 +1,13 @@
+{
+  "schema": "bitdepth.or.v1",
+  "as_of": "2026-11-02",
+  "items": [
+    {
+      "model": "openai/gpt-oss-120b",
+      "tag": "venice/int4",
+      "movement": -10.2,
+      "compared": "mean exact of the last 3 nights minus the first 3"
+    }
+  ],
+  "footer": "Numbers against a stated reference. Not a claim about intent."
+}
