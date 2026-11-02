@@ -1,0 +1,118 @@
+{
+ "run_id": "2026-11-02-live",
+ "date": "2026-11-02",
+ "source": "live",
+ "started": "2026-11-02T17:08:49Z",
+ "models": {
+  "gpt-oss-120b": {
+   "slug": "openai/gpt-oss-120b",
+   "endpoints": 27,
+   "short": false
+  },
+  "deepseek-v4-pro": {
+   "slug": "deepseek/deepseek-v4-pro",
+   "endpoints": 15,
+   "short": false
+  }
+ },
+ "prompts": {
+  "fixed": 120,
+  "fresh": 24,
+  "kept": 144,
+  "dropped": 0
+ },
+ "dropped_prompt_ids": [],
+ "estimate": {
+  "usd": 3.3805,
+  "per_model": {
+   "gpt-oss-120b": 0.5481,
+   "deepseek-v4-pro": 2.8324
+  }
+ },
+ "cap_usd": 5.0,
+ "aborted_on_estimate": false,
+ "summary": {
+  "rows": 6048,
+  "by_status": {
+   "ok": 5997,
+   "error": 51
+  },
+  "errors": 51,
+  "misrouted": 0,
+  "skipped_budget": 0,
+  "truncated": 46,
+  "billed_cost_usd": 1.884,
+  "estimated_cost_rows": 0
+ },
+ "runtime_budget_stop": false,
+ "selfcheck": {
+  "prompts": 36,
+  "prompt_ids": [
+   "fixed-math-001",
+   "fixed-json-001",
+   "fixed-string-001",
+   "fixed-needle-001",
+   "fixed-echo-001",
+   "fixed-math-002",
+   "fixed-json-002",
+   "fixed-string-002",
+   "fixed-needle-002",
+   "fixed-echo-002",
+   "fixed-math-003",
+   "fixed-json-003",
+   "fixed-string-003",
+   "fixed-needle-003",
+   "fixed-echo-003",
+   "fixed-math-004",
+   "fixed-json-004",
+   "fixed-string-004",
+   "fixed-needle-004",
+   "fixed-echo-004",
+   "fixed-math-005",
+   "fixed-json-005",
+   "fixed-string-005",
+   "fixed-needle-005",
+   "fixed-echo-005",
+   "fixed-math-006",
+   "fixed-json-006",
+   "fixed-string-006",
+   "fixed-needle-006",
+   "fixed-echo-006",
+   "fixed-math-007",
+   "fixed-json-007",
+   "fixed-string-007",
+   "fixed-needle-007",
+   "fixed-echo-007",
+   "fixed-math-008"
+  ],
+  "wait_seconds": 3600,
+  "pass_a": {
+   "rows": 1512,
+   "by_status": {
+    "ok": 1508,
+    "error": 4
+   },
+   "errors": 4,
+   "misrouted": 0,
+   "skipped_budget": 0,
+   "truncated": 24,
+   "billed_cost_usd": 0.4763,
+   "estimated_cost_rows": 0
+  },
+  "pass_b": {
+   "rows": 1512,
+   "by_status": {
+    "ok": 1503,
+    "error": 9
+   },
+   "errors": 9,
+   "misrouted": 0,
+   "skipped_budget": 0,
+   "truncated": 19,
+   "billed_cost_usd": 0.4689,
+   "estimated_cost_rows": 0
+  }
+ },
+ "finished": "2026-11-02T20:17:54Z",
+ "total_billed_usd": 2.8292
+}
