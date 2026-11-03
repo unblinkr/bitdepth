@@ -1,0 +1,36 @@
+{
+  "actorSpecification": 1,
+  "name": "bitdepth-endpoint-probe",
+  "title": "Bitdepth Endpoint Probe",
+  "description": "Probe one LLM inference endpoint (an OpenRouter provider or your own OpenAI-compatible server) with Bitdepth's fixed prompt set and grade it against the published nightly reference, beside every other endpoint serving the same model.",
+  "version": "0.1",
+  "buildTag": "latest",
+  "input": "./input_schema.json",
+  "dockerfile": "./Dockerfile",
+  "readme": "./README.md",
+  "storages": {
+    "dataset": {
+      "actorSpecification": 1,
+      "views": {
+        "overview": {
+          "title": "Probe result",
+          "transformation": {
+            "fields": ["model", "target", "result", "against_last_night", "reference", "probed_at", "footer"]
+          },
+          "display": {
+            "component": "table",
+            "properties": {
+              "model": { "label": "Model", "format": "text" },
+              "target": { "label": "Target", "format": "object" },
+              "result": { "label": "Result", "format": "object" },
+              "against_last_night": { "label": "Against last night", "format": "object" },
+              "reference": { "label": "Reference", "format": "object" },
+              "probed_at": { "label": "Probed at", "format": "date" },
+              "footer": { "label": "Note", "format": "text" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

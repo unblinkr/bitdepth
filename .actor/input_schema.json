@@ -1,0 +1,58 @@
+{
+  "title": "Bitdepth Endpoint Probe input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "model": {
+      "title": "Model",
+      "type": "string",
+      "description": "The open-weight model the endpoint serves. Only models in Bitdepth's nightly run have a reference.",
+      "editor": "select",
+      "enum": ["openai/gpt-oss-120b", "deepseek/deepseek-v4-pro"],
+      "enumTitles": ["gpt-oss-120b", "DeepSeek V4 Pro"],
+      "default": "openai/gpt-oss-120b"
+    },
+    "target": {
+      "title": "Target",
+      "type": "string",
+      "description": "Probe an OpenRouter endpoint (billed to Bitdepth's key, no key needed from you) or your own OpenAI-compatible server.",
+      "editor": "select",
+      "enum": ["openrouter", "custom"],
+      "enumTitles": ["OpenRouter endpoint", "My own endpoint"],
+      "default": "openrouter"
+    },
+    "openrouter_endpoint": {
+      "title": "OpenRouter endpoint tag",
+      "type": "string",
+      "description": "The endpoint tag as OpenRouter lists it, for example deepinfra/fp8. Used when Target is OpenRouter.",
+      "editor": "textfield",
+      "prefill": "deepinfra/fp8"
+    },
+    "base_url": {
+      "title": "Base URL",
+      "type": "string",
+      "description": "Your OpenAI-compatible base URL, https only, ending before /chat/completions. For example https://inference.example.com/v1. Used when Target is My own endpoint.",
+      "editor": "textfield"
+    },
+    "model_name": {
+      "title": "Model name on your server",
+      "type": "string",
+      "description": "The model name your server expects in the request body, for example openai/gpt-oss-120b.",
+      "editor": "textfield"
+    },
+    "api_key": {
+      "title": "API key for your server",
+      "type": "string",
+      "description": "Sent only to your base URL, only for this run. Stored encrypted by Apify and never written to the output or the log.",
+      "editor": "textfield",
+      "isSecret": true
+    },
+    "declared_quant": {
+      "title": "Precision you serve (optional)",
+      "type": "string",
+      "description": "For the record only: bf16, fp8, fp4, int4 and so on. It does not change the grade.",
+      "editor": "textfield"
+    }
+  },
+  "required": ["model", "target"]
+}
