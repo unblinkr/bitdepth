@@ -7,5 +7,6 @@ Contact: hello@bitdepth.dev
 ## Pages
 
 - [Home](https://bitdepth.dev/): what a grade is, what it answers, and how to request a model.
+- [About](https://bitdepth.dev/about): what Bitdepth does in plain words, how a request reaches a provider, why it is called Bitdepth, a glossary and common questions.
 - [Method](https://bitdepth.dev/method): the unit, the nightly procedure, the reference rule, the noise floor, rubric v0 and the publication policy.
 - [Market](https://bitdepth.dev/market): reserving inference capacity at a fixed price with the grade checked nightly.
