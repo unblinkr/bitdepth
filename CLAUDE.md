@@ -27,5 +27,6 @@ Nightly probe of OpenRouter inference endpoints. The repository is public so tha
 - `data/scorecard/<date>.md` and `latest.md`.
 - `data/public/v1/` the machine-readable files the site and MCP server read: `or/<author>/<slug>.json`, `index.json`, `drift.json` (schema `bitdepth.or.v1`).
 - `data/trend/<date>.md`, `<date>.json` and the `latest` copies: the cross-night view, rewritten every night from every run folder.
+- `actor/` and `.actor/` the Apify actor (Bitdepth Endpoint Probe): one on-demand probe of one endpoint, graded against the latest night's reference with the nightly code; `OPENROUTER_API_KEY` is an actor env secret; per-probe spend cap in `actor/probe_one.py`.
 - `tasks/<slug>/` one folder per task brief with `TASK.md`, `QUESTIONS.md`, `REPORT.md`.
 - `.github/workflows/nightly.yml` the schedule.
