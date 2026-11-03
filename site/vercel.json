@@ -13,5 +13,26 @@
       "destination": "https://bitdepth.dev/$1",
       "permanent": true
     }
+  ],
+  "rewrites": [
+    { "source": "/v1/:path*", "destination": "/api/public?path=:path*" },
+    { "source": "/api/v1/row", "destination": "/api/row" },
+    { "source": "/api/mcp/mcp", "destination": "/api/mcp" },
+    { "source": "/mcp", "destination": "/api/mcp" }
+  ],
+  "headers": [
+    {
+      "source": "/(.well-known/mcp.json|skill.md)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    },
+    {
+      "source": "/(v1/.*|api/.*|mcp|api-access|skill.md|.well-known/mcp.json)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex" }
+      ]
+    }
   ]
 }

@@ -27,5 +27,6 @@ Nightly probe of OpenRouter inference endpoints. The repository is public so tha
 - `data/scorecard/<date>.md` and `latest.md`.
 - `data/public/v1/` the machine-readable files the site and MCP server read: `or/<author>/<slug>.json`, `index.json`, `drift.json` (schema `bitdepth.or.v1`).
 - `data/trend/<date>.md`, `<date>.json` and the `latest` copies: the cross-night view, rewritten every night from every run folder.
+- `site/` bitdepth.dev, static pages plus `site/api/` functions (public JSON, MCP, x402 row); tests in `tests/site_api.test.mjs` (`node --test`).
 - `tasks/<slug>/` one folder per task brief with `TASK.md`, `QUESTIONS.md`, `REPORT.md`.
 - `.github/workflows/nightly.yml` the schedule.

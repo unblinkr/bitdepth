@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bitdepth API</title>
+<meta name="description" content="Bitdepth grades over API: free public JSON, a free MCP server, the full row pay per call over x402, and monthly attestation.">
+<meta name="color-scheme" content="light">
+<link rel="canonical" href="https://bitdepth.dev/api-access">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bitdepth">
+<meta property="og:url" content="https://bitdepth.dev/api-access">
+<meta property="og:title" content="Bitdepth API">
+<meta property="og:description" content="Bitdepth grades over API: free public JSON, a free MCP server, the full row pay per call over x402, and monthly attestation.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Bitdepth API">
+<meta name="twitter:description" content="Bitdepth grades over API: free public JSON, a free MCP server, the full row pay per call over x402, and monthly attestation.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* API access page: same tokens and parts as /method. */
+:root{
+  --bg:#F4EEE2; --panel:#FBF8F1; --ink:#14291F; --pine:#1E3B2F; --pine-ink:#F4EEE2; --muted:#4E5B53; --line:#D9CFB8; --line-dark:#3C5A4C; --gold:#B8902A; --gold-ink:#14291F; --burgundy:#7A2A35; --soft:#EDE5D3;
+  --display:Georgia,"Times New Roman",serif; --body:Inter,system-ui,-apple-system,"Segoe UI",sans-serif; --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.narrow{max-width:860px}
+a{color:inherit}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+header.top{border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5}
+header.top .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 24px;padding-block:14px}
+.brand{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.wordmark{font-family:var(--display);font-size:26px;letter-spacing:-.4px;text-decoration:none}
+.line-tag{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted)}
+nav{display:flex;align-items:center;gap:20px;font-size:14px;flex-wrap:wrap}
+nav a{text-decoration:none;border-bottom:1px solid transparent}
+nav a[aria-current]{border-bottom-color:var(--gold)}
+nav a:hover,nav a:focus-visible{border-bottom-color:var(--ink);outline:none}
+.eyebrow{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold);font-weight:600}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(34px,5vw,54px);line-height:1.06;letter-spacing:-.8px;margin:12px 0 16px;text-wrap:balance}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(24px,3vw,30px);line-height:1.15;margin:0 0 12px;text-wrap:balance}
+h3{font-family:var(--display);font-weight:400;font-size:20px;margin:18px 0 6px}
+p{margin:0 0 14px;max-width:66ch}
+.muted{color:var(--muted)}
+section{padding-block:40px}
+.band{background:var(--pine);color:var(--pine-ink)}
+.band .muted{color:#BFCBC2}
+.band .eyebrow{color:var(--gold)}
+.band p{color:var(--pine-ink)}
+.toc{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;margin-top:18px}
+.toc a{text-decoration:none;border-bottom:1px solid var(--line)}
+.toc a:hover{border-bottom-color:var(--ink)}
+ol,ul{max-width:66ch;padding-left:22px}
+li{margin-bottom:8px}
+.unit{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0 6px}
+.chip{border:1px solid var(--line);padding:8px 14px;font-family:var(--display);font-size:18px}
+.chip small{display:block;font-family:var(--body);font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.times{font-family:var(--display);font-size:20px;color:var(--gold)}
+.tablewrap{overflow-x:auto;margin-top:18px}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+th{font-size:11px;letter-spacing:1px;text-transform:uppercase;text-align:left;color:#BFCBC2;padding:8px 12px 10px 0;border-bottom:1px solid var(--line-dark);font-weight:600}
+td{padding:10px 12px 10px 0;border-bottom:1px solid var(--line-dark);vertical-align:top;color:var(--pine-ink);font-variant-numeric:tabular-nums}
+td.g{font-family:var(--display);font-size:20px;width:3.5em}
+.light th{color:var(--muted);border-bottom-color:var(--line)}
+.light td{color:var(--ink);border-bottom-color:var(--line)}
+code{font-family:var(--mono);font-size:13px;background:var(--panel);border:1px solid var(--line);padding:1px 6px}
+.band code{background:rgba(255,255,255,.06);border-color:var(--line-dark);color:var(--pine-ink)}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:16px}
+@media (max-width:760px){.ex{grid-template-columns:1fr}}
+.exc{border:1px solid var(--line-dark);padding:18px 20px;min-width:0;font-size:14px}
+.exc .t{font-family:var(--display);font-size:20px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.exc .grade{font-family:var(--display);font-size:26px;border:2px solid var(--gold);color:var(--gold);width:44px;height:44px;display:grid;place-items:center}
+.exc .grade.c{border-color:#BFCBC2;color:#BFCBC2}
+.exc .r{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed var(--line-dark);padding:5px 0;color:#BFCBC2}
+.exc .r b{color:var(--pine-ink);font-weight:500;text-align:right;font-variant-numeric:tabular-nums}
+.exc .why{margin-top:10px;color:#BFCBC2;font-size:13px}
+footer{border-top:1px solid var(--line)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;padding-block:20px;font-size:13px;color:var(--muted)}
+footer .fm{font-family:var(--display);font-size:16px;color:var(--ink)}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><a class="wordmark" href="/">Bitdepth</a><span class="line-tag">Independent grades for inference endpoints</span></div>
+    <nav aria-label="Site"><a href="/">Grades</a><a href="/#compare">Compare</a><a href="/market">Market</a><a href="/method">Method</a><a href="/questions">Questions</a><a href="/api-access" aria-current="page">API</a></nav>
+  </div>
+</header>
+<main>
+<section>
+  <div class="wrap narrow">
+    <div class="eyebrow">API access</div>
+    <h1>The grades, for agents and code.</h1>
+    <p class="muted">Every OpenRouter endpoint serving the same open-weight model, probed nightly, scored against a published reference, beside its price. The same numbers as the scorecard, in three forms.</p>
+    <div class="toc"><a href="#free">Free JSON and MCP</a><a href="#paid">Pay per call</a><a href="#attest">Attestation</a></div>
+  </div>
+</section>
+
+<section id="free" class="band">
+  <div class="wrap narrow">
+    <div class="eyebrow">1 · Free, no key</div>
+    <h2>Public JSON and an MCP server.</h2>
+    <p>Rewritten after every nightly run. CORS open. Cached for six hours.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>URL</th><th>What it holds</th></tr></thead>
+      <tbody>
+        <tr><td><code>/v1/index.json</code></td><td>Models graded, <code>as_of</code>, endpoint counts</td></tr>
+        <tr><td><code>/v1/or/&lt;author&gt;/&lt;slug&gt;.json</code></td><td>Every endpoint for one model: declared quant, nights, primary columns, price in and out, state, per-night series</td></tr>
+        <tr><td><code>/v1/drift.json</code></td><td>Endpoints whose score moved beyond the threshold</td></tr>
+        <tr><td><code>/api/mcp/mcp</code></td><td>MCP server, streamable HTTP. Tools: <code>list_models</code>, <code>get_scorecard</code>, <code>get_endpoint</code>, <code>get_drift</code></td></tr>
+      </tbody>
+    </table></div>
+    <h3>Add it to Claude, Cursor or any MCP client</h3>
+    <p><code>https://bitdepth.dev/api/mcp/mcp</code>. Agent skill: <a href="/skill.md">/skill.md</a>. Server card: <a href="/.well-known/mcp.json">/.well-known/mcp.json</a>.</p>
+    <h3>Example</h3>
+    <p><code>curl https://bitdepth.dev/v1/or/deepseek/deepseek-v4-pro.json</code></p>
+  </div>
+</section>
+
+<section id="paid">
+  <div class="wrap narrow">
+    <div class="eyebrow">2 · Pay per call</div>
+    <h2>The full row, 0.10 USDC.</h2>
+    <p>One endpoint's complete record: per-night exact, per-family self-agreement with pair counts, and the self-check nights. Paid over x402 in USDC on Base. No account, no key. An x402 client pays and retries on its own.</p>
+    <p><code>GET /api/v1/row?model=&lt;author/slug&gt;&amp;endpoint=&lt;tag&gt;</code></p>
+    <p class="muted">Without payment the route answers 402 with the payment terms in the <code>Payment-Required</code> header. Tags come from the free model file.</p>
+  </div>
+</section>
+
+<section id="attest" class="band">
+  <div class="wrap narrow">
+    <div class="eyebrow">3 · Resellers, gateways, providers</div>
+    <h2>Attestation.</h2>
+    <p>Monthly dated attestation of your provider mix, the Verified by Bitdepth badge, drift alerts within 24 hours. Priced per contract.</p>
+    <p><a href="mailto:hello@bitdepth.dev?subject=Bitdepth%20attestation">hello@bitdepth.dev</a></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <p class="muted">Numbers against a stated reference. Not a claim about intent. How the numbers are made: <a href="/method">Method</a>.</p>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap">
+    <div><span class="fm">Bitdepth</span> · bitdepth.dev · Autumn Sun LLC, Sheridan, WY</div>
+    <div>Method v0 · hello@bitdepth.dev</div>
+  </div>
+</footer>
+</body>
+</html>
