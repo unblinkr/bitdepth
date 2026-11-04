@@ -1,6 +1,6 @@
 """Bitdepth nightly probe of OpenRouter inference endpoints."""
 
-BUDGET_USD = 5.00
+BUDGET_USD = 7.00
 CONCURRENCY = 4
 MAX_TOKENS = 512
 SEED = 42
@@ -10,6 +10,8 @@ FIXED_SEED = 20261026
 MODELS = [
     {"label": "gpt-oss-120b", "slug": "openai/gpt-oss-120b"},
     {"label": "deepseek-v4-pro", "slug": "deepseek/deepseek-v4-pro"},
+    # Added 2026-11-04: the model every public complaint in the 2026-10-27 sweeps names.
+    {"label": "deepseek-v4.1-flash-1017", "slug": "deepseek/deepseek-v4.1-flash-1017"},
 ]
 
 # Declared quantizations that count as full precision for the reference rule.
