@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Bitdepth Market</title>
-<meta name="description" content="Reserve inference capacity at a fixed price, with the grade checked nightly.">
+<meta name="description" content="Lock in a price on an open-weight model for 90 days. Bitdepth grades the endpoint nightly and credits you if it falls short.">
 <meta name="color-scheme" content="light">
 <link rel="canonical" href="https://bitdepth.dev/market">
 <meta property="og:type" content="website">
@@ -110,7 +110,7 @@ footer a:hover{text-decoration:underline}
 </head>
 <body>
 
-
+<body>
 <header class="top">
   <div class="wrap">
     <div class="brand"><a class="wordmark" href="/">Bitdepth</a><span class="line-tag">Independent grades for inference endpoints</span></div>
@@ -125,101 +125,123 @@ footer a:hover{text-decoration:underline}
     </nav>
   </div>
 </header>
+<style>
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:10px}
+@media (max-width:860px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+.step{border-top:3px solid var(--gold);padding-top:14px;min-width:0}
+.step .n{font-family:var(--display);font-size:30px;color:var(--gold);line-height:1}
+.step p{font-size:14.5px;color:var(--muted);margin-top:8px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+@media (max-width:760px){.split{grid-template-columns:1fr}}
+.problem{font-family:var(--display);font-size:clamp(22px,2.6vw,28px);line-height:1.3;max-width:34ch}
+.next{border:1px dashed var(--line);padding:16px 20px;font-size:14px;color:var(--muted)}
+.next b{color:var(--ink)}
+</style>
 
 <section class="hero">
   <div class="wrap">
     <div class="eyebrow">Bitdepth Market</div>
-    <h1>Reserve inference capacity at a fixed price, with the grade checked nightly.</h1>
-    <p>One buyer. One provider. One model at a defined grade, context and latency class. A fixed price for ninety days, with Bitdepth checking the agreed grade every night and both sides reading the same number. We're matching the first blocks now.</p>
+    <h1>Lock in a price. Know you get what you paid for.</h1>
+    <p>Reserve capacity on an open-weight model from one provider at a fixed price for 90 days. Bitdepth grades the endpoint every night. If it falls short, you get those tokens back.</p>
     <div class="ctas">
-      <a class="btn gold" href="mailto:hello@bitdepth.dev?subject=Market%3A%20buyer">I'm a buyer</a>
-      <a class="btn ghost" href="mailto:hello@bitdepth.dev?subject=Market%3A%20provider">I'm a provider</a>
-      <a class="btn ghost" href="mailto:hello@bitdepth.dev?subject=Market%3A%20index%20or%20venue">I run an index or a venue</a>
+      <a class="btn gold" href="mailto:hello@bitdepth.dev?subject=Market%3A%20reserve%20a%20block">Reserve a block</a>
+      <a class="btn ghost" href="mailto:hello@bitdepth.dev?subject=Market%3A%20sell%20capacity">I have capacity to sell</a>
+    </div>
+    <p class="muted" style="margin-top:14px;font-size:14px">We're matching the first blocks now.</p>
+  </div>
+</section>
+
+<section style="padding-top:8px">
+  <div class="wrap split">
+    <div>
+      <div class="eyebrow">The problem</div>
+      <p class="problem">Prices move, discounts dry up, and the same model name can return different outputs on different providers.</p>
+    </div>
+    <div style="align-self:end">
+      <p>A model name alone doesn't tell you what you're buying. A graded endpoint does. A block pins all of it down: the model, the provider, the grade, the price, and the term.</p>
+    </div>
+  </div>
+</section>
+
+
+<section style="padding-top:8px">
+  <div class="wrap">
+    <div class="sechead"><div><div class="eyebrow">Price, nightly</div><h2>One model, one router, a 2.5&times; spread.</h2></div><p class="muted">DeepSeek V4 Pro, listed output price per million tokens, every OpenRouter endpoint, read each night.</p></div>
+    <div class="sheet" style="font-family:var(--body);padding:18px 18px 8px;overflow-x:auto"><svg style="min-width:560px" viewBox="0 0 720 300" role="img" aria-labelledby="pc-t pc-d" style="width:100%;min-width:560px;height:auto;display:block">
+<title id="pc-t">DeepSeek V4 Pro listed output price, 9 nights</title>
+<desc id="pc-d">Lowest, median and highest listed output price per million tokens across 14 to 15 OpenRouter endpoints each night since 2026-10-27. Highest held at $3.83; lowest mostly $1.50.</desc>
+<path d="M56.0,30.2 L123.0,30.2 L190.0,30.2 L257.0,30.2 L324.0,30.2 L391.0,30.2 L458.0,30.2 L525.0,30.2 L592.0,30.2 L592.0,170.0 L525.0,170.0 L458.0,170.0 L391.0,235.1 L324.0,170.2 L257.0,170.0 L190.0,170.0 L123.0,170.0 L56.0,170.0 Z" fill="var(--soft)"/>
+<line x1="56" x2="592" y1="260.0" y2="260.0" stroke="var(--line)" stroke-width="1"/><text x="46" y="264.0" text-anchor="end" font-size="12" fill="var(--muted)">$0</text><line x1="56" x2="592" y1="200.0" y2="200.0" stroke="var(--line)" stroke-width="1"/><text x="46" y="204.0" text-anchor="end" font-size="12" fill="var(--muted)">$1</text><line x1="56" x2="592" y1="140.0" y2="140.0" stroke="var(--line)" stroke-width="1"/><text x="46" y="144.0" text-anchor="end" font-size="12" fill="var(--muted)">$2</text><line x1="56" x2="592" y1="80.0" y2="80.0" stroke="var(--line)" stroke-width="1"/><text x="46" y="84.0" text-anchor="end" font-size="12" fill="var(--muted)">$3</text><line x1="56" x2="592" y1="20.0" y2="20.0" stroke="var(--line)" stroke-width="1"/><text x="46" y="24.0" text-anchor="end" font-size="12" fill="var(--muted)">$4</text><text x="56.0" y="286" text-anchor="middle" font-size="12" fill="var(--muted)">Oct 27</text><text x="190.0" y="286" text-anchor="middle" font-size="12" fill="var(--muted)">Oct 29</text><text x="324.0" y="286" text-anchor="middle" font-size="12" fill="var(--muted)">Oct 31</text><text x="458.0" y="286" text-anchor="middle" font-size="12" fill="var(--muted)">Nov 2</text><text x="592.0" y="286" text-anchor="middle" font-size="12" fill="var(--muted)">Nov 4</text>
+<path d="M56.0,30.2 L123.0,30.2 L190.0,30.2 L257.0,30.2 L324.0,30.2 L391.0,30.2 L458.0,30.2 L525.0,30.2 L592.0,30.2" fill="none" stroke="var(--burgundy)" stroke-width="2.25" stroke-linejoin="round"/><circle cx="592.0" cy="30.2" r="3.5" fill="var(--burgundy)"/><text x="602.0" y="34.2" font-size="13" fill="var(--burgundy)" font-weight="600">Highest $3.83</text><path d="M56.0,90.1 L123.0,90.1 L190.0,90.1 L257.0,72.8 L324.0,90.1 L391.0,90.1 L458.0,90.1 L525.0,90.1 L592.0,81.4" fill="none" stroke="var(--ink)" stroke-width="2.25" stroke-linejoin="round"/><circle cx="592.0" cy="81.4" r="3.5" fill="var(--ink)"/><text x="602.0" y="85.4" font-size="13" fill="var(--ink)" font-weight="600">Median $2.98</text><path d="M56.0,170.0 L123.0,170.0 L190.0,170.0 L257.0,170.0 L324.0,170.2 L391.0,235.1 L458.0,170.0 L525.0,170.0 L592.0,170.0" fill="none" stroke="var(--gold)" stroke-width="2.25" stroke-linejoin="round"/><circle cx="592.0" cy="170.0" r="3.5" fill="var(--gold)"/><text x="602.0" y="174.0" font-size="13" fill="var(--gold)" font-weight="600">Lowest $1.50</text>
+</svg></div>
+    <p class="muted" style="font-size:13px;margin-top:10px">Since Oct 27, 2026. Shaded band runs from the cheapest to the most expensive endpoint. Grade lines (cheapest A, cheapest B) switch on after the first calibration on Nov 10. Listed prices from OpenRouter; grades are Bitdepth's.</p>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <div class="sechead"><h2>How a block works</h2></div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><p><b>You choose</b> the model, the grade you need, and your monthly volume.</p></div>
+      <div class="step"><div class="n">2</div><p><b>We match you</b> with a provider whose endpoint holds that grade.</p></div>
+      <div class="step"><div class="n">3</div><p><b>You agree</b> a fixed price per million output tokens for 90 days.</p></div>
+      <div class="step"><div class="n">4</div><p><b>Bitdepth grades it nightly.</b> You and the provider see the same result each morning.</p></div>
     </div>
   </div>
 </section>
 
 <section class="band">
   <div class="wrap">
-    <div class="eyebrow">The unit</div>
-    <h2>A model name is not a unit. A graded model is.</h2>
-    <div class="unit">
-      <div class="chip">model<small>as listed</small></div><span class="times">×</span>
-      <div class="chip">declared precision<small>provider's claim, recorded nightly</small></div><span class="times">×</span>
-      <div class="chip">grade<small>Bitdepth, measured output</small></div><span class="times">×</span>
-      <div class="chip">context · latency<small>as served</small></div>
+    <div class="sechead"><div><div class="eyebrow">Protection</div><h2>If it goes wrong</h2></div><p class="muted">This is what makes a block worth anything.</p></div>
+    <div class="tablewrap" style="border-color:var(--line-dark);background:var(--panel);color:var(--ink)">
+      <table>
+        <thead><tr><th>What happens</th><th>What you get</th></tr></thead>
+        <tbody>
+          <tr><td>The endpoint grades below the agreed letter on a night</td><td>That day's tokens are credited to you at the block price</td></tr>
+          <tr><td>The provider can't serve your committed volume, or errors spike</td><td>Counts as a below-grade day</td></tr>
+          <tr><td>The provider changes the model or its declared precision</td><td>Logged with a date. The next night's grade decides.</td></tr>
+          <tr><td>Three below-grade days in a row</td><td>You can end the block and get back what you prepaid for undelivered tokens</td></tr>
+          <tr><td>You can't use the rest</td><td>You can hand the remainder to another buyer</td></tr>
+          <tr><td>A night can't be measured</td><td>Counts for no one. Two in a row trigger a manual check.</td></tr>
+        </tbody>
+      </table>
     </div>
-    <p class="muted">Two endpoints with the same model name can return different outputs for the same prompt, so the name alone does not say what is being bought. Declared precision is the provider's claim and is held to consistency. The grade is what the endpoint returned, measured against a published reference. A block is written on all four.</p>
   </div>
 </section>
 
 <section>
-  <div class="wrap">
-    <div class="sechead"><div><div class="eyebrow">Reserved blocks</div><h2>How one works, and what happens when it goes wrong.</h2></div><p class="muted">The second table is what makes a block worth anything.</p></div>
-    <div class="term">
-      <div class="sheet">
-        <div class="h">Term sheet, standard shape</div>
-        <div class="r"><span>Unit</span><b>model · declared precision · grade · context · latency</b></div>
-        <div class="r"><span>Size</span><b>output tokens; input at provider list unless stated</b></div>
-        <div class="r"><span>Term</span><b>90 days</b></div>
-        <div class="r"><span>Price</span><b>fixed, per million output tokens</b></div>
-        <div class="r"><span>Condition</span><b>the agreed grade on every nightly run</b></div>
-        <div class="r"><span>Grader</span><b>Bitdepth, nightly, published method, both sides each morning</b></div>
-        <div class="r"><span>Specification</span><b>full block spec supplied before signature</b></div>
-      </div>
-      <div class="tablewrap">
-        <table>
-          <thead><tr><th>Event</th><th>What happens</th></tr></thead>
-          <tbody>
-            <tr><td>The endpoint grades below the agreed letter on a night</td><td>That day's tokens are credited to the buyer at the block price.</td></tr>
-            <tr><td>The endpoint fails to serve the committed throughput, or errors above the reliability threshold</td><td>Counts as a below-grade day.</td></tr>
-            <tr><td>The provider changes the endpoint's model revision or declared precision during the term</td><td>A dated event on the block record; the next nightly grade decides whether it is a below-grade day.</td></tr>
-            <tr><td>Three consecutive below-grade days</td><td>The buyer may end the block; prepaid balance for undelivered tokens is refunded.</td></tr>
-            <tr><td>The buyer cannot use the remainder</td><td>The remainder may be assigned to another buyer on notice to the provider; consent is not unreasonably withheld, and the terms set what a replacement buyer must meet.</td></tr>
-            <tr><td>A probe fails or is inconclusive</td><td>The day is marked unmeasured: not credited, not counted toward three. Two consecutive unmeasured days trigger a manual probe.</td></tr>
-            <tr><td>The two sides disagree on a night's grade</td><td>The raw record for that night, hashed and dated, is the evidence; the published method decides.</td></tr>
-          </tbody>
-        </table>
-      </div>
+  <div class="wrap term">
+    <div class="sheet">
+      <div class="h">Term sheet, standard shape</div>
+      <div class="r"><span>Unit</span><b>model · precision · grade · context · latency</b></div>
+      <div class="r"><span>Size</span><b>output tokens</b></div>
+      <div class="r"><span>Term</span><b>90 days</b></div>
+      <div class="r"><span>Price</span><b>fixed, per million output tokens</b></div>
+      <div class="r"><span>Condition</span><b>the agreed grade, every night</b></div>
+      <div class="r"><span>Grader</span><b>Bitdepth, published method</b></div>
+    </div>
+    <div class="roles" style="grid-template-columns:1fr;margin-top:0">
+      <div class="role"><h3>For providers</h3><p>Sell capacity at a committed price to a buyer who knows exactly what they're getting. A good grade is your proof, checked every night by someone who isn't you.</p></div>
+      <div class="role"><h3>How the grade stays fair</h3><p>Bitdepth runs the market and never serves inference itself. Every grade is computed by code from a <a href="/method">published method</a>, the same for every endpoint, and paying Bitdepth for anything can't change a letter.</p></div>
     </div>
   </div>
 </section>
 
 <section class="band">
   <div class="wrap">
-    <div class="sechead"><div><div class="eyebrow">Next</div><h2>Dollars per million tokens, per graded unit.</h2></div></div>
-    <p class="muted">The graded price table: the lowest and median listed price across every endpoint holding a grade, for each model, each night, with the date the prices were read. The first table goes to index partners before it is public. A transaction-based index, with rules for eligible trades, volume and stale observations, is a later stage built with an index firm and needs its own method.</p>
-    <div class="ctas3">
-      <a href="mailto:hello@bitdepth.dev?subject=Market%3A%20buy"><span class="big">Buy</span><span>I'd reserve graded throughput on a model I use.</span></a>
-      <a href="mailto:hello@bitdepth.dev?subject=Market%3A%20sell"><span class="big">Sell</span><span>I serve an open-weight model and have capacity to price.</span></a>
-      <a href="mailto:hello@bitdepth.dev?subject=Market%3A%20build"><span class="big">Build</span><span>I run an index or a venue and want the graded table.</span></a>
+    <div class="eyebrow">Get started</div>
+    <h2>Tell me the model, your volume, and the grade you need.</h2>
+    <p class="muted">I'll come back with what's available.</p>
+    <div class="ctas" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:18px">
+      <a class="btn gold" href="mailto:hello@bitdepth.dev?subject=Market%3A%20reserve%20a%20block">Reserve a block</a>
+      <a class="btn ghost" style="color:var(--pine-ink);border-color:var(--line-dark)" href="mailto:hello@bitdepth.dev?subject=Market%3A%20sell%20capacity">I have capacity to sell</a>
     </div>
-    <div class="addr"><span class="muted">Or write directly:</span><code id="addr">hello@bitdepth.dev</code><button type="button" id="copy">Copy</button></div>
+    <div class="addr"><code id="addr">hello@bitdepth.dev</code><button id="copy" type="button">Copy</button></div>
   </div>
 </section>
 
-<section>
-  <div class="wrap">
-    <div class="sechead"><div><div class="eyebrow">Roadmap</div><h2>Compute already did this.</h2></div></div>
-    <div class="proof">
-      <div class="p"><b>730 GPU-hours</b><p>One CME contract, referencing Silicon Data's H100 and B200 rental indices. Planned September 2026.</p></div>
-      <div class="p"><b>Cash-settled</b><p>ICE contracts settle on Ornn's Compute Price Index. Nobody takes delivery of hardware; holders settle against a reference price.</p></div>
-      <div class="p"><b>Forward curves</b><p>Kalshi lists implied future rental prices for B200, H200 and A100, built from traded transactions. July 2026.</p></div>
-    </div>
-    <p class="muted" style="margin-top:22px">A unit, a transaction-based index, settlement against it. GPU hours were fungible from the start. Tokens are not until they are graded. Contracts on a graded token unit are the roadmap, after the first blocks and the first table.</p>
-  </div>
-</section>
-
-<section class="band">
-  <div class="wrap">
-    <div class="eyebrow">Who does what</div>
-    <h2>The grader is not the venue.</h2>
-    <div class="roles">
-      <div class="role"><h3>Grader</h3><p class="muted">Bitdepth. Measures every night, publishes the method and the floor, never serves inference. Grades are computed by code from a published method, so a letter cannot be bought. The <a href="/method#policy" style="color:var(--gold)">publication policy</a> is the same for every endpoint.</p></div>
-      <div class="role"><h3>Index</h3><p class="muted">The graded price table first; a transaction-based index later, built with an index firm from the same kind of data that prices GPU hours.</p></div>
-      <div class="role"><h3>Venue</h3><p class="muted">Today, a reserved block between one provider and one buyer. Later, cash-settled contracts referencing the graded index, listed by an exchange.</p></div>
-    </div>
-  </div>
+<section style="padding-block:28px 44px">
+  <div class="wrap"><div class="next"><b>Next:</b> a public table of the lowest price at each grade, for every model, updated nightly. Index firms and exchanges: <a href="mailto:hello@bitdepth.dev?subject=Market%3A%20index%20or%20venue">write to us</a>.</div></div>
 </section>
 
 <footer>
@@ -231,7 +253,7 @@ footer a:hover{text-decoration:underline}
   </div>
 </footer>
 <div class="finelines">
-  <div class="wrap"><span>Numbers against a stated reference. Not a claim about intent.</span><span>Term sheet shown is the standard shape; the first blocks are being matched.</span></div>
+  <div class="wrap"><span>Numbers against a stated reference. Not a claim about intent.</span><span>Listed prices from OpenRouter, read nightly; grades are Bitdepth's.</span></div>
 </div>
 
 <script>
