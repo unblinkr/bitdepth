@@ -1,0 +1,1 @@
+Fonts used by probe/site.py to draw the share cards (PNG). Inter is under the SIL Open Font License 1.1 (rsms.me/inter). DejaVu Serif is under the Bitstream Vera and DejaVu public licence (dejavu-fonts.github.io). Both allow redistribution.
