@@ -118,6 +118,7 @@ def nice_name(m: dict[str, Any]) -> str:
         "mistral-large-4-0": "Mistral Large 4",
         "glm-5.3-flash": "GLM 5.3 Flash",
         "gemma-4-31b-it": "Gemma 4 31B",
+        "mimo-v2.6-pro": "MiMo V2.6 Pro",
     }
     return known.get(s, s.replace("-", " ").title())
 
