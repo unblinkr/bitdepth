@@ -69,7 +69,7 @@ def test_skip_when_run_exists(tmp_path, monkeypatch, capsys):
     rd.mkdir(parents=True)
     (rd / "run.json").write_text("{}")
     called = {"n": 0}
-    monkeypatch.setattr(run_mod, "resolve_models", lambda: called.__setitem__("n", called["n"] + 1) or {})
+    monkeypatch.setattr(run_mod, "resolve_models", lambda **k: called.__setitem__("n", called["n"] + 1) or {})
     rc = run_mod.main(["--date", "2026-10-27", "--source", "local"])
     assert rc == 0
     assert "run exists for 2026-10-27, skipping" in capsys.readouterr().out
@@ -83,7 +83,7 @@ def test_abort_on_estimate_sends_nothing_and_records_estimate(tmp_path, monkeypa
     ep = _endpoint()
     ep["price_in"] = 1.0
     ep["price_out"] = 1.0
-    monkeypatch.setattr(run_mod, "resolve_models", lambda: {"alpha": {"slug": "a/b", "endpoints": [ep], "short": True}})
+    monkeypatch.setattr(run_mod, "resolve_models", lambda **k: {"alpha": {"slug": "a/b", "endpoints": [ep], "short": True}})
     monkeypatch.setattr(run_mod, "load_jsonl", lambda path: [_prompt()])
     monkeypatch.setattr(run_mod, "fresh_set", lambda date: [])
     Path("data/prompts/fixed.jsonl").write_text("{}\n")
@@ -116,3 +116,14 @@ def test_selfcheck_sends_n_prompts_per_endpoint_per_pass_and_records_them(tmp_pa
     assert sum(1 for r in rows if r["pass"] == "A") == 72
     assert sum(1 for r in rows if r["pass"] == "B") == 72
     assert block["pass_a"]["rows"] == 72 and block["pass_b"]["rows"] == 72
+
+
+def test_resolve_models_skips_models_before_their_from_date(monkeypatch):
+    monkeypatch.setattr(run_mod, "MODELS", [
+        {"label": "old", "slug": "a/old"},
+        {"label": "new", "slug": "a/new", "from": "2026-11-10"},
+    ])
+    before = run_mod.resolve_models(lister=lambda slug: [], on="2026-11-09")
+    after = run_mod.resolve_models(lister=lambda slug: [], on="2026-11-10")
+    assert list(before) == ["old"]
+    assert list(after) == ["old", "new"]

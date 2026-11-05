@@ -38,10 +38,15 @@ def now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def resolve_models(lister=openrouter.list_endpoints) -> dict[str, dict[str, Any]]:
-    """Return {label: {slug, endpoints, short}} for every configured model."""
+def resolve_models(lister=openrouter.list_endpoints, on: str | None = None) -> dict[str, dict[str, Any]]:
+    """Return {label: {slug, endpoints, short}} for every configured model active on the date.
+
+    A model with a "from" date (YYYY-MM-DD, UTC) is skipped on earlier run dates.
+    """
     out: dict[str, dict[str, Any]] = {}
     for m in MODELS:
+        if on and m.get("from") and on < m["from"]:
+            continue
         eps = lister(m["slug"])
         out[m["label"]] = {
             "slug": m["slug"],
@@ -232,7 +237,7 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     started = now_iso()
-    models = resolve_models()
+    models = resolve_models(on=args.date)
     print("resolved models:")
     for label, m in models.items():
         quants: dict[str, int] = {}

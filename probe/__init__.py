@@ -16,6 +16,12 @@ MODELS = [
     # pool can be graded against its own lab as third-party hosts arrive. Two to three endpoints
     # at launch, under six, so the run flags it short until hosts join.
     {"label": "mistral-large-4-0", "slug": "mistralai/mistral-large-4-0"},
+    # Added 2026-11-05, first probed 2026-11-10 so the Nov 9 self-check night runs on the
+    # same set as the fourteen-night read. Picked from r/SillyTavernAI and r/openrouter
+    # complaints about which provider serves a weaker copy. Estimated about $0.90 and
+    # $0.70 a night at 2026-11-05 prices; four models were about $5.24, so six stay under the cap.
+    {"label": "glm-5.3-flash", "slug": "z-ai/glm-5.3-flash", "from": "2026-11-10"},
+    {"label": "gemma-4-31b-it", "slug": "google/gemma-4-31b-it", "from": "2026-11-10"},
 ]
 
 # Declared quantizations that count as full precision for the reference rule.

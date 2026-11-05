@@ -22,6 +22,8 @@ Nightly probe of OpenRouter inference endpoints. The repository is public so tha
 ## Layout
 
 - `probe/` the package: `openrouter.py` (client), `generators.py` (prompt families and graders), `budget.py` (cost estimate and cap), `run.py` (nightly run), `score.py` (scorecard), `trend.py` (cross-night trend; reads files only), `packet.py` (private rows packet for one recipient, written to `packets/`, which git ignores; reads files only; `--attestation` adds the monthly cover, summary and the proposal page in `probe/templates/proposal.md`), `emit.py` (public JSON per model, index and drift list into `data/public/v1/`; reads files only), `badge.py` (badge SVG on request, into `packets/badges/`).
+- `probe/site.py` the static leaderboard, `/m/<model>` pages, `/charts`, share cards (Pillow, fonts in `probe/assets/fonts/`) and badges. `--preview` writes placeholder data (letters for providers, synthetic numbers) to `site/lab/`, noindex; `--live` writes real data to `site/` and only runs after `scripts/go-live.sh` (creates `site/.live`, which switches on the nightly rebuild). Reads files only.
+- `probe/__init__.py` `MODELS`: a model with a `from` date is skipped on earlier run dates.
 - `data/prompts/fixed.jsonl` the fixed probe set, written once, never changed during an experiment.
 - `data/runs/<date>/` one folder per night: `endpoints.json`, `prompts.jsonl`, `responses.jsonl`, `run.json`, and `selfcheck.jsonl` on a self-check night.
 - `data/scorecard/<date>.md` and `latest.md`.

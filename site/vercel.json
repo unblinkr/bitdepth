@@ -13,5 +13,25 @@
       "destination": "https://bitdepth.dev/$1",
       "permanent": true
     }
+  ],
+  "headers": [
+    {
+      "source": "/lab/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/lab",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    }
   ]
 }
