@@ -1,6 +1,6 @@
 """Bitdepth nightly probe of OpenRouter inference endpoints."""
 
-BUDGET_USD = 7.00
+BUDGET_USD = 7.75
 CONCURRENCY = 4
 MAX_TOKENS = 512
 SEED = 42
@@ -22,6 +22,10 @@ MODELS = [
     # $0.70 a night at 2026-11-05 prices; four models were about $5.24, so six stay under the cap.
     {"label": "glm-5.3-flash", "slug": "z-ai/glm-5.3-flash", "from": "2026-11-10"},
     {"label": "gemma-4-31b-it", "slug": "google/gemma-4-31b-it", "from": "2026-11-10"},
+    # Added 2026-11-05 with the cap raised to $7.75: the model with the most provider-quality
+    # complaint threads in r/SillyTavernAI (12 in 60 days). Five endpoints, about $0.81 a night,
+    # most of it one endpoint at $4 / $8 per M.
+    {"label": "mimo-v2.6-pro", "slug": "xiaomi/mimo-v2.6-pro", "from": "2026-11-10"},
 ]
 
 # Declared quantizations that count as full precision for the reference rule.
