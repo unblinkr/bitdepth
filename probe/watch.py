@@ -13,7 +13,7 @@ watcher the changes on the endpoints they watch, through Resend. Runs only when
 STRIPE_SECRET_KEY, RESEND_API_KEY and WATCH_PAYMENT_LINK are all set; otherwise it
 says so and exits 0. Keys are read from the environment only and never printed.
 
-A watcher names endpoints in the Checkout custom field `endpoints`, comma or newline
+A watcher names endpoints in the Checkout text custom field (key containing `endpoint`, else the first text field), comma or newline
 separated, as `<author/slug>:<tag>` (one model) or `<tag>` (that tag on every model).
 A subscription watches at most as many endpoints as its quantity. Nobody is emailed
 on a night with no change on their endpoints.
@@ -197,9 +197,10 @@ def list_watchers(stripe_key: str, link: str) -> list[dict[str, Any]]:
                 items = (sub.get("items") or {}).get("data") or [{}]
                 qty = int(items[0].get("quantity") or 0)
                 text = None
-                for f in s.get("custom_fields") or []:
-                    if f.get("key") == "endpoints":
-                        text = (f.get("text") or {}).get("value")
+                fields = [f for f in (s.get("custom_fields") or []) if f.get("type") == "text"]
+                named = [f for f in fields if "endpoint" in (f.get("key") or "").lower()]
+                for f in (named or fields)[:1]:
+                    text = (f.get("text") or {}).get("value")
                 out.append({"email": email, "quantity": qty, "specs": parse_endpoints(text)})
             if not page.get("has_more"):
                 break
