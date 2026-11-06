@@ -1,0 +1,84 @@
+{
+  "schema": "bitdepth.or.v1",
+  "model": "mistralai/mistral-large-4-0",
+  "label": "mistral-large-4-0",
+  "as_of": "2026-11-05",
+  "nights": 10,
+  "endpoint_count": 2,
+  "reference_rule": "plurality across all endpoints (fewer than two declare bf16 or fp16)",
+  "method_url": "https://bitdepth.dev/method",
+  "primary_columns": [
+    "string",
+    "self_agree"
+  ],
+  "state_rule": "outside when self-agreement exceeds agreement with the reference by more than 10 points; no_data under 7 nights; stale when the data is more than 3 days old. Provisional.",
+  "noise_floor": {
+    "math": null,
+    "json": null,
+    "string": null,
+    "needle": null,
+    "echo": null
+  },
+  "stable_families": [],
+  "endpoints": [
+    {
+      "tag": "mistral/eu",
+      "provider_slug": "mistral",
+      "declared_quant": "unknown",
+      "declared_changed": false,
+      "nights": 1,
+      "exact": 100.0,
+      "exact_sd": 0.0,
+      "string": 87.5,
+      "self_agree": null,
+      "families": {
+        "math": 100.0,
+        "json": 62.5,
+        "string": 87.5,
+        "needle": 100.0,
+        "echo": 91.7
+      },
+      "movement": null,
+      "movement_flag": false,
+      "price_in_per_m": 0.77,
+      "price_out_per_m": 2.31,
+      "state": "no_data",
+      "nightly_exact": [
+        {
+          "date": "2026-11-05",
+          "exact": 100.0
+        }
+      ]
+    },
+    {
+      "tag": "mistral/zdr",
+      "provider_slug": "mistral",
+      "declared_quant": "unknown",
+      "declared_changed": false,
+      "nights": 1,
+      "exact": 100.0,
+      "exact_sd": 0.0,
+      "string": 83.3,
+      "self_agree": null,
+      "families": {
+        "math": 100.0,
+        "json": 50.0,
+        "string": 83.3,
+        "needle": 100.0,
+        "echo": 79.2
+      },
+      "movement": null,
+      "movement_flag": false,
+      "price_in_per_m": 0.7,
+      "price_out_per_m": 2.1,
+      "state": "no_data",
+      "nightly_exact": [
+        {
+          "date": "2026-11-05",
+          "exact": 100.0
+        }
+      ]
+    }
+  ],
+  "footer": "Numbers against a stated reference. Not a claim about intent."
+}
