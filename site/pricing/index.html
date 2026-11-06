@@ -130,10 +130,9 @@ footer .fm{font-family:var(--display);font-size:16px;color:var(--ink)}
   <div class="wrap">
     <div class="eyebrow">Pricing</div>
     <h1>Read the grades free. Pay when you act on them.</h1>
-    <p class="muted">Every endpoint serving the same open-weight model, graded every night against a published reference, beside its price. Each plan includes everything in the one before it.</p>
+    <p class="muted">Every endpoint serving the same open-weight model, graded every night against a published reference, beside its price. </p>
 
-    <div class="eyebrow" style="margin-top:34px">Developers and agents</div>
-    <div class="plans three">
+    <div class="plans">
       <div class="plan">
         <div class="name">Free</div>
         <div class="price">$0</div>
@@ -176,55 +175,25 @@ footer .fm{font-family:var(--display);font-size:16px;color:var(--ink)}
         </ul>
         <a class="btn" href="/api-access#paid">How it works</a>
       </div>
-    </div>
-
-    <div class="eyebrow" style="margin-top:44px">Companies</div>
-    <div class="plans three">
       <div class="plan">
-        <div class="name">Attestation</div>
-        <div class="price">$2,500</div>
-        <div class="per">a month · first 3 months month to month</div>
-        <div class="who">For resellers and subscription apps that get blamed for a provider's output.</div>
+        <div class="name">Enterprise</div>
+        <div class="price">Custom</div>
+        <div class="per">one invoice, no cards</div>
+        <div class="who">For resellers, gateways, providers and insurers.</div>
         <div class="inc">Everything in Watch, plus:</div>
         <ul>
           <li>Unlimited endpoints watched</li>
-          <li>A monthly dated attestation of your provider mix against the reference, as a PDF and a private page</li>
+          <li>Monthly dated attestation of your provider mix</li>
           <li>Verified by Bitdepth badge for your customers</li>
           <li>Your rows privately, before each public table</li>
+          <li>The grade and drift feed inside your product</li>
+          <li>Models you route added to the nightly run</li>
           <li>Direct support</li>
         </ul>
-        <a class="btn" href="mailto:hello@bitdepth.dev?subject=Bitdepth%20attestation">Talk to us</a>
-      </div>
-      <div class="plan">
-        <div class="name">Gateway licence</div>
-        <div class="price">$5,000</div>
-        <div class="per">a month · annual</div>
-        <div class="who">For gateways and routers that pick providers for their users.</div>
-        <div class="inc">Everything in Attestation, plus:</div>
-        <ul>
-          <li>The grade inside your product: route only to endpoints inside the floor</li>
-          <li>The drift feed, licensed to resell to your customers</li>
-          <li>Row reads at volume, no per-call fee</li>
-          <li>Models you route added to the nightly run</li>
-        </ul>
-        <a class="btn" href="mailto:hello@bitdepth.dev?subject=Bitdepth%20gateway%20licence">Talk to us</a>
-      </div>
-      <div class="plan dark">
-        <div class="name">Underwriting data</div>
-        <div class="price">$60,000</div>
-        <div class="per">a year · or a 90-day pilot at $15,000, credited</div>
-        <div class="who">For insurers, MGAs and brokers pricing AI performance cover.</div>
-        <div class="inc">Everything in Gateway, plus:</div>
-        <ul>
-          <li>The full dated archive with raw outputs, for pricing and claims</li>
-          <li>Monitoring of the endpoints your insureds use</li>
-          <li>Claim investigation reports on request</li>
-          <li>A say in the method while the record builds</li>
-        </ul>
-        <a class="btn" href="mailto:hello@bitdepth.dev?subject=Bitdepth%20underwriting%20data">Talk to us</a>
+        <a class="btn primary" href="mailto:hello@bitdepth.dev?subject=Bitdepth%20enterprise">Talk to us</a>
       </div>
     </div>
-    <p class="note">Serve one of these models? Providers can carry the badge free when inside the floor; provider attestation follows the Attestation plan. Write to hello@bitdepth.dev.</p>
+
   </div>
 </section>
 
@@ -249,7 +218,7 @@ footer .fm{font-family:var(--display);font-size:16px;color:var(--ink)}
       <div class="tool"><div class="h"><span>11</span><span>WATCH</span></div><div class="n">Watch alerts</div><div class="pr">$5 per endpoint a month</div><p>The morning email when an endpoint you watch changes. Quiet otherwise.</p></div>
       <div class="tool soon"><div class="h"><span>12</span><span>SOON</span></div><div class="n">probe_endpoint</div><div class="pr">$5 per probe</div><p>Run the full prompt set against any endpoint now, graded against last night's reference. Including your own route.</p></div>
       <div class="tool soon"><div class="h"><span>13</span><span>SOON</span></div><div class="n">bitdepth-guard</div><div class="pr">free · npm and pip</div><p>A wrapper for the OpenRouter SDK that pins your calls to endpoints inside the floor, on your own key.</p></div>
-      <div class="tool soon"><div class="h"><span>14</span><span>SOON</span></div><div class="n">get_attestation_data</div><div class="pr">Attestation plans</div><p>The dated monthly record behind an attestation, as JSON.</p></div>
+      <div class="tool soon"><div class="h"><span>14</span><span>SOON</span></div><div class="n">get_attestation_data</div><div class="pr">Enterprise</div><p>The dated monthly record behind an attestation, as JSON.</p></div>
     </div>
   </div>
 </section>
