@@ -111,7 +111,8 @@ footer .fm{font-family:var(--display);font-size:16px;color:var(--ink)}
         <tr><td><code>/v1/index.json</code></td><td>Models graded, <code>as_of</code>, endpoint counts</td></tr>
         <tr><td><code>/v1/or/&lt;author&gt;/&lt;slug&gt;.json</code></td><td>Every endpoint for one model: declared quant, nights, primary columns, price in and out, state, per-night series</td></tr>
         <tr><td><code>/v1/drift.json</code></td><td>Endpoints whose score moved beyond the threshold</td></tr>
-        <tr><td><code>/api/mcp/mcp</code></td><td>MCP server, streamable HTTP. Tools: <code>list_models</code>, <code>get_scorecard</code>, <code>get_endpoint</code>, <code>get_drift</code></td></tr>
+        <tr><td><code>/v1/changes.json</code></td><td>Last night's changes in state, declared precision, price and listing</td></tr>
+        <tr><td><code>/api/mcp/mcp</code></td><td>MCP server, streamable HTTP. Nine tools, listed on <a href="/pricing#tools">Pricing</a></td></tr>
       </tbody>
     </table></div>
     <h3>Add it to Claude, Cursor or any MCP client</h3>

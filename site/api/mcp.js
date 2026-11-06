@@ -3,10 +3,10 @@
 // batch) and gets a JSON response; no sessions, no SSE stream, which the
 // streamable HTTP transport allows. No key.
 
-import { FOOTER, METHOD_URL, getDrift, getEndpoint, getIndex, getModel } from "./_lib/data.js";
+import { FOOTER, METHOD_URL, getChanges, getDrift, getEndpoint, getIndex, getModel } from "./_lib/data.js";
 
 const PROTOCOL_VERSIONS = ["2025-06-18", "2025-03-26", "2024-11-05"];
-const SERVER = { name: "bitdepth", title: "Bitdepth", version: "0.1.0" };
+const SERVER = { name: "bitdepth", title: "Bitdepth", version: "0.2.0" };
 const INSTRUCTIONS =
   "Bitdepth grades every OpenRouter endpoint serving the same open-weight model, nightly, against a published reference, " +
   "and shows each beside its price. Start with list_models, then get_scorecard. Every number is against the stated reference; " +
@@ -42,7 +42,61 @@ const TOOLS = [
     inputSchema: { type: "object", properties: {}, additionalProperties: false },
     annotations: { readOnlyHint: true, openWorldHint: false },
   },
+  {
+    name: "get_market_summary",
+    title: "Market summary",
+    description: "Per graded model: endpoints listed, how many sit inside and outside the noise floor, the output price range (min, median, max per million tokens), and the cheapest endpoint inside the floor. The citation numbers.",
+    inputSchema: { type: "object", properties: {}, additionalProperties: false },
+    annotations: { readOnlyHint: true, openWorldHint: false },
+  },
+  {
+    name: "get_best_value_endpoint",
+    title: "Best value endpoint",
+    description: "For one model, the endpoints inside the noise floor with at least 7 nights, ranked by blended price ((3 x input + output) / 4 per million tokens), cheapest first. Top 3.",
+    inputSchema: { type: "object", properties: { model: str("Model id, e.g. deepseek/deepseek-v4-pro") }, required: ["model"], additionalProperties: false },
+    annotations: { readOnlyHint: true, openWorldHint: false },
+  },
+  {
+    name: "check_before_route",
+    title: "Check before routing",
+    description: "Should I send calls to this endpoint, on last night's grade? Returns route true (inside the floor, 7+ nights), false (outside), or inconclusive (too few nights or stale data), with the reason and, when not true, the best value alternative.",
+    inputSchema: { type: "object", properties: { model: str("Model id"), endpoint: str("Endpoint tag, e.g. deepinfra/fp8") }, required: ["model", "endpoint"], additionalProperties: false },
+    annotations: { readOnlyHint: true, openWorldHint: false },
+  },
+  {
+    name: "check_declared",
+    title: "Declared precision check",
+    description: "The precision this endpoint declares on the router (fp8, bf16 and so on) and whether that declaration changed during the window. A declaration is a claim; the grade measures behavior.",
+    inputSchema: { type: "object", properties: { model: str("Model id"), endpoint: str("Endpoint tag") }, required: ["model", "endpoint"], additionalProperties: false },
+    annotations: { readOnlyHint: true, openWorldHint: false },
+  },
+  {
+    name: "get_changes",
+    title: "Last night's changes",
+    description: "Every endpoint whose grade state, declared precision or listed price changed last night, plus endpoints that appeared or left the router. The same feed Watch subscribers are emailed from.",
+    inputSchema: { type: "object", properties: {}, additionalProperties: false },
+    annotations: { readOnlyHint: true, openWorldHint: false },
+  },
 ];
+
+const MIN_ROUTE_NIGHTS = 7;
+const blended = (e) => (e.price_in_per_m == null || e.price_out_per_m == null ? null : (3 * e.price_in_per_m + e.price_out_per_m) / 4);
+const median = (xs) => { const s = [...xs].sort((a, b) => a - b); const n = s.length; return n ? (n % 2 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2) : null; };
+
+function bestValue(doc, n = 3) {
+  return doc.endpoints
+    .filter((e) => e.state === "within" && (e.nights ?? 0) >= MIN_ROUTE_NIGHTS && blended(e) != null)
+    .sort((a, b) => blended(a) - blended(b))
+    .slice(0, n)
+    .map((e) => ({ tag: e.tag, declared_quant: e.declared_quant, nights: e.nights, blended_price_per_m: Number(blended(e).toFixed(4)), price_in_per_m: e.price_in_per_m, price_out_per_m: e.price_out_per_m }));
+}
+
+async function needEndpoint(args) {
+  const { doc, row } = await getEndpoint(String(args.model || ""), String(args.endpoint || ""));
+  if (!doc) throw toolError(`Unknown model '${args.model}'. Call list_models.`);
+  if (!row) throw toolError(`No endpoint '${args.endpoint}' for ${doc.model}. Tags: ${doc.endpoints.map((e) => e.tag).join(", ")}`);
+  return { doc, row };
+}
 
 const envelope = (doc, extra) => ({ as_of: doc?.as_of ?? null, method_url: METHOD_URL, ...extra, footer: FOOTER });
 
@@ -84,6 +138,49 @@ async function callTool(name, args = {}) {
   if (name === "get_drift") {
     const d = await getDrift();
     return envelope(d, { items: d?.items ?? [] });
+  }
+  if (name === "get_market_summary") {
+    const idx = await getIndex();
+    const models = [];
+    for (const m of idx?.models ?? []) {
+      const doc = await getModel(m.model);
+      if (!doc) continue;
+      const count = (s) => doc.endpoints.filter((e) => e.state === s).length;
+      const outs = doc.endpoints.map((e) => e.price_out_per_m).filter((v) => v != null);
+      const best = bestValue(doc, 1)[0] ?? null;
+      models.push({
+        model: doc.model, as_of: doc.as_of, nights: doc.nights, endpoints: doc.endpoints.length,
+        within: count("within"), outside: count("outside"), no_data: count("no_data"), stale: count("stale"),
+        price_out_per_m: outs.length ? { min: Math.min(...outs), median: median(outs), max: Math.max(...outs) } : null,
+        cheapest_within: best,
+      });
+    }
+    return envelope(idx, { models });
+  }
+  if (name === "get_best_value_endpoint") {
+    const doc = await getModel(String(args.model || ""));
+    if (!doc) throw toolError(`Unknown model '${args.model}'. Call list_models.`);
+    return envelope(doc, { model: doc.model, rule: `state within, ${MIN_ROUTE_NIGHTS}+ nights, cheapest blended price first`, endpoints: bestValue(doc) });
+  }
+  if (name === "check_before_route") {
+    const { doc, row } = await needEndpoint(args);
+    let route, reason;
+    if (row.state === "within" && (row.nights ?? 0) >= MIN_ROUTE_NIGHTS) { route = true; reason = `inside the noise floor over ${row.nights} nights`; }
+    else if (row.state === "outside") { route = false; reason = "outside the noise floor: agrees with itself more than with the reference"; }
+    else { route = "inconclusive"; reason = row.state === "stale" ? "data older than 3 nights" : `only ${row.nights ?? 0} nights; ${MIN_ROUTE_NIGHTS} needed`; }
+    return envelope(doc, {
+      model: doc.model, endpoint: row.tag, route, reason, state: row.state, nights: row.nights, declared_quant: row.declared_quant,
+      alternative: route === true ? null : bestValue(doc, 1)[0] ?? null,
+    });
+  }
+  if (name === "check_declared") {
+    const { doc, row } = await needEndpoint(args);
+    return envelope(doc, { model: doc.model, endpoint: row.tag, declared_quant: row.declared_quant, declared_changed: Boolean(row.declared_changed), state: row.state });
+  }
+  if (name === "get_changes") {
+    const c = await getChanges();
+    if (!c) return { as_of: null, method_url: METHOD_URL, changes: [], note: "The first changes file is written after the next nightly run.", footer: FOOTER };
+    return envelope(c, { baseline: Boolean(c.baseline), count: c.count ?? 0, changes: c.changes ?? [] });
   }
   throw rpcError(-32602, `Unknown tool: ${name}`);
 }

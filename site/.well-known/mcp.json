@@ -14,6 +14,6 @@
       "authentication": "none"
     }
   ],
-  "tools": ["list_models", "get_scorecard", "get_endpoint", "get_drift"],
+  "tools": ["list_models", "get_scorecard", "get_endpoint", "get_drift", "get_market_summary", "get_best_value_endpoint", "check_before_route", "check_declared", "get_changes"],
   "skill": "https://bitdepth.dev/skill.md"
 }

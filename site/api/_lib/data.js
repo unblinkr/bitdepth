@@ -33,6 +33,7 @@ export function isModelId(model) {
 export const getIndex = () => getJson("public/v1/index.json");
 export const getDrift = () => getJson("public/v1/drift.json");
 export const getTrend = () => getJson("trend/latest.json");
+export const getChanges = () => getJson("public/v1/changes.json");
 
 export async function getModel(model) {
   if (!isModelId(model)) return null;

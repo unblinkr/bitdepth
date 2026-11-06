@@ -51,6 +51,7 @@ section{padding-block:40px}
 .band .muted{color:#BFCBC2}
 .band .eyebrow{color:var(--gold)}
 .band p{color:var(--pine-ink)}
+.band .tool p{color:var(--muted)}
 .toc{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;margin-top:18px}
 .toc a{text-decoration:none;border-bottom:1px solid var(--line)}
 .toc a:hover{border-bottom-color:var(--ink)}
@@ -95,6 +96,26 @@ footer .fm{font-family:var(--display);font-size:16px;color:var(--ink)}
 .btn{display:inline-block;text-align:center;text-decoration:none;padding:11px 16px;font-weight:600;font-size:14px;border:1px solid var(--ink)}
 .btn.primary{background:var(--pine);color:var(--pine-ink);border-color:var(--pine)}
 .faq h3{margin-top:22px}
+.plans.three{grid-template-columns:repeat(3,1fr)}
+@media (max-width:980px){.plans.three{grid-template-columns:1fr}}
+.plan .who{font-size:13px;color:var(--muted);margin:-8px 0 14px;border-bottom:1px solid var(--line);padding-bottom:14px}
+.plan .inc{font-size:13px;font-weight:600;margin:0 0 6px}
+.plan.dark{background:var(--pine);color:var(--pine-ink);border-color:var(--pine)}
+.plan.dark .name,.plan.dark .per,.plan.dark .who{color:#BFCBC2}
+.plan.dark .who{border-bottom-color:var(--line-dark)}
+.plan.dark .btn{border-color:var(--gold);color:var(--gold-ink);background:var(--gold)}
+.note{font-size:13px;color:var(--muted);margin-top:18px;max-width:none}
+.tools{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+@media (max-width:980px){.tools{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.tools{grid-template-columns:1fr}}
+.tool{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-top:3px solid var(--gold);padding:16px 16px 18px;min-width:0}
+.tool.soon{opacity:.72;border-top-color:var(--line)}
+.tool .h{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--gold)}
+.tool .h span:last-child{color:var(--muted)}
+.tool .n{font-family:var(--mono);font-size:14px;font-weight:600;margin:10px 0 2px;overflow-wrap:anywhere}
+.tool .pr{font-family:var(--mono);font-size:12px;color:var(--gold);margin-bottom:10px}
+.tool p{font-size:13px;color:var(--muted);margin:0}
+
 </style>
 </head>
 <body>
@@ -108,17 +129,21 @@ footer .fm{font-family:var(--display);font-size:16px;color:var(--ink)}
 <section>
   <div class="wrap">
     <div class="eyebrow">Pricing</div>
-    <h1>Know the morning your endpoint changes.</h1>
-    <p class="muted">Every endpoint serving the same open-weight model, graded every night against a published reference, beside its price. Reading the grades is free. Watching the endpoints you route to costs five dollars each.</p>
-    <div class="plans">
+    <h1>Read the grades free. Pay when you act on them.</h1>
+    <p class="muted">Every endpoint serving the same open-weight model, graded every night against a published reference, beside its price. Each plan includes everything in the one before it.</p>
+
+    <div class="eyebrow" style="margin-top:34px">Developers and agents</div>
+    <div class="plans three">
       <div class="plan">
         <div class="name">Free</div>
         <div class="price">$0</div>
         <div class="per">no key, no account</div>
+        <div class="who">For reading the table and for agents that check before they route.</div>
         <ul>
           <li>The full public table, every endpoint named</li>
           <li>Public JSON at <code>/v1</code>, rewritten nightly</li>
-          <li>MCP server for Claude, Cursor and agents</li>
+          <li>MCP server with 9 free tools, including <code>check_before_route</code></li>
+          <li>Last night's changes at <code>/v1/changes.json</code></li>
           <li>Graded by Bitdepth badge for endpoints inside the floor</li>
         </ul>
         <a class="btn" href="/api-access">Get the API</a>
@@ -126,61 +151,122 @@ footer .fm{font-family:var(--display);font-size:16px;color:var(--ink)}
       <div class="plan hot">
         <div class="name">Watch</div>
         <div class="price">$5</div>
-        <div class="per">per endpoint a month, 3 endpoint minimum</div>
+        <div class="per">per endpoint a month · 3 minimum ($15)</div>
+        <div class="who">For developers and small teams routing to specific endpoints.</div>
+        <div class="inc">Everything in Free, plus:</div>
         <ul>
-          <li>Email the morning an endpoint you watch changes grade state, declared precision or price</li>
-          <li>Quiet on nights nothing changed</li>
+          <li>An email the morning an endpoint you watch changes grade state, declared precision, price or listing</li>
+          <li>Nothing sent on quiet nights</li>
+          <li>Up to 200 endpoints, any model we grade</li>
           <li>Add or drop endpoints any time</li>
           <li>Cancel any time from your receipt</li>
         </ul>
-        <!-- WATCH_PAYMENT_LINK: replace this href with the Stripe Payment Link (adjustable quantity, minimum 3, custom field key "endpoints"). -->
-        <a class="btn primary" id="watch-buy" href="mailto:hello@bitdepth.dev?subject=Bitdepth%20Watch">Start watching</a>
+        <a class="btn primary" id="watch-buy" href="https://buy.stripe.com/aFacN63vH3VeaI315DcbC08">Start watching</a>
       </div>
       <div class="plan">
         <div class="name">Pay per call</div>
         <div class="price">0.10 USDC</div>
-        <div class="per">per full row, over x402 on Base</div>
+        <div class="per">per full row · x402 on Base</div>
+        <div class="who">For agents that pay as they go. No account.</div>
+        <div class="inc">Everything in Free, plus:</div>
         <ul>
-          <li>One endpoint's complete record: per-night scores, per-family self-agreement, self-check nights</li>
-          <li>No account, no key; an x402 client pays and retries on its own</li>
-          <li>Built for agents that check before they route</li>
+          <li>One endpoint's complete record: per-night scores, per-family self-agreement with pair counts, self-check nights</li>
+          <li>No key: an x402 client pays and retries on its own</li>
+          <li>Settled in USDC before the row is served</li>
         </ul>
         <a class="btn" href="/api-access#paid">How it works</a>
       </div>
+    </div>
+
+    <div class="eyebrow" style="margin-top:44px">Companies</div>
+    <div class="plans three">
       <div class="plan">
         <div class="name">Attestation</div>
-        <div class="price">From $2,500</div>
-        <div class="per">a month, for resellers, gateways, providers and insurers</div>
+        <div class="price">$2,500</div>
+        <div class="per">a month · first 3 months month to month</div>
+        <div class="who">For resellers and subscription apps that get blamed for a provider's output.</div>
+        <div class="inc">Everything in Watch, plus:</div>
         <ul>
-          <li>A monthly dated record of your provider mix against the reference</li>
-          <li>Alerts within 24 hours on every endpoint you use or serve</li>
-          <li>The Verified by Bitdepth badge for your customers</li>
-          <li>Private rows before each public table</li>
+          <li>Unlimited endpoints watched</li>
+          <li>A monthly dated attestation of your provider mix against the reference, as a PDF and a private page</li>
+          <li>Verified by Bitdepth badge for your customers</li>
+          <li>Your rows privately, before each public table</li>
+          <li>Direct support</li>
         </ul>
         <a class="btn" href="mailto:hello@bitdepth.dev?subject=Bitdepth%20attestation">Talk to us</a>
       </div>
+      <div class="plan">
+        <div class="name">Gateway licence</div>
+        <div class="price">$5,000</div>
+        <div class="per">a month · annual</div>
+        <div class="who">For gateways and routers that pick providers for their users.</div>
+        <div class="inc">Everything in Attestation, plus:</div>
+        <ul>
+          <li>The grade inside your product: route only to endpoints inside the floor</li>
+          <li>The drift feed, licensed to resell to your customers</li>
+          <li>Row reads at volume, no per-call fee</li>
+          <li>Models you route added to the nightly run</li>
+        </ul>
+        <a class="btn" href="mailto:hello@bitdepth.dev?subject=Bitdepth%20gateway%20licence">Talk to us</a>
+      </div>
+      <div class="plan dark">
+        <div class="name">Underwriting data</div>
+        <div class="price">$60,000</div>
+        <div class="per">a year · or a 90-day pilot at $15,000, credited</div>
+        <div class="who">For insurers, MGAs and brokers pricing AI performance cover.</div>
+        <div class="inc">Everything in Gateway, plus:</div>
+        <ul>
+          <li>The full dated archive with raw outputs, for pricing and claims</li>
+          <li>Monitoring of the endpoints your insureds use</li>
+          <li>Claim investigation reports on request</li>
+          <li>A say in the method while the record builds</li>
+        </ul>
+        <a class="btn" href="mailto:hello@bitdepth.dev?subject=Bitdepth%20underwriting%20data">Talk to us</a>
+      </div>
+    </div>
+    <p class="note">Serve one of these models? Providers can carry the badge free when inside the floor; provider attestation follows the Attestation plan. Write to hello@bitdepth.dev.</p>
+  </div>
+</section>
+
+<section id="tools" class="band">
+  <div class="wrap">
+    <div class="eyebrow">Tools</div>
+    <h2>9 free tools. 1 paid per call. Watch on top.</h2>
+    <p>Every tool runs on the MCP server at <code>https://bitdepth.dev/api/mcp/mcp</code> with no key. Every answer carries the date, the method link and the reference it is measured against.</p>
+  </div>
+  <div class="wrap">
+    <div class="tools">
+      <div class="tool"><div class="h"><span>01</span><span>KEYLESS</span></div><div class="n">check_before_route</div><div class="pr">free</div><p>Should my agent send calls to this endpoint tonight? Returns route true, false or inconclusive, the reason, and the best value alternative.</p></div>
+      <div class="tool"><div class="h"><span>02</span><span>KEYLESS</span></div><div class="n">get_best_value_endpoint</div><div class="pr">free</div><p>The cheapest endpoints for a model that stayed inside the noise floor for 7 nights or more, ranked by blended price.</p></div>
+      <div class="tool"><div class="h"><span>03</span><span>KEYLESS</span></div><div class="n">get_market_summary</div><div class="pr">free</div><p>Per model: endpoints listed, how many inside and outside the floor, the price range, and the cheapest endpoint inside it.</p></div>
+      <div class="tool"><div class="h"><span>04</span><span>KEYLESS</span></div><div class="n">get_scorecard</div><div class="pr">free</div><p>Every endpoint for one model: declared precision, nights, scores, price in and out, and state.</p></div>
+      <div class="tool"><div class="h"><span>05</span><span>KEYLESS</span></div><div class="n">get_endpoint</div><div class="pr">free</div><p>One endpoint's row with its night-by-night series.</p></div>
+      <div class="tool"><div class="h"><span>06</span><span>KEYLESS</span></div><div class="n">check_declared</div><div class="pr">free</div><p>The precision an endpoint declares on the router, and whether that declaration changed.</p></div>
+      <div class="tool"><div class="h"><span>07</span><span>KEYLESS</span></div><div class="n">get_changes</div><div class="pr">free</div><p>Last night's changes in state, declared precision, price and listing. The feed Watch emails come from.</p></div>
+      <div class="tool"><div class="h"><span>08</span><span>KEYLESS</span></div><div class="n">get_drift</div><div class="pr">free</div><p>Endpoints whose score moved beyond the noise threshold across the window.</p></div>
+      <div class="tool"><div class="h"><span>09</span><span>KEYLESS</span></div><div class="n">list_models</div><div class="pr">free</div><p>The models graded nightly, with the date and endpoint count.</p></div>
+      <div class="tool"><div class="h"><span>10</span><span>PAID</span></div><div class="n">GET /api/v1/row</div><div class="pr">0.10 USDC · x402</div><p>One endpoint's full record: per-night scores, per-family self-agreement with pair counts, self-check nights.</p></div>
+      <div class="tool"><div class="h"><span>11</span><span>WATCH</span></div><div class="n">Watch alerts</div><div class="pr">$5 per endpoint a month</div><p>The morning email when an endpoint you watch changes. Quiet otherwise.</p></div>
+      <div class="tool soon"><div class="h"><span>12</span><span>SOON</span></div><div class="n">probe_endpoint</div><div class="pr">$5 per probe</div><p>Run the full prompt set against any endpoint now, graded against last night's reference. Including your own route.</p></div>
+      <div class="tool soon"><div class="h"><span>13</span><span>SOON</span></div><div class="n">bitdepth-guard</div><div class="pr">free · npm and pip</div><p>A wrapper for the OpenRouter SDK that pins your calls to endpoints inside the floor, on your own key.</p></div>
+      <div class="tool soon"><div class="h"><span>14</span><span>SOON</span></div><div class="n">get_attestation_data</div><div class="pr">Attestation plans</div><p>The dated monthly record behind an attestation, as JSON.</p></div>
     </div>
   </div>
 </section>
 
-<section class="band">
+<section>
   <div class="wrap narrow faq">
     <div class="eyebrow">Questions</div>
     <h2>How Watch works.</h2>
     <h3>What counts as an endpoint?</h3>
-    <p>One provider serving one model at one declared precision, for example <code>deepseek/deepseek-v4-pro:atlas-cloud/fp8</code>. The tags are in the public table and in each model's JSON.</p>
+    <p>One provider serving one model at one declared precision, for example <code>deepseek/deepseek-v4-pro:atlas-cloud/fp8</code>. The tags are in the public table, in each model's JSON, and in <code>get_scorecard</code>.</p>
     <h3>How do I pick them?</h3>
-    <p>At checkout, list the endpoints you route to, separated by commas. Set the quantity to how many you listed. Write to hello@bitdepth.dev to change the list.</p>
+    <p>At checkout, list the endpoints you route to, separated by commas, and set the quantity to how many you listed. Write to hello@bitdepth.dev to change the list.</p>
     <h3>What is a change?</h3>
     <p>The endpoint moves inside or outside the noise floor, its declared precision changes, its listed price moves, or it appears or leaves the router. The rules are on the <a href="/method">method page</a>.</p>
     <h3>When does the email arrive?</h3>
     <p>After the nightly run finishes, usually early morning US Eastern. Nothing arrives on a night with no change.</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap narrow">
-    <p class="muted">Numbers against a stated reference. Not a claim about intent. How the numbers are made: <a href="/method">Method</a>.</p>
+    <p class="muted" style="margin-top:28px">Numbers against a stated reference. Not a claim about intent.</p>
   </div>
 </section>
 </main>

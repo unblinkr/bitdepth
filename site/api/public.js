@@ -1,7 +1,7 @@
 // Free public JSON. vercel.json rewrites /v1/<path> here as ?path=<path>.
-// Serves only index.json, drift.json and or/<author>/<slug>.json.
+// Serves only index.json, drift.json, changes.json and or/<author>/<slug>.json.
 
-import { getIndex, getDrift, getModel } from "./_lib/data.js";
+import { getIndex, getDrift, getModel, getChanges } from "./_lib/data.js";
 
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -12,6 +12,7 @@ export default async function handler(req, res) {
     let body = null;
     if (path === "index.json") body = await getIndex();
     else if (path === "drift.json") body = await getDrift();
+    else if (path === "changes.json") body = await getChanges();
     else {
       const m = path.match(/^or\/(.+)\.json$/);
       if (m) body = await getModel(m[1]);

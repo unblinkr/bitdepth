@@ -23,6 +23,11 @@ Plain JSON, free, no key:
 - `get_scorecard(model)` every endpoint, best first on the model's primary column, with price and state.
 - `get_endpoint(model, endpoint)` one row with its per-night series.
 - `get_drift()` what moved.
+- `get_market_summary()` per model: endpoints inside and outside the floor, price range, cheapest inside.
+- `get_best_value_endpoint(model)` cheapest endpoints inside the floor, 7+ nights.
+- `check_before_route(model, endpoint)` route true, false or inconclusive, with the reason and an alternative.
+- `check_declared(model, endpoint)` declared precision and whether it changed.
+- `get_changes()` last night's changes in state, precision, price and listing.
 
 ## Reading a row
 

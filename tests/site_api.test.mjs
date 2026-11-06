@@ -65,7 +65,7 @@ test("mcp: initialize, tools/list, every tool, errors", async () => {
   assert.equal(note.statusCode, 202);
 
   res = await rpc("tools/list");
-  assert.deepEqual(res.parsed().result.tools.map((t) => t.name), ["list_models", "get_scorecard", "get_endpoint", "get_drift"]);
+  assert.deepEqual(res.parsed().result.tools.map((t) => t.name), ["list_models", "get_scorecard", "get_endpoint", "get_drift", "get_market_summary", "get_best_value_endpoint", "check_before_route", "check_declared", "get_changes"]);
 
   res = await rpc("tools/call", { name: "list_models", arguments: {} });
   const models = res.parsed().result.structuredContent.models;
@@ -84,6 +84,27 @@ test("mcp: initialize, tools/list, every tool, errors", async () => {
 
   res = await rpc("tools/call", { name: "get_drift", arguments: {} });
   assert.ok(Array.isArray(res.parsed().result.structuredContent.items));
+
+  res = await rpc("tools/call", { name: "get_market_summary", arguments: {} });
+  const ms = res.parsed().result.structuredContent.models;
+  assert.ok(ms.length >= 2 && ms.every((m) => m.endpoints === m.within + m.outside + m.no_data + m.stale));
+
+  res = await rpc("tools/call", { name: "get_best_value_endpoint", arguments: { model: "deepseek/deepseek-v4-pro" } });
+  const bv = res.parsed().result.structuredContent.endpoints;
+  for (let i = 1; i < bv.length; i++) assert.ok(bv[i - 1].blended_price_per_m <= bv[i].blended_price_per_m);
+
+  res = await rpc("tools/call", { name: "check_before_route", arguments: { model: "deepseek/deepseek-v4-pro", endpoint: tag } });
+  const cr = res.parsed().result.structuredContent;
+  assert.ok([true, false, "inconclusive"].includes(cr.route) && cr.reason);
+
+  res = await rpc("tools/call", { name: "check_declared", arguments: { model: "deepseek/deepseek-v4-pro", endpoint: tag } });
+  assert.equal(typeof res.parsed().result.structuredContent.declared_changed, "boolean");
+
+  res = await rpc("tools/call", { name: "check_before_route", arguments: { model: "deepseek/deepseek-v4-pro", endpoint: "nope/x" } });
+  assert.equal(res.parsed().result.isError, true);
+
+  res = await rpc("tools/call", { name: "get_changes", arguments: {} });
+  assert.ok(Array.isArray(res.parsed().result.structuredContent.changes));
 
   res = await rpc("tools/call", { name: "get_scorecard", arguments: { model: "nope/nope" } });
   assert.equal(res.parsed().result.isError, true);
