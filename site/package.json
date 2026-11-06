@@ -1,0 +1,6 @@
+{
+  "name": "bitdepth-site",
+  "private": true,
+  "type": "module",
+  "description": "bitdepth.dev: static pages plus the api/ functions (public JSON, MCP server, x402 row). No dependencies, no build step."
+}

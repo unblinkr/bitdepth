@@ -16,9 +16,23 @@ import json
 p = "site/vercel.json"
 d = json.load(open(p))
 d["headers"] = [h for h in d.get("headers", []) if not h["source"].startswith("/lab")]
+# API and pricing go public with the leaderboard: drop their noindex header.
+d["headers"] = [h for h in d["headers"] if not (h["source"].startswith("/(v1/") and h["headers"] == [{"key": "X-Robots-Tag", "value": "noindex"}])]
 d.setdefault("redirects", []).append({"source": "/lab/:path*", "destination": "/:path*", "permanent": False})
 json.dump(d, open(p, "w"), indent=2)
 open(p, "a").write("\n")
+PY
+python3 - <<'PY'
+import re
+for p in ("site/pricing/index.html", "site/api-access/index.html"):
+    s = open(p).read().replace('<meta name="robots" content="noindex">', '<meta name="robots" content="index,follow">')
+    open(p, "w").write(s)
+p = "site/sitemap.xml"
+s = open(p).read()
+for path in ("/pricing", "/api-access"):
+    if f"https://bitdepth.dev{path}<" not in s:
+        s = s.replace("</urlset>", f"  <url><loc>https://bitdepth.dev{path}</loc></url>\n</urlset>")
+open(p, "w").write(s)
 PY
 git status --short site | head -40
 echo "Review, then: git add site && git commit -m 'Publish the leaderboard' && git push origin main"

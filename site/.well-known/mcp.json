@@ -1,0 +1,19 @@
+{
+  "name": "bitdepth",
+  "title": "Bitdepth",
+  "description": "Independent nightly grades of inference endpoints. Every OpenRouter endpoint serving the same open-weight model, scored against a published reference, beside its price.",
+  "version": "0.1.0",
+  "homepage": "https://bitdepth.dev",
+  "documentation": "https://bitdepth.dev/api-access",
+  "method": "https://bitdepth.dev/method",
+  "contact": "hello@bitdepth.dev",
+  "servers": [
+    {
+      "url": "https://bitdepth.dev/api/mcp/mcp",
+      "transport": "streamable-http",
+      "authentication": "none"
+    }
+  ],
+  "tools": ["list_models", "get_scorecard", "get_endpoint", "get_drift"],
+  "skill": "https://bitdepth.dev/skill.md"
+}
