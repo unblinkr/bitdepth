@@ -429,7 +429,7 @@ def nav(base: str, current: str) -> str:
 
     return f"""<header class="top"><div class="wrap">
 <div class="brand"><a class="wordmark" href="{base}/">Bitdepth</a><span class="line-tag">Independent grades for inference endpoints</span></div>
-<nav aria-label="Site">{a(base + "/", "Leaderboard", "board")}{a(base + "/charts", "Charts", "charts")}{'' if base else '<a href="/compare">Compare</a>'}<a href="/market">Market</a><a href="/method">Method</a><a href="/about">About</a></nav>
+<nav aria-label="Site">{a(base + "/", "Leaderboard", "board")}{a(base + "/charts", "Charts", "charts")}{'' if base else '<a href="/compare">Compare</a>'}<a href="/market">Market</a><a href="/method">Method</a><a href="/pricing">Pricing</a><a href="/about">About</a></nav>
 </div></header>
 """
 
