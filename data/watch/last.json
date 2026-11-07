@@ -1,0 +1,896 @@
+{
+ "as_of": "2026-11-07",
+ "rows": {
+  "deepseek/deepseek-v4-pro|alibaba/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4-pro",
+   "model": "deepseek/deepseek-v4-pro",
+   "price_in_per_m": 1.416,
+   "price_out_per_m": 2.832,
+   "state": "within",
+   "tag": "alibaba/fp8"
+  },
+  "deepseek/deepseek-v4-pro|alibaba/fp8/us-east-1": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4-pro",
+   "model": "deepseek/deepseek-v4-pro",
+   "price_in_per_m": 1.56,
+   "price_out_per_m": 3.12,
+   "state": "within",
+   "tag": "alibaba/fp8/us-east-1"
+  },
+  "deepseek/deepseek-v4-pro|atlas-cloud/fp4": {
+   "declared_quant": "fp4",
+   "label": "deepseek-v4-pro",
+   "model": "deepseek/deepseek-v4-pro",
+   "price_in_per_m": 1.68,
+   "price_out_per_m": 3.38,
+   "state": "within",
+   "tag": "atlas-cloud/fp4"
+  },
+  "deepseek/deepseek-v4-pro|azure/us": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4-pro",
+   "model": "deepseek/deepseek-v4-pro",
+   "price_in_per_m": 1.91,
+   "price_out_per_m": 3.83,
+   "state": "within",
+   "tag": "azure/us"
+  },
+  "deepseek/deepseek-v4-pro|baidu/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4-pro",
+   "model": "deepseek/deepseek-v4-pro",
+   "price_in_per_m": 0.6963,
+   "price_out_per_m": 1.3926,
+   "state": "within",
+   "tag": "baidu/fp8"
+  },
+  "deepseek/deepseek-v4-pro|cloudflare": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4-pro",
+   "model": "deepseek/deepseek-v4-pro",
+   "price_in_per_m": null,
+   "price_out_per_m": null,
+   "state": "outside",
+   "tag": "cloudflare"
+  },
+  "deepseek/deepseek-v4-pro|crusoe/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4-pro",
+   "model": "deepseek/deepseek-v4-pro",
+   "price_in_per_m": null,
+   "price_out_per_m": null,
+   "state": "outside",
+   "tag": "crusoe/fp8"
+  },
+  "deepseek/deepseek-v4-pro|deepinfra/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4-pro",
+   "model": "deepseek/deepseek-v4-pro",
+   "price_in_per_m": 1.3,
+   "price_out_per_m": 2.6,
+   "state": "within",
+   "tag": "deepinfra/fp8"
+  },
+  "deepseek/deepseek-v4-pro|digitalocean": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4-pro",
+   "model": "deepseek/deepseek-v4-pro",
+   "price_in_per_m": 1.044,
+   "price_out_per_m": 2.088,
+   "state": "within",
+   "tag": "digitalocean"
+  },
+  "deepseek/deepseek-v4-pro|gmicloud/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4-pro",
+   "model": "deepseek/deepseek-v4-pro",
+   "price_in_per_m": 0.957,
+   "price_out_per_m": 1.914,
+   "state": "outside",
+   "tag": "gmicloud/fp8"
+  },
+  "deepseek/deepseek-v4-pro|nebius/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4-pro",
+   "model": "deepseek/deepseek-v4-pro",
+   "price_in_per_m": 1.75,
+   "price_out_per_m": 3.5,
+   "state": "no_data",
+   "tag": "nebius/fp8"
+  },
+  "deepseek/deepseek-v4-pro|novita/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4-pro",
+   "model": "deepseek/deepseek-v4-pro",
+   "price_in_per_m": 1.6,
+   "price_out_per_m": 3.2,
+   "state": "outside",
+   "tag": "novita/fp8"
+  },
+  "deepseek/deepseek-v4-pro|relace/fp4": {
+   "declared_quant": "fp4",
+   "label": "deepseek-v4-pro",
+   "model": "deepseek/deepseek-v4-pro",
+   "price_in_per_m": 0.9,
+   "price_out_per_m": 1.5,
+   "state": "within",
+   "tag": "relace/fp4"
+  },
+  "deepseek/deepseek-v4-pro|siliconflow/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4-pro",
+   "model": "deepseek/deepseek-v4-pro",
+   "price_in_per_m": 1.0,
+   "price_out_per_m": 1.5,
+   "state": "within",
+   "tag": "siliconflow/fp8"
+  },
+  "deepseek/deepseek-v4-pro|streamlake/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4-pro",
+   "model": "deepseek/deepseek-v4-pro",
+   "price_in_per_m": 0.6876,
+   "price_out_per_m": 1.3753,
+   "state": "within",
+   "tag": "streamlake/fp8"
+  },
+  "deepseek/deepseek-v4-pro|venice": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4-pro",
+   "model": "deepseek/deepseek-v4-pro",
+   "price_in_per_m": 1.65,
+   "price_out_per_m": 3.301,
+   "state": "within",
+   "tag": "venice"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|alibaba": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.075,
+   "price_out_per_m": 0.3,
+   "state": "no_data",
+   "tag": "alibaba"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|atlas-cloud/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.195,
+   "price_out_per_m": 0.78,
+   "state": "no_data",
+   "tag": "atlas-cloud/fp8"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|baidu/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.0977,
+   "price_out_per_m": 0.3944,
+   "state": "no_data",
+   "tag": "baidu/fp8"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|baseten": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.3,
+   "price_out_per_m": 1.2,
+   "state": "no_data",
+   "tag": "baseten"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|baseten/fast": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.6,
+   "price_out_per_m": 2.4,
+   "state": "no_data",
+   "tag": "baseten/fast"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|cloudflare": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.1,
+   "price_out_per_m": 0.6,
+   "state": "no_data",
+   "tag": "cloudflare"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|cohere": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": null,
+   "price_out_per_m": null,
+   "state": "no_data",
+   "tag": "cohere"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|cohere/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.195,
+   "price_out_per_m": 0.66,
+   "state": "no_data",
+   "tag": "cohere/fp8"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|coreweave/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.3,
+   "price_out_per_m": 1.2,
+   "state": "no_data",
+   "tag": "coreweave/fp8"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|crusoe/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.29,
+   "price_out_per_m": 1.2,
+   "state": "no_data",
+   "tag": "crusoe/fp8"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|decart/fp4": {
+   "declared_quant": "fp4",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": null,
+   "price_out_per_m": null,
+   "state": "no_data",
+   "tag": "decart/fp4"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|decart/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.123,
+   "price_out_per_m": 0.492,
+   "state": "no_data",
+   "tag": "decart/fp8"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|deepinfra/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.098,
+   "price_out_per_m": 0.294,
+   "state": "no_data",
+   "tag": "deepinfra/fp8"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|deepinfra/fp8/flex": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.0784,
+   "price_out_per_m": 0.2352,
+   "state": "no_data",
+   "tag": "deepinfra/fp8/flex"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|deepinfra/fp8/priority": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.147,
+   "price_out_per_m": 0.441,
+   "state": "no_data",
+   "tag": "deepinfra/fp8/priority"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|deepseek": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.15,
+   "price_out_per_m": 0.6,
+   "state": "no_data",
+   "tag": "deepseek"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|dekallm": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.18,
+   "price_out_per_m": 0.68,
+   "state": "no_data",
+   "tag": "dekallm"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|digitalocean": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.18,
+   "price_out_per_m": 0.72,
+   "state": "no_data",
+   "tag": "digitalocean"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|fireworks": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.3,
+   "price_out_per_m": 1.2,
+   "state": "no_data",
+   "tag": "fireworks"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|fireworks/spot": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.21,
+   "price_out_per_m": 0.84,
+   "state": "no_data",
+   "tag": "fireworks/spot"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|fireworks/us": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.45,
+   "price_out_per_m": 1.8,
+   "state": "no_data",
+   "tag": "fireworks/us"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|gmicloud/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.18,
+   "price_out_per_m": 0.72,
+   "state": "no_data",
+   "tag": "gmicloud/fp8"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|inference-net/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.08,
+   "price_out_per_m": 0.55,
+   "state": "no_data",
+   "tag": "inference-net/fp8"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|inference-net/us": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.08,
+   "price_out_per_m": 0.55,
+   "state": "no_data",
+   "tag": "inference-net/us"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|ionstream": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.165,
+   "price_out_per_m": 0.495,
+   "state": "no_data",
+   "tag": "ionstream"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|makora/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.15,
+   "price_out_per_m": 1.2,
+   "state": "no_data",
+   "tag": "makora/fp8"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|mistral/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.3,
+   "price_out_per_m": 1.2,
+   "state": "no_data",
+   "tag": "mistral/fp8"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|modal": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.25,
+   "price_out_per_m": 1.0,
+   "state": "no_data",
+   "tag": "modal"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|modelrun/fp4": {
+   "declared_quant": "fp4",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.17,
+   "price_out_per_m": 0.67,
+   "state": "no_data",
+   "tag": "modelrun/fp4"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|morph/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.022,
+   "price_out_per_m": 0.4,
+   "state": "no_data",
+   "tag": "morph/fp8"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|near-ai": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.3,
+   "price_out_per_m": 1.2,
+   "state": "no_data",
+   "tag": "near-ai"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|nebius/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.3,
+   "price_out_per_m": 1.2,
+   "state": "no_data",
+   "tag": "nebius/fp8"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|novita/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.165,
+   "price_out_per_m": 0.66,
+   "state": "no_data",
+   "tag": "novita/fp8"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|open-inference/fp4": {
+   "declared_quant": "fp4",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.0175,
+   "price_out_per_m": 0.6,
+   "state": "no_data",
+   "tag": "open-inference/fp4"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|parasail/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.3,
+   "price_out_per_m": 1.2,
+   "state": "no_data",
+   "tag": "parasail/fp8"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|particle-ai/us": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.05,
+   "price_out_per_m": 0.5,
+   "state": "no_data",
+   "tag": "particle-ai/us"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|particle-ai/us/flex": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.025,
+   "price_out_per_m": 0.25,
+   "state": "no_data",
+   "tag": "particle-ai/us/flex"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|phala": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.2,
+   "price_out_per_m": 1.2,
+   "state": "no_data",
+   "tag": "phala"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|primalabs": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.24,
+   "price_out_per_m": 0.96,
+   "state": "no_data",
+   "tag": "primalabs"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|primeintellect": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.1092,
+   "price_out_per_m": 1.2,
+   "state": "no_data",
+   "tag": "primeintellect"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|reka": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.16,
+   "price_out_per_m": 1.1,
+   "state": "no_data",
+   "tag": "reka"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|relace/fast": {
+   "declared_quant": "fp4",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.3,
+   "price_out_per_m": 0.9,
+   "state": "no_data",
+   "tag": "relace/fast"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|relace/fp4": {
+   "declared_quant": "fp4",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.006,
+   "price_out_per_m": 0.5,
+   "state": "no_data",
+   "tag": "relace/fp4"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|sail-research/fp4": {
+   "declared_quant": "fp4",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.1515,
+   "price_out_per_m": 0.225,
+   "state": "no_data",
+   "tag": "sail-research/fp4"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|sail-research/fp4/us": {
+   "declared_quant": "fp4",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.101,
+   "price_out_per_m": 0.15,
+   "state": "no_data",
+   "tag": "sail-research/fp4/us"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|siliconflow/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.3,
+   "price_out_per_m": 0.55,
+   "state": "no_data",
+   "tag": "siliconflow/fp8"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|stepfun/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.135,
+   "price_out_per_m": 0.54,
+   "state": "no_data",
+   "tag": "stepfun/fp8"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|streamlake/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.111,
+   "price_out_per_m": 0.444,
+   "state": "no_data",
+   "tag": "streamlake/fp8"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|together": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.3,
+   "price_out_per_m": 1.2,
+   "state": "no_data",
+   "tag": "together"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|venice/fp8": {
+   "declared_quant": "fp8",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.3,
+   "price_out_per_m": 1.2,
+   "state": "no_data",
+   "tag": "venice/fp8"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|wafer/mxfp4": {
+   "declared_quant": "mxfp4",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.066,
+   "price_out_per_m": 0.5,
+   "state": "no_data",
+   "tag": "wafer/mxfp4"
+  },
+  "deepseek/deepseek-v4.1-flash-1017|wafer/us": {
+   "declared_quant": "mxfp4",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 0.038,
+   "price_out_per_m": 0.5,
+   "state": "no_data",
+   "tag": "wafer/us"
+  },
+  "mistralai/mistral-large-4-0|mistral/eu": {
+   "declared_quant": "unknown",
+   "label": "mistral-large-4-0",
+   "model": "mistralai/mistral-large-4-0",
+   "price_in_per_m": 0.77,
+   "price_out_per_m": 2.31,
+   "state": "no_data",
+   "tag": "mistral/eu"
+  },
+  "mistralai/mistral-large-4-0|mistral/zdr": {
+   "declared_quant": "unknown",
+   "label": "mistral-large-4-0",
+   "model": "mistralai/mistral-large-4-0",
+   "price_in_per_m": 0.7,
+   "price_out_per_m": 2.1,
+   "state": "no_data",
+   "tag": "mistral/zdr"
+  },
+  "openai/gpt-oss-120b|akashml/bf16": {
+   "declared_quant": "bf16",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": null,
+   "price_out_per_m": null,
+   "state": "within",
+   "tag": "akashml/bf16"
+  },
+  "openai/gpt-oss-120b|akashml/fp4": {
+   "declared_quant": "fp4",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.03,
+   "price_out_per_m": 0.187,
+   "state": "no_data",
+   "tag": "akashml/fp4"
+  },
+  "openai/gpt-oss-120b|amazon-bedrock": {
+   "declared_quant": "unknown",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.15,
+   "price_out_per_m": 0.6,
+   "state": "within",
+   "tag": "amazon-bedrock"
+  },
+  "openai/gpt-oss-120b|amazon-bedrock/eu-west-1": {
+   "declared_quant": "unknown",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.15,
+   "price_out_per_m": 0.6,
+   "state": "within",
+   "tag": "amazon-bedrock/eu-west-1"
+  },
+  "openai/gpt-oss-120b|baseten/fp4": {
+   "declared_quant": "fp4",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.1,
+   "price_out_per_m": 0.5,
+   "state": "within",
+   "tag": "baseten/fp4"
+  },
+  "openai/gpt-oss-120b|baseten/fp4/us": {
+   "declared_quant": "fp4",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.1,
+   "price_out_per_m": 0.5,
+   "state": "within",
+   "tag": "baseten/fp4/us"
+  },
+  "openai/gpt-oss-120b|cerebras/fp16": {
+   "declared_quant": "fp16",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.35,
+   "price_out_per_m": 0.75,
+   "state": "within",
+   "tag": "cerebras/fp16"
+  },
+  "openai/gpt-oss-120b|coreweave/fp4": {
+   "declared_quant": "fp4",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.03,
+   "price_out_per_m": 0.17,
+   "state": "within",
+   "tag": "coreweave/fp4"
+  },
+  "openai/gpt-oss-120b|crusoe/bf16": {
+   "declared_quant": "bf16",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.05,
+   "price_out_per_m": 0.25,
+   "state": "within",
+   "tag": "crusoe/bf16"
+  },
+  "openai/gpt-oss-120b|deepinfra/bf16": {
+   "declared_quant": "bf16",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.037,
+   "price_out_per_m": 0.17,
+   "state": "within",
+   "tag": "deepinfra/bf16"
+  },
+  "openai/gpt-oss-120b|deepinfra/fp8": {
+   "declared_quant": "fp8",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.2,
+   "price_out_per_m": 0.95,
+   "state": "within",
+   "tag": "deepinfra/fp8"
+  },
+  "openai/gpt-oss-120b|dekallm/bf16": {
+   "declared_quant": "bf16",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.03,
+   "price_out_per_m": 0.18,
+   "state": "within",
+   "tag": "dekallm/bf16"
+  },
+  "openai/gpt-oss-120b|digitalocean": {
+   "declared_quant": "unknown",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.06,
+   "price_out_per_m": 0.42,
+   "state": "within",
+   "tag": "digitalocean"
+  },
+  "openai/gpt-oss-120b|google-vertex/global": {
+   "declared_quant": "unknown",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.09,
+   "price_out_per_m": 0.36,
+   "state": "within",
+   "tag": "google-vertex/global"
+  },
+  "openai/gpt-oss-120b|groq": {
+   "declared_quant": "unknown",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.15,
+   "price_out_per_m": 0.6,
+   "state": "within",
+   "tag": "groq"
+  },
+  "openai/gpt-oss-120b|mancer/fp8": {
+   "declared_quant": "fp8",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.055,
+   "price_out_per_m": 0.25,
+   "state": "within",
+   "tag": "mancer/fp8"
+  },
+  "openai/gpt-oss-120b|mara": {
+   "declared_quant": "unknown",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": null,
+   "price_out_per_m": null,
+   "state": "within",
+   "tag": "mara"
+  },
+  "openai/gpt-oss-120b|near-ai/fp4": {
+   "declared_quant": "fp4",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.03,
+   "price_out_per_m": 0.15,
+   "state": "within",
+   "tag": "near-ai/fp4"
+  },
+  "openai/gpt-oss-120b|nebius/fp4": {
+   "declared_quant": "fp4",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.15,
+   "price_out_per_m": 0.6,
+   "state": "within",
+   "tag": "nebius/fp4"
+  },
+  "openai/gpt-oss-120b|novita/fp4": {
+   "declared_quant": "fp4",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": null,
+   "price_out_per_m": null,
+   "state": "within",
+   "tag": "novita/fp4"
+  },
+  "openai/gpt-oss-120b|parasail/fast": {
+   "declared_quant": "fp4",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.15,
+   "price_out_per_m": 0.75,
+   "state": "no_data",
+   "tag": "parasail/fast"
+  },
+  "openai/gpt-oss-120b|parasail/fp4": {
+   "declared_quant": "fp4",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.1,
+   "price_out_per_m": 0.75,
+   "state": "within",
+   "tag": "parasail/fp4"
+  },
+  "openai/gpt-oss-120b|phala": {
+   "declared_quant": "unknown",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.15,
+   "price_out_per_m": 0.6,
+   "state": "within",
+   "tag": "phala"
+  },
+  "openai/gpt-oss-120b|primeintellect/fp4": {
+   "declared_quant": "fp4",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.018,
+   "price_out_per_m": 0.065,
+   "state": "within",
+   "tag": "primeintellect/fp4"
+  },
+  "openai/gpt-oss-120b|sail-research/fp4": {
+   "declared_quant": "fp4",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.06,
+   "price_out_per_m": 0.4,
+   "state": "within",
+   "tag": "sail-research/fp4"
+  },
+  "openai/gpt-oss-120b|sambanova": {
+   "declared_quant": "unknown",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.14,
+   "price_out_per_m": 0.95,
+   "state": "within",
+   "tag": "sambanova"
+  },
+  "openai/gpt-oss-120b|siliconflow/fp8": {
+   "declared_quant": "fp8",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.15,
+   "price_out_per_m": 0.6,
+   "state": "within",
+   "tag": "siliconflow/fp8"
+  },
+  "openai/gpt-oss-120b|together": {
+   "declared_quant": "unknown",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.15,
+   "price_out_per_m": 0.6,
+   "state": "within",
+   "tag": "together"
+  },
+  "openai/gpt-oss-120b|venice/int4": {
+   "declared_quant": "int4",
+   "label": "gpt-oss-120b",
+   "model": "openai/gpt-oss-120b",
+   "price_in_per_m": 0.03,
+   "price_out_per_m": 0.15,
+   "state": "within",
+   "tag": "venice/int4"
+  }
+ }
+}

@@ -2,8 +2,8 @@
   "schema": "bitdepth.or.v1",
   "model": "mistralai/mistral-large-4-0",
   "label": "mistral-large-4-0",
-  "as_of": "2026-11-06",
-  "nights": 11,
+  "as_of": "2026-11-07",
+  "nights": 12,
   "endpoint_count": 2,
   "reference_rule": "plurality across all endpoints (fewer than two declare bf16 or fp16)",
   "method_url": "https://bitdepth.dev/method",
@@ -13,14 +13,15 @@
   "state_rule": "outside when self-agreement exceeds agreement with the reference by more than 10 points; no_data under 7 nights; stale when the data is more than 3 days old. Provisional.",
   "noise_floor": {
     "math": 98.1,
-    "json": 56.2,
-    "string": 78.8,
+    "json": 53.1,
+    "string": 80.6,
     "needle": 100.0,
-    "echo": 88.8
+    "echo": 93.8
   },
   "stable_families": [
     "math",
-    "needle"
+    "needle",
+    "echo"
   ],
   "endpoints": [
     {
@@ -28,17 +29,17 @@
       "provider_slug": "mistral",
       "declared_quant": "unknown",
       "declared_changed": false,
-      "nights": 2,
+      "nights": 3,
       "exact": 100.0,
       "exact_sd": 0.0,
-      "string": 81.2,
-      "self_agree": 87.5,
+      "string": 80.6,
+      "self_agree": 87.9,
       "families": {
-        "math": 99.0,
-        "json": 56.2,
-        "string": 81.2,
+        "math": 99.3,
+        "json": 50.0,
+        "string": 80.6,
         "needle": 100.0,
-        "echo": 91.7
+        "echo": 90.3
       },
       "movement": 0.0,
       "movement_flag": false,
@@ -53,6 +54,10 @@
         {
           "date": "2026-11-06",
           "exact": 100.0
+        },
+        {
+          "date": "2026-11-07",
+          "exact": 100.0
         }
       ]
     },
@@ -61,17 +66,17 @@
       "provider_slug": "mistral",
       "declared_quant": "unknown",
       "declared_changed": false,
-      "nights": 2,
+      "nights": 3,
       "exact": 100.0,
       "exact_sd": 0.0,
       "string": 75.0,
-      "self_agree": 89.2,
+      "self_agree": 87.9,
       "families": {
         "math": 100.0,
         "json": 50.0,
         "string": 75.0,
         "needle": 100.0,
-        "echo": 83.3
+        "echo": 86.1
       },
       "movement": 0.0,
       "movement_flag": false,
@@ -85,6 +90,10 @@
         },
         {
           "date": "2026-11-06",
+          "exact": 100.0
+        },
+        {
+          "date": "2026-11-07",
           "exact": 100.0
         }
       ]

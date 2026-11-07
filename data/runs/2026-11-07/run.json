@@ -1,0 +1,62 @@
+{
+ "run_id": "2026-11-07-live",
+ "date": "2026-11-07",
+ "source": "live",
+ "started": "2026-11-07T14:06:21Z",
+ "models": {
+  "gpt-oss-120b": {
+   "slug": "openai/gpt-oss-120b",
+   "endpoints": 26,
+   "short": false
+  },
+  "deepseek-v4-pro": {
+   "slug": "deepseek/deepseek-v4-pro",
+   "endpoints": 14,
+   "short": false
+  },
+  "deepseek-v4.1-flash-1017": {
+   "slug": "deepseek/deepseek-v4.1-flash-1017",
+   "endpoints": 50,
+   "short": false
+  },
+  "mistral-large-4-0": {
+   "slug": "mistralai/mistral-large-4-0",
+   "endpoints": 2,
+   "short": true
+  }
+ },
+ "prompts": {
+  "fixed": 120,
+  "fresh": 24,
+  "kept": 144,
+  "dropped": 0
+ },
+ "dropped_prompt_ids": [],
+ "estimate": {
+  "usd": 5.1179,
+  "per_model": {
+   "gpt-oss-120b": 0.5312,
+   "deepseek-v4-pro": 2.5792,
+   "deepseek-v4.1-flash-1017": 1.7657,
+   "mistral-large-4-0": 0.2418
+  }
+ },
+ "cap_usd": 7.75,
+ "aborted_on_estimate": false,
+ "summary": {
+  "rows": 13248,
+  "by_status": {
+   "ok": 12753,
+   "error": 495
+  },
+  "errors": 495,
+  "misrouted": 0,
+  "skipped_budget": 0,
+  "truncated": 68,
+  "billed_cost_usd": 2.7574,
+  "estimated_cost_rows": 0
+ },
+ "runtime_budget_stop": false,
+ "finished": "2026-11-07T19:00:15Z",
+ "total_billed_usd": 2.7574
+}
