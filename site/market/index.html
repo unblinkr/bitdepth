@@ -4,18 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Bitdepth Market</title>
-<meta name="description" content="Lock in a price on an open-weight model for 90 days. Bitdepth grades the endpoint nightly and credits you if it falls short.">
+<meta name="description" content="Reserve an open-weight model from one provider for 90 days, at a fixed price or at market with the grade guaranteed. Bitdepth grades the endpoint nightly, credits you if it falls short, and the remainder can be handed to another buyer.">
 <meta name="color-scheme" content="light">
 <link rel="canonical" href="https://bitdepth.dev/market">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Bitdepth">
 <meta property="og:url" content="https://bitdepth.dev/market">
 <meta property="og:title" content="Bitdepth Market">
-<meta property="og:description" content="Reserve inference capacity at a fixed price, with the grade checked nightly.">
+<meta property="og:description" content="Reserve inference capacity for 90 days, graded nightly. Can't use the rest? Hand it to another buyer.">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bitdepth Market">
-<meta name="twitter:description" content="Reserve inference capacity at a fixed price, with the grade checked nightly.">
+<meta name="twitter:description" content="Reserve inference capacity for 90 days, graded nightly. Can't use the rest? Hand it to another buyer.">
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -109,8 +109,6 @@ footer a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
-
-<body>
 <header class="top">
   <div class="wrap">
     <div class="brand"><a class="wordmark" href="/">Bitdepth</a><span class="line-tag">Independent grades for inference endpoints</span></div>
@@ -121,7 +119,7 @@ footer a:hover{text-decoration:underline}
       <a href="/method">Method</a>
       <a href="/questions">Questions</a>
       <a href="/pricing">Pricing</a><a href="/about">About</a>
-      <a class="btn gold small" href="mailto:hello@bitdepth.dev?subject=Market%3A%20reserved%20block">Reserve a block</a>
+      <a class="btn gold small" href="mailto:hello@bitdepth.dev?subject=Market%3A%20reserve%20a%20block&body=Model%3A%20%0AGrade%20I%20need%20(A%20or%20B)%3A%20%0AMonthly%20output%20tokens%3A%20%0AShape%20(fixed%20price%2C%20or%20market%20price%20with%20the%20grade%20guaranteed)%3A%20%0AWhere%20I%20buy%20it%20today%3A%20%0A">Reserve a block</a>
     </nav>
   </div>
 </header>
@@ -143,12 +141,12 @@ footer a:hover{text-decoration:underline}
   <div class="wrap">
     <div class="eyebrow">Bitdepth Market</div>
     <h1>Lock in a price. Know you get what you paid for.</h1>
-    <p>Reserve capacity on an open-weight model from one provider at a fixed price for 90 days. Bitdepth grades the endpoint every night. If it falls short, you get those tokens back.</p>
+    <p>Reserve capacity on an open-weight model from one provider for 90 days, at a fixed price or at market with the grade guaranteed. Bitdepth grades the endpoint every night. If it falls short, you get those tokens back. If you can't use the rest, you hand it to another buyer.</p>
     <div class="ctas">
-      <a class="btn gold" href="mailto:hello@bitdepth.dev?subject=Market%3A%20reserve%20a%20block">Reserve a block</a>
-      <a class="btn ghost" href="mailto:hello@bitdepth.dev?subject=Market%3A%20sell%20capacity">I have capacity to sell</a>
+      <a class="btn gold" href="mailto:hello@bitdepth.dev?subject=Market%3A%20reserve%20a%20block&body=Model%3A%20%0AGrade%20I%20need%20(A%20or%20B)%3A%20%0AMonthly%20output%20tokens%3A%20%0AShape%20(fixed%20price%2C%20or%20market%20price%20with%20the%20grade%20guaranteed)%3A%20%0AWhere%20I%20buy%20it%20today%3A%20%0A">Reserve a block</a>
+      <a class="btn ghost" href="mailto:hello@bitdepth.dev?subject=Market%3A%20sell%20capacity&body=Model(s)%20I%20serve%3A%20%0ADeclared%20precision%3A%20%0AOutput%20tokens%20a%20day%20I%20can%20commit%3A%20%0ATerm%20I%20would%20offer%3A%20%0AWould%20I%20let%20the%20buyer%20hand%20the%20remainder%20to%20another%20buyer%20(yes%20or%20no)%3A%20%0A">I have capacity to sell</a>
     </div>
-    <p class="muted" style="margin-top:14px;font-size:14px">We're matching the first blocks now.</p>
+    <p class="muted" style="margin-top:14px;font-size:14px">We're matching the first blocks now. A block is issued by the provider. Bitdepth never holds capacity, never holds your money, and never touches a key.</p>
   </div>
 </section>
 
@@ -168,14 +166,14 @@ footer a:hover{text-decoration:underline}
 <section style="padding-top:8px">
   <div class="wrap">
     <div class="sechead"><div><div class="eyebrow">Price, nightly</div><h2>One model, one router, a 2.5&times; spread.</h2></div><p class="muted">DeepSeek V4 Pro, listed output price per million tokens, every OpenRouter endpoint, read each night.</p></div>
-    <div class="sheet" style="font-family:var(--body);padding:18px 18px 8px;overflow-x:auto"><svg style="min-width:560px" viewBox="0 0 720 300" role="img" aria-labelledby="pc-t pc-d" style="width:100%;min-width:560px;height:auto;display:block">
-<title id="pc-t">DeepSeek V4 Pro listed output price, 9 nights</title>
+    <div class="sheet" style="font-family:var(--body);padding:18px 18px 8px;overflow-x:auto"><svg viewBox="0 0 720 300" role="img" aria-labelledby="pc-t pc-d" style="width:100%;min-width:560px;height:auto;display:block">
+<title id="pc-t">DeepSeek V4 Pro listed output price, 11 nights</title>
 <desc id="pc-d">Lowest, median and highest listed output price per million tokens across 14 to 15 OpenRouter endpoints each night since 2026-10-27. Highest held at $3.83; lowest mostly $1.50.</desc>
-<path d="M56.0,30.2 L123.0,30.2 L190.0,30.2 L257.0,30.2 L324.0,30.2 L391.0,30.2 L458.0,30.2 L525.0,30.2 L592.0,30.2 L592.0,170.0 L525.0,170.0 L458.0,170.0 L391.0,235.1 L324.0,170.2 L257.0,170.0 L190.0,170.0 L123.0,170.0 L56.0,170.0 Z" fill="var(--soft)"/>
-<line x1="56" x2="592" y1="260.0" y2="260.0" stroke="var(--line)" stroke-width="1"/><text x="46" y="264.0" text-anchor="end" font-size="12" fill="var(--muted)">$0</text><line x1="56" x2="592" y1="200.0" y2="200.0" stroke="var(--line)" stroke-width="1"/><text x="46" y="204.0" text-anchor="end" font-size="12" fill="var(--muted)">$1</text><line x1="56" x2="592" y1="140.0" y2="140.0" stroke="var(--line)" stroke-width="1"/><text x="46" y="144.0" text-anchor="end" font-size="12" fill="var(--muted)">$2</text><line x1="56" x2="592" y1="80.0" y2="80.0" stroke="var(--line)" stroke-width="1"/><text x="46" y="84.0" text-anchor="end" font-size="12" fill="var(--muted)">$3</text><line x1="56" x2="592" y1="20.0" y2="20.0" stroke="var(--line)" stroke-width="1"/><text x="46" y="24.0" text-anchor="end" font-size="12" fill="var(--muted)">$4</text><text x="56.0" y="286" text-anchor="middle" font-size="12" fill="var(--muted)">Oct 27</text><text x="190.0" y="286" text-anchor="middle" font-size="12" fill="var(--muted)">Oct 29</text><text x="324.0" y="286" text-anchor="middle" font-size="12" fill="var(--muted)">Oct 31</text><text x="458.0" y="286" text-anchor="middle" font-size="12" fill="var(--muted)">Nov 2</text><text x="592.0" y="286" text-anchor="middle" font-size="12" fill="var(--muted)">Nov 4</text>
-<path d="M56.0,30.2 L123.0,30.2 L190.0,30.2 L257.0,30.2 L324.0,30.2 L391.0,30.2 L458.0,30.2 L525.0,30.2 L592.0,30.2" fill="none" stroke="var(--burgundy)" stroke-width="2.25" stroke-linejoin="round"/><circle cx="592.0" cy="30.2" r="3.5" fill="var(--burgundy)"/><text x="602.0" y="34.2" font-size="13" fill="var(--burgundy)" font-weight="600">Highest $3.83</text><path d="M56.0,90.1 L123.0,90.1 L190.0,90.1 L257.0,72.8 L324.0,90.1 L391.0,90.1 L458.0,90.1 L525.0,90.1 L592.0,81.4" fill="none" stroke="var(--ink)" stroke-width="2.25" stroke-linejoin="round"/><circle cx="592.0" cy="81.4" r="3.5" fill="var(--ink)"/><text x="602.0" y="85.4" font-size="13" fill="var(--ink)" font-weight="600">Median $2.98</text><path d="M56.0,170.0 L123.0,170.0 L190.0,170.0 L257.0,170.0 L324.0,170.2 L391.0,235.1 L458.0,170.0 L525.0,170.0 L592.0,170.0" fill="none" stroke="var(--gold)" stroke-width="2.25" stroke-linejoin="round"/><circle cx="592.0" cy="170.0" r="3.5" fill="var(--gold)"/><text x="602.0" y="174.0" font-size="13" fill="var(--gold)" font-weight="600">Lowest $1.50</text>
+<path d="M56.0,30.2 L109.6,30.2 L163.2,30.2 L216.8,30.2 L270.4,30.2 L324.0,30.2 L377.6,30.2 L431.2,30.2 L484.8,30.2 L538.4,30.2 L592.0,30.2 L592.0,170.0 L538.4,170.0 L484.8,170.0 L431.2,170.0 L377.6,170.0 L324.0,235.1 L270.4,170.2 L216.8,170.0 L163.2,170.0 L109.6,170.0 L56.0,170.0 Z" fill="var(--soft)"/>
+<line x1="56" x2="592" y1="260" y2="260" stroke="var(--line)" stroke-width="1"/><text x="46" y="264" text-anchor="end" font-size="12" fill="var(--muted)">$0</text><line x1="56" x2="592" y1="200" y2="200" stroke="var(--line)" stroke-width="1"/><text x="46" y="204" text-anchor="end" font-size="12" fill="var(--muted)">$1</text><line x1="56" x2="592" y1="140" y2="140" stroke="var(--line)" stroke-width="1"/><text x="46" y="144" text-anchor="end" font-size="12" fill="var(--muted)">$2</text><line x1="56" x2="592" y1="80" y2="80" stroke="var(--line)" stroke-width="1"/><text x="46" y="84" text-anchor="end" font-size="12" fill="var(--muted)">$3</text><line x1="56" x2="592" y1="20" y2="20" stroke="var(--line)" stroke-width="1"/><text x="46" y="24" text-anchor="end" font-size="12" fill="var(--muted)">$4</text><text x="56.0" y="286" text-anchor="middle" font-size="12" fill="var(--muted)">Oct 27</text><text x="163.2" y="286" text-anchor="middle" font-size="12" fill="var(--muted)">Oct 29</text><text x="270.4" y="286" text-anchor="middle" font-size="12" fill="var(--muted)">Oct 31</text><text x="377.6" y="286" text-anchor="middle" font-size="12" fill="var(--muted)">Nov 2</text><text x="484.8" y="286" text-anchor="middle" font-size="12" fill="var(--muted)">Nov 4</text><text x="592.0" y="286" text-anchor="middle" font-size="12" fill="var(--muted)">Nov 6</text>
+<path d="M56.0,30.2 L109.6,30.2 L163.2,30.2 L216.8,30.2 L270.4,30.2 L324.0,30.2 L377.6,30.2 L431.2,30.2 L484.8,30.2 L538.4,30.2 L592.0,30.2" fill="none" stroke="var(--burgundy)" stroke-width="2.25" stroke-linejoin="round"/><circle cx="592.0" cy="30.2" r="3.5" fill="var(--burgundy)"/><text x="602.0" y="34.2" font-size="13" fill="var(--burgundy)" font-weight="600">Highest $3.83</text><path d="M56.0,90.1 L109.6,90.1 L163.2,90.1 L216.8,72.8 L270.4,90.1 L324.0,90.1 L377.6,90.1 L431.2,90.1 L484.8,81.4 L538.4,97.0 L592.0,97.0" fill="none" stroke="var(--ink)" stroke-width="2.25" stroke-linejoin="round"/><circle cx="592.0" cy="97.0" r="3.5" fill="var(--ink)"/><text x="602.0" y="101.0" font-size="13" fill="var(--ink)" font-weight="600">Median $2.72</text><path d="M56.0,170.0 L109.6,170.0 L163.2,170.0 L216.8,170.0 L270.4,170.2 L324.0,235.1 L377.6,170.0 L431.2,170.0 L484.8,170.0 L538.4,170.0 L592.0,170.0" fill="none" stroke="var(--gold)" stroke-width="2.25" stroke-linejoin="round"/><circle cx="592.0" cy="170.0" r="3.5" fill="var(--gold)"/><text x="602.0" y="174.0" font-size="13" fill="var(--gold)" font-weight="600">Lowest $1.50</text>
 </svg></div>
-    <p class="muted" style="font-size:13px;margin-top:10px">Since Oct 27, 2026. Shaded band runs from the cheapest to the most expensive endpoint. Grade lines (cheapest A, cheapest B) switch on after the first calibration on Nov 10. Listed prices from OpenRouter; grades are Bitdepth's.</p>
+    <p class="muted" style="font-size:13px;margin-top:10px">Eleven nights since Oct 27, 2026. Shaded band runs from the cheapest to the most expensive endpoint. Grade lines (cheapest A, cheapest B) switch on after the first calibration on Nov 10. Listed prices from OpenRouter; grades are Bitdepth's.</p>
   </div>
 </section>
 <section>
@@ -184,8 +182,18 @@ footer a:hover{text-decoration:underline}
     <div class="steps">
       <div class="step"><div class="n">1</div><p><b>You choose</b> the model, the grade you need, and your monthly volume.</p></div>
       <div class="step"><div class="n">2</div><p><b>We match you</b> with a provider whose endpoint holds that grade.</p></div>
-      <div class="step"><div class="n">3</div><p><b>You agree</b> a fixed price per million output tokens for 90 days.</p></div>
+      <div class="step"><div class="n">3</div><p><b>You pick the shape:</b> a fixed price per million output tokens for 90 days, or the provider's market price with the grade guaranteed.</p></div>
       <div class="step"><div class="n">4</div><p><b>Bitdepth grades it nightly.</b> You and the provider see the same result each morning.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:8px">
+  <div class="wrap">
+    <div class="sechead"><div><div class="eyebrow">Two shapes</div><h2>Lock the price, or lock the grade.</h2></div><p class="muted">Same grade condition, same credits, same right to hand on the remainder.</p></div>
+    <div class="split">
+      <div class="role"><h3>Fixed price</h3><p>A price per million output tokens that does not move for 90 days. For a buyer with flat revenue and a per-token bill. You carry the risk that list prices fall; you get a cost you can plan on.</p></div>
+      <div class="role"><h3>Market price, grade guaranteed</h3><p>You pay the provider's listed price as it moves. For a buyer who expects prices to keep falling and wants the guarantee, not the lock. The nightly grade, the credits and the exit are the same.</p></div>
     </div>
   </div>
 </section>
@@ -201,7 +209,7 @@ footer a:hover{text-decoration:underline}
           <tr><td>The provider can't serve your committed volume, or errors spike</td><td>Counts as a below-grade day</td></tr>
           <tr><td>The provider changes the model or its declared precision</td><td>Logged with a date. The next night's grade decides.</td></tr>
           <tr><td>Three below-grade days in a row</td><td>You can end the block and get back what you prepaid for undelivered tokens</td></tr>
-          <tr><td>You can't use the rest</td><td>You can hand the remainder to another buyer</td></tr>
+          <tr><td>You can't use the rest</td><td>You list the remainder. Another buyer takes it on and the provider issues them their own key. Nothing of yours changes hands.</td></tr>
           <tr><td>A night can't be measured</td><td>Counts for no one. Two in a row trigger a manual check.</td></tr>
         </tbody>
       </table>
@@ -216,12 +224,14 @@ footer a:hover{text-decoration:underline}
       <div class="r"><span>Unit</span><b>model · precision · grade · context · latency</b></div>
       <div class="r"><span>Size</span><b>output tokens</b></div>
       <div class="r"><span>Term</span><b>90 days</b></div>
-      <div class="r"><span>Price</span><b>fixed, per million output tokens</b></div>
+      <div class="r"><span>Price</span><b>fixed, or market with the grade guaranteed</b></div>
       <div class="r"><span>Condition</span><b>the agreed grade, every night</b></div>
+      <div class="r"><span>Remainder</span><b>transferable to another buyer</b></div>
       <div class="r"><span>Grader</span><b>Bitdepth, published method</b></div>
     </div>
     <div class="roles" style="grid-template-columns:1fr;margin-top:0">
-      <div class="role"><h3>For providers</h3><p>Sell capacity at a committed price to a buyer who knows exactly what they're getting. A good grade is your proof, checked every night by someone who isn't you.</p></div>
+      <div class="role"><h3>For providers</h3><p>Sell capacity at a committed price to a buyer who knows exactly what they're getting. A good grade is your proof, checked every night by someone who isn't you. Already sell reserved capacity? Keep it. A block adds the grade and gives your buyer an exit.</p></div>
+      <div class="role"><h3>What this is not</h3><p>Not a place to resell credits or keys. Every lab's terms forbid that, and we won't touch it. A block is a claim the provider issues, so handing it on is a reissue by the provider, not a key swap.</p></div>
       <div class="role"><h3>How the grade stays fair</h3><p>Bitdepth runs the market and never serves inference itself. Every grade is computed by code from a <a href="/method">published method</a>, the same for every endpoint, and paying Bitdepth for anything can't change a letter.</p></div>
     </div>
   </div>
@@ -233,8 +243,8 @@ footer a:hover{text-decoration:underline}
     <h2>Tell me the model, your volume, and the grade you need.</h2>
     <p class="muted">I'll come back with what's available.</p>
     <div class="ctas" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:18px">
-      <a class="btn gold" href="mailto:hello@bitdepth.dev?subject=Market%3A%20reserve%20a%20block">Reserve a block</a>
-      <a class="btn ghost" style="color:var(--pine-ink);border-color:var(--line-dark)" href="mailto:hello@bitdepth.dev?subject=Market%3A%20sell%20capacity">I have capacity to sell</a>
+      <a class="btn gold" href="mailto:hello@bitdepth.dev?subject=Market%3A%20reserve%20a%20block&body=Model%3A%20%0AGrade%20I%20need%20(A%20or%20B)%3A%20%0AMonthly%20output%20tokens%3A%20%0AShape%20(fixed%20price%2C%20or%20market%20price%20with%20the%20grade%20guaranteed)%3A%20%0AWhere%20I%20buy%20it%20today%3A%20%0A">Reserve a block</a>
+      <a class="btn ghost" style="color:var(--pine-ink);border-color:var(--line-dark)" href="mailto:hello@bitdepth.dev?subject=Market%3A%20sell%20capacity&body=Model(s)%20I%20serve%3A%20%0ADeclared%20precision%3A%20%0AOutput%20tokens%20a%20day%20I%20can%20commit%3A%20%0ATerm%20I%20would%20offer%3A%20%0AWould%20I%20let%20the%20buyer%20hand%20the%20remainder%20to%20another%20buyer%20(yes%20or%20no)%3A%20%0A">I have capacity to sell</a>
     </div>
     <div class="addr"><code id="addr">hello@bitdepth.dev</code><button id="copy" type="button">Copy</button></div>
   </div>
