@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-07",
+ "as_of": "2026-11-08",
  "rows": {
   "deepseek/deepseek-v4-pro|alibaba/fp8": {
    "declared_quant": "fp8",
@@ -41,8 +41,8 @@
    "declared_quant": "fp8",
    "label": "deepseek-v4-pro",
    "model": "deepseek/deepseek-v4-pro",
-   "price_in_per_m": 0.6963,
-   "price_out_per_m": 1.3926,
+   "price_in_per_m": 0.2197,
+   "price_out_per_m": 0.4394,
    "state": "within",
    "tag": "baidu/fp8"
   },
@@ -131,8 +131,8 @@
    "declared_quant": "fp8",
    "label": "deepseek-v4-pro",
    "model": "deepseek/deepseek-v4-pro",
-   "price_in_per_m": 0.6876,
-   "price_out_per_m": 1.3753,
+   "price_in_per_m": 0.2212,
+   "price_out_per_m": 0.4423,
    "state": "within",
    "tag": "streamlake/fp8"
   },
@@ -325,6 +325,15 @@
    "state": "no_data",
    "tag": "fireworks/spot"
   },
+  "deepseek/deepseek-v4.1-flash-1017|fireworks/ultrafast": {
+   "declared_quant": "unknown",
+   "label": "deepseek-v4.1-flash-1017",
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "price_in_per_m": 2.4,
+   "price_out_per_m": 9.6,
+   "state": "no_data",
+   "tag": "fireworks/ultrafast"
+  },
   "deepseek/deepseek-v4.1-flash-1017|fireworks/us": {
    "declared_quant": "unknown",
    "label": "deepseek-v4.1-flash-1017",
@@ -447,7 +456,7 @@
    "label": "deepseek-v4.1-flash-1017",
    "model": "deepseek/deepseek-v4.1-flash-1017",
    "price_in_per_m": 0.0175,
-   "price_out_per_m": 0.6,
+   "price_out_per_m": 0.7,
    "state": "no_data",
    "tag": "open-inference/fp4"
   },
@@ -500,7 +509,7 @@
    "declared_quant": "unknown",
    "label": "deepseek-v4.1-flash-1017",
    "model": "deepseek/deepseek-v4.1-flash-1017",
-   "price_in_per_m": 0.1092,
+   "price_in_per_m": 0.0874,
    "price_out_per_m": 1.2,
    "state": "no_data",
    "tag": "primeintellect"
@@ -842,8 +851,8 @@
    "declared_quant": "fp4",
    "label": "gpt-oss-120b",
    "model": "openai/gpt-oss-120b",
-   "price_in_per_m": 0.018,
-   "price_out_per_m": 0.065,
+   "price_in_per_m": 0.026,
+   "price_out_per_m": 0.098,
    "state": "within",
    "tag": "primeintellect/fp4"
   },

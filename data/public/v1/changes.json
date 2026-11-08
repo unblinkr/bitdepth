@@ -1,8 +1,81 @@
 {
  "schema": "bitdepth.changes.v1",
- "as_of": "2026-11-07",
- "baseline": true,
- "count": 0,
- "changes": [],
+ "as_of": "2026-11-08",
+ "baseline": false,
+ "count": 9,
+ "changes": [
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "label": "deepseek-v4-pro",
+   "tag": "baidu/fp8",
+   "field": "price_in_per_m",
+   "from": 0.6963,
+   "to": 0.2197
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "label": "deepseek-v4-pro",
+   "tag": "baidu/fp8",
+   "field": "price_out_per_m",
+   "from": 1.3926,
+   "to": 0.4394
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "label": "deepseek-v4-pro",
+   "tag": "streamlake/fp8",
+   "field": "price_in_per_m",
+   "from": 0.6876,
+   "to": 0.2212
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "label": "deepseek-v4-pro",
+   "tag": "streamlake/fp8",
+   "field": "price_out_per_m",
+   "from": 1.3753,
+   "to": 0.4423
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "fireworks/ultrafast",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "open-inference/fp4",
+   "field": "price_out_per_m",
+   "from": 0.6,
+   "to": 0.7
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "primeintellect",
+   "field": "price_in_per_m",
+   "from": 0.1092,
+   "to": 0.0874
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "label": "gpt-oss-120b",
+   "tag": "primeintellect/fp4",
+   "field": "price_in_per_m",
+   "from": 0.018,
+   "to": 0.026
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "label": "gpt-oss-120b",
+   "tag": "primeintellect/fp4",
+   "field": "price_out_per_m",
+   "from": 0.065,
+   "to": 0.098
+  }
+ ],
  "footer": "Numbers against a stated reference. Not a claim about intent."
 }
