@@ -30,6 +30,10 @@
     {
       "source": "/mcp",
       "destination": "/api/mcp"
+    },
+    {
+      "source": "/api/watch/checkout",
+      "destination": "/api/watch-checkout"
     }
   ],
   "headers": [

@@ -166,7 +166,7 @@ def email_body(as_of: str, items: list[dict[str, Any]]) -> str:
         "Method: https://bitdepth.dev/method",
         "",
         FOOTER,
-        "To change your endpoints, reply to this email. To cancel, use the link on your Stripe receipt.",
+        "To change your endpoints, reply to this email or pick again at https://bitdepth.dev/watch. To cancel, use the link on your Stripe receipt.",
     ]
     return "\n".join(lines)
 
@@ -178,26 +178,46 @@ def payment_links() -> list[str]:
 
 
 def list_watchers(stripe_key: str, link: str | list[str]) -> list[dict[str, Any]]:
-    """Active Watch subscriptions from completed Checkout sessions on the payment link(s)."""
+    """Active Watch subscriptions: Checkout sessions on the payment link(s), plus
+    sessions made by the bitdepth.dev/watch picker (metadata bitdepth_watch=1)."""
     links = [link] if isinstance(link, str) else list(link)
     out: list[dict[str, Any]] = []
     for one in links:
-        out += _list_watchers_one(stripe_key, one)
-    return out
+        if one:
+            out += _list_watchers_one(stripe_key, {"payment_link": one})
+    out += _list_watchers_one(stripe_key, {}, picker_only=True)
+    seen: set[str] = set()
+    uniq = []
+    for w in out:
+        k = w.get("sub") or w["email"]
+        if k not in seen:
+            seen.add(k)
+            uniq.append(w)
+    return uniq
 
 
-def _list_watchers_one(stripe_key: str, link: str) -> list[dict[str, Any]]:
+def picker_specs(meta: dict[str, Any] | None) -> list[str]:
+    """Endpoints the picker stored in session metadata as endpoints_0, endpoints_1, ..."""
+    meta = meta or {}
+    keys = sorted((k for k in meta if k.startswith("endpoints_")), key=lambda k: int(k.split("_")[1]) if k.split("_")[1].isdigit() else 0)
+    return parse_endpoints(",".join(str(meta[k]) for k in keys))
+
+
+def _list_watchers_one(stripe_key: str, extra: dict[str, Any], picker_only: bool = False) -> list[dict[str, Any]]:
     import httpx
 
     auth = (stripe_key, "")
     out: list[dict[str, Any]] = []
-    params: dict[str, Any] = {"payment_link": link, "status": "complete", "limit": 100}
+    params: dict[str, Any] = {"status": "complete", "limit": 100, **extra}
     with httpx.Client(timeout=30) as client:
         while True:
             r = client.get(f"{STRIPE_API}/checkout/sessions", params=params, auth=auth)
             r.raise_for_status()
             page = r.json()
             for s in page.get("data", []):
+                is_picker = (s.get("metadata") or {}).get("bitdepth_watch") == "1"
+                if picker_only and not is_picker:
+                    continue
                 sub_id = s.get("subscription")
                 email = (s.get("customer_details") or {}).get("email")
                 if not sub_id or not email:
@@ -215,7 +235,8 @@ def _list_watchers_one(stripe_key: str, link: str) -> list[dict[str, Any]]:
                 named = [f for f in fields if "endpoint" in (f.get("key") or "").lower()]
                 for f in (named or fields)[:1]:
                     text = (f.get("text") or {}).get("value")
-                out.append({"email": email, "quantity": qty, "specs": parse_endpoints(text), "sub": sub_id})
+                specs = picker_specs(s.get("metadata")) if is_picker else parse_endpoints(text)
+                out.append({"email": email, "quantity": qty, "specs": specs, "sub": sub_id})
             if not page.get("has_more"):
                 break
             params["starting_after"] = page["data"][-1]["id"]
@@ -238,8 +259,8 @@ def notify(doc: dict[str, Any], dry_run: bool = False) -> int:
     stripe_key = os.environ.get("STRIPE_SECRET_KEY")
     resend_key = os.environ.get("RESEND_API_KEY")
     link = payment_links()
-    if not (stripe_key and resend_key and link):
-        print("watch: notify skipped (STRIPE_SECRET_KEY, RESEND_API_KEY or WATCH_PAYMENT_LINK not set)")
+    if not (stripe_key and resend_key):
+        print("watch: notify skipped (STRIPE_SECRET_KEY or RESEND_API_KEY not set)")
         return 0
     if not doc["changes"]:
         print("watch: no changes tonight, nothing to send")
@@ -294,7 +315,7 @@ def welcome_body(as_of: str, matched: list[dict[str, Any]], unknown: list[str], 
         "Method: https://bitdepth.dev/method",
         "",
         FOOTER,
-        "To change your endpoints, reply to this email. To cancel, use the link on your Stripe receipt.",
+        "To change your endpoints, reply to this email or pick again at https://bitdepth.dev/watch. To cancel, use the link on your Stripe receipt.",
     ]
     return "\n".join(lines)
 
@@ -310,8 +331,8 @@ def welcome(public: Path, ledger: Path, dry_run: bool = False) -> int:
     stripe_key = os.environ.get("STRIPE_SECRET_KEY")
     resend_key = os.environ.get("RESEND_API_KEY")
     links = payment_links()
-    if not (stripe_key and resend_key and links):
-        print("watch: welcome skipped (STRIPE_SECRET_KEY, RESEND_API_KEY or WATCH_PAYMENT_LINK not set)")
+    if not (stripe_key and resend_key):
+        print("watch: welcome skipped (STRIPE_SECRET_KEY or RESEND_API_KEY not set)")
         return 0
     seen = set(json.loads(ledger.read_text()).get("welcomed", [])) if ledger.exists() else set()
     as_of, rows = load_current(public)

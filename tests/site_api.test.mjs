@@ -10,6 +10,7 @@ import publicHandler from "../site/api/public.js";
 import mcpHandler from "../site/api/mcp.js";
 import rowHandler, { PRICE_ATOMIC } from "../site/api/row.js";
 import { cdpJwt } from "../site/api/_lib/x402.js";
+import watchCheckout, { chunk, parseSpec } from "../site/api/watch-checkout.js";
 
 function mockRes() {
   const r = { statusCode: 200, headers: {}, body: undefined };
@@ -224,4 +225,46 @@ test("row: paid flow with stubbed facilitator serves the full row", async () => 
   assert.equal(res.statusCode, 402);
   assert.equal(res.parsed().reason, "nonce_already_used");
   assert.equal(res.parsed().row, undefined);
+});
+
+
+test("watch checkout: validates endpoints against live data, then builds a subscription session", async () => {
+  process.env.STRIPE_CHECKOUT_KEY = "rk_test";
+  process.env.WATCH_PRICE_ID = "price_live";
+  process.env.WATCH_TEST_PRICE_ID = "price_test";
+  process.env.WATCH_TEST_CODE = "secretcode";
+  const idx = mockRes();
+  await publicHandler(req({ query: { path: "or/deepseek/deepseek-v4-pro.json" } }), idx);
+  const tags = idx.parsed().endpoints.slice(0, 3).map((e) => `deepseek/deepseek-v4-pro:${e.tag}`);
+
+  assert.equal(parseSpec("not-a-spec"), null);
+  assert.deepEqual(chunk(["a", "b", "c"], 3), ["a,b", "c"]);
+
+  let res = mockRes();
+  await watchCheckout(req({ method: "POST", body: { endpoints: tags.slice(0, 2) } }), res);
+  assert.equal(res.statusCode, 400);
+  assert.equal(res.parsed().error, "too_few");
+
+  res = mockRes();
+  await watchCheckout(req({ method: "POST", body: { endpoints: [...tags.slice(0, 2), "deepseek/deepseek-v4-pro:nope/fp8"] } }), res);
+  assert.equal(res.statusCode, 400);
+  assert.deepEqual(res.parsed().unknown, ["deepseek/deepseek-v4-pro:nope/fp8"]);
+
+  let sent;
+  const stub = async (url, init) => { sent = new URLSearchParams(init.body); return new Response(JSON.stringify({ url: "https://checkout.stripe.com/c/pay/x" })); };
+  res = mockRes();
+  await watchCheckout(req({ method: "POST", body: { endpoints: tags } }), res, { fetch: stub });
+  assert.equal(res.statusCode, 200);
+  assert.equal(res.parsed().url, "https://checkout.stripe.com/c/pay/x");
+  assert.equal(sent.get("mode"), "subscription");
+  assert.equal(sent.get("line_items[0][price]"), "price_live");
+  assert.equal(sent.get("line_items[0][quantity]"), "3");
+  assert.equal(sent.get("metadata[bitdepth_watch]"), "1");
+  assert.equal(sent.get("metadata[endpoints_0]"), tags.join(","));
+
+  // Wrong test code pays full price; the right one uses the test price.
+  await watchCheckout(req({ method: "POST", body: { endpoints: tags, test: "guess" } }), mockRes(), { fetch: stub });
+  assert.equal(sent.get("line_items[0][price]"), "price_live");
+  await watchCheckout(req({ method: "POST", body: { endpoints: tags, test: "secretcode" } }), mockRes(), { fetch: stub });
+  assert.equal(sent.get("line_items[0][price]"), "price_test");
 });
