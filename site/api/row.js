@@ -2,6 +2,7 @@
 // GET /api/v1/row?model=<author/slug>&endpoint=<tag>
 // 0.10 USDC over x402 on Base. No account, no key.
 
+import { checkKey, keyFrom } from "./_lib/keys.js";
 import { getEndpoint, getFullRow, isModelId } from "./_lib/data.js";
 import { challenge, challengeHeaders, payTo, receiptFrom, settlementHeaders, verifyAndSettle } from "./_lib/x402.js";
 
@@ -85,7 +86,7 @@ export default async function handler(req, res, deps = {}) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Expose-Headers", "Payment-Required, PAYMENT-RESPONSE, X-Payment-Response");
   if (req.method === "OPTIONS") {
-    res.setHeader("Access-Control-Allow-Headers", "PAYMENT-SIGNATURE, X-PAYMENT, Content-Type");
+    res.setHeader("Access-Control-Allow-Headers", "PAYMENT-SIGNATURE, X-PAYMENT, X-Bitdepth-Key, Content-Type");
     return res.status(204).end();
   }
   if (req.method !== "GET" && req.method !== "HEAD") return send(res, 405, { error: "method_not_allowed" });
@@ -108,6 +109,15 @@ export default async function handler(req, res, deps = {}) {
   const { row } = await getEndpoint(model, tag).catch(() => ({ row: undefined }));
   if (row === undefined) return send(res, 502, { error: "upstream_unavailable" });
   if (!row) return send(res, 404, { error: "not_found", model, endpoint: tag });
+
+  // Watch subscribers: a valid key returns the row with no payment.
+  if (keyFrom(req)) {
+    const k = await checkKey(req, deps.fetch);
+    if (!k.ok) return send(res, k.status, { error: k.error, help: "Keys come with Bitdepth Watch: https://bitdepth.dev/watch" });
+    const full = await getFullRow(model, tag).catch(() => null);
+    if (!full) return send(res, 502, { error: "upstream_unavailable" });
+    return send(res, 200, full, { "Cache-Control": "no-store", "X-Bitdepth-Plan": "watch" });
+  }
 
   const resourceUrl = `https://${host}/api/v1/row?model=${encodeURIComponent(model)}&endpoint=${encodeURIComponent(tag)}`;
   const opts = { priceAtomic: PRICE_ATOMIC, resourceUrl, description: DESCRIPTION, extensions: BAZAAR, resourceExtra: RESOURCE_EXTRA };

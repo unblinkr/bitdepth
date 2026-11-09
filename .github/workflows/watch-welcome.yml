@@ -33,6 +33,7 @@ jobs:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           WATCH_PAYMENT_LINK: ${{ secrets.WATCH_PAYMENT_LINK }}
           WATCH_TEST_PAYMENT_LINK: ${{ secrets.WATCH_TEST_PAYMENT_LINK }}
+          WATCH_KEY_SECRET: ${{ secrets.WATCH_KEY_SECRET }}
         run: python -m probe.watch --welcome
       - name: Commit the ledger
         run: |

@@ -41,6 +41,15 @@
               "type": "string",
               "example": "alibaba/fp8"
             }
+          },
+          {
+            "name": "X-Bitdepth-Key",
+            "in": "header",
+            "required": false,
+            "description": "Optional Watch subscriber key. With a valid key the row is returned with no payment.",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "x-payment-info": {
@@ -132,6 +141,12 @@
           },
           "404": {
             "description": "Model or endpoint not graded"
+          },
+          "401": {
+            "description": "Watch key missing or invalid"
+          },
+          "403": {
+            "description": "Watch subscription not active"
           }
         }
       }

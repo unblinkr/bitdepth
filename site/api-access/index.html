@@ -129,6 +129,10 @@ footer .fm{font-family:var(--display);font-size:16px;color:var(--ink)}
     <p>One endpoint's complete record: per-night exact, per-family self-agreement with pair counts, and the self-check nights. Paid over x402 in USDC on Base. No account, no key. An x402 client pays and retries on its own.</p>
     <p><code>GET /api/v1/row?model=&lt;author/slug&gt;&amp;endpoint=&lt;tag&gt;</code></p>
     <p class="muted">Without payment the route answers 402 with the payment terms in the <code>Payment-Required</code> header. Tags come from the free model file.</p>
+    <h3>Or with a Watch key</h3>
+    <p>Watch subscribers get an API key in their welcome email. Send it in the <code>X-Bitdepth-Key</code> header and the same route returns the full row with no payment, for any endpoint, as often as you need.</p>
+    <p><code>curl -H "X-Bitdepth-Key: bdw_..." "https://bitdepth.dev/api/v1/row?model=deepseek/deepseek-v4-pro&amp;endpoint=alibaba/fp8"</code></p>
+    <p><a href="/watch">Start Watch</a> · $5 per endpoint a month, 3 minimum.</p>
   </div>
 </section>
 

@@ -279,6 +279,42 @@ def notify(doc: dict[str, Any], dry_run: bool = False) -> int:
     return sent
 
 
+# ---------- keys: same scheme as site/api/_lib/keys.js ----------
+
+def mint_key(sub_id: str, secret: str) -> str:
+    import base64
+    import hmac
+    import hashlib
+
+    sig = hmac.new(secret.encode(), sub_id.encode(), hashlib.sha256).hexdigest()[:32]
+    b = base64.urlsafe_b64encode(sub_id.encode()).decode().rstrip("=")
+    return f"bdw_{b}_{sig}"
+
+
+def key_section(key: str, example: dict[str, Any] | None) -> list[str]:
+    model, tag = (example["model"], example["tag"]) if example else ("deepseek/deepseek-v4-pro", "alibaba/fp8")
+    return [
+        "YOUR API KEY",
+        key,
+        "",
+        "It unlocks the full row for any endpoint we grade, with no per-call payment: every night",
+        "against the reference, self-agreement by prompt family, the self-check nights and the noise floor.",
+        "Pass it in the X-Bitdepth-Key header. Try it now:",
+        "",
+        f'  curl -H "X-Bitdepth-Key: {key}" "https://bitdepth.dev/api/v1/row?model={model}&endpoint={tag}"',
+        "",
+        "Free with or without a key:",
+        "  https://bitdepth.dev/v1/index.json          every model we grade",
+        f"  https://bitdepth.dev/v1/or/{model}.json   every endpoint of one model, graded",
+        "  https://bitdepth.dev/v1/changes.json        last night's changes",
+        "",
+        "In Claude or any MCP client, add the connector https://bitdepth.dev/api/mcp/mcp and ask",
+        '"which DeepSeek V4 Pro endpoints match the reference, cheapest first?"',
+        "",
+        "The key works while your Watch plan is active. Keep it private.",
+    ]
+
+
 # ---------- welcome: the first email a new watcher gets ----------
 
 def resolve(specs: list[str], quantity: int, rows: dict[str, dict[str, Any]]) -> tuple[list[dict[str, Any]], list[str], list[str]]:
@@ -295,7 +331,7 @@ def resolve(specs: list[str], quantity: int, rows: dict[str, dict[str, Any]]) ->
     return matched, unknown, extra
 
 
-def welcome_body(as_of: str, matched: list[dict[str, Any]], unknown: list[str], extra: list[str]) -> str:
+def welcome_body(as_of: str, matched: list[dict[str, Any]], unknown: list[str], extra: list[str], key: str | None = None) -> str:
     lines = ["Welcome to Bitdepth Watch.", "", f"Here is where your endpoints stand as of the night of {as_of}.", ""]
     for r in matched:
         lines.append(f"- {r['label']} / {r['tag']}: {r.get('state') or 'not graded yet'}, "
@@ -311,6 +347,7 @@ def welcome_body(as_of: str, matched: list[dict[str, Any]], unknown: list[str], 
         "",
         "From tonight, you get an email the morning after any of these changes its grade state, declared precision or price, and every Monday a status email on all of them.",
         "",
+        *(key_section(key, matched[0] if matched else None) + [""] if key else []),
         "Full table: https://bitdepth.dev",
         "Method: https://bitdepth.dev/method",
         "",
@@ -334,22 +371,35 @@ def welcome(public: Path, ledger: Path, dry_run: bool = False) -> int:
     if not (stripe_key and resend_key):
         print("watch: welcome skipped (STRIPE_SECRET_KEY or RESEND_API_KEY not set)")
         return 0
-    seen = set(json.loads(ledger.read_text()).get("welcomed", [])) if ledger.exists() else set()
+    data = json.loads(ledger.read_text()) if ledger.exists() else {}
+    seen = set(data.get("welcomed", []))
+    keyed = set(data.get("keyed", []))
+    secret = os.environ.get("WATCH_KEY_SECRET", "")
     as_of, rows = load_current(public)
     sent = 0
     for w in list_watchers(stripe_key, links):
-        h = _hash(w.get("sub") or w["email"])
-        if h in seen:
-            continue
+        sub = w.get("sub") or ""
+        h = _hash(sub or w["email"])
+        key = mint_key(sub, secret) if (secret and sub.startswith("sub_")) else None
         matched, unknown, extra = resolve(w["specs"], w["quantity"], rows)
-        if not dry_run:
-            send_email(resend_key, w["email"], "Bitdepth Watch: you are set up", welcome_body(as_of, matched, unknown, extra))
-            seen.add(h)
-        sent += 1
-        print(f"watch: welcome {h}: {len(matched)} matched, {len(unknown)} not found, {len(extra)} over quantity")
+        if h not in seen:
+            if not dry_run:
+                send_email(resend_key, w["email"], "Bitdepth Watch: you are set up", welcome_body(as_of, matched, unknown, extra, key))
+                seen.add(h)
+                if key:
+                    keyed.add(h)
+            sent += 1
+            print(f"watch: welcome {h}: {len(matched)} matched, {len(unknown)} not found, {len(extra)} over quantity, key {'yes' if key else 'no'}")
+        elif key and h not in keyed:
+            body = "\n".join(["Your Bitdepth Watch plan now comes with an API key.", ""] + key_section(key, matched[0] if matched else None) + ["", FOOTER])
+            if not dry_run:
+                send_email(resend_key, w["email"], "Bitdepth Watch: your API key", body)
+                keyed.add(h)
+            sent += 1
+            print(f"watch: key email {h}")
     if not dry_run:
         ledger.parent.mkdir(parents=True, exist_ok=True)
-        ledger.write_text(json.dumps({"welcomed": sorted(seen)}, indent=2) + "\n")
+        ledger.write_text(json.dumps({"welcomed": sorted(seen), "keyed": sorted(keyed)}, indent=2) + "\n")
     print(f"watch: {sent} welcome email(s)" + (" (dry run)" if dry_run else ""))
     return sent
 
