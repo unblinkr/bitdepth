@@ -92,16 +92,23 @@ export default async function handler(req, res, deps = {}) {
 
   const model = String(req.query.model || "");
   const tag = String(req.query.endpoint || "");
+  const host = req.headers["x-forwarded-host"] || req.headers.host || "bitdepth.dev";
+  if (!payTo()) return send(res, 503, { error: "payments_not_configured", detail: "X402_PAYTO is not set." });
   if (!isModelId(model) || !tag) {
+    // Discovery probes (x402scan, Bazaar crawlers) call the bare route. Answer them with
+    // the challenge before validating the query, so the route reads as payable. A paid
+    // call with no query still gets 400 here, before anything is settled.
+    if (!receiptFrom(req.headers)) {
+      const bare = challenge({ priceAtomic: PRICE_ATOMIC, resourceUrl: `https://${host}/api/v1/row`, description: DESCRIPTION, extensions: BAZAAR, resourceExtra: RESOURCE_EXTRA });
+      return send(res, 402, bare, challengeHeaders(bare, PRICE_ATOMIC));
+    }
     return send(res, 400, { error: "bad_request", usage: "/api/v1/row?model=deepseek/deepseek-v4-pro&endpoint=<tag from /v1/or/<model>.json>" });
   }
-  if (!payTo()) return send(res, 503, { error: "payments_not_configured", detail: "X402_PAYTO is not set." });
 
   const { row } = await getEndpoint(model, tag).catch(() => ({ row: undefined }));
   if (row === undefined) return send(res, 502, { error: "upstream_unavailable" });
   if (!row) return send(res, 404, { error: "not_found", model, endpoint: tag });
 
-  const host = req.headers["x-forwarded-host"] || req.headers.host || "bitdepth.dev";
   const resourceUrl = `https://${host}/api/v1/row?model=${encodeURIComponent(model)}&endpoint=${encodeURIComponent(tag)}`;
   const opts = { priceAtomic: PRICE_ATOMIC, resourceUrl, description: DESCRIPTION, extensions: BAZAAR, resourceExtra: RESOURCE_EXTRA };
   const ch = challenge(opts);

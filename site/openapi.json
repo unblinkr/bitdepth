@@ -1,0 +1,269 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Bitdepth",
+    "version": "1.0.0",
+    "description": "Independent nightly grades of LLM inference endpoints. The same prompts go to every OpenRouter endpoint serving an open-weight model, graded by code against a published full-precision reference. Free JSON for every model; one paid route returns an endpoint's full nightly row for 0.10 USDC over x402 on Base.",
+    "contact": {
+      "email": "hello@bitdepth.dev",
+      "url": "https://bitdepth.dev"
+    },
+    "x-guidance": "Start at /v1/index.json for the models, then /v1/or/{author}/{slug}.json for every endpoint of one model and its grade. Pay /api/v1/row only when you need one endpoint's per-night history before routing to it."
+  },
+  "servers": [
+    {
+      "url": "https://bitdepth.dev"
+    }
+  ],
+  "paths": {
+    "/api/v1/row": {
+      "get": {
+        "operationId": "getEndpointRow",
+        "summary": "One endpoint's full nightly row",
+        "description": "Before routing to a provider, check whether that endpoint serves the model it advertises: per-night exact match against the reference, self-agreement, self-check nights, declared quantization and price. 0.10 USDC per call over x402 on Base.",
+        "parameters": [
+          {
+            "name": "model",
+            "in": "query",
+            "required": true,
+            "description": "OpenRouter model id, e.g. deepseek/deepseek-v4-pro. List at /v1/index.json.",
+            "schema": {
+              "type": "string",
+              "example": "deepseek/deepseek-v4-pro"
+            }
+          },
+          {
+            "name": "endpoint",
+            "in": "query",
+            "required": true,
+            "description": "Endpoint tag from /v1/or/{author}/{slug}.json, e.g. alibaba/fp8.",
+            "schema": {
+              "type": "string",
+              "example": "alibaba/fp8"
+            }
+          }
+        ],
+        "x-payment-info": {
+          "protocols": [
+            "x402"
+          ],
+          "price": {
+            "mode": "fixed",
+            "currency": "USD",
+            "amount": "0.10"
+          },
+          "network": "eip155:8453",
+          "asset": "USDC"
+        },
+        "responses": {
+          "200": {
+            "description": "The row, after payment settles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "model": {
+                      "type": "string"
+                    },
+                    "as_of": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "row": {
+                      "type": "object",
+                      "properties": {
+                        "tag": {
+                          "type": "string"
+                        },
+                        "provider_slug": {
+                          "type": "string"
+                        },
+                        "declared_quant": {
+                          "type": "string"
+                        },
+                        "nights": {
+                          "type": "integer"
+                        },
+                        "exact": {
+                          "type": "number"
+                        },
+                        "string": {
+                          "type": "number"
+                        },
+                        "self_agree": {
+                          "type": "number"
+                        },
+                        "state": {
+                          "type": "string",
+                          "enum": [
+                            "within",
+                            "outside",
+                            "first_look"
+                          ]
+                        },
+                        "price_out_per_m": {
+                          "type": "number"
+                        }
+                      }
+                    },
+                    "detail": {
+                      "type": "object"
+                    },
+                    "method_url": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Paid call without model or endpoint; nothing is settled"
+          },
+          "402": {
+            "description": "Payment required. x402 v2 challenge in the Payment-Required header and the body."
+          },
+          "404": {
+            "description": "Model or endpoint not graded"
+          }
+        }
+      }
+    },
+    "/v1/index.json": {
+      "get": {
+        "summary": "Models graded",
+        "description": "Every model Bitdepth grades, with endpoint counts and the date of the latest night.",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/v1/or/{author}/{slug}.json": {
+      "get": {
+        "summary": "Every endpoint of one model, graded",
+        "description": "All endpoints serving one model: state against the reference, agreement, declared precision and price.",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "parameters": [
+          {
+            "name": "author",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "deepseek"
+            }
+          },
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "deepseek-v4-pro"
+            }
+          }
+        ]
+      }
+    },
+    "/v1/drift.json": {
+      "get": {
+        "summary": "Endpoints that moved",
+        "description": "Endpoints whose agreement with the reference changed across recent nights.",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/v1/changes.json": {
+      "get": {
+        "summary": "Last night's changes",
+        "description": "Changes in grade state, declared precision, price and listing since the night before.",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "JSON",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/api/mcp/mcp": {
+      "post": {
+        "operationId": "mcp",
+        "summary": "MCP server (streamable HTTP)",
+        "security": [],
+        "description": "Model Context Protocol endpoint with Bitdepth's free tools: scorecards, endpoint lookups, routing checks and changes.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "JSON-RPC 2.0 request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON-RPC response"
+          }
+        }
+      }
+    }
+  }
+}
