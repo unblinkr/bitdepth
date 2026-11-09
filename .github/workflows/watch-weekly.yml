@@ -1,0 +1,36 @@
+name: watch weekly
+
+# Mondays: one status email to every Watch subscriber, change or not.
+# Reads Stripe and the public files only. No probe, no OpenRouter spend.
+
+on:
+  schedule:
+    - cron: "23 12 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: watch-weekly
+  cancel-in-progress: false
+
+jobs:
+  weekly:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install httpx
+      - name: Monday status email
+        env:
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          WATCH_PAYMENT_LINK: ${{ secrets.WATCH_PAYMENT_LINK }}
+          WATCH_TEST_PAYMENT_LINK: ${{ secrets.WATCH_TEST_PAYMENT_LINK }}
+        run: python -m probe.watch --weekly

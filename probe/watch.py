@@ -309,7 +309,7 @@ def welcome_body(as_of: str, matched: list[dict[str, Any]], unknown: list[str], 
         lines += [f"- {x}" for x in extra]
     lines += [
         "",
-        "From tonight, you get an email the morning after any of these changes its grade state, declared precision or price. No change, no email.",
+        "From tonight, you get an email the morning after any of these changes its grade state, declared precision or price, and every Monday a status email on all of them.",
         "",
         "Full table: https://bitdepth.dev",
         "Method: https://bitdepth.dev/method",
@@ -354,6 +354,55 @@ def welcome(public: Path, ledger: Path, dry_run: bool = False) -> int:
     return sent
 
 
+# ---------- weekly: the email that always arrives ----------
+
+STATE_WORDS = {"within": "matches the reference", "outside": "off the reference", "no_data": "new, still measuring"}
+
+
+def weekly_body(as_of: str, matched: list[dict[str, Any]], unknown: list[str]) -> str:
+    inside = sum(1 for r in matched if r.get("state") == "within")
+    lines = [
+        "Your week on Bitdepth Watch.",
+        "",
+        f"Every endpoint below was tested every night this week. As of the night of {as_of}, "
+        f"{inside} of {len(matched)} match the reference.",
+        "",
+    ]
+    for r in matched:
+        lines.append(f"- {r['label']} / {r['tag']}: {STATE_WORDS.get(r.get('state') or '', r.get('state') or 'not graded yet')}, "
+                     f"declared precision {_fmt(r.get('declared_quant'))}, output price {_fmt(r.get('price_out_per_m'))}")
+    if unknown:
+        lines += ["", "We still cannot find these, so they are not watched:"] + [f"- {u}" for u in unknown]
+        lines += ["Reply with the right name, or pick again at https://bitdepth.dev/watch"]
+    lines += [
+        "",
+        "Between Mondays, you hear from us the morning after any of these changes grade, declared precision or price.",
+        "",
+        "Full table: https://bitdepth.dev",
+        "",
+        FOOTER,
+        "To change your endpoints, reply to this email or pick again at https://bitdepth.dev/watch.",
+    ]
+    return "\n".join(lines)
+
+
+def weekly(public: Path, dry_run: bool = False) -> int:
+    stripe_key = os.environ.get("STRIPE_SECRET_KEY")
+    resend_key = os.environ.get("RESEND_API_KEY")
+    if not (stripe_key and resend_key):
+        print("watch: weekly skipped (STRIPE_SECRET_KEY or RESEND_API_KEY not set)")
+        return 0
+    as_of, rows = load_current(public)
+    sent = 0
+    for w in list_watchers(stripe_key, payment_links()):
+        matched, unknown, _extra = resolve(w["specs"], w["quantity"], rows)
+        if not dry_run:
+            send_email(resend_key, w["email"], f"Bitdepth Watch: your endpoints this week ({as_of})", weekly_body(as_of, matched, unknown))
+        sent += 1
+    print(f"watch: {sent} weekly email(s)" + (" (dry run)" if dry_run else ""))
+    return sent
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--public", default="data/public/v1")
@@ -361,10 +410,14 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--notify", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--welcome", action="store_true", help="only send first emails to new watchers")
+    ap.add_argument("--weekly", action="store_true", help="send every watcher the Monday status email")
     ap.add_argument("--ledger", default="data/watch/welcomed.json")
     a = ap.parse_args(argv)
     if a.welcome:
         welcome(Path(a.public), Path(a.ledger), dry_run=a.dry_run)
+        return 0
+    if a.weekly:
+        weekly(Path(a.public), dry_run=a.dry_run)
         return 0
     doc = run_changes(Path(a.public), Path(a.state))
     print(f"watch: {doc['count']} changes as of {doc['as_of']}" + (" (baseline night)" if doc["baseline"] else ""))
