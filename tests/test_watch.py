@@ -114,3 +114,17 @@ def test_picker_specs_join_chunks_in_order():
     meta = {"bitdepth_watch": "1", "endpoints_1": "c/fp8", "endpoints_0": "m/x:a/fp8,b/fp8"}
     assert watch.picker_specs(meta) == ["m/x:a/fp8", "b/fp8", "c/fp8"]
     assert watch.picker_specs(None) == []
+
+
+def test_weekly_reaches_every_watcher_even_with_no_change(tmp_path, monkeypatch):
+    pub = _write(tmp_path, [_ep("a/fp8")])
+    for k, v in (("STRIPE_SECRET_KEY", "k"), ("RESEND_API_KEY", "r")):
+        monkeypatch.setenv(k, v)
+    monkeypatch.setattr(watch, "list_watchers", lambda key, links: [
+        {"email": "x@y.z", "quantity": 3, "specs": ["a/fp8", "nope/fp8"], "sub": "s1"},
+        {"email": "q@y.z", "quantity": 3, "specs": ["a/fp8"], "sub": "s2"}])
+    sent = []
+    monkeypatch.setattr(watch, "send_email", lambda key, to, subj, body: sent.append((to, body)))
+    assert watch.weekly(pub) == 2
+    assert "nope/fp8" in sent[0][1] and "tested every night" in sent[0][1]
+    assert "—" not in sent[0][1]
