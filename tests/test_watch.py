@@ -75,3 +75,36 @@ def test_notify_skips_without_keys(monkeypatch, capsys):
 def test_email_body_has_no_em_dash():
     body = watch.email_body("2026-11-10", [{"label": "m", "tag": "a/fp8", "field": "price_out_per_m", "from": 2.0, "to": 2.5}])
     assert "\u2014" not in body and "$2.500/M" in body
+
+
+def test_resolve_flags_unknown_and_over_quantity(tmp_path):
+    pub = _write(tmp_path, [_ep("a/fp8"), _ep("b/fp8")])
+    _, rows = watch.load_current(pub)
+    specs = ["deepseek/deepseek-v4-pro:a/fp8", "nope/fp8", "b/fp8", "a/fp8"]
+    matched, unknown, extra = watch.resolve(specs, 3, rows)
+    assert [r["tag"] for r in matched] == ["a/fp8", "b/fp8"]
+    assert unknown == ["nope/fp8"]
+    assert extra == ["a/fp8"]
+    body = watch.welcome_body("2026-11-09", matched, unknown, extra)
+    assert "nope/fp8" in body and "not being watched" in body and "past the number" in body
+    assert "—" not in body
+
+
+def test_payment_links_reads_both_secrets(monkeypatch):
+    monkeypatch.setenv("WATCH_PAYMENT_LINK", "plink_A")
+    monkeypatch.setenv("WATCH_TEST_PAYMENT_LINK", "plink_B, plink_C")
+    assert watch.payment_links() == ["plink_A", "plink_B", "plink_C"]
+
+
+def test_welcome_emails_each_subscription_once(tmp_path, monkeypatch):
+    pub = _write(tmp_path, [_ep("a/fp8")])
+    ledger = tmp_path / "welcomed.json"
+    for k, v in (("STRIPE_SECRET_KEY", "k"), ("RESEND_API_KEY", "r"), ("WATCH_PAYMENT_LINK", "plink_A")):
+        monkeypatch.setenv(k, v)
+    monkeypatch.setattr(watch, "list_watchers", lambda key, links: [{"email": "x@y.z", "quantity": 3, "specs": ["a/fp8"], "sub": "sub_1"}])
+    sent = []
+    monkeypatch.setattr(watch, "send_email", lambda key, to, subj, body: sent.append((to, subj)))
+    assert watch.welcome(pub, ledger) == 1
+    assert watch.welcome(pub, ledger) == 0
+    assert len(sent) == 1
+    assert "x@y.z" not in ledger.read_text() and "sub_1" not in ledger.read_text()

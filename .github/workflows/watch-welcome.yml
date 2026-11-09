@@ -1,0 +1,45 @@
+name: watch welcome
+
+# Hourly: the first email to each new Watch subscriber, listing where their
+# endpoints stand and any name we could not find. No probe, no OpenRouter spend.
+
+on:
+  schedule:
+    - cron: "41 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: watch-welcome
+  cancel-in-progress: false
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install httpx
+      - name: Welcome new watchers
+        env:
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          WATCH_PAYMENT_LINK: ${{ secrets.WATCH_PAYMENT_LINK }}
+          WATCH_TEST_PAYMENT_LINK: ${{ secrets.WATCH_TEST_PAYMENT_LINK }}
+        run: python -m probe.watch --welcome
+      - name: Commit the ledger
+        run: |
+          git config user.name "bitdepth-bot"
+          git config user.email "bitdepth-bot@users.noreply.github.com"
+          git add data/watch
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          git commit -m "watch: welcome ledger"
+          git pull --rebase origin main
+          git push origin HEAD:main

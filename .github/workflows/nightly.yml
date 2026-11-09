@@ -110,6 +110,7 @@ jobs:
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           WATCH_PAYMENT_LINK: ${{ secrets.WATCH_PAYMENT_LINK }}
+          WATCH_TEST_PAYMENT_LINK: ${{ secrets.WATCH_TEST_PAYMENT_LINK }}
         run: |
           python -m probe.watch --notify
 

@@ -171,8 +171,22 @@ def email_body(as_of: str, items: list[dict[str, Any]]) -> str:
     return "\n".join(lines)
 
 
-def list_watchers(stripe_key: str, link: str) -> list[dict[str, Any]]:
-    """Active Watch subscriptions from completed Checkout sessions on the payment link."""
+def payment_links() -> list[str]:
+    """WATCH_PAYMENT_LINK plus WATCH_TEST_PAYMENT_LINK, each comma separated."""
+    raw = ",".join(os.environ.get(k, "") for k in ("WATCH_PAYMENT_LINK", "WATCH_TEST_PAYMENT_LINK"))
+    return [x.strip() for x in raw.split(",") if x.strip()]
+
+
+def list_watchers(stripe_key: str, link: str | list[str]) -> list[dict[str, Any]]:
+    """Active Watch subscriptions from completed Checkout sessions on the payment link(s)."""
+    links = [link] if isinstance(link, str) else list(link)
+    out: list[dict[str, Any]] = []
+    for one in links:
+        out += _list_watchers_one(stripe_key, one)
+    return out
+
+
+def _list_watchers_one(stripe_key: str, link: str) -> list[dict[str, Any]]:
     import httpx
 
     auth = (stripe_key, "")
@@ -201,7 +215,7 @@ def list_watchers(stripe_key: str, link: str) -> list[dict[str, Any]]:
                 named = [f for f in fields if "endpoint" in (f.get("key") or "").lower()]
                 for f in (named or fields)[:1]:
                     text = (f.get("text") or {}).get("value")
-                out.append({"email": email, "quantity": qty, "specs": parse_endpoints(text)})
+                out.append({"email": email, "quantity": qty, "specs": parse_endpoints(text), "sub": sub_id})
             if not page.get("has_more"):
                 break
             params["starting_after"] = page["data"][-1]["id"]
@@ -223,7 +237,7 @@ def send_email(resend_key: str, to: str, subject: str, body: str) -> None:
 def notify(doc: dict[str, Any], dry_run: bool = False) -> int:
     stripe_key = os.environ.get("STRIPE_SECRET_KEY")
     resend_key = os.environ.get("RESEND_API_KEY")
-    link = os.environ.get("WATCH_PAYMENT_LINK")
+    link = payment_links()
     if not (stripe_key and resend_key and link):
         print("watch: notify skipped (STRIPE_SECRET_KEY, RESEND_API_KEY or WATCH_PAYMENT_LINK not set)")
         return 0
@@ -244,13 +258,93 @@ def notify(doc: dict[str, Any], dry_run: bool = False) -> int:
     return sent
 
 
+# ---------- welcome: the first email a new watcher gets ----------
+
+def resolve(specs: list[str], quantity: int, rows: dict[str, dict[str, Any]]) -> tuple[list[dict[str, Any]], list[str], list[str]]:
+    """Return (matched rows, specs that match nothing, specs beyond the paid quantity)."""
+    paid, extra = specs[: max(quantity, 0)], specs[max(quantity, 0):]
+    matched: list[dict[str, Any]] = []
+    unknown: list[str] = []
+    for spec in paid:
+        hits = [r for r in rows.values() if matches(spec, {"model": r["model"], "tag": r["tag"]})]
+        if hits:
+            matched += hits
+        else:
+            unknown.append(spec)
+    return matched, unknown, extra
+
+
+def welcome_body(as_of: str, matched: list[dict[str, Any]], unknown: list[str], extra: list[str]) -> str:
+    lines = ["Welcome to Bitdepth Watch.", "", f"Here is where your endpoints stand as of the night of {as_of}.", ""]
+    for r in matched:
+        lines.append(f"- {r['label']} / {r['tag']}: {r.get('state') or 'not graded yet'}, "
+                     f"declared precision {_fmt(r.get('declared_quant'))}, output price {_fmt(r.get('price_out_per_m'))}")
+    if unknown:
+        lines += ["", "We could not find these, so they are not being watched yet:"]
+        lines += [f"- {u}" for u in unknown]
+        lines += ["Reply with the right name and we will fix it. Every endpoint we grade is listed at https://bitdepth.dev/v1/index.json"]
+    if extra:
+        lines += ["", "These go past the number of endpoints on your plan, so they are not watched:"]
+        lines += [f"- {x}" for x in extra]
+    lines += [
+        "",
+        "From tonight, you get an email the morning after any of these changes its grade state, declared precision or price. No change, no email.",
+        "",
+        "Full table: https://bitdepth.dev",
+        "Method: https://bitdepth.dev/method",
+        "",
+        FOOTER,
+        "To change your endpoints, reply to this email. To cancel, use the link on your Stripe receipt.",
+    ]
+    return "\n".join(lines)
+
+
+def _hash(sub_id: str) -> str:
+    import hashlib
+
+    return hashlib.sha256(sub_id.encode()).hexdigest()[:16]
+
+
+def welcome(public: Path, ledger: Path, dry_run: bool = False) -> int:
+    """Email each new subscription once. The ledger holds short hashes only, no emails."""
+    stripe_key = os.environ.get("STRIPE_SECRET_KEY")
+    resend_key = os.environ.get("RESEND_API_KEY")
+    links = payment_links()
+    if not (stripe_key and resend_key and links):
+        print("watch: welcome skipped (STRIPE_SECRET_KEY, RESEND_API_KEY or WATCH_PAYMENT_LINK not set)")
+        return 0
+    seen = set(json.loads(ledger.read_text()).get("welcomed", [])) if ledger.exists() else set()
+    as_of, rows = load_current(public)
+    sent = 0
+    for w in list_watchers(stripe_key, links):
+        h = _hash(w.get("sub") or w["email"])
+        if h in seen:
+            continue
+        matched, unknown, extra = resolve(w["specs"], w["quantity"], rows)
+        if not dry_run:
+            send_email(resend_key, w["email"], "Bitdepth Watch: you are set up", welcome_body(as_of, matched, unknown, extra))
+            seen.add(h)
+        sent += 1
+        print(f"watch: welcome {h}: {len(matched)} matched, {len(unknown)} not found, {len(extra)} over quantity")
+    if not dry_run:
+        ledger.parent.mkdir(parents=True, exist_ok=True)
+        ledger.write_text(json.dumps({"welcomed": sorted(seen)}, indent=2) + "\n")
+    print(f"watch: {sent} welcome email(s)" + (" (dry run)" if dry_run else ""))
+    return sent
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--public", default="data/public/v1")
     ap.add_argument("--state", default="data/watch/last.json")
     ap.add_argument("--notify", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--welcome", action="store_true", help="only send first emails to new watchers")
+    ap.add_argument("--ledger", default="data/watch/welcomed.json")
     a = ap.parse_args(argv)
+    if a.welcome:
+        welcome(Path(a.public), Path(a.ledger), dry_run=a.dry_run)
+        return 0
     doc = run_changes(Path(a.public), Path(a.state))
     print(f"watch: {doc['count']} changes as of {doc['as_of']}" + (" (baseline night)" if doc["baseline"] else ""))
     if a.notify:
