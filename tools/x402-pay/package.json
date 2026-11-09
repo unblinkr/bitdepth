@@ -1,0 +1,12 @@
+{
+  "name": "bitdepth-x402-pay-test",
+  "private": true,
+  "type": "module",
+  "description": "One real x402 payment to one URL from the test wallet. Run only by .github/workflows/x402-pay-test.yml.",
+  "dependencies": {
+    "@x402/evm": "2.15.0",
+    "@x402/fetch": "2.15.0",
+    "tsx": "4.20.6",
+    "viem": "2.55.5"
+  }
+}

@@ -1,0 +1,62 @@
+name: x402 pay test
+
+# Manually dispatched. Makes ONE real x402 payment (USDC on Base) to the
+# given URL from the test wallet. The key is a repo secret referenced by
+# name in env only; the script never prints it.
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "Full URL of the paid endpoint, with any query it needs"
+        required: true
+      max_usdc:
+        description: "Refuse to pay above this many USDC"
+        required: true
+        default: "1.00"
+      confirm:
+        description: "Type PAY to send a real payment"
+        required: true
+        default: "no"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: x402-pay-test
+  cancel-in-progress: false
+
+jobs:
+  pay:
+    runs-on: ubuntu-latest
+    if: ${{ inputs.confirm == 'PAY' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm install --prefix tools/x402-pay --no-audit --no-fund
+      - name: Pre-flight (pays nothing)
+        env:
+          PADDOCK_SELFPAY_KEY: ${{ secrets.PADDOCK_SELFPAY_KEY }}
+          URL: ${{ inputs.url }}
+          MAX: ${{ inputs.max_usdc }}
+        run: node tools/x402-pay/node_modules/.bin/tsx tools/x402-pay/x402-pay-test.ts check "$URL" "$MAX"
+      - name: Pay once
+        env:
+          PADDOCK_SELFPAY_KEY: ${{ secrets.PADDOCK_SELFPAY_KEY }}
+          URL: ${{ inputs.url }}
+          MAX: ${{ inputs.max_usdc }}
+        run: node tools/x402-pay/node_modules/.bin/tsx tools/x402-pay/x402-pay-test.ts pay "$URL" "$MAX"
+      - name: Ledger to job summary
+        if: ${{ always() }}
+        run: |
+          echo '### results.json' >> "$GITHUB_STEP_SUMMARY"
+          echo '```json' >> "$GITHUB_STEP_SUMMARY"
+          cat tasks/x402-pay-test/results.json >> "$GITHUB_STEP_SUMMARY" || true
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() }}
+        with:
+          name: x402-pay-test-results
+          path: tasks/x402-pay-test/results.json
