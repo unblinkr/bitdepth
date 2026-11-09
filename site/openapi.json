@@ -374,6 +374,48 @@
           }
         }
       }
+    },
+    "/v1/routes/{author}/{slug}.json": {
+      "get": {
+        "summary": "Route list for one model",
+        "description": "Endpoints to allow in OpenRouter calls for one model, cheapest first, the ones left out with the reason, and a paste-ready provider block with fallbacks on.",
+        "security": [],
+        "parameters": [
+          {
+            "name": "author",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "deepseek"
+            }
+          },
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "deepseek-v4-pro"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "bitdepth.routelist.v1",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
     }
   },
   "components": {

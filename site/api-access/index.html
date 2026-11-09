@@ -112,9 +112,14 @@ footer .fm{font-family:var(--display);font-size:16px;color:var(--ink)}
         <tr><td><code>/v1/or/&lt;author&gt;/&lt;slug&gt;.json</code></td><td>Every endpoint for one model: declared quant, nights, primary columns, price in and out, state, per-night series</td></tr>
         <tr><td><code>/v1/drift.json</code></td><td>Endpoints whose score moved beyond the threshold</td></tr>
         <tr><td><code>/v1/changes.json</code></td><td>Last night's changes in state, declared precision, price and listing</td></tr>
-        <tr><td><code>/api/mcp/mcp</code></td><td>MCP server, streamable HTTP. Nine tools, listed on <a href="/pricing#tools">Pricing</a></td></tr>
+        <tr><td><code>/v1/routes/&lt;author&gt;/&lt;slug&gt;.json</code></td><td>The route list: endpoints to allow for one model, cheapest first, the ones left out with the reason, and a ready <code>provider</code> block for OpenRouter</td></tr>
+        <tr><td><code>/api/mcp/mcp</code></td><td>MCP server, streamable HTTP. Ten tools, listed on <a href="/pricing#tools">Pricing</a></td></tr>
       </tbody>
     </table></div>
+    <h3>Stop getting routed to bad endpoints</h3>
+    <p>Fetch the route list for your model once a night and put its <code>openrouter.provider</code> block into every request. OpenRouter then routes, and falls back, only among endpoints that match the reference. Works with any client that passes extra body fields: the OpenAI SDK's <code>extra_body</code>, LiteLLM, opencode.</p>
+    <p><code>curl https://bitdepth.dev/v1/routes/deepseek/deepseek-v4-pro.json</code></p>
+    <p class="muted">If your OpenRouter account has an allowed providers list in its settings, that list still applies and can block every endpoint on ours. Clear it, or make sure the two overlap.</p>
     <h3>Add it to Claude, Cursor or any MCP client</h3>
     <p><code>https://bitdepth.dev/api/mcp/mcp</code>. Agent skill: <a href="/skill.md">/skill.md</a>. Server card: <a href="/.well-known/mcp.json">/.well-known/mcp.json</a>.</p>
     <h3>Example</h3>

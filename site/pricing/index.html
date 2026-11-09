@@ -141,7 +141,8 @@ footer .fm{font-family:var(--display);font-size:16px;color:var(--ink)}
         <ul>
           <li>The full public table, every endpoint named</li>
           <li>Public JSON at <code>/v1</code>, rewritten nightly</li>
-          <li>MCP server with 9 free tools, including <code>check_before_route</code></li>
+          <li>A nightly route list per model: the endpoints to allow in your OpenRouter calls, ready to paste</li>
+          <li>MCP server with 10 free tools, including <code>get_route_list</code> and <code>check_before_route</code></li>
           <li>Last night's changes at <code>/v1/changes.json</code></li>
           <li>Graded by Bitdepth badge for endpoints inside the floor</li>
         </ul>
@@ -201,22 +202,23 @@ footer .fm{font-family:var(--display);font-size:16px;color:var(--ink)}
 <section id="tools" class="band">
   <div class="wrap">
     <div class="eyebrow">Tools</div>
-    <h2>9 free tools. 1 paid per call. Watch on top.</h2>
+    <h2>10 free tools. 1 paid per call. Watch on top.</h2>
     <p>Every tool runs on the MCP server at <code>https://bitdepth.dev/api/mcp/mcp</code> with no key. Every answer carries the date, the method link and the reference it is measured against.</p>
   </div>
   <div class="wrap">
     <div class="tools">
-      <div class="tool"><div class="h"><span>01</span><span>KEYLESS</span></div><div class="n">check_before_route</div><div class="pr">free</div><p>Should my agent send calls to this endpoint tonight? Returns route true, false or inconclusive, the reason, and the best value alternative.</p></div>
-      <div class="tool"><div class="h"><span>02</span><span>KEYLESS</span></div><div class="n">get_best_value_endpoint</div><div class="pr">free</div><p>The cheapest endpoints for a model that stayed inside the noise floor for 7 nights or more, ranked by blended price.</p></div>
-      <div class="tool"><div class="h"><span>03</span><span>KEYLESS</span></div><div class="n">get_market_summary</div><div class="pr">free</div><p>Per model: endpoints listed, how many inside and outside the floor, the price range, and the cheapest endpoint inside it.</p></div>
-      <div class="tool"><div class="h"><span>04</span><span>KEYLESS</span></div><div class="n">get_scorecard</div><div class="pr">free</div><p>Every endpoint for one model: declared precision, nights, scores, price in and out, and state.</p></div>
-      <div class="tool"><div class="h"><span>05</span><span>KEYLESS</span></div><div class="n">get_endpoint</div><div class="pr">free</div><p>One endpoint's row with its night-by-night series.</p></div>
-      <div class="tool"><div class="h"><span>06</span><span>KEYLESS</span></div><div class="n">check_declared</div><div class="pr">free</div><p>The precision an endpoint declares on the router, and whether that declaration changed.</p></div>
-      <div class="tool"><div class="h"><span>07</span><span>KEYLESS</span></div><div class="n">get_changes</div><div class="pr">free</div><p>Last night's changes in state, declared precision, price and listing. The feed Watch emails come from.</p></div>
-      <div class="tool"><div class="h"><span>08</span><span>KEYLESS</span></div><div class="n">get_drift</div><div class="pr">free</div><p>Endpoints whose score moved beyond the noise threshold across the window.</p></div>
-      <div class="tool"><div class="h"><span>09</span><span>KEYLESS</span></div><div class="n">list_models</div><div class="pr">free</div><p>The models graded nightly, with the date and endpoint count.</p></div>
-      <div class="tool"><div class="h"><span>10</span><span>PAID</span></div><div class="n">GET /api/v1/row</div><div class="pr">0.10 USDC · x402</div><p>One endpoint's full record: per-night scores, per-family self-agreement with pair counts, self-check nights.</p></div>
-      <div class="tool"><div class="h"><span>11</span><span>WATCH</span></div><div class="n">Watch alerts</div><div class="pr">$5 per endpoint a month</div><p>The morning email when an endpoint you watch changes. Quiet otherwise.</p></div>
+      <div class="tool"><div class="h"><span>01</span><span>KEYLESS</span></div><div class="n">get_route_list</div><div class="pr">free</div><p>The endpoints to allow for one model, cheapest first, and the ones left out with the reason. Paste the block into your OpenRouter request so you stop getting routed to endpoints that miss the reference.</p></div>
+      <div class="tool"><div class="h"><span>02</span><span>KEYLESS</span></div><div class="n">check_before_route</div><div class="pr">free</div><p>Should my agent send calls to this endpoint tonight? Returns route true, false or inconclusive, the reason, and the best value alternative.</p></div>
+      <div class="tool"><div class="h"><span>03</span><span>KEYLESS</span></div><div class="n">get_best_value_endpoint</div><div class="pr">free</div><p>The cheapest endpoints for a model that stayed inside the noise floor for 7 nights or more, ranked by blended price.</p></div>
+      <div class="tool"><div class="h"><span>04</span><span>KEYLESS</span></div><div class="n">get_market_summary</div><div class="pr">free</div><p>Per model: endpoints listed, how many inside and outside the floor, the price range, and the cheapest endpoint inside it.</p></div>
+      <div class="tool"><div class="h"><span>05</span><span>KEYLESS</span></div><div class="n">get_scorecard</div><div class="pr">free</div><p>Every endpoint for one model: declared precision, nights, scores, price in and out, and state.</p></div>
+      <div class="tool"><div class="h"><span>06</span><span>KEYLESS</span></div><div class="n">get_endpoint</div><div class="pr">free</div><p>One endpoint's row with its night-by-night series.</p></div>
+      <div class="tool"><div class="h"><span>07</span><span>KEYLESS</span></div><div class="n">check_declared</div><div class="pr">free</div><p>The precision an endpoint declares on the router, and whether that declaration changed.</p></div>
+      <div class="tool"><div class="h"><span>08</span><span>KEYLESS</span></div><div class="n">get_changes</div><div class="pr">free</div><p>Last night's changes in state, declared precision, price and listing. The feed Watch emails come from.</p></div>
+      <div class="tool"><div class="h"><span>09</span><span>KEYLESS</span></div><div class="n">get_drift</div><div class="pr">free</div><p>Endpoints whose score moved beyond the noise threshold across the window.</p></div>
+      <div class="tool"><div class="h"><span>10</span><span>KEYLESS</span></div><div class="n">list_models</div><div class="pr">free</div><p>The models graded nightly, with the date and endpoint count.</p></div>
+      <div class="tool"><div class="h"><span>11</span><span>PAID</span></div><div class="n">GET /api/v1/row</div><div class="pr">0.10 USDC · x402</div><p>One endpoint's full record: per-night scores, per-family self-agreement with pair counts, self-check nights.</p></div>
+      <div class="tool"><div class="h"><span>12</span><span>WATCH</span></div><div class="n">Watch alerts</div><div class="pr">$5 per endpoint a month</div><p>The morning email when an endpoint you watch changes. Quiet otherwise.</p></div>
       <div class="tool soon"><div class="h"><span>12</span><span>SOON</span></div><div class="n">probe_endpoint</div><div class="pr">$5 per probe</div><p>Run the full prompt set against any endpoint now, graded against last night's reference. Including your own route.</p></div>
       <div class="tool soon"><div class="h"><span>13</span><span>SOON</span></div><div class="n">bitdepth-guard</div><div class="pr">free · npm and pip</div><p>A wrapper for the OpenRouter SDK that pins your calls to endpoints inside the floor, on your own key.</p></div>
       <div class="tool soon"><div class="h"><span>14</span><span>SOON</span></div><div class="n">get_attestation_data</div><div class="pr">Enterprise</div><p>The dated monthly record behind an attestation, as JSON.</p></div>
