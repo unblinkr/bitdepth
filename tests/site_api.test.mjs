@@ -121,7 +121,7 @@ test("mcp: initialize, tools/list, every tool, errors", async () => {
   assert.equal(get.statusCode, 405);
 });
 
-test("row: 503 without payTo, 400, 404, then 402 challenge", async () => {
+test("row: 503 without payTo, bare probe 402, paid bare 400, 404, then 402 challenge", async () => {
   delete process.env.X402_PAYTO;
   let res = mockRes();
   await rowHandler(req({ query: { model: "deepseek/deepseek-v4-pro", endpoint: "x" } }), res);
@@ -130,7 +130,14 @@ test("row: 503 without payTo, 400, 404, then 402 challenge", async () => {
   process.env.X402_PAYTO = PAYTO;
   res = mockRes();
   await rowHandler(req({ query: {} }), res);
-  assert.equal(res.statusCode, 400);
+  assert.equal(res.statusCode, 402, "a bare discovery probe gets the challenge, not a 400");
+  assert.ok(res.headers["payment-required"]);
+  assert.equal(res.parsed().accepts[0].amount, PRICE_ATOMIC);
+  assert.ok(res.parsed().extensions.bazaar);
+
+  res = mockRes();
+  await rowHandler(req({ query: {}, headers: { host: "bitdepth.dev", "payment-signature": "x" } }), res);
+  assert.equal(res.statusCode, 400, "a paid call without a query is refused before settlement");
 
   res = mockRes();
   await rowHandler(req({ query: { model: "deepseek/deepseek-v4-pro", endpoint: "no/such" } }), res);
