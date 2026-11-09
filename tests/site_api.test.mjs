@@ -147,6 +147,16 @@ test("row: 503 without payTo, 400, 404, then 402 challenge", async () => {
   assert.equal(ch.accepts[0].amount, "100000");
   assert.equal(ch.accepts[0].payTo, PAYTO);
   assert.equal(ch.accepts[0].network, "eip155:8453");
+  // Bazaar discovery: info and schema present, GET with both query params required.
+  const bz = ch.extensions && ch.extensions.bazaar;
+  assert.ok(bz && bz.info && bz.schema, "bazaar extension present");
+  assert.equal(bz.info.input.type, "http");
+  assert.equal(bz.info.input.method, "GET");
+  assert.deepEqual(bz.schema.properties.input.properties.queryParams.required, ["model", "endpoint"]);
+  assert.equal(bz.info.output.type, "json");
+  assert.equal(ch.resource.serviceName, "Bitdepth");
+  assert.match(ch.resource.iconUrl, /\.png$/);
+  assert.ok(ch.accepts[0].description.length <= 500);
 });
 
 test("row: paid flow with stubbed facilitator serves the full row", async () => {
@@ -172,8 +182,10 @@ test("row: paid flow with stubbed facilitator serves the full row", async () => 
   })).toString("base64");
 
   const calls = [];
+  const bodies = {};
   const fetchStub = async (url, init) => {
     calls.push(url);
+    bodies[url.split("/").pop()] = JSON.parse(init.body);
     assert.match(init.headers.Authorization, /^Bearer /);
     if (url.endsWith("/verify")) return new Response(JSON.stringify({ isValid: true, payer: "0xabc" }));
     return new Response(JSON.stringify({ success: true, transaction: "0xtx", network: "eip155:8453", payer: "0xabc" }));
@@ -199,6 +211,9 @@ test("row: paid flow with stubbed facilitator serves the full row", async () => 
   assert.ok(body.detail && body.detail.self_agreement, "trend detail joined");
   const settled = JSON.parse(Buffer.from(res.headers["payment-response"], "base64").toString());
   assert.equal(settled.transaction, "0xtx");
+  // Settle carries the Bazaar block and resource so the facilitator can index the route.
+  assert.ok(bodies.settle.paymentPayload.extensions.bazaar, "bazaar sent at settle");
+  assert.match(bodies.settle.paymentPayload.resource.url, /\/api\/v1\/row\?model=/);
 
   // Facilitator says settle failed: no data served.
   const failStub = async (url) => url.endsWith("/verify")
