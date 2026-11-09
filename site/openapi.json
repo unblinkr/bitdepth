@@ -282,6 +282,108 @@
           }
         }
       }
+    },
+    "/api/v1/changes": {
+      "get": {
+        "operationId": "getChangesSince",
+        "summary": "What moved since a night you name",
+        "description": "For one model or all: endpoints added or removed, declared precision changed, output price moved, with grade state now and exact match then and now. Watch key required.",
+        "security": [
+          {
+            "watchKey": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "since",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-10-27"
+            }
+          },
+          {
+            "name": "model",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "deepseek/deepseek-v4-pro"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "bitdepth.changes.v1",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Watch key missing or invalid"
+          },
+          "403": {
+            "description": "Watch subscription not active"
+          }
+        }
+      }
+    },
+    "/api/v1/spread": {
+      "get": {
+        "operationId": "getPriceSpread",
+        "summary": "Price spread among endpoints that match the reference",
+        "description": "For one model: cheapest and priciest endpoint that matches the reference, the ratio, and the same within each declared precision. Watch key required.",
+        "security": [
+          {
+            "watchKey": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "model",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "deepseek/deepseek-v4-pro"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "bitdepth.spread.v1",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Watch key missing or invalid"
+          },
+          "403": {
+            "description": "Watch subscription not active"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "watchKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Bitdepth-Key",
+        "description": "Bitdepth Watch subscriber key, from the welcome email."
+      }
     }
   }
 }

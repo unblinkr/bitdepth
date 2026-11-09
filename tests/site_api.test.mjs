@@ -11,6 +11,7 @@ import mcpHandler from "../site/api/mcp.js";
 import rowHandler, { PRICE_ATOMIC } from "../site/api/row.js";
 import { cdpJwt } from "../site/api/_lib/x402.js";
 import { mintKey, subFromKey } from "../site/api/_lib/keys.js";
+import keyedHandler from "../site/api/keyed.js";
 import watchCheckout, { chunk, parseSpec } from "../site/api/watch-checkout.js";
 
 function mockRes() {
@@ -305,4 +306,36 @@ test("watch key: same key as the email, unlocks the row only while the subscript
   res = mockRes();
   await rowHandler(req({ query: q, headers: { host: "bitdepth.dev", "x-bitdepth-key": "bdw_bad" } }), res);
   assert.equal(res.statusCode, 401);
+});
+
+
+test("keyed tools: changes since a night and price spread need an active Watch key", async () => {
+  process.env.WATCH_KEY_SECRET = "s3cret";
+  process.env.STRIPE_CHECKOUT_KEY = "rk_test";
+  const active = { fetch: async () => new Response(JSON.stringify({ status: "active" })) };
+  const h = { host: "bitdepth.dev", "x-bitdepth-key": mintKey("sub_KEYED1") };
+
+  let res = mockRes();
+  await keyedHandler(req({ query: { tool: "spread", model: "deepseek/deepseek-v4-pro" } }), res);
+  assert.equal(res.statusCode, 401);
+
+  res = mockRes();
+  await keyedHandler(req({ query: { tool: "spread", model: "deepseek/deepseek-v4-pro" }, headers: h }), res, active);
+  assert.equal(res.statusCode, 200);
+  const sp = res.parsed();
+  assert.equal(sp.schema, "bitdepth.spread.v1");
+  assert.ok(sp.matching_reference.count >= 1);
+  assert.ok(sp.matching_reference.cheapest.price_out_per_m <= sp.matching_reference.priciest.price_out_per_m);
+
+  res = mockRes();
+  await keyedHandler(req({ query: { tool: "changes", since: "2026-10-27", model: "deepseek/deepseek-v4-pro" }, headers: h }), res, active);
+  assert.equal(res.statusCode, 200);
+  const ch = res.parsed();
+  assert.equal(ch.schema, "bitdepth.changes.v1");
+  assert.equal(ch.models[0].model, "deepseek/deepseek-v4-pro");
+  assert.ok(Array.isArray(ch.models[0].changes));
+
+  res = mockRes();
+  await keyedHandler(req({ query: { tool: "changes", since: "yesterday" }, headers: h }), res, active);
+  assert.equal(res.statusCode, 400);
 });

@@ -35,6 +35,11 @@ export const getDrift = () => getJson("public/v1/drift.json");
 export const getTrend = () => getJson("trend/latest.json");
 export const getChanges = () => getJson("public/v1/changes.json");
 
+const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+export const isDate = (d) => typeof d === "string" && DATE_RE.test(d);
+// One night's listing as the router showed it: tags, declared quantization, prices.
+export const getRunEndpoints = (date) => (isDate(date) ? getJson(`runs/${date}/endpoints.json`) : Promise.resolve(null));
+
 export async function getModel(model) {
   if (!isModelId(model)) return null;
   const index = await getIndex();
