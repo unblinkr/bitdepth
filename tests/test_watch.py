@@ -108,3 +108,9 @@ def test_welcome_emails_each_subscription_once(tmp_path, monkeypatch):
     assert watch.welcome(pub, ledger) == 0
     assert len(sent) == 1
     assert "x@y.z" not in ledger.read_text() and "sub_1" not in ledger.read_text()
+
+
+def test_picker_specs_join_chunks_in_order():
+    meta = {"bitdepth_watch": "1", "endpoints_1": "c/fp8", "endpoints_0": "m/x:a/fp8,b/fp8"}
+    assert watch.picker_specs(meta) == ["m/x:a/fp8", "b/fp8", "c/fp8"]
+    assert watch.picker_specs(None) == []
