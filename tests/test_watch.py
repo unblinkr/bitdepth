@@ -87,7 +87,7 @@ def test_resolve_flags_unknown_and_over_quantity(tmp_path):
     assert extra == ["a/fp8"]
     body = watch.welcome_body("2026-11-09", matched, unknown, extra)
     assert "nope/fp8" in body and "not being watched" in body and "past the number" in body
-    assert "—" not in body
+    assert "\u2014" not in body
 
 
 def test_payment_links_reads_both_secrets(monkeypatch):
