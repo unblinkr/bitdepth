@@ -1,0 +1,21 @@
+{
+  "wallet": "0x7fb0Dc20F35435bA027dc267EF126f063353E159",
+  "runs": [
+    {
+      "url": "https://bitdepth.dev/api/v1/row?model=deepseek/deepseek-v4-pro&endpoint=alibaba/fp8",
+      "state": "settled",
+      "at": "2026-11-09T19:39:37.911Z",
+      "unpaid_status": 402,
+      "amount_atomic": "100000",
+      "network": "eip155:8453",
+      "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "payTo": "0x153AA87807D8f6deb65Bd53B137Cee7AD2dacCDb",
+      "usdc_before": "6.448",
+      "paid_status": 200,
+      "success": true,
+      "transaction": "0xaf787e038ac46ac623285470cac88517f1a4eb940e5a0c76baa61b65d9ea20fc",
+      "payer": "0x7fb0Dc20F35435bA027dc267EF126f063353E159",
+      "usdc_after": "6.348"
+    }
+  ]
+}
