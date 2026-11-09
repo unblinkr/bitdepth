@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "resources": [
+    "https://bitdepth.dev/api/v1/row?model=deepseek/deepseek-v4-pro&endpoint=alibaba/fp8"
+  ],
+  "instructions": "Bitdepth grades every OpenRouter endpoint for an open-weight model nightly. The row route takes any model from https://bitdepth.dev/v1/index.json and any endpoint tag from https://bitdepth.dev/v1/or/<model>.json. 0.10 USDC per call on Base."
+}

@@ -39,12 +39,14 @@ export function requirements({ priceAtomic, resourceUrl, description }) {
 }
 
 export function challenge(opts) {
-  return {
+  const ch = {
     x402Version: 2,
     error: "Payment required",
     accepts: [requirements(opts)],
-    resource: { url: opts.resourceUrl, description: opts.description, mimeType: "application/json" },
+    resource: { url: opts.resourceUrl, description: opts.description, mimeType: "application/json", ...(opts.resourceExtra || {}) },
   };
+  if (opts.extensions) ch.extensions = opts.extensions;
+  return ch;
 }
 
 export function challengeHeaders(ch, priceAtomic) {
@@ -131,7 +133,12 @@ export async function verifyAndSettle(receipt, opts, fetchFn = fetch) {
   if (!v.ok) return v;
   if (!v.body.isValid) return { ok: false, status: 402, reason: String(v.body.invalidReason || "invalid").toLowerCase() };
 
-  const s = await cdp("settle", payload, reqs, fetchFn);
+  // Bazaar indexing happens at settle: the facilitator reads extensions.bazaar and
+  // resource from the payment payload. Clients may not echo them, so fill them in.
+  const settlePayload = { ...payload };
+  if (opts.extensions && !settlePayload.extensions) settlePayload.extensions = opts.extensions;
+  if (!settlePayload.resource) settlePayload.resource = challenge(opts).resource;
+  const s = await cdp("settle", settlePayload, reqs, fetchFn);
   if (!s.ok) return s;
   if (!s.body.success) return { ok: false, status: 402, reason: String(s.body.errorReason || "settlement_failed").toLowerCase() };
   return {
