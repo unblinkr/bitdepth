@@ -128,3 +128,24 @@ def test_weekly_reaches_every_watcher_even_with_no_change(tmp_path, monkeypatch)
     assert watch.weekly(pub) == 2
     assert "nope/fp8" in sent[0][1] and "tested every night" in sent[0][1]
     assert "—" not in sent[0][1]
+
+
+def test_mint_key_matches_the_site():
+    # Same literal is pinned in tests/site_api.test.mjs: the email and the API must agree.
+    assert watch.mint_key("sub_TEST123", "s3cret") == "bdw_c3ViX1RFU1QxMjM_986e5f11cc1358cb980d1c841178f452"
+
+
+def test_existing_subscriber_gets_one_key_email(tmp_path, monkeypatch):
+    pub = _write(tmp_path, [_ep("a/fp8")])
+    ledger = tmp_path / "welcomed.json"
+    ledger.write_text('{"welcomed": ["%s"]}' % watch._hash("sub_1"))
+    for k, v in (("STRIPE_SECRET_KEY", "k"), ("RESEND_API_KEY", "r"), ("WATCH_KEY_SECRET", "s3cret")):
+        monkeypatch.setenv(k, v)
+    monkeypatch.setattr(watch, "list_watchers", lambda key, links: [{"email": "x@y.z", "quantity": 3, "specs": ["a/fp8"], "sub": "sub_1"}])
+    sent = []
+    monkeypatch.setattr(watch, "send_email", lambda key, to, subj, body: sent.append((subj, body)))
+    assert watch.welcome(pub, ledger) == 1
+    assert watch.welcome(pub, ledger) == 0
+    assert sent[0][0] == "Bitdepth Watch: your API key"
+    assert watch.mint_key("sub_1", "s3cret") in sent[0][1]
+    assert "\u2014" not in sent[0][1]

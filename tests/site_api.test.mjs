@@ -10,6 +10,7 @@ import publicHandler from "../site/api/public.js";
 import mcpHandler from "../site/api/mcp.js";
 import rowHandler, { PRICE_ATOMIC } from "../site/api/row.js";
 import { cdpJwt } from "../site/api/_lib/x402.js";
+import { mintKey, subFromKey } from "../site/api/_lib/keys.js";
 import watchCheckout, { chunk, parseSpec } from "../site/api/watch-checkout.js";
 
 function mockRes() {
@@ -274,4 +275,34 @@ test("watch checkout: validates endpoints against live data, then builds a subsc
   assert.equal(sent.get("line_items[0][price]"), "price_live");
   await watchCheckout(req({ method: "POST", body: { endpoints: tags, test: "secretcode" } }), mockRes(), { fetch: stub });
   assert.equal(sent.get("line_items[0][price]"), "price_test");
+});
+
+
+test("watch key: same key as the email, unlocks the row only while the subscription is active", async () => {
+  process.env.WATCH_KEY_SECRET = "s3cret";
+  process.env.STRIPE_CHECKOUT_KEY = "rk_test";
+  process.env.X402_PAYTO = PAYTO;
+  assert.equal(mintKey("sub_TEST123"), "bdw_c3ViX1RFU1QxMjM_986e5f11cc1358cb980d1c841178f452");
+  assert.equal(subFromKey(mintKey("sub_TEST123")), "sub_TEST123");
+  assert.equal(subFromKey(mintKey("sub_TEST123").slice(0, -1) + "0"), null);
+
+  const idx = mockRes();
+  await publicHandler(req({ query: { path: "or/deepseek/deepseek-v4-pro.json" } }), idx);
+  const tag = idx.parsed().endpoints[0].tag;
+  const q = { model: "deepseek/deepseek-v4-pro", endpoint: tag };
+  const stripe = (status) => async () => new Response(JSON.stringify({ status }));
+
+  let res = mockRes();
+  await rowHandler(req({ query: q, headers: { host: "bitdepth.dev", "x-bitdepth-key": mintKey("sub_ACTIVE1") } }), res, { fetch: stripe("active") });
+  assert.equal(res.statusCode, 200);
+  assert.equal(res.headers["x-bitdepth-plan"], "watch");
+  assert.equal(res.parsed().row.tag, tag);
+
+  res = mockRes();
+  await rowHandler(req({ query: q, headers: { host: "bitdepth.dev", "x-bitdepth-key": mintKey("sub_GONE1") } }), res, { fetch: stripe("canceled") });
+  assert.equal(res.statusCode, 403);
+
+  res = mockRes();
+  await rowHandler(req({ query: q, headers: { host: "bitdepth.dev", "x-bitdepth-key": "bdw_bad" } }), res);
+  assert.equal(res.statusCode, 401);
 });
