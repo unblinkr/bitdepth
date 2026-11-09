@@ -44,16 +44,19 @@
           }
         ],
         "x-payment-info": {
-          "protocols": [
-            "x402"
-          ],
           "price": {
             "mode": "fixed",
             "currency": "USD",
             "amount": "0.10"
           },
-          "network": "eip155:8453",
-          "asset": "USDC"
+          "protocols": [
+            {
+              "x402": {
+                "network": "eip155:8453",
+                "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+              }
+            }
+          ]
         },
         "responses": {
           "200": {
