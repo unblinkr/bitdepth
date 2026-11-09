@@ -34,6 +34,14 @@
     {
       "source": "/api/watch/checkout",
       "destination": "/api/watch-checkout"
+    },
+    {
+      "source": "/api/v1/changes",
+      "destination": "/api/keyed?tool=changes"
+    },
+    {
+      "source": "/api/v1/spread",
+      "destination": "/api/keyed?tool=spread"
     }
   ],
   "headers": [
