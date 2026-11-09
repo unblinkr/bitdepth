@@ -1,7 +1,8 @@
 // Free public JSON. vercel.json rewrites /v1/<path> here as ?path=<path>.
-// Serves only index.json, drift.json, changes.json and or/<author>/<slug>.json.
+// Serves only index.json, drift.json, changes.json, or/<author>/<slug>.json and routes/<author>/<slug>.json.
 
 import { getIndex, getDrift, getModel, getChanges } from "./_lib/data.js";
+import { getRouteList } from "./_lib/routes.js";
 
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -15,7 +16,9 @@ export default async function handler(req, res) {
     else if (path === "changes.json") body = await getChanges();
     else {
       const m = path.match(/^or\/(.+)\.json$/);
+      const r = path.match(/^routes\/(.+)\.json$/);
       if (m) body = await getModel(m[1]);
+      else if (r) body = await getRouteList(r[1]);
     }
     if (!body) return res.status(404).send(JSON.stringify({ error: "not_found", path, index: "https://bitdepth.dev/v1/index.json" }));
     res.setHeader("Cache-Control", "public, max-age=21600");

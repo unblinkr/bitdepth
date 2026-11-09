@@ -43,6 +43,16 @@ export async function getModel(model) {
   return getJson(`public/v1/${listed.path}`);
 }
 
+// Route list per model. Older index files have no routes_path; the route
+// list is derived from the same path pattern so the API works the night it ships.
+export async function getRoutes(model) {
+  if (!isModelId(model)) return null;
+  const index = await getIndex();
+  const listed = index?.models?.find((m) => m.model === model);
+  if (!listed) return null;
+  return getJson(`public/v1/${listed.routes_path || `routes/${model}.json`}`);
+}
+
 export async function getEndpoint(model, tag) {
   const doc = await getModel(model);
   if (!doc) return { doc: null, row: null };

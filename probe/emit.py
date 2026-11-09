@@ -5,6 +5,7 @@
 
 Writes:
 - data/public/v1/or/<author>/<slug>.json  one file per probed model (schema bitdepth.or.v1)
+- data/public/v1/routes/<author>/<slug>.json  the route list per model (schema bitdepth.routelist.v1)
 - data/public/v1/index.json               the models, their as_of date and file paths
 - data/public/v1/drift.json               every endpoint whose movement flag is set
 
@@ -112,6 +113,61 @@ def model_doc(m: dict[str, Any], prices: dict[str, tuple[float, float]], as_of: 
     }
 
 
+ROUTE_SCHEMA = "bitdepth.routelist.v1"
+MIN_ROUTE_NIGHTS = 7  # same rule as check_before_route in site/api/mcp.js
+ROUTE_RULE = f"state within and {MIN_ROUTE_NIGHTS}+ nights (the check_before_route rule); allowed endpoints ordered by blended price, cheapest first"
+
+
+def blended(r: dict[str, Any]) -> float | None:
+    if r.get("price_in_per_m") is None or r.get("price_out_per_m") is None:
+        return None
+    return (3 * r["price_in_per_m"] + r["price_out_per_m"]) / 4
+
+
+def routable(r: dict[str, Any]) -> bool:
+    return r.get("state") == "within" and (r.get("nights") or 0) >= MIN_ROUTE_NIGHTS
+
+
+def exclusion_reason(r: dict[str, Any]) -> str:
+    s = r.get("state")
+    if s == "outside":
+        return "outside"
+    if s == "stale":
+        return "stale"
+    return f"only {r.get('nights') or 0} nights; {MIN_ROUTE_NIGHTS} needed"
+
+
+def route_doc(doc: dict[str, Any]) -> dict[str, Any]:
+    """The route list for one model: endpoints to allow, in the shape OpenRouter's provider block takes."""
+    ok = [r for r in doc["endpoints"] if routable(r)]
+    # OpenRouter treats a slug as a prefix: "venice" matches every Venice endpoint and
+    # "alibaba/fp8" matches "alibaba/fp8/us-east-1". An allowed slug that would also
+    # match a left-out endpoint is left out too, so the list can never route to one.
+    out_tags = [r["tag"] for r in doc["endpoints"] if not routable(r)]
+    shadow = {r["tag"]: [x for x in out_tags if x.startswith(r["tag"] + "/")] for r in ok}
+    ok = [r for r in ok if not shadow[r["tag"]]]
+    ok.sort(key=lambda r: (blended(r) is None, blended(r) or 0.0, r["tag"]))
+    allow = [r["tag"] for r in ok]
+    excluded = [{"tag": r["tag"], "why": exclusion_reason(r) if not routable(r) else f"would also match {', '.join(shadow[r['tag']])}"}
+                for r in sorted(doc["endpoints"], key=lambda r: r["tag"]) if r["tag"] not in allow]
+    return {
+        "schema": ROUTE_SCHEMA,
+        "model": doc["model"],
+        "label": doc["label"],
+        "as_of": doc["as_of"],
+        "rule": ROUTE_RULE,
+        "allow": allow,
+        "allowed": [{"tag": r["tag"], "declared_quant": r["declared_quant"], "nights": r["nights"],
+                     "blended_price_per_m": round(blended(r), 4) if blended(r) is not None else None} for r in ok],
+        "excluded": excluded,
+        "openrouter": {"provider": {"only": allow, "sort": "price", "allow_fallbacks": True}} if allow else None,
+        "usage": ("Put openrouter.provider in the request body. Fallbacks stay on and move only among the allowed endpoints. "
+                  "An account-wide allowed providers list in OpenRouter settings also applies; if the two do not overlap, requests fail."),
+        "method_url": METHOD_URL,
+        "footer": FOOTER,
+    }
+
+
 def drift_doc(models: list[dict[str, Any]], as_of: str, window: int) -> dict[str, Any]:
     items = []
     for doc in models:
@@ -144,17 +200,23 @@ def build(trend_dir: Path, runs_dir: Path, date: str | None, today: str | None =
             "as_of": d["as_of"],
             "endpoint_count": d["endpoint_count"],
             "path": f"or/{d['model']}.json",
+            "routes_path": f"routes/{d['model']}.json",
         } for d in models],
         "drift_path": "drift.json",
         "footer": FOOTER,
     }
-    return {"models": models, "index": index, "drift": drift_doc(models, as_of, t["window"])}
+    return {"models": models, "routes": [route_doc(d) for d in models], "index": index, "drift": drift_doc(models, as_of, t["window"])}
 
 
 def write(out: Path, built: dict[str, Any]) -> list[Path]:
     written = []
     for d in built["models"]:
         p = out / "or" / f"{d['model']}.json"
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(json.dumps(d, indent=2) + "\n")
+        written.append(p)
+    for d in built.get("routes", []):
+        p = out / "routes" / f"{d['model']}.json"
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text(json.dumps(d, indent=2) + "\n")
         written.append(p)

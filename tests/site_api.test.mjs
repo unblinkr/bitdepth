@@ -67,7 +67,7 @@ test("mcp: initialize, tools/list, every tool, errors", async () => {
   assert.equal(note.statusCode, 202);
 
   res = await rpc("tools/list");
-  assert.deepEqual(res.parsed().result.tools.map((t) => t.name), ["list_models", "get_scorecard", "get_endpoint", "get_drift", "get_market_summary", "get_best_value_endpoint", "check_before_route", "check_declared", "get_changes"]);
+  assert.deepEqual(res.parsed().result.tools.map((t) => t.name), ["list_models", "get_scorecard", "get_endpoint", "get_drift", "get_market_summary", "get_best_value_endpoint", "check_before_route", "get_route_list", "check_declared", "get_changes"]);
 
   res = await rpc("tools/call", { name: "list_models", arguments: {} });
   const models = res.parsed().result.structuredContent.models;
