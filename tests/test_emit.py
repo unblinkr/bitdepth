@@ -79,3 +79,47 @@ def test_attestation_and_badge(tmp_path):
     assert "\u2014" not in md
     t = json.loads((root / "trend" / "latest.json").read_text())
     assert badge.nights_inside(t, "a", "o/m", "2026-11") == (1, 1)
+
+
+def test_route_list_follows_check_before_route(tmp_path):
+    built = emit.build(_write(tmp_path) / "trend", tmp_path / "runs", None)
+    r = built["routes"][0]
+    assert r["schema"] == "bitdepth.routelist.v1"
+    assert r["allow"] == ["a/bf16"]
+    assert r["openrouter"] == {"provider": {"only": ["a/bf16"], "sort": "price", "allow_fallbacks": True}}
+    why = {x["tag"]: x["why"] for x in r["excluded"]}
+    assert why == {"b/fp4": "only 6 nights; 7 needed", "c/fp8": "outside"}
+    rows = {e["tag"]: e for e in built["models"][0]["endpoints"]}
+    for tag, row in rows.items():
+        assert (tag in r["allow"]) == (row["state"] == "within" and row["nights"] >= emit.MIN_ROUTE_NIGHTS)
+    assert built["index"]["models"][0]["routes_path"] == "routes/o/m.json"
+    paths = emit.write(tmp_path / "out", built)
+    assert (tmp_path / "out" / "routes" / "o" / "m.json") in paths
+
+
+def test_route_list_rule_matches_mcp():
+    root = Path(__file__).resolve().parents[1] / "site" / "api"
+    lib = (root / "_lib" / "routes.js").read_text()
+    assert f"export const MIN_ROUTE_NIGHTS = {emit.MIN_ROUTE_NIGHTS};" in lib
+    assert 'e.state === "within"' in lib
+    assert 'from "./_lib/routes.js"' in (root / "mcp.js").read_text()
+
+
+def test_empty_route_list_has_no_provider_block(tmp_path):
+    root = _write(tmp_path)
+    t = json.loads((root / "trend" / "latest.json").read_text())
+    t["models"][0]["endpoints"] = [t["models"][0]["endpoints"][2]]
+    (root / "trend" / "latest.json").write_text(json.dumps(t))
+    r = emit.build(root / "trend", root / "runs", None)["routes"][0]
+    assert r["allow"] == [] and r["openrouter"] is None
+
+
+def test_route_list_leaves_out_a_slug_that_shadows_a_left_out_endpoint(tmp_path):
+    root = _write(tmp_path)
+    t = json.loads((root / "trend" / "latest.json").read_text())
+    eps = t["models"][0]["endpoints"]
+    eps.append(_ep("c", 97.0, 97.0))  # bare slug "c" would also match "c/fp8", which is outside
+    (root / "trend" / "latest.json").write_text(json.dumps(t))
+    r = emit.build(root / "trend", root / "runs", None)["routes"][0]
+    assert "c" not in r["allow"]
+    assert {x["tag"]: x["why"] for x in r["excluded"]}["c"] == "would also match c/fp8"

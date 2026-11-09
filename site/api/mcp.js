@@ -4,6 +4,7 @@
 // streamable HTTP transport allows. No key.
 
 import { FOOTER, METHOD_URL, getChanges, getDrift, getEndpoint, getIndex, getModel } from "./_lib/data.js";
+import { MIN_ROUTE_NIGHTS, blended, getRouteList, routable } from "./_lib/routes.js";
 
 const PROTOCOL_VERSIONS = ["2025-06-18", "2025-03-26", "2024-11-05"];
 const SERVER = { name: "bitdepth", title: "Bitdepth", version: "0.2.0" };
@@ -64,6 +65,13 @@ const TOOLS = [
     annotations: { readOnlyHint: true, openWorldHint: false },
   },
   {
+    name: "get_route_list",
+    title: "Route list for one model",
+    description: "The endpoints to allow for a model tonight, cheapest first, and the ones left out with the reason. Includes a ready OpenRouter provider block ({\"only\": [...], \"sort\": \"price\", \"allow_fallbacks\": true}) to put in the request body, so the router never sends calls to an endpoint outside the floor. Same rule as check_before_route.",
+    inputSchema: { type: "object", properties: { model: str("Model id, e.g. deepseek/deepseek-v4-pro") }, required: ["model"], additionalProperties: false },
+    annotations: { readOnlyHint: true, openWorldHint: false },
+  },
+  {
     name: "check_declared",
     title: "Declared precision check",
     description: "The precision this endpoint declares on the router (fp8, bf16 and so on) and whether that declaration changed during the window. A declaration is a claim; the grade measures behavior.",
@@ -79,13 +87,11 @@ const TOOLS = [
   },
 ];
 
-const MIN_ROUTE_NIGHTS = 7;
-const blended = (e) => (e.price_in_per_m == null || e.price_out_per_m == null ? null : (3 * e.price_in_per_m + e.price_out_per_m) / 4);
 const median = (xs) => { const s = [...xs].sort((a, b) => a - b); const n = s.length; return n ? (n % 2 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2) : null; };
 
 function bestValue(doc, n = 3) {
   return doc.endpoints
-    .filter((e) => e.state === "within" && (e.nights ?? 0) >= MIN_ROUTE_NIGHTS && blended(e) != null)
+    .filter((e) => routable(e) && blended(e) != null)
     .sort((a, b) => blended(a) - blended(b))
     .slice(0, n)
     .map((e) => ({ tag: e.tag, declared_quant: e.declared_quant, nights: e.nights, blended_price_per_m: Number(blended(e).toFixed(4)), price_in_per_m: e.price_in_per_m, price_out_per_m: e.price_out_per_m }));
@@ -165,13 +171,19 @@ async function callTool(name, args = {}) {
   if (name === "check_before_route") {
     const { doc, row } = await needEndpoint(args);
     let route, reason;
-    if (row.state === "within" && (row.nights ?? 0) >= MIN_ROUTE_NIGHTS) { route = true; reason = `inside the noise floor over ${row.nights} nights`; }
+    if (routable(row)) { route = true; reason = `inside the noise floor over ${row.nights} nights`; }
     else if (row.state === "outside") { route = false; reason = "outside the noise floor: agrees with itself more than with the reference"; }
     else { route = "inconclusive"; reason = row.state === "stale" ? "data older than 3 nights" : `only ${row.nights ?? 0} nights; ${MIN_ROUTE_NIGHTS} needed`; }
     return envelope(doc, {
       model: doc.model, endpoint: row.tag, route, reason, state: row.state, nights: row.nights, declared_quant: row.declared_quant,
       alternative: route === true ? null : bestValue(doc, 1)[0] ?? null,
     });
+  }
+  if (name === "get_route_list") {
+    const doc = await getModel(String(args.model || ""));
+    if (!doc) throw toolError(`Unknown model '${args.model}'. Call list_models.`);
+    const r = await getRouteList(doc.model);
+    return envelope(r, { model: r.model, rule: r.rule, allow: r.allow, allowed: r.allowed, excluded: r.excluded, openrouter: r.openrouter, usage: r.usage });
   }
   if (name === "check_declared") {
     const { doc, row } = await needEndpoint(args);

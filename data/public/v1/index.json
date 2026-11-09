@@ -10,28 +10,32 @@
       "label": "gpt-oss-120b",
       "as_of": "2026-11-08",
       "endpoint_count": 29,
-      "path": "or/openai/gpt-oss-120b.json"
+      "path": "or/openai/gpt-oss-120b.json",
+      "routes_path": "routes/openai/gpt-oss-120b.json"
     },
     {
       "model": "deepseek/deepseek-v4-pro",
       "label": "deepseek-v4-pro",
       "as_of": "2026-11-08",
       "endpoint_count": 16,
-      "path": "or/deepseek/deepseek-v4-pro.json"
+      "path": "or/deepseek/deepseek-v4-pro.json",
+      "routes_path": "routes/deepseek/deepseek-v4-pro.json"
     },
     {
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "label": "deepseek-v4.1-flash-1017",
       "as_of": "2026-11-08",
       "endpoint_count": 53,
-      "path": "or/deepseek/deepseek-v4.1-flash-1017.json"
+      "path": "or/deepseek/deepseek-v4.1-flash-1017.json",
+      "routes_path": "routes/deepseek/deepseek-v4.1-flash-1017.json"
     },
     {
       "model": "mistralai/mistral-large-4-0",
       "label": "mistral-large-4-0",
       "as_of": "2026-11-08",
       "endpoint_count": 2,
-      "path": "or/mistralai/mistral-large-4-0.json"
+      "path": "or/mistralai/mistral-large-4-0.json",
+      "routes_path": "routes/mistralai/mistral-large-4-0.json"
     }
   ],
   "drift_path": "drift.json",

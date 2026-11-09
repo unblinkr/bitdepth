@@ -27,7 +27,7 @@ Nightly probe of OpenRouter inference endpoints. The repository is public so tha
 - `data/prompts/fixed.jsonl` the fixed probe set, written once, never changed during an experiment.
 - `data/runs/<date>/` one folder per night: `endpoints.json`, `prompts.jsonl`, `responses.jsonl`, `run.json`, and `selfcheck.jsonl` on a self-check night.
 - `data/scorecard/<date>.md` and `latest.md`.
-- `data/public/v1/` the machine-readable files the site and MCP server read: `or/<author>/<slug>.json`, `index.json`, `drift.json` (schema `bitdepth.or.v1`).
+- `data/public/v1/` the machine-readable files the site and MCP server read: `or/<author>/<slug>.json`, `index.json`, `drift.json` (schema `bitdepth.or.v1`), and `routes/<author>/<slug>.json`, the route list per model (schema `bitdepth.routelist.v1`; same rule as `check_before_route`, shared with the site through `site/api/_lib/routes.js`).
 - `data/trend/<date>.md`, `<date>.json` and the `latest` copies: the cross-night view, rewritten every night from every run folder.
 - `actor/` and `.actor/` the Apify actor (Bitdepth Endpoint Probe): one on-demand probe of one endpoint, graded against the latest night's reference with the nightly code; `OPENROUTER_API_KEY` is an actor env secret; per-probe spend cap in `actor/probe_one.py`.
 - `tasks/<slug>/` one folder per task brief with `TASK.md`, `QUESTIONS.md`, `REPORT.md`.
