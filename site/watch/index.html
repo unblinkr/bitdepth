@@ -163,6 +163,7 @@ footer .fm{font-family:var(--display);font-size:16px;color:var(--ink)}
       <input type="search" id="q" placeholder="Filter by provider, precision or model" aria-label="Filter endpoints">
       <span class="muted" id="asof"></span>
     </div>
+    <p class="muted" style="font-size:14px">Matches reference: answers agree with the full-precision reference, inside the normal night-to-night noise. Off reference: answers differ by more than that noise. New, still measuring: fewer than seven nights, so no grade yet.</p>
     <div id="list"><div class="loading">Loading the endpoints we grade...</div></div>
   </div>
 </section>
@@ -209,9 +210,9 @@ footer .fm{font-family:var(--display);font-size:16px;color:var(--ink)}
     var cb = document.createElement("input"); cb.type = "checkbox"; cb.value = spec;
     cb.addEventListener("change", function(){ if (cb.checked) picked.set(spec, label + " / " + e.tag); else picked.delete(spec); render(); });
     var t = document.createElement("span"); t.className = "t"; t.textContent = e.tag;
-    var st = document.createElement("span"); st.className = "st " + (e.state || ""); st.textContent = e.state === "within" ? "inside floor" : (e.state === "outside" ? "outside floor" : "first look");
+    var st = document.createElement("span"); st.className = "st " + (e.state || ""); st.textContent = e.state === "within" ? "Matches reference" : (e.state === "outside" ? "Off reference" : "New, still measuring");
     var m = document.createElement("span"); m.className = "meta";
-    m.textContent = "Declared " + fmt(e.declared_quant) + " · " + (e.price_out_per_m != null ? "output $" + e.price_out_per_m + "/M" : "price not listed") + " · " + fmt(e.nights) + " nights";
+    m.textContent = "Declared " + fmt(e.declared_quant) + " · " + (e.price_out_per_m != null ? "$" + e.price_out_per_m + " per million output tokens" : "price not listed");
     el.appendChild(cb); el.appendChild(t); el.appendChild(st); el.appendChild(m);
     return el;
   }
@@ -243,7 +244,7 @@ footer .fm{font-family:var(--display);font-size:16px;color:var(--ink)}
       .then(function(j){
         if (j.url) { location.href = j.url; return; }
         if (j.error === "checkout_not_configured" || j.error === "price_not_configured") { location.href = "https://buy.stripe.com/aFacN63vH3VeaI315DcbC08"; return; }
-        $("err").textContent = j.error === "unknown_endpoints" ? "We no longer grade: " + j.unknown.join(", ") + ". Untick them and try again." : "Checkout did not open. Try again, or write to hello@bitdepth.dev.";
+        $("err").textContent = j.error === "unknown_endpoints" ? "We no longer grade: " + j.unknown.join(", ") + ". Untick them and try again." : "Checkout did not open" + (j.detail ? " (" + j.detail + ")" : "") + ". Try again, or write to hello@bitdepth.dev.";
         render();
       })
       .catch(function(){ $("err").textContent = "Checkout did not open. Try again, or write to hello@bitdepth.dev."; render(); });
