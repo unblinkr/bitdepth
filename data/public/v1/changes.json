@@ -1,45 +1,141 @@
 {
  "schema": "bitdepth.changes.v1",
- "as_of": "2026-11-08",
+ "as_of": "2026-11-10",
  "baseline": false,
- "count": 9,
+ "count": 95,
  "changes": [
   {
    "model": "deepseek/deepseek-v4-pro",
    "label": "deepseek-v4-pro",
    "tag": "baidu/fp8",
    "field": "price_in_per_m",
-   "from": 0.6963,
-   "to": 0.2197
+   "from": 0.2197,
+   "to": 1.69
   },
   {
    "model": "deepseek/deepseek-v4-pro",
    "label": "deepseek-v4-pro",
    "tag": "baidu/fp8",
    "field": "price_out_per_m",
-   "from": 1.3926,
-   "to": 0.4394
+   "from": 0.4394,
+   "to": 3.38
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "label": "deepseek-v4-pro",
+   "tag": "nebius/fp8",
+   "field": "price_in_per_m",
+   "from": 1.75,
+   "to": null
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "label": "deepseek-v4-pro",
+   "tag": "nebius/fp8",
+   "field": "price_out_per_m",
+   "from": 3.5,
+   "to": null
   },
   {
    "model": "deepseek/deepseek-v4-pro",
    "label": "deepseek-v4-pro",
    "tag": "streamlake/fp8",
    "field": "price_in_per_m",
-   "from": 0.6876,
-   "to": 0.2212
+   "from": 0.2212,
+   "to": 0.9553
   },
   {
    "model": "deepseek/deepseek-v4-pro",
    "label": "deepseek-v4-pro",
    "tag": "streamlake/fp8",
    "field": "price_out_per_m",
-   "from": 1.3753,
-   "to": 0.4423
+   "from": 0.4423,
+   "to": 1.9105
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "alibaba",
+   "field": "price_in_per_m",
+   "from": 0.075,
+   "to": 0.105
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "alibaba",
+   "field": "price_out_per_m",
+   "from": 0.3,
+   "to": 0.42
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "baidu/fp8",
+   "field": "price_in_per_m",
+   "from": 0.0977,
+   "to": 0.1498
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "baidu/fp8",
+   "field": "price_out_per_m",
+   "from": 0.3944,
+   "to": 0.6046
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "cohere/fp8",
+   "field": "price_in_per_m",
+   "from": 0.195,
+   "to": 0.15
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "cohere/fp8",
+   "field": "price_out_per_m",
+   "from": 0.66,
+   "to": 0.5
   },
   {
    "model": "deepseek/deepseek-v4.1-flash-1017",
    "label": "deepseek-v4.1-flash-1017",
    "tag": "fireworks/ultrafast",
+   "field": "price_in_per_m",
+   "from": 2.4,
+   "to": null
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "fireworks/ultrafast",
+   "field": "price_out_per_m",
+   "from": 9.6,
+   "to": null
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "inference-net/fp8",
+   "field": "price_out_per_m",
+   "from": 0.55,
+   "to": 0.577
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "inference-net/us",
+   "field": "price_out_per_m",
+   "from": 0.55,
+   "to": 0.577
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "ionstream/flex",
    "field": "listed",
    "from": null,
    "to": "new"
@@ -48,33 +144,625 @@
    "model": "deepseek/deepseek-v4.1-flash-1017",
    "label": "deepseek-v4.1-flash-1017",
    "tag": "open-inference/fp4",
+   "field": "price_in_per_m",
+   "from": 0.0175,
+   "to": 0.05
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "open-inference/fp4",
    "field": "price_out_per_m",
-   "from": 0.6,
-   "to": 0.7
+   "from": 0.7,
+   "to": 0.8
   },
   {
    "model": "deepseek/deepseek-v4.1-flash-1017",
    "label": "deepseek-v4.1-flash-1017",
    "tag": "primeintellect",
    "field": "price_in_per_m",
-   "from": 0.1092,
-   "to": 0.0874
+   "from": 0.0874,
+   "to": 0.0437
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "primeintellect",
+   "field": "price_out_per_m",
+   "from": 1.2,
+   "to": 0.7
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "relace/fast",
+   "field": "price_in_per_m",
+   "from": 0.3,
+   "to": null
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "relace/fast",
+   "field": "price_out_per_m",
+   "from": 0.9,
+   "to": null
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "wafer/mxfp4",
+   "field": "price_in_per_m",
+   "from": 0.066,
+   "to": 0.07
+  },
+  {
+   "model": "google/gemma-4-31b-it",
+   "label": "gemma-4-31b-it",
+   "tag": "chutes/fp4",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "google/gemma-4-31b-it",
+   "label": "gemma-4-31b-it",
+   "tag": "coreweave/fp4",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "google/gemma-4-31b-it",
+   "label": "gemma-4-31b-it",
+   "tag": "crusoe/bf16",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "google/gemma-4-31b-it",
+   "label": "gemma-4-31b-it",
+   "tag": "deepinfra/fp8",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "google/gemma-4-31b-it",
+   "label": "gemma-4-31b-it",
+   "tag": "deepinfra/fp8/flex",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "google/gemma-4-31b-it",
+   "label": "gemma-4-31b-it",
+   "tag": "deepinfra/fp8/priority",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "google/gemma-4-31b-it",
+   "label": "gemma-4-31b-it",
+   "tag": "deepinfra/turbo",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "google/gemma-4-31b-it",
+   "label": "gemma-4-31b-it",
+   "tag": "dekallm",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "google/gemma-4-31b-it",
+   "label": "gemma-4-31b-it",
+   "tag": "friendli",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "google/gemma-4-31b-it",
+   "label": "gemma-4-31b-it",
+   "tag": "io-net",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "google/gemma-4-31b-it",
+   "label": "gemma-4-31b-it",
+   "tag": "modal",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "google/gemma-4-31b-it",
+   "label": "gemma-4-31b-it",
+   "tag": "modelrun/fp4",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "google/gemma-4-31b-it",
+   "label": "gemma-4-31b-it",
+   "tag": "nextbit/fp4",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "google/gemma-4-31b-it",
+   "label": "gemma-4-31b-it",
+   "tag": "novita/bf16",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "google/gemma-4-31b-it",
+   "label": "gemma-4-31b-it",
+   "tag": "parasail/fp8",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "google/gemma-4-31b-it",
+   "label": "gemma-4-31b-it",
+   "tag": "primeintellect/fp4",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "google/gemma-4-31b-it",
+   "label": "gemma-4-31b-it",
+   "tag": "sambanova",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "google/gemma-4-31b-it",
+   "label": "gemma-4-31b-it",
+   "tag": "siliconflow/fp8",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "google/gemma-4-31b-it",
+   "label": "gemma-4-31b-it",
+   "tag": "venice/fp4",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "label": "gpt-oss-120b",
+   "tag": "phala",
+   "field": "price_in_per_m",
+   "from": 0.15,
+   "to": null
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "label": "gpt-oss-120b",
+   "tag": "phala",
+   "field": "price_out_per_m",
+   "from": 0.6,
+   "to": null
   },
   {
    "model": "openai/gpt-oss-120b",
    "label": "gpt-oss-120b",
    "tag": "primeintellect/fp4",
    "field": "price_in_per_m",
-   "from": 0.018,
-   "to": 0.026
+   "from": 0.026,
+   "to": 0.042
   },
   {
    "model": "openai/gpt-oss-120b",
    "label": "gpt-oss-120b",
    "tag": "primeintellect/fp4",
    "field": "price_out_per_m",
-   "from": 0.065,
-   "to": 0.098
+   "from": 0.098,
+   "to": 0.09
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "label": "gpt-oss-120b",
+   "tag": "venice/int4",
+   "field": "state",
+   "from": "within",
+   "to": "outside"
+  },
+  {
+   "model": "xiaomi/mimo-v2.6-pro",
+   "label": "mimo-v2.6-pro",
+   "tag": "deepinfra/fp8",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "xiaomi/mimo-v2.6-pro",
+   "label": "mimo-v2.6-pro",
+   "tag": "gmicloud/bf16",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "xiaomi/mimo-v2.6-pro",
+   "label": "mimo-v2.6-pro",
+   "tag": "primalabs/fp8",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "xiaomi/mimo-v2.6-pro",
+   "label": "mimo-v2.6-pro",
+   "tag": "streamlake",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "xiaomi/mimo-v2.6-pro",
+   "label": "mimo-v2.6-pro",
+   "tag": "xiaomi/fp8",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "atlas-cloud/fp8",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "baseten/fp8",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "baseten/fp8/us",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "cohere/nvfp4",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "coreweave/nvfp4",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "crusoe/fp4",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "darkbloom/fp4",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "deepinfra/fp4",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "digitalocean",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "fireworks",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "friendli",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "gmicloud/fp8",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "inceptron/fp8",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "inference-net/fp4",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "inference-net/us",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "makora/fp4",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "mistral",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "modal/fp4",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "morph/fp8",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "near-ai/fp8",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "nebius/fp4",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "nextbit/fp4",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "novita/fp8",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "open-inference/fp4",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "parasail/fast",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "parasail/fp4",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "particle-ai/nvfp4",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "phala/nvfp4",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "primeintellect",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "reka",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "relace/fp4",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "river",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "sail-research/fp4",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "sail-research/us",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "siliconflow/fp8",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "streamlake/fp8",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "tenstorrent/fp8",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "together",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "venice",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "wafer/nvfp4",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "wafer/us",
+   "field": "listed",
+   "from": null,
+   "to": "new"
+  },
+  {
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "z-ai/fp8",
+   "field": "listed",
+   "from": null,
+   "to": "new"
   }
  ],
  "footer": "Numbers against a stated reference. Not a claim about intent."

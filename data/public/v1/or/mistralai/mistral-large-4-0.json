@@ -2,8 +2,8 @@
   "schema": "bitdepth.or.v1",
   "model": "mistralai/mistral-large-4-0",
   "label": "mistral-large-4-0",
-  "as_of": "2026-11-08",
-  "nights": 13,
+  "as_of": "2026-11-10",
+  "nights": 14,
   "endpoint_count": 2,
   "reference_rule": "plurality across all endpoints (fewer than two declare bf16 or fp16)",
   "method_url": "https://bitdepth.dev/method",
@@ -12,11 +12,11 @@
   ],
   "state_rule": "outside when self-agreement exceeds agreement with the reference by more than 15 points, or when the endpoint's mean on the model's first primary column is more than 8 points below the median of endpoints with 7+ nights; no_data under 7 nights; stale when the data is more than 3 days old.",
   "noise_floor": {
-    "math": 98.7,
-    "json": 59.1,
-    "string": 83.7,
+    "math": 98.6,
+    "json": 60.0,
+    "string": 85.3,
     "needle": 100.0,
-    "echo": 93.7
+    "echo": 92.5
   },
   "stable_families": [
     "math",
@@ -28,17 +28,17 @@
       "provider_slug": "mistral",
       "declared_quant": "unknown",
       "declared_changed": false,
-      "nights": 4,
+      "nights": 5,
       "exact": 100.0,
       "exact_sd": 0.0,
-      "string": 80.2,
-      "self_agree": 89.4,
+      "string": 79.2,
+      "self_agree": 89.0,
       "families": {
-        "math": 99.5,
-        "json": 51.0,
-        "string": 80.2,
+        "math": 99.2,
+        "json": 50.0,
+        "string": 79.2,
         "needle": 100.0,
-        "echo": 88.5
+        "echo": 90.0
       },
       "movement": 0.0,
       "movement_flag": false,
@@ -61,6 +61,10 @@
         {
           "date": "2026-11-08",
           "exact": 100.0
+        },
+        {
+          "date": "2026-11-10",
+          "exact": 100.0
         }
       ]
     },
@@ -69,17 +73,17 @@
       "provider_slug": "mistral",
       "declared_quant": "unknown",
       "declared_changed": false,
-      "nights": 4,
+      "nights": 5,
       "exact": 100.0,
       "exact_sd": 0.0,
-      "string": 74.0,
-      "self_agree": 89.4,
+      "string": 75.0,
+      "self_agree": 89.8,
       "families": {
         "math": 100.0,
-        "json": 50.0,
-        "string": 74.0,
+        "json": 51.7,
+        "string": 75.0,
         "needle": 100.0,
-        "echo": 86.5
+        "echo": 86.7
       },
       "movement": 0.0,
       "movement_flag": false,
@@ -101,6 +105,10 @@
         },
         {
           "date": "2026-11-08",
+          "exact": 100.0
+        },
+        {
+          "date": "2026-11-10",
           "exact": 100.0
         }
       ]
