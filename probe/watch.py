@@ -60,6 +60,8 @@ def load_current(public: Path) -> tuple[str, dict[str, dict[str, Any]]]:
                 "label": doc.get("label", doc["model"]),
                 "tag": e["tag"],
                 "state": e.get("state"),
+                "nights": e.get("nights"),
+                "endpoint_count": doc.get("endpoint_count"),
                 "declared_quant": e.get("declared_quant"),
                 "price_in_per_m": e.get("price_in_per_m"),
                 "price_out_per_m": e.get("price_out_per_m"),
@@ -138,6 +140,25 @@ def changes_for(specs: list[str], quantity: int, changes: list[dict[str, Any]]) 
     return [c for c in changes if any(matches(s, c) for s in watched)]
 
 
+STATE_WORDS = {"within": "within the pack", "outside": "outside the pack", "no_data": "no grade yet", "stale": "stale (no fresh night)"}
+MIN_NIGHTS = 7
+
+
+def state_words(r: dict[str, Any]) -> str:
+    """Plain words for a grade state, with the reason when there is no grade yet."""
+    st = r.get("state")
+    if not st:
+        return "not graded yet"
+    words = STATE_WORDS.get(st, st)
+    if st == "no_data":
+        n, ec = r.get("nights"), r.get("endpoint_count")
+        if isinstance(ec, int) and ec < 3:
+            words += f" (only {ec} endpoint{'s' if ec != 1 else ''} serve this model, too few to compare)"
+        elif isinstance(n, int) and n < MIN_NIGHTS:
+            words += f" ({n} of {MIN_NIGHTS} nights so far)"
+    return words
+
+
 def _fmt(v: Any) -> str:
     if v is None:
         return "none"
@@ -158,8 +179,11 @@ FIELD_LABEL = {
 def email_body(as_of: str, items: list[dict[str, Any]]) -> str:
     lines = [f"Bitdepth Watch, night of {as_of}", "", "What changed on the endpoints you watch:", ""]
     for c in items:
-        lines.append(f"- {c['label']} / {c['tag']}: {FIELD_LABEL.get(c['field'], c['field'])} "
-                     f"{_fmt(c['from'])} -> {_fmt(c['to'])}")
+        if c["field"] == "state":
+            frm, to = STATE_WORDS.get(c["from"] or "", _fmt(c["from"])), STATE_WORDS.get(c["to"] or "", _fmt(c["to"]))
+        else:
+            frm, to = _fmt(c["from"]), _fmt(c["to"])
+        lines.append(f"- {c['label']} / {c['tag']}: {FIELD_LABEL.get(c['field'], c['field'])} {frm} -> {to}")
     lines += [
         "",
         "Full table: https://bitdepth.dev",
@@ -334,7 +358,7 @@ def resolve(specs: list[str], quantity: int, rows: dict[str, dict[str, Any]]) ->
 def welcome_body(as_of: str, matched: list[dict[str, Any]], unknown: list[str], extra: list[str], key: str | None = None) -> str:
     lines = ["Welcome to Bitdepth Watch.", "", f"Here is where your endpoints stand as of the night of {as_of}.", ""]
     for r in matched:
-        lines.append(f"- {r['label']} / {r['tag']}: {r.get('state') or 'not graded yet'}, "
+        lines.append(f"- {r['label']} / {r['tag']}: {state_words(r)}, "
                      f"declared precision {_fmt(r.get('declared_quant'))}, output price {_fmt(r.get('price_out_per_m'))}")
     if unknown:
         lines += ["", "We could not find these, so they are not being watched yet:"]
@@ -406,7 +430,6 @@ def welcome(public: Path, ledger: Path, dry_run: bool = False) -> int:
 
 # ---------- weekly: the email that always arrives ----------
 
-STATE_WORDS = {"within": "matches the reference", "outside": "off the reference", "no_data": "new, still measuring"}
 
 
 def weekly_body(as_of: str, matched: list[dict[str, Any]], unknown: list[str]) -> str:
@@ -415,11 +438,11 @@ def weekly_body(as_of: str, matched: list[dict[str, Any]], unknown: list[str]) -
         "Your week on Bitdepth Watch.",
         "",
         f"Every endpoint below was tested every night this week. As of the night of {as_of}, "
-        f"{inside} of {len(matched)} match the reference.",
+        f"{inside} of {len(matched)} are within the pack.",
         "",
     ]
     for r in matched:
-        lines.append(f"- {r['label']} / {r['tag']}: {STATE_WORDS.get(r.get('state') or '', r.get('state') or 'not graded yet')}, "
+        lines.append(f"- {r['label']} / {r['tag']}: {state_words(r)}, "
                      f"declared precision {_fmt(r.get('declared_quant'))}, output price {_fmt(r.get('price_out_per_m'))}")
     if unknown:
         lines += ["", "We still cannot find these, so they are not watched:"] + [f"- {u}" for u in unknown]
