@@ -1,6 +1,15 @@
 """Nightly run.
 
     python -m probe.run --date YYYY-MM-DD [--dry-run] [--source live|dispatch|local] [--selfcheck] [--selfcheck-prompts N]
+    python -m probe.run --date YYYY-MM-DD --model LABEL [...]   one model, into data/runs/<date>/parts/<label>/
+    python -m probe.run --date YYYY-MM-DD --merge               join the parts into the usual night files
+    python -m probe.run --date YYYY-MM-DD --list-models         active labels for the date, as JSON
+
+The nightly workflow runs one job per model, one after another (so concurrency stays at
+4), because the whole set no longer fits one job's time limit. Each part gets the share of
+the night's cap that its estimate is of the night's estimate, so the parts together never
+exceed the cap. The merge writes the same endpoints.json, prompts.jsonl, responses.jsonl,
+selfcheck.jsonl and run.json a single-job night writes, so score, trend and emit are unchanged.
 
 Steps: resolve the models, list endpoints, build the prompt set, estimate cost and
 apply the cap, send every kept prompt to every endpoint at concurrency 4 (PROBE_CONCURRENCY overrides), write rows as
@@ -248,12 +257,26 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--selfcheck-wait", type=int, default=SELFCHECK_WAIT_SECONDS)
     ap.add_argument("--selfcheck-prompts", type=int, default=SELFCHECK_PROMPTS,
                     help="how many fixed prompts the two self-check passes send, from the top of the fixed set")
+    ap.add_argument("--model", help="run one model label only, into data/runs/<date>/parts/<label>/")
+    ap.add_argument("--merge", action="store_true", help="join data/runs/<date>/parts/* into the night files")
+    ap.add_argument("--list-models", action="store_true", help="print the active model labels for the date as JSON")
     args = ap.parse_args(argv)
+
+    if args.list_models:
+        print(json.dumps([m["label"] for m in MODELS if not (m.get("from") and args.date < m["from"])]))
+        return 0
 
     rd = runs_dir(args.date)
     run_json = rd / "run.json"
     if run_json.exists() and not args.dry_run:
         print(f"run exists for {args.date}, skipping")
+        return 0
+    if args.merge:
+        return merge_parts(args.date)
+
+    out_dir = rd / "parts" / args.model if args.model else rd
+    if args.model and (out_dir / "run.json").exists() and not args.dry_run:
+        print(f"part {args.model} exists for {args.date}, skipping")
         return 0
 
     started = now_iso()
@@ -274,6 +297,16 @@ def main(argv: list[str] | None = None) -> int:
     prompts = fixed + fresh
     endpoints_by_model = {label: m["endpoints"] for label, m in models.items()}
     kept, dropped, est, aborted = budget_mod.apply_cap(endpoints_by_model, prompts)
+    cap = BUDGET_USD
+    if args.model:
+        if args.model not in models:
+            print(f"model {args.model} is not active on {args.date}")
+            return 2
+        # The part's share of the night's cap: its estimate over the night's estimate.
+        share = (est["per_model"].get(args.model, 0.0) / est["usd"]) if est["usd"] else 1.0 / len(models)
+        cap = round(BUDGET_USD * share, 4)
+        models = {args.model: models[args.model]}
+        print(f"part {args.model}: cap ${cap:.4f} of the night's ${BUDGET_USD:.2f}")
 
     print(f"prompts: {len(fixed)} fixed + {len(fresh)} fresh = {len(prompts)}; kept {len(kept)}, dropped {len(dropped)}")
     print(f"estimate: ${est['usd']:.4f} (cap ${BUDGET_USD:.2f}) per model {est['per_model']}; "
@@ -292,6 +325,8 @@ def main(argv: list[str] | None = None) -> int:
             print("ABORT: estimate exceeds the cap after dropping needle and fresh prompts")
         return 0
 
+    rd = out_dir
+    run_json = rd / "run.json"
     rd.mkdir(parents=True, exist_ok=True)
     with (rd / "endpoints.json").open("w", encoding="utf-8") as f:
         json.dump({"date": args.date, "fetched": started, "models": models}, f, indent=1, ensure_ascii=False)
@@ -306,9 +341,11 @@ def main(argv: list[str] | None = None) -> int:
         "prompts": {"fixed": len(fixed), "fresh": len(fresh), "kept": len(kept), "dropped": len(dropped)},
         "dropped_prompt_ids": [p["id"] for p in dropped],
         "estimate": {"usd": est["usd"], "per_model": est["per_model"]},
-        "cap_usd": BUDGET_USD,
+        "cap_usd": cap,
         "aborted_on_estimate": aborted,
     }
+    if args.model:
+        record["part"] = args.model
     if aborted:
         record["finished"] = now_iso()
         record["summary"] = {"rows": 0, "billed_cost_usd": 0.0}
@@ -318,7 +355,7 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     write_jsonl(rd / "prompts.jsonl", kept)
-    spend = Spend(BUDGET_USD, deadline=deadline_from_env())
+    spend = Spend(cap, deadline=deadline_from_env())
     print(f"sending {len(kept)} prompts to {sum(len(m['endpoints']) for m in models.values())} endpoints at concurrency {concurrency()}"
           + (f", stopping new requests after {os.environ['RUN_DEADLINE_MINUTES']} minutes" if spend.deadline else ""))
     rows = send_all(run_id, models, kept, rd / "responses.jsonl", spend)
@@ -338,6 +375,99 @@ def main(argv: list[str] | None = None) -> int:
     with run_json.open("w", encoding="utf-8") as f:
         json.dump(record, f, indent=1)
     print(f"done: {record['summary']['rows']} rows, billed ${spend.total:.4f}, run.json written")
+    return 0
+
+
+def merge_parts(date: str) -> int:
+    """Join data/runs/<date>/parts/<label>/ into the files a single-job night writes."""
+    rd = runs_dir(date)
+    parts_dir = rd / "parts"
+    labels = [m["label"] for m in MODELS if not (m.get("from") and date < m["from"])]
+    parts = [(lbl, parts_dir / lbl) for lbl in labels if (parts_dir / lbl / "run.json").exists()]
+    if not parts:
+        print(f"no parts for {date}")
+        return 2
+    missing = [lbl for lbl in labels if lbl not in {p[0] for p in parts}]
+    recs = [(lbl, json.loads((d / "run.json").read_text(encoding="utf-8"))) for lbl, d in parts]
+
+    models: dict[str, Any] = {}
+    fetched = []
+    for lbl, d in parts:
+        if (d / "endpoints.json").exists():
+            doc = json.loads((d / "endpoints.json").read_text(encoding="utf-8"))
+            models.update(doc.get("models", {}))
+            fetched.append(doc.get("fetched", ""))
+    with (rd / "endpoints.json").open("w", encoding="utf-8") as f:
+        json.dump({"date": date, "fetched": min(x for x in fetched if x) if any(fetched) else None, "models": models},
+                  f, indent=1, ensure_ascii=False)
+
+    prompts: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    rows: list[dict[str, Any]] = []
+    sc_rows: list[dict[str, Any]] = []
+    for _, d in parts:
+        if (d / "prompts.jsonl").exists():
+            for p in load_jsonl(d / "prompts.jsonl"):
+                if p["id"] not in seen:
+                    seen.add(p["id"])
+                    prompts.append(p)
+        if (d / "responses.jsonl").exists():
+            rows.extend(load_jsonl(d / "responses.jsonl"))
+        if (d / "selfcheck.jsonl").exists():
+            sc_rows.extend(load_jsonl(d / "selfcheck.jsonl"))
+    if prompts:
+        write_jsonl(rd / "prompts.jsonl", prompts)
+    if rows:
+        write_jsonl(rd / "responses.jsonl", rows)
+    if sc_rows:
+        write_jsonl(rd / "selfcheck.jsonl", sc_rows)
+
+    first = recs[0][1]
+    dropped_ids: list[str] = []
+    for _, r in recs:
+        for i in r.get("dropped_prompt_ids", []):
+            if i not in dropped_ids:
+                dropped_ids.append(i)
+    per_model: dict[str, float] = {}
+    for lbl, r in recs:
+        per_model[lbl] = r.get("estimate", {}).get("per_model", {}).get(lbl, 0.0)
+    billed = round(sum(r.get("total_billed_usd", r.get("summary", {}).get("billed_cost_usd", 0.0)) for _, r in recs), 4)
+    record: dict[str, Any] = {
+        "run_id": first.get("run_id", f"{date}-local"),
+        "date": date,
+        "source": first.get("source", "local"),
+        "started": min(r.get("started", "") for _, r in recs),
+        "models": {lbl: r["models"][lbl] for lbl, r in recs if lbl in r.get("models", {})},
+        "prompts": first.get("prompts", {}),
+        "dropped_prompt_ids": dropped_ids,
+        "estimate": {"usd": round(sum(per_model.values()), 4), "per_model": per_model},
+        "cap_usd": BUDGET_USD,
+        "aborted_on_estimate": any(r.get("aborted_on_estimate") for _, r in recs),
+        "summary": summarise(rows),
+        "runtime_budget_stop": any(r.get("runtime_budget_stop") for _, r in recs),
+        "time_stop": any(r.get("time_stop") for _, r in recs),
+        "concurrency": max((r.get("concurrency") or 0) for _, r in recs),
+        "finished": max(r.get("finished", "") for _, r in recs),
+        "total_billed_usd": billed,
+        "parts": {lbl: {"cap_usd": r.get("cap_usd"), "billed_usd": r.get("total_billed_usd"),
+                        "rows": r.get("summary", {}).get("rows"), "time_stop": r.get("time_stop"),
+                        "runtime_budget_stop": r.get("runtime_budget_stop"),
+                        "started": r.get("started"), "finished": r.get("finished")} for lbl, r in recs},
+        "missing_parts": missing,
+    }
+    sc = [r["selfcheck"] for _, r in recs if r.get("selfcheck")]
+    if sc:
+        record["selfcheck"] = {
+            "prompts": sc[0].get("prompts"),
+            "prompt_ids": sc[0].get("prompt_ids"),
+            "wait_seconds": sc[0].get("wait_seconds"),
+            "pass_a": summarise([x for x in sc_rows if x.get("pass") == "A"]),
+            "pass_b": summarise([x for x in sc_rows if x.get("pass") == "B"]),
+        }
+    with (rd / "run.json").open("w", encoding="utf-8") as f:
+        json.dump(record, f, indent=1)
+    print(f"merged {len(parts)} parts for {date}: {len(rows)} rows, billed ${billed:.4f}"
+          + (f"; missing parts {missing}" if missing else ""))
     return 0
 
 

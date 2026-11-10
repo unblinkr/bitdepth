@@ -123,3 +123,28 @@ def test_route_list_leaves_out_a_slug_that_shadows_a_left_out_endpoint(tmp_path)
     r = emit.build(root / "trend", root / "runs", None)["routes"][0]
     assert "c" not in r["allow"]
     assert {x["tag"]: x["why"] for x in r["excluded"]}["c"] == "would also match c/fp8"
+
+
+def test_gap_threshold_is_fifteen():
+    from probe.emit import state_of
+    assert state_of(7, 80.0, 94.0, "2026-11-10", "2026-11-10") == "within"
+    assert state_of(7, 80.0, 95.5, "2026-11-10", "2026-11-10") == "outside"
+
+
+def test_floor_test_marks_far_below_pack_outside():
+    from probe.emit import apply_floor
+    rows = [{"tag": t, "nights": 13, "exact": v, "state": "within"} for t, v in
+            [("a", 96.0), ("b", 95.0), ("c", 97.0), ("d", 94.0), ("low", 85.9), ("edge", 88.5)]]
+    rows.append({"tag": "young", "nights": 3, "exact": 50.0, "state": "no_data"})
+    apply_floor(rows, "exact")
+    states = {r["tag"]: r["state"] for r in rows}
+    # median of the 13-night endpoints is 94.5; floor is 86.5
+    assert states["low"] == "outside"
+    assert states["edge"] == "within"
+    assert states["young"] == "no_data"
+    assert states["a"] == "within"
+
+
+def test_flash_is_pinned_to_exact():
+    from probe.emit import primary_columns
+    assert primary_columns("deepseek/deepseek-v4.1-flash-1017", {"math": {"stable": False}}) == ["exact"]

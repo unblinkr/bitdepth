@@ -155,3 +155,79 @@ def test_concurrency_override(monkeypatch):
     assert R.concurrency() == 8
     monkeypatch.setenv("PROBE_CONCURRENCY", "")
     assert R.concurrency() == R.CONCURRENCY
+
+
+def _two_models():
+    return {
+        "alpha": {"slug": "a/alpha", "endpoints": [_endpoint("full/bf16", "Full")], "short": True},
+        "beta": {"slug": "b/beta", "endpoints": [_endpoint("q/fp8", "Quant", "fp8"), _endpoint("q2/fp8", "Quant2", "fp8")], "short": True},
+    }
+
+
+def _setup_parts(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    Path("data/prompts").mkdir(parents=True)
+    Path("data/prompts/fixed.jsonl").write_text("{}\n")
+    monkeypatch.setattr(run_mod, "resolve_models", lambda **k: _two_models())
+    monkeypatch.setattr(run_mod, "load_jsonl", lambda path: [_prompt()] if "fixed" in str(path) else
+                        [json.loads(l) for l in Path(path).read_text(encoding="utf-8").splitlines() if l.strip()])
+    monkeypatch.setattr(run_mod, "fresh_set", lambda date: [])
+    monkeypatch.setattr(run_mod, "MODELS", [{"label": "alpha", "slug": "a/alpha"}, {"label": "beta", "slug": "b/beta"}])
+    sent = []
+
+    def fake_complete(slug, tag, messages):
+        sent.append((slug, tag))
+        return _ok(provider={"full/bf16": "Full", "q/fp8": "Quant", "q2/fp8": "Quant2"}[tag])
+
+    orig = run_mod.send_all
+    monkeypatch.setattr(run_mod, "send_all", lambda *a, **k: orig(*a, completer=fake_complete, **k))
+    return sent
+
+
+def test_part_runs_one_model_with_its_share_of_the_cap(tmp_path, monkeypatch):
+    sent = _setup_parts(tmp_path, monkeypatch)
+    rc = run_mod.main(["--date", "2026-11-10", "--source", "live", "--model", "beta"])
+    assert rc == 0
+    assert {s for s, _ in sent} == {"b/beta"}
+    rec = json.loads(Path("data/runs/2026-11-10/parts/beta/run.json").read_text())
+    assert rec["part"] == "beta"
+    # beta has two of three endpoints at equal prices, so about two thirds of the cap
+    assert run_mod.BUDGET_USD * 0.5 < rec["cap_usd"] < run_mod.BUDGET_USD
+    assert not Path("data/runs/2026-11-10/run.json").exists()
+
+
+def test_merge_joins_parts_into_night_files(tmp_path, monkeypatch):
+    sent = _setup_parts(tmp_path, monkeypatch)
+    assert run_mod.main(["--date", "2026-11-10", "--source", "live", "--model", "alpha"]) == 0
+    assert run_mod.main(["--date", "2026-11-10", "--source", "live", "--model", "beta"]) == 0
+    assert len(sent) == 3
+    assert run_mod.main(["--date", "2026-11-10", "--merge"]) == 0
+    rd = Path("data/runs/2026-11-10")
+    rec = json.loads((rd / "run.json").read_text())
+    assert rec["summary"]["rows"] == 3
+    assert set(rec["parts"]) == {"alpha", "beta"}
+    assert rec["missing_parts"] == []
+    assert rec["cap_usd"] == run_mod.BUDGET_USD
+    assert rec["parts"]["beta"]["rows"] == 2 and rec["parts"]["alpha"]["rows"] == 1
+    assert set(json.loads((rd / "endpoints.json").read_text())["models"]) == {"alpha", "beta"}
+    assert len((rd / "responses.jsonl").read_text().splitlines()) == 3
+    assert len((rd / "prompts.jsonl").read_text().splitlines()) == 1
+    # a second part run after the merge is skipped
+    assert run_mod.main(["--date", "2026-11-10", "--source", "live", "--model", "alpha"]) == 0
+    assert len(sent) == 3
+
+
+def test_merge_records_missing_parts(tmp_path, monkeypatch):
+    _setup_parts(tmp_path, monkeypatch)
+    assert run_mod.main(["--date", "2026-11-10", "--source", "live", "--model", "alpha"]) == 0
+    assert run_mod.main(["--date", "2026-11-10", "--merge"]) == 0
+    rec = json.loads(Path("data/runs/2026-11-10/run.json").read_text())
+    assert rec["missing_parts"] == ["beta"]
+
+
+def test_list_models_respects_from_dates(monkeypatch, capsys):
+    monkeypatch.setattr(run_mod, "MODELS", [{"label": "a", "slug": "x/a"}, {"label": "b", "slug": "x/b", "from": "2026-11-10"}])
+    assert run_mod.main(["--date", "2026-11-09", "--list-models"]) == 0
+    assert json.loads(capsys.readouterr().out) == ["a"]
+    assert run_mod.main(["--date", "2026-11-10", "--list-models"]) == 0
+    assert json.loads(capsys.readouterr().out) == ["a", "b"]

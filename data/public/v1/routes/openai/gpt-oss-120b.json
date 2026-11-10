@@ -7,7 +7,6 @@
   "allow": [
     "primeintellect/fp4",
     "near-ai/fp4",
-    "venice/int4",
     "coreweave/fp4",
     "dekallm/bf16",
     "deepinfra/bf16",
@@ -43,12 +42,6 @@
     {
       "tag": "near-ai/fp4",
       "declared_quant": "fp4",
-      "nights": 13,
-      "blended_price_per_m": 0.06
-    },
-    {
-      "tag": "venice/int4",
-      "declared_quant": "int4",
       "nights": 13,
       "blended_price_per_m": 0.06
     },
@@ -205,6 +198,10 @@
     {
       "tag": "parasail/fast",
       "why": "only 4 nights; 7 needed"
+    },
+    {
+      "tag": "venice/int4",
+      "why": "outside"
     }
   ],
   "openrouter": {
@@ -212,7 +209,6 @@
       "only": [
         "primeintellect/fp4",
         "near-ai/fp4",
-        "venice/int4",
         "coreweave/fp4",
         "dekallm/bf16",
         "deepinfra/bf16",

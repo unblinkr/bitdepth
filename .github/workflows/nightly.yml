@@ -29,13 +29,72 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # One job per model, one after another, then one job that merges, scores and commits.
+  # Seven models no longer fit one job's time limit (Nov 9 was lost to it). Jobs run in
+  # sequence (max-parallel 1) so request concurrency stays at 4. Each part gets its share
+  # of the nightly cap from probe.run, so the parts together stay under $7.75.
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      date: ${{ steps.vars.outputs.date }}
+      source: ${{ steps.vars.outputs.source }}
+      selfcheck: ${{ steps.vars.outputs.selfcheck }}
+      models: ${{ steps.vars.outputs.models }}
+      skip: ${{ steps.vars.outputs.skip }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: pip install -r requirements.txt
+
+      - name: Resolve date, source, self-check and models
+        id: vars
+        run: |
+          RUN_DATE="${{ github.event.inputs.date }}"
+          if [ -z "$RUN_DATE" ]; then RUN_DATE="$(date -u +%Y-%m-%d)"; fi
+          echo "date=$RUN_DATE" >> "$GITHUB_OUTPUT"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "source=dispatch" >> "$GITHUB_OUTPUT"
+          else
+            echo "source=live" >> "$GITHUB_OUTPUT"
+          fi
+          SELFCHECK=""
+          if [ "${{ github.event.inputs.selfcheck }}" = "true" ]; then
+            SELFCHECK="--selfcheck --selfcheck-prompts $SELFCHECK_PROMPTS"
+          else
+            for d in $SELFCHECK_DATES; do
+              if [ "$d" = "$RUN_DATE" ]; then
+                SELFCHECK="--selfcheck --selfcheck-prompts $SELFCHECK_PROMPTS"
+              fi
+            done
+          fi
+          echo "selfcheck=$SELFCHECK" >> "$GITHUB_OUTPUT"
+          echo "models=$(python -m probe.run --date "$RUN_DATE" --list-models)" >> "$GITHUB_OUTPUT"
+          if [ -f "data/runs/$RUN_DATE/run.json" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "run exists for $RUN_DATE, skipping"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+          echo "date $RUN_DATE selfcheck '$SELFCHECK'"
+
   probe:
+    needs: plan
+    if: needs.plan.outputs.skip != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 330
+    strategy:
+      max-parallel: 1
+      fail-fast: false
+      matrix:
+        model: ${{ fromJSON(needs.plan.outputs.models) }}
     steps:
-      # Check out the latest main, not the commit the event fired on. The backup slot
-      # queues behind the first run; with the trigger commit it could not see that
-      # night's run.json, so it probed again and failed at commit (Nov 6, 7, 8).
       - uses: actions/checkout@v4
         with:
           ref: main
@@ -56,53 +115,60 @@ jobs:
       - name: Install
         run: pip install -r requirements.txt
 
-      - name: Resolve date and source
-        id: vars
-        run: |
-          if [ -n "${{ github.event.inputs.date }}" ]; then
-            echo "date=${{ github.event.inputs.date }}" >> "$GITHUB_OUTPUT"
-          else
-            echo "date=$(date -u +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
-          fi
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "source=dispatch" >> "$GITHUB_OUTPUT"
-          else
-            echo "source=live" >> "$GITHUB_OUTPUT"
-          fi
-          RUN_DATE="${{ github.event.inputs.date }}"
-          if [ -z "$RUN_DATE" ]; then RUN_DATE="$(date -u +%Y-%m-%d)"; fi
-          SELFCHECK=""
-          if [ "${{ github.event.inputs.selfcheck }}" = "true" ]; then
-            SELFCHECK="--selfcheck --selfcheck-prompts $SELFCHECK_PROMPTS"
-          else
-            for d in $SELFCHECK_DATES; do
-              if [ "$d" = "$RUN_DATE" ]; then
-                SELFCHECK="--selfcheck --selfcheck-prompts $SELFCHECK_PROMPTS"
-              fi
-            done
-          fi
-          echo "selfcheck=$SELFCHECK" >> "$GITHUB_OUTPUT"
-          echo "date $RUN_DATE selfcheck '$SELFCHECK'"
-
-      - name: Probe
+      - name: Probe one model
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          # Stop starting new requests after this many minutes, so a slow night still
-          # scores and commits inside the 330-minute job limit (Nov 9 was lost at 82%).
+          # Stop starting new requests after this many minutes, so a slow part still
+          # writes its run.json inside the 330-minute job limit.
           RUN_DEADLINE_MINUTES: "290"
           # Repo variable; unset means the default of 4.
           PROBE_CONCURRENCY: ${{ vars.PROBE_CONCURRENCY }}
         run: |
-          python -m probe.run --date "${{ steps.vars.outputs.date }}" --source "${{ steps.vars.outputs.source }}" ${{ steps.vars.outputs.selfcheck }}
+          python -m probe.run --date "${{ needs.plan.outputs.date }}" --source "${{ needs.plan.outputs.source }}" --model "${{ matrix.model }}" ${{ needs.plan.outputs.selfcheck }}
+
+      - name: Keep the part for the merge
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.model }}
+          path: data/runs/${{ needs.plan.outputs.date }}/parts/${{ matrix.model }}/
+          if-no-files-found: warn
+          retention-days: 7
+
+  finish:
+    needs: [plan, probe]
+    if: always() && needs.plan.outputs.skip != 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: pip install -r requirements.txt
+
+      - name: Fetch the parts
+        uses: actions/download-artifact@v4
+        with:
+          path: data/runs/${{ needs.plan.outputs.date }}/parts/
+
+      - name: Merge
+        run: |
+          python -m probe.run --date "${{ needs.plan.outputs.date }}" --merge
 
       - name: Score
         run: |
-          python -m probe.score --date "${{ steps.vars.outputs.date }}"
+          python -m probe.score --date "${{ needs.plan.outputs.date }}"
 
       - name: Trend
         continue-on-error: true
         run: |
-          python -m probe.trend --date "${{ steps.vars.outputs.date }}"
+          python -m probe.trend --date "${{ needs.plan.outputs.date }}"
 
       - name: Emit public JSON
         continue-on-error: true
@@ -136,6 +202,6 @@ jobs:
             echo "nothing to commit"
             exit 0
           fi
-          git commit -m "probe: ${{ steps.vars.outputs.date }} (${{ steps.vars.outputs.source }})"
+          git commit -m "probe: ${{ needs.plan.outputs.date }} (${{ needs.plan.outputs.source }})"
           git pull --rebase origin main
           git push origin HEAD:main
