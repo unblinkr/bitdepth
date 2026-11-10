@@ -66,7 +66,7 @@ def test_findings_lead_and_delisted_marker():
                 "movement": mv, "movement_flag": flag, "nightly_exact": series,
                 "price_in_per_m": 1.0, "price_out_per_m": 2.0}
     a = {"model": "x/a", "label": "A", "as_of": "2026-11-10", "primary_columns": ["string"],
-         "endpoints": [ep("p1", "within", 10, 10), ep("p2", "within", 10, 10), ep("gone", "outside", 8, 3, string=20.0)]}
+         "endpoints": [ep("p1", "within", 10, 10), ep("p2", "within", 10, 10), ep("gone", "outside", 8, 3, string=20.0), ep("low", "outside", 10, 10, string=25.0)]}
     b = {"model": "x/b", "label": "B", "as_of": "2026-11-10", "primary_columns": ["exact"],
          "endpoints": [ep("q1", "within", 10, 10), ep("drop", "outside", 10, 10, mv=-12.0, flag=True)]}
     ms = site.lead_order([b, a])
