@@ -127,3 +127,31 @@ def test_resolve_models_skips_models_before_their_from_date(monkeypatch):
     after = run_mod.resolve_models(lister=lambda slug: [], on="2026-11-10")
     assert list(before) == ["old"]
     assert list(after) == ["old", "new"]
+
+
+def test_deadline_stops_new_requests_and_keeps_prompt_order(tmp_path, monkeypatch):
+    import time as _t
+    from probe import run as R
+    calls = []
+
+    def completer(slug, tag, msgs):
+        calls.append(msgs[0]["content"])
+        return {"status": "ok", "text": "x", "provider": tag.split("/")[0], "usage": {}, "latency_ms": 1,
+                "finish_reason": "stop", "reasoning_mode": None}
+
+    spend = R.Spend(100.0, deadline=_t.monotonic() - 1)
+    models = {"m": {"slug": "a/m", "endpoints": [{"tag": "p/fp8", "provider_name": "P", "quantization": "fp8", "price_in": 0, "price_out": 0, "supported_parameters": []}]}}
+    prompts = [{"id": "p1", "prompt": "one", "family": "math"}, {"id": "p2", "prompt": "two", "family": "math"}]
+    rows = R.send_all("r", models, prompts, tmp_path / "out.jsonl", spend, completer=completer)
+    assert calls == []
+    assert spend.time_stopped and all(r["status"] == "skipped_budget" for r in rows)
+
+
+def test_concurrency_override(monkeypatch):
+    from probe import run as R
+    monkeypatch.setenv("PROBE_CONCURRENCY", "8")
+    assert R.concurrency() == 8
+    monkeypatch.setenv("PROBE_CONCURRENCY", "50")
+    assert R.concurrency() == 8
+    monkeypatch.setenv("PROBE_CONCURRENCY", "")
+    assert R.concurrency() == R.CONCURRENCY
