@@ -65,7 +65,9 @@ def _num(v: Any) -> float:
 
 
 def load_grades(public: Path = PUBLIC, runs: Path = RUNS) -> dict[str, dict[str, Any]]:
-    """{model slug: {doc, by_provider: {provider name lower: [endpoint rows]}}}."""
+    """{model slug: {doc, by_provider: {endpoint tag or provider name, lower: [endpoint rows]}}}.
+
+    The exact tag wins; a provider name or slug is the fallback and may cover several tags."""
     names: dict[tuple[str, str], str] = {}
     run_dirs = sorted(d for d in runs.glob("*") if (d / "endpoints.json").exists()) if runs.exists() else []
     if run_dirs:
@@ -78,8 +80,10 @@ def load_grades(public: Path = PUBLIC, runs: Path = RUNS) -> dict[str, dict[str,
         doc = json.loads(f.read_text(encoding="utf-8"))
         by: dict[str, list[dict[str, Any]]] = {}
         for e in doc.get("endpoints", []):
+            # OpenRouter's activity rows name the endpoint by its tag (e.g. gmicloud/fp8).
+            by.setdefault(e["tag"].lower(), []).append(e)
             pname = names.get((doc["model"], e["tag"])) or e.get("provider_slug", "")
-            for k in {pname.lower(), e.get("provider_slug", "").lower()}:
+            for k in {pname.lower(), e.get("provider_slug", "").lower()} - {e["tag"].lower()}:
                 if k:
                     by.setdefault(k, []).append(e)
         out[doc["model"]] = {"doc": doc, "by_provider": by}
@@ -137,7 +141,10 @@ def build(activity: list[dict[str, Any]], grades: dict[str, Any]) -> dict[str, A
         if slug:
             doc = grades[slug]["doc"]
             col = (doc.get("primary_columns") or ["exact"])[0]
-            eps = grades[slug]["by_provider"].get(g["provider"].lower(), [])
+            key = g["provider"].lower()
+            eps = grades[slug]["by_provider"].get(key, [])
+            exact = [e for e in eps if e["tag"].lower() == key]
+            eps = exact or eps
             row["primary"] = col
             seven = [e[col] for e in doc["endpoints"] if (e.get("nights") or 0) >= 7 and e.get(col) is not None]
             row["median"] = _median(seven)

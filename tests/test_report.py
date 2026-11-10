@@ -43,3 +43,11 @@ def test_main_reads_an_activity_file(tmp_path, monkeypatch):
     assert report.main(["--activity", str(act), "--for", "Acme", "--out", str(out), "--public", str(public), "--runs", str(runs)]) == 0
     assert (out / "acme-spend-2026-11-07.md").exists()
     assert (out / "acme-spend-2026-11-07.csv").exists()
+
+
+def test_activity_rows_named_by_endpoint_tag_match_exactly(tmp_path):
+    public, runs = _public(tmp_path)
+    grades = report.load_grades(public, runs)
+    r = report.build([{"date": "2026-11-06", "model": "x/m", "provider_name": "bad/int4", "usage": 7}], grades)
+    assert r["rows"][0]["state"] == "outside"
+    assert r["rows"][0]["tags"] == ["bad/int4"]
