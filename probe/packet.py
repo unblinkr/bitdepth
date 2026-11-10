@@ -183,6 +183,9 @@ def headlines(name: str, group: str, nights: int, per_model: list[dict[str, Any]
         n = len(scored)
         label = m["label"]
         if group == "buyer":
+            if not mine and n < 3:
+                out.append(f"{label}: only {n} endpoint{'s' if n != 1 else ''} serve this model, too few to compare; none is run by the providers {name} lists.")
+                continue
             if not mine:
                 out.append(f"{label}: none of the providers {name} lists serves this model on OpenRouter; the field of {n} runs from {scored[0]['endpoint']} {scored[0][field]:.1f} to {scored[-1]['endpoint']} {scored[-1][field]:.1f} by {col}.")
                 continue
