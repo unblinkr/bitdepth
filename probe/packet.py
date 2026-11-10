@@ -277,7 +277,7 @@ def render(name: str, group: str, date: str, t: dict[str, Any], per_model: list[
             L.append("On this model the endpoints do not agree with themselves on math wording from night to night, so Exact mostly measures wording. Read String and Self-agree first; Exact second.")
         else:
             note = f"Families below the stability threshold on this model: {', '.join(unstable)}. " if unstable else ""
-            L.append(note + "Exact is the column that separates endpoints on this model; String runs close across the field.")
+            L.append(note + "Exact is the column that separates endpoints on this model.")
         if group == "provider":
             all_rows = pm["all_rows"]
             for r in [x for x in rows if x["marked"]]:
