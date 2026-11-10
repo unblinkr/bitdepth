@@ -87,6 +87,11 @@ jobs:
       - name: Probe
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          # Stop starting new requests after this many minutes, so a slow night still
+          # scores and commits inside the 330-minute job limit (Nov 9 was lost at 82%).
+          RUN_DEADLINE_MINUTES: "290"
+          # Repo variable; unset means the default of 4.
+          PROBE_CONCURRENCY: ${{ vars.PROBE_CONCURRENCY }}
         run: |
           python -m probe.run --date "${{ steps.vars.outputs.date }}" --source "${{ steps.vars.outputs.source }}" ${{ steps.vars.outputs.selfcheck }}
 

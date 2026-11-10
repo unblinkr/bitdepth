@@ -3,7 +3,7 @@
     python -m probe.run --date YYYY-MM-DD [--dry-run] [--source live|dispatch|local] [--selfcheck] [--selfcheck-prompts N]
 
 Steps: resolve the models, list endpoints, build the prompt set, estimate cost and
-apply the cap, send every kept prompt to every endpoint at concurrency 4, write rows as
+apply the cap, send every kept prompt to every endpoint at concurrency 4 (PROBE_CONCURRENCY overrides), write rows as
 they return, and write run.json. The cap is enforced twice: on the estimate before
 anything is sent, and at run time from billed cost.
 """
@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 import threading
 import time
@@ -106,12 +107,16 @@ def make_row(
 
 
 class Spend:
-    """Thread-safe running total with a hard stop."""
+    """Thread-safe running total with a hard stop on spend, and an optional wall-clock
+    deadline (monotonic seconds). Past the deadline no new request starts, so the run
+    scores and commits what it has instead of being killed by the Actions time limit."""
 
-    def __init__(self, cap: float) -> None:
+    def __init__(self, cap: float, deadline: float | None = None) -> None:
         self.cap = cap
         self.total = 0.0
         self.stopped = False
+        self.deadline = deadline
+        self.time_stopped = False
         self._lock = threading.Lock()
 
     def add(self, usd: float) -> None:
@@ -122,7 +127,22 @@ class Spend:
 
     def allow(self) -> bool:
         with self._lock:
+            if not self.stopped and self.deadline is not None and time.monotonic() >= self.deadline:
+                self.stopped = True
+                self.time_stopped = True
             return not self.stopped
+
+
+def concurrency() -> int:
+    """CONCURRENCY unless PROBE_CONCURRENCY sets another value (1 to 8)."""
+    raw = os.environ.get("PROBE_CONCURRENCY", "").strip()
+    return max(1, min(8, int(raw))) if raw.isdigit() else CONCURRENCY
+
+
+def deadline_from_env() -> float | None:
+    """RUN_DEADLINE_MINUTES from now, as a monotonic deadline, or None."""
+    raw = os.environ.get("RUN_DEADLINE_MINUTES", "").strip()
+    return time.monotonic() + float(raw) * 60 if raw.replace(".", "", 1).isdigit() else None
 
 
 def send_all(
@@ -167,7 +187,7 @@ def send_all(
                 print(f"  {n}/{len(jobs)} rows, spend ${spend.total:.4f}", flush=True)
         return row
 
-    with ThreadPoolExecutor(max_workers=CONCURRENCY) as ex:
+    with ThreadPoolExecutor(max_workers=concurrency()) as ex:
         futures = [ex.submit(work, j) for j in jobs]
         for fut in as_completed(futures):
             fut.result()
@@ -298,8 +318,9 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     write_jsonl(rd / "prompts.jsonl", kept)
-    spend = Spend(BUDGET_USD)
-    print(f"sending {len(kept)} prompts to {sum(len(m['endpoints']) for m in models.values())} endpoints at concurrency {CONCURRENCY}")
+    spend = Spend(BUDGET_USD, deadline=deadline_from_env())
+    print(f"sending {len(kept)} prompts to {sum(len(m['endpoints']) for m in models.values())} endpoints at concurrency {concurrency()}"
+          + (f", stopping new requests after {os.environ['RUN_DEADLINE_MINUTES']} minutes" if spend.deadline else ""))
     rows = send_all(run_id, models, kept, rd / "responses.jsonl", spend)
     record["summary"] = summarise(rows)
     record["runtime_budget_stop"] = spend.stopped
@@ -310,6 +331,8 @@ def main(argv: list[str] | None = None) -> int:
         )
         record["runtime_budget_stop"] = spend.stopped
 
+    record["time_stop"] = spend.time_stopped
+    record["concurrency"] = concurrency()
     record["finished"] = now_iso()
     record["total_billed_usd"] = round(spend.total, 4)
     with run_json.open("w", encoding="utf-8") as f:
