@@ -28,6 +28,7 @@ import json
 import random
 import shutil
 import sys
+from statistics import median
 from datetime import date, timedelta
 from html import escape
 from pathlib import Path
@@ -36,6 +37,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parent.parent
 FONTS = Path(__file__).resolve().parent / "assets" / "fonts"
 MIN_NIGHTS = 7
+STALE_DAYS = 3
 SITE = "https://bitdepth.dev"
 
 PINE = "#1E3B2F"
@@ -179,6 +181,120 @@ def rows(m: dict[str, Any]) -> dict[str, list[dict[str, Any]]]:
     first.sort(key=lambda e: (qa_price(m, e) or big))
     outside.sort(key=lambda e: (qa_price(m, e) or big))
     return {"ranked": ranked, "first": first, "outside": outside}
+
+
+def last_listed(e: dict[str, Any]) -> str | None:
+    ds = [p["date"] for p in (e.get("nightly_exact") or []) if p.get("date")]
+    return max(ds) if ds else None
+
+
+def delisted(m: dict[str, Any], e: dict[str, Any]) -> str | None:
+    """Date of the last night an endpoint was listed, when it has dropped off OpenRouter's listing."""
+    last, as_of = last_listed(e), m.get("as_of")
+    if not last or not as_of:
+        return None
+    gap = (date.fromisoformat(as_of) - date.fromisoformat(last)).days
+    return last if gap > STALE_DAYS else None
+
+
+def lead_order(ms: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Graded models first, the one with the most endpoints outside the reference leading."""
+    def k(m: dict[str, Any]) -> tuple:
+        return (is_first_look(m), -len(rows(m)["outside"]))
+    return sorted(ms, key=k)
+
+
+def drift_pick(ms: list[dict[str, Any]]) -> tuple[dict[str, Any], dict[str, Any]] | None:
+    """The endpoint with the largest flagged fall that now sits outside the reference."""
+    best = None
+    for m in ms:
+        if is_first_look(m):
+            continue
+        for e in m["endpoints"]:
+            mv = e.get("movement")
+            if e.get("state") == "outside" and e.get("movement_flag") and mv is not None and mv < 0:
+                if best is None or mv < best[1].get("movement"):
+                    best = (m, e)
+    return best
+
+
+def chart_drift(m: dict[str, Any], e: dict[str, Any], cid: str, w: int = 760, h: int = 300) -> str:
+    """One endpoint's exact match each night against the median of every other endpoint on the model."""
+    mine = {p["date"]: p["exact"] for p in (e.get("nightly_exact") or []) if p.get("exact") is not None}
+    others: dict[str, list[float]] = {}
+    for o in m["endpoints"]:
+        if o is e:
+            continue
+        for p in o.get("nightly_exact") or []:
+            if p.get("exact") is not None:
+                others.setdefault(p["date"], []).append(p["exact"])
+    days = sorted(set(mine) | set(others))
+    if len(days) < 2:
+        return '<p class="muted">No nightly series yet.</p>'
+    days = _dates(days[0], days[-1])
+    med = {d: median(v) for d, v in others.items() if v}
+    vals = list(mine.values()) + list(med.values())
+    lo = max(0, int(min(vals) // 10 * 10) - 10)
+    pl, pr, pt, pb = 40, 14, 14, 34
+    iw, ih = w - pl - pr, h - pt - pb
+
+    def X(i: int) -> float:
+        return pl + (iw * i / max(1, len(days) - 1))
+
+    def Y(v: float) -> float:
+        return pt + ih * (1 - (v - lo) / (100 - lo))
+
+    g = []
+    for t in range(lo, 101, 10 if 100 - lo <= 50 else 20):
+        y = Y(t)
+        g.append(f'<line x1="{pl}" y1="{y:.1f}" x2="{w - pr}" y2="{y:.1f}" stroke="{LINE}" stroke-width="1"/>'
+                 f'<text x="{pl - 6}" y="{y + 4:.1f}" text-anchor="end" font-size="11" fill="{MUTED}">{t}</text>')
+    for i in sorted({0, len(days) // 2, len(days) - 1}):
+        g.append(f'<text x="{X(i):.1f}" y="{h - 12}" text-anchor="middle" font-size="11" fill="{MUTED}">{escape(_md(days[i]))}</text>')
+
+    def line(series: dict[str, float], col: str, sw: float, label: str) -> None:
+        segs, cur = [], []
+        for i, d in enumerate(days):
+            if d in series:
+                cur.append(f"{X(i):.1f},{Y(series[d]):.1f}")
+            elif cur:
+                segs.append(cur)
+                cur = []
+        if cur:
+            segs.append(cur)
+        for seg in segs:
+            g.append(f'<polyline points="{" ".join(seg)}" fill="none" stroke="{col}" stroke-width="{sw}"><title>{escape(label)}</title></polyline>')
+        last = max((i for i, d in enumerate(days) if d in series), default=None)
+        if last is not None:
+            g.append(f'<text x="{X(last) - 4:.1f}" y="{Y(series[days[last]]) - 7:.1f}" text-anchor="end" font-size="11" fill="{col}">{escape(label)}</text>')
+
+    line(med, PINE, 1.6, f"median of the other {len(m['endpoints']) - 1} endpoints")
+    line(mine, BURG, 2.4, e["tag"])
+    desc = f"Exact match with the reference each night: {e['tag']} against the median of the other endpoints serving {nice_name(m)}."
+    return (f'<svg id="{cid}" viewBox="0 0 {w} {h}" width="100%" role="img" aria-labelledby="{cid}-d" '
+            f'xmlns="http://www.w3.org/2000/svg" font-family="Inter,system-ui,sans-serif">'
+            f'<desc id="{cid}-d">{escape(desc)}</desc>{"".join(g)}</svg>')
+
+
+def drift_sentence(m: dict[str, Any], e: dict[str, Any]) -> str:
+    pts = [p for p in (e.get("nightly_exact") or []) if p.get("exact") is not None]
+    first3 = [p["exact"] for p in pts[:3]]
+    last3 = [p["exact"] for p in pts[-3:]]
+    a, b = sum(first3) / len(first3), sum(last3) / len(last3)
+    return (f"On {nice_name(m)}, {e['tag']} matched the reference on {a:.0f}% of prompts over its first three nights "
+            f"and {b:.0f}% over its last three. It now sits outside the reference.")
+
+
+def outside_sentence(m: dict[str, Any]) -> str:
+    r = rows(m)
+    pc = primary(m)
+    label = {"exact": "exact match", "string": "string match"}.get(pc, pc)
+    inside = [agreement(m, e) for e in r["ranked"] if agreement(m, e) is not None]
+    tags = ", ".join(e["tag"] for e in r["outside"])
+    s = (f"On {nice_name(m)}, {len(r['outside'])} of {len(m['endpoints'])} endpoints sit outside the reference: {tags}.")
+    if inside:
+        s += f" Ranked endpoints run {min(inside):.0f} to {max(inside):.0f}% on {label}."
+    return s
 
 
 def money(v: float | None, digits: int = 2) -> str:
@@ -469,6 +585,9 @@ def table(m: dict[str, Any], limit: int | None = None) -> str:
         label = STATE_LABEL.get(st, st)
         if st == "no_data":
             label = f"First look, {e.get('nights') or 0} night{'s' if (e.get('nights') or 0) != 1 else ''}"
+        gone = delisted(m, e)
+        if gone:
+            label += f", not listed since {_md(gone)}"
         changed = ' <span class="chg" title="Declared quantization changed during the period">changed</span>' if e.get("declared_changed") else ""
         return (f'<tr class="s-{st}"><td class="n">{rank}</td><td class="ep">{escape(e["tag"])}</td>'
                 f'<td>{escape(e.get("declared_quant") or "unknown")}{changed}</td>'
@@ -513,7 +632,7 @@ def method_cards() -> str:
 
 
 def page_board(data: dict[str, Any], base: str, depth: str, preview: bool, abs_base: str) -> str:
-    ms = data["models"]
+    ms = lead_order(data["models"])
     as_of = data["index"]["as_of"]
     n_ep = sum(len(m["endpoints"]) for m in ms)
     n_out = sum(1 for m in ms for e in m["endpoints"] if e.get("state") == "outside")
@@ -534,6 +653,7 @@ def page_board(data: dict[str, Any], base: str, depth: str, preview: bool, abs_b
 <div class="tile"><div class="v">{n_out}</div><div class="l">endpoints outside the reference</div></div>
 </div></div>
 <main class="wrap body">""")
+    h.append(findings(ms, base, abs_base, as_of))
     # cheapest real endpoint per model
     cards = []
     for m in ms:
@@ -568,6 +688,38 @@ def page_board(data: dict[str, Any], base: str, depth: str, preview: bool, abs_b
     h.append(footer())
     h.append(f'<script src="{depth}assets/share.js" defer></script></body></html>\n')
     return "".join(h)
+
+
+def findings(ms: list[dict[str, Any]], base: str, abs_base: str, as_of: str) -> str:
+    """What the board found: the model with the most endpoints outside the reference, and the biggest drift."""
+    out = []
+    lead = next((m for m in ms if not is_first_look(m) and rows(m)["outside"]), None)
+    if lead:
+        r = rows(lead)
+        pc = primary(lead)
+        label = {"exact": "Exact match", "string": "String match"}.get(pc, pc)
+        lis = "".join(
+            f'<li><b>{escape(e["tag"])}</b><em>{pct(agreement(lead, e))}</em>'
+            + (f'<span class="muted"> not listed since {_md(delisted(lead, e))}</span>' if delisted(lead, e) else "")
+            + "</li>" for e in r["outside"])
+        sent = outside_sentence(lead)
+        murl = f"{abs_base}/m/{slug_of(lead)}"
+        out.append(f'<div class="card" id="f-out"><div class="ch"><h3>{escape(nice_name(lead))}: outside the reference</h3>'
+                   f'{share("f-out", nice_name(lead) + ": outside the reference", sent, murl, f"{abs_base}/og/{slug_of(lead)}.png")}</div>'
+                   f'<p class="hl">{escape(sent)}</p><ol>{lis}</ol><p class="muted">{label}, mean over every night listed.</p>'
+                   f'{cite(murl, lead.get("as_of", as_of))}<div class="more"><a href="{base}/m/{slug_of(lead)}">Full table &rarr;</a></div></div>')
+    pick = drift_pick(ms)
+    if pick:
+        m, e = pick
+        sent = drift_sentence(m, e)
+        murl = f"{abs_base}/m/{slug_of(m)}"
+        out.append(f'<div class="card chart" id="f-drift"><div class="ch"><h3>{escape(e["tag"])}, night by night</h3>'
+                   f'{share("f-drift-c", e["tag"] + " against the other endpoints", sent, f"{abs_base}/charts#f-drift")}</div>'
+                   f'<p class="hl">{escape(sent)}</p>{chart_drift(m, e, "f-drift-c")}{cite(abs_base + "/charts", m.get("as_of", as_of))}</div>')
+    if not out:
+        return ""
+    return ('<div class="sec" id="findings"><div class="k">What the board found</div><h2>Same model name, different answers.</h2>'
+            f'<div class="grid2">{"".join(out)}</div></div>')
 
 
 def page_model(data: dict[str, Any], m: dict[str, Any], base: str, depth: str, preview: bool, abs_base: str) -> str:
@@ -623,9 +775,10 @@ def page_charts(data: dict[str, Any], base: str, depth: str, preview: bool, abs_
     title = "Inference endpoints over time, in charts | Bitdepth"
     desc = "Agreement with a full-precision reference, price and declared quantization for every OpenRouter endpoint, nightly."
     h = [head(title, desc, url, abs_base + "/og/board.png", preview, depth), banner(preview), nav(base, "charts")]
+    ms = lead_order(ms)
     graded = [m for m in ms if not is_first_look(m)] or ms
-    lead = graded[0]
-    finding = headline(lead)
+    lead = next((m for m in graded if rows(m)["outside"]), graded[0])
+    finding = outside_sentence(lead) if rows(lead)["outside"] else headline(lead)
     h.append(f"""<section class="hero"><div class="wrap hero-wrap">
 <div><div class="kick">Charts &middot; endpoints over time</div><h1>Inference endpoints, in charts.</h1>
 <p class="sub">Every chart is drawn from the nightly probe. Free to view, free to cite, free to share. Each one exports clean for X, a deck or a memo.</p></div>
@@ -633,6 +786,7 @@ def page_charts(data: dict[str, Any], base: str, depth: str, preview: bool, abs_
 {share("fon", "Finding of the night", finding, f"{abs_base}/m/{slug_of(lead)}", f"{abs_base}/og/{slug_of(lead)}.png")}</div>
 </div></section>
 <main class="wrap body">""")
+    h.append(findings(ms, base, abs_base, as_of))
     for m in ms:
         s = slug_of(m)
         h.append(f'<div class="sec"><div class="k">{escape(nice_name(m))}</div>'
