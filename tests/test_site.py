@@ -56,3 +56,25 @@ def test_preview_build_is_noindex_and_carries_no_real_name(tmp_path):
         assert f'class="ep">{name}/' not in html and f'class="ep">{name}<' not in html
     assert "—" not in html
     assert (tmp_path / "og" / "board.png").exists()
+
+
+def test_findings_lead_and_delisted_marker():
+    from probe import site
+    def ep(tag, state, nights, last, mv=None, flag=False, string=60.0):
+        series = [{"date": f"2026-11-{d:02d}", "exact": 90.0} for d in range(1, last + 1)]
+        return {"tag": tag, "state": state, "nights": nights, "string": string, "exact": 90.0,
+                "movement": mv, "movement_flag": flag, "nightly_exact": series,
+                "price_in_per_m": 1.0, "price_out_per_m": 2.0}
+    a = {"model": "x/a", "label": "A", "as_of": "2026-11-10", "primary_columns": ["string"],
+         "endpoints": [ep("p1", "within", 10, 10), ep("p2", "within", 10, 10), ep("gone", "outside", 8, 3, string=20.0)]}
+    b = {"model": "x/b", "label": "B", "as_of": "2026-11-10", "primary_columns": ["exact"],
+         "endpoints": [ep("q1", "within", 10, 10), ep("drop", "outside", 10, 10, mv=-12.0, flag=True)]}
+    ms = site.lead_order([b, a])
+    assert ms[0] is a
+    assert site.delisted(a, a["endpoints"][2]) == "2026-11-03"
+    assert site.delisted(a, a["endpoints"][0]) is None
+    m, e = site.drift_pick(ms)
+    assert e["tag"] == "drop"
+    html = site.findings(ms, "", "https://bitdepth.dev", "2026-11-10")
+    assert "gone" in html and "not listed since" in html and "drop" in html
+    assert "—" not in html
