@@ -121,8 +121,8 @@ jobs:
           # Stop starting new requests after this many minutes, so a slow part still
           # writes its run.json inside the 330-minute job limit.
           RUN_DEADLINE_MINUTES: "290"
-          # Repo variable; unset means the default of 4.
-          PROBE_CONCURRENCY: ${{ vars.PROBE_CONCURRENCY }}
+          # 8 at once since 2026-11-10 (Mancy's call): seven models do not fit at 4.
+          PROBE_CONCURRENCY: "8"
         run: |
           python -m probe.run --date "${{ needs.plan.outputs.date }}" --source "${{ needs.plan.outputs.source }}" --model "${{ matrix.model }}" ${{ needs.plan.outputs.selfcheck }}
 
