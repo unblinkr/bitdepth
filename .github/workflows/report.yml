@@ -1,0 +1,48 @@
+name: spend report
+
+# On demand: Bitdepth's own OpenRouter activity (last 30 days) joined to the nightly
+# grades. The report is kept as a run artifact for 7 days and never committed, because
+# this repository is public.
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Name on the report"
+        required: false
+        default: "Bitdepth"
+
+permissions:
+  contents: read
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: pip install -r requirements.txt
+
+      - name: Report
+        env:
+          OPENROUTER_MGMT_KEY: ${{ secrets.OPENROUTER_MGMT_KEY }}
+        run: |
+          if [ -z "$OPENROUTER_MGMT_KEY" ]; then
+            echo "OPENROUTER_MGMT_KEY is not set as a repository secret."
+            exit 1
+          fi
+          python -m probe.report --fetch --for "${{ github.event.inputs.name }}" --out report
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: spend-report
+          path: report/
+          retention-days: 7
