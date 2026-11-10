@@ -235,7 +235,7 @@ def chart_drift(m: dict[str, Any], e: dict[str, Any], cid: str, w: int = 760, h:
     med = {d: median(v) for d, v in others.items() if v}
     vals = list(mine.values()) + list(med.values())
     lo = max(0, int(min(vals) // 10 * 10) - 10)
-    pl, pr, pt, pb = 40, 14, 14, 34
+    pl, pr, pt, pb = 40, 30, 14, 34
     iw, ih = w - pl - pr, h - pt - pb
 
     def X(i: int) -> float:
@@ -263,7 +263,11 @@ def chart_drift(m: dict[str, Any], e: dict[str, Any], cid: str, w: int = 760, h:
         if cur:
             segs.append(cur)
         for seg in segs:
-            g.append(f'<polyline points="{" ".join(seg)}" fill="none" stroke="{col}" stroke-width="{sw}"><title>{escape(label)}</title></polyline>')
+            if len(seg) == 1:
+                x, y = seg[0].split(",")
+                g.append(f'<circle cx="{x}" cy="{y}" r="3" fill="{col}"><title>{escape(label)}</title></circle>')
+            else:
+                g.append(f'<polyline points="{" ".join(seg)}" fill="none" stroke="{col}" stroke-width="{sw}"><title>{escape(label)}</title></polyline>')
         last = max((i for i, d in enumerate(days) if d in series), default=None)
         if last is not None:
             g.append(f'<text x="{X(last) - 4:.1f}" y="{Y(series[days[last]]) - 7:.1f}" text-anchor="end" font-size="11" fill="{col}">{escape(label)}</text>')
@@ -699,14 +703,15 @@ def findings(ms: list[dict[str, Any]], base: str, abs_base: str, as_of: str) -> 
         pc = primary(lead)
         label = {"exact": "Exact match", "string": "String match"}.get(pc, pc)
         lis = "".join(
-            f'<li><b>{escape(e["tag"])}</b><em>{pct(agreement(lead, e))}</em>'
-            + (f'<span class="muted"> not listed since {_md(delisted(lead, e))}</span>' if delisted(lead, e) else "")
-            + "</li>" for e in r["outside"])
+            f'<div style="display:flex;gap:12px;padding:6px 0;border-bottom:1px solid {LINE}"><b style="flex:1">{escape(e["tag"])}</b>'
+            + f'<span style="width:64px;text-align:right">{pct(agreement(lead, e))}</span>'
+            + f'<span class="muted" style="width:170px">{"not listed since " + _md(delisted(lead, e)) if delisted(lead, e) else "still listed"}</span></div>'
+            for e in r["outside"])
         sent = outside_sentence(lead)
         murl = f"{abs_base}/m/{slug_of(lead)}"
         out.append(f'<div class="card" id="f-out"><div class="ch"><h3>{escape(nice_name(lead))}: outside the reference</h3>'
                    f'{share("f-out", nice_name(lead) + ": outside the reference", sent, murl, f"{abs_base}/og/{slug_of(lead)}.png")}</div>'
-                   f'<p class="hl">{escape(sent)}</p><ol>{lis}</ol><p class="muted">{label}, mean over every night listed.</p>'
+                   f'<p class="hl">{escape(sent)}</p><div style="margin:12px 0">{lis}</div><p class="muted">{label}, mean over every night listed.</p>'
                    f'{cite(murl, lead.get("as_of", as_of))}<div class="more"><a href="{base}/m/{slug_of(lead)}">Full table &rarr;</a></div></div>')
     pick = drift_pick(ms)
     if pick:
