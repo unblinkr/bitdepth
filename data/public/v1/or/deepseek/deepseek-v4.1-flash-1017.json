@@ -8,10 +8,9 @@
   "reference_rule": "plurality across all endpoints (fewer than two declare bf16 or fp16)",
   "method_url": "https://bitdepth.dev/method",
   "primary_columns": [
-    "string",
-    "self_agree"
+    "exact"
   ],
-  "state_rule": "outside when self-agreement exceeds agreement with the reference by more than 10 points; no_data under 7 nights; stale when the data is more than 3 days old. Provisional.",
+  "state_rule": "outside when self-agreement exceeds agreement with the reference by more than 15 points, or when the endpoint's mean on the model's first primary column is more than 8 points below the median of endpoints with 7+ nights; no_data under 7 nights; stale when the data is more than 3 days old.",
   "noise_floor": {
     "math": 58.9,
     "json": 100.0,

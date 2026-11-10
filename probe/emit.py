@@ -13,11 +13,14 @@ Reads files only (the cross-night trend and the night's endpoints.json). It neve
 calls the network and never reads the key. The site and the MCP server read these
 files; nothing here is a page.
 
-State rule (provisional; calibrate on 2026-11-10): an endpoint is `outside` when its
-night-to-night self-agreement exceeds its agreement with the reference by more than
-GAP_MAX points, that is, it agrees with itself more than it agrees with the
-reference. Otherwise `within`. Fewer than MIN_NIGHTS nights is `no_data`. A trend
-date more than STALE_DAYS older than the emit date is `stale`.
+State rule (calibrated 2026-11-10 on the fourteen-night read): an endpoint is `outside`
+when either test fires. Gap test: its night-to-night self-agreement exceeds its
+agreement with the reference by more than GAP_MAX points (it agrees with itself more
+than with the reference). Floor test: its mean on the model's first primary column is
+more than FLOOR_MAX points below the median of the endpoints with MIN_NIGHTS or more
+nights (it is far from the pack and may also be inconsistent with itself, which the
+gap test alone cannot see). Otherwise `within`. Fewer than MIN_NIGHTS nights is
+`no_data`. A trend date more than STALE_DAYS older than the emit date is `stale`.
 
 Numbers against a stated reference. Not a claim about intent.
 """
@@ -38,18 +41,27 @@ METHOD_URL = "https://bitdepth.dev/method"
 FOOTER = "Numbers against a stated reference. Not a claim about intent."
 MIN_NIGHTS = 7
 STALE_DAYS = 3
-GAP_MAX = 10.0  # provisional; calibrate on 2026-11-10
+# Calibrated 2026-11-10: 10 was reachable by noise (V4.1 Flash stepfun/fp8 at 10.2, mid-pack).
+# At 15 the four V4 Pro outliers keep a 5-point margin and no mid-pack endpoint reaches it.
+GAP_MAX = 15.0
+# Twice the median one-hour self-disagreement on gpt-oss-120b (4.2), above the largest
+# distance any within endpoint had from its pack median (4.9).
+FLOOR_MAX = 8.0
 FAMILIES = ("math", "json", "string", "needle", "echo")
 
 # Which columns separate endpoints on each model (decision of 2026-10-31).
 PRIMARY_COLUMNS: dict[str, list[str]] = {
     "openai/gpt-oss-120b": ["exact"],
     "deepseek/deepseek-v4-pro": ["string", "self_agree"],
+    # 2026-11-10: on V4.1 Flash only exact match separates; string and math are flat model-wide.
+    "deepseek/deepseek-v4.1-flash-1017": ["exact"],
 }
 
 STATE_RULE = (
-    f"outside when self-agreement exceeds agreement with the reference by more than {GAP_MAX:.0f} points; "
-    f"no_data under {MIN_NIGHTS} nights; stale when the data is more than {STALE_DAYS} days old. Provisional."
+    f"outside when self-agreement exceeds agreement with the reference by more than {GAP_MAX:.0f} points, "
+    f"or when the endpoint's mean on the model's first primary column is more than {FLOOR_MAX:.0f} points below "
+    f"the median of endpoints with {MIN_NIGHTS}+ nights; "
+    f"no_data under {MIN_NIGHTS} nights; stale when the data is more than {STALE_DAYS} days old."
 )
 
 
@@ -66,6 +78,25 @@ def state_of(nights: int, exact: float | None, self_agree: float | None, as_of: 
     if nights < MIN_NIGHTS or exact is None or self_agree is None:
         return "no_data"
     return "outside" if (self_agree - exact) > GAP_MAX else "within"
+
+
+def _median(xs: list[float]) -> float:
+    xs = sorted(xs)
+    n = len(xs)
+    return xs[n // 2] if n % 2 else (xs[n // 2 - 1] + xs[n // 2]) / 2
+
+
+def apply_floor(rows: list[dict[str, Any]], column: str) -> None:
+    """Floor test: a `within` endpoint more than FLOOR_MAX points below the median of the
+    endpoints with MIN_NIGHTS+ nights on the primary column becomes `outside`."""
+    vals = [r.get(column) for r in rows if (r.get("nights") or 0) >= MIN_NIGHTS and r.get(column) is not None]
+    if len(vals) < 3:
+        return
+    med = _median([float(v) for v in vals])
+    for r in rows:
+        v = r.get(column)
+        if r.get("state") == "within" and v is not None and float(v) < med - FLOOR_MAX:
+            r["state"] = "outside"
 
 
 def endpoint_row(e: dict[str, Any], prices: dict[str, tuple[float, float]], as_of: str, today: str) -> dict[str, Any]:
@@ -95,6 +126,7 @@ def endpoint_row(e: dict[str, Any], prices: dict[str, tuple[float, float]], as_o
 def model_doc(m: dict[str, Any], prices: dict[str, tuple[float, float]], as_of: str, nights: int, today: str) -> dict[str, Any]:
     fams = m.get("families", {})
     rows = [endpoint_row(e, prices, as_of, today) for e in m["endpoints"]]
+    apply_floor(rows, primary_columns(m["slug"], fams)[0])
     return {
         "schema": SCHEMA,
         "model": m["slug"],
