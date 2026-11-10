@@ -157,9 +157,9 @@ def _mv(r: dict[str, Any]) -> str:
 
 
 def _grade_col(m: dict[str, Any]) -> str:
-    """The column that separates endpoints on this model: String when math wording is unstable, else Exact."""
-    fam = m.get("families", {})
-    return "string" if fam.get("math") and not fam["math"]["stable"] else "exact_mean"
+    """The column that separates endpoints on this model, from the same rule the public table uses."""
+    from probe.emit import primary_columns
+    return "string" if primary_columns(m.get("slug", ""), m.get("families", {}))[0] == "string" else "exact_mean"
 
 
 def _col_name(field: str) -> str:
@@ -273,10 +273,11 @@ def render(name: str, group: str, date: str, t: dict[str, Any], per_model: list[
         unstable = [f for f in ("math", "json", "string") if fam.get(f) and not fam[f]["stable"]]
         floors = ", ".join(f"{f} {fam[f]['noise_floor']:.1f}" for f in ("math", "json", "string", "needle", "echo") if fam.get(f))
         L.append(f"Family noise floor (median self-agreement, lower quartile): {floors}.")
-        if fam.get("math") and not fam["math"]["stable"]:
+        if _grade_col(m) == "string":
             L.append("On this model the endpoints do not agree with themselves on math wording from night to night, so Exact mostly measures wording. Read String and Self-agree first; Exact second.")
-        elif unstable:
-            L.append(f"Families below the stability threshold on this model: {', '.join(unstable)}. Exact match is a usable read here; String is the column that separates endpoints.")
+        else:
+            note = f"Families below the stability threshold on this model: {', '.join(unstable)}. " if unstable else ""
+            L.append(note + "Exact is the column that separates endpoints on this model; String runs close across the field.")
         if group == "provider":
             all_rows = pm["all_rows"]
             for r in [x for x in rows if x["marked"]]:
