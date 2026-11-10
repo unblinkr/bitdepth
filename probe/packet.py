@@ -224,7 +224,7 @@ def render(name: str, group: str, date: str, t: dict[str, Any], per_model: list[
     L: list[str] = []
     L.append(f"# Bitdepth rows for {name}")
     L.append("")
-    L.append(f"Prepared {date}. Private to {name}; please do not forward. {len(dates)} nights of a fourteen-night capture ({span}). Not a finding: the fourteen-night read is the decision point.")
+    L.append(f"Prepared {date}. Private to {name}; please do not forward. {len(dates)} nights ({span}), read on 2026-11-10. Each endpoint's state below is the one the public table will show.")
     L.append("")
     heads = headlines(name, group, len(dates), per_model)
     if heads:
@@ -239,7 +239,8 @@ def render(name: str, group: str, date: str, t: dict[str, Any], per_model: list[
     L.append("- Exact: mean share of prompts, over the nights listed, where the endpoint's output matched the reference output for that prompt. SD is the night-to-night standard deviation. The reference rule is stated under each table.")
     L.append("- String: graded accuracy on the string family against the generated answer. It does not depend on the reference, so it reads the same whatever the other endpoints do.")
     L.append("- Self-agree: how often the endpoint agrees with its own previous output on the fixed prompts, night to night. It is the noise floor the other columns sit on.")
-    L.append(f"- Movement: mean of the last {t['window']} nights minus the first {t['window']}. An asterisk marks a move past {t['thresholds']['MOVE_MIN']:.0f} points, a provisional threshold.")
+    L.append(f"- Movement: mean of the last {t['window']} nights minus the first {t['window']}. An asterisk marks a move past {t['thresholds']['MOVE_MIN']:.0f} points.")
+    L.append("- State: outside when the endpoint agrees with itself more than 15 points more than it agrees with the reference, or when it sits more than 8 points under the median of endpoints with seven or more nights on the model's primary column. Under seven nights is no grade yet.")
     L.append(f"- Price: OpenRouter list price on {date}, USD per million tokens, input and output.")
     L.append("- Numbers describe outputs against the stated reference and nothing else.")
     if providers:
@@ -281,8 +282,10 @@ def render(name: str, group: str, date: str, t: dict[str, Any], per_model: list[
             for r in [x for x in rows if x["marked"]]:
                 re_ = rank(all_rows, "exact_mean", r["endpoint"])
                 rs = rank(all_rows, "string", r["endpoint"])
+                st = public_state(m_label_of(pm, rows), r["endpoint"])
                 if re_ and rs:
-                    L.append(f"{r['endpoint']}: {re_[0]} of {re_[1]} by Exact, {rs[0]} of {rs[1]} by String.")
+                    L.append(f"{r['endpoint']}: {re_[0]} of {re_[1]} by Exact, {rs[0]} of {rs[1]} by String."
+                             + (f" State: {STATE_WORDS.get(st, st)}." if st else ""))
         L.append("")
     L.append("## Next")
     L.append("")
@@ -323,6 +326,33 @@ def write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
         w.writeheader()
         for r in rows:
             w.writerow({k: ("" if r[k] is None else r[k]) for k in COLUMNS})
+
+
+STATE_WORDS = {"within": "within the pack", "outside": "outside the pack", "no_data": "no grade yet (under seven nights)", "stale": "stale"}
+PUBLIC_DIR = Path("data/public/v1/or")
+
+
+def public_state(label: str | None, tag: str) -> str | None:
+    """The state data/public/v1 gives this endpoint, or None if there is no file."""
+    if not label or not PUBLIC_DIR.exists():
+        return None
+    for f in PUBLIC_DIR.glob("*/*.json"):
+        try:
+            d = json.loads(f.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        if d.get("label") != label:
+            continue
+        for e in d.get("endpoints", []):
+            if e.get("tag") == tag:
+                return e.get("state")
+    return None
+
+
+def m_label_of(pm: dict[str, Any], rows: list[dict[str, Any]]) -> str | None:
+    if (pm.get("model") or {}).get("label"):
+        return pm["model"]["label"]
+    return rows[0].get("model") if rows else None
 
 
 PROPOSAL = Path(__file__).parent / "templates" / "proposal.md"
