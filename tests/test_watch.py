@@ -149,3 +149,12 @@ def test_existing_subscriber_gets_one_key_email(tmp_path, monkeypatch):
     assert sent[0][0] == "Bitdepth Watch: your API key"
     assert watch.mint_key("sub_1", "s3cret") in sent[0][1]
     assert "\u2014" not in sent[0][1]
+
+
+def test_state_words_give_plain_reasons():
+    from probe.watch import state_words
+    assert state_words({"state": "within"}) == "within the pack"
+    assert state_words({"state": "outside"}) == "outside the pack"
+    assert state_words({"state": "no_data", "nights": 4, "endpoint_count": 50}) == "no grade yet (4 of 7 nights so far)"
+    assert "only 2 endpoints" in state_words({"state": "no_data", "nights": 9, "endpoint_count": 2})
+    assert state_words({}) == "not graded yet"
