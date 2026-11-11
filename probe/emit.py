@@ -40,6 +40,9 @@ SCHEMA = "bitdepth.or.v1"
 METHOD_URL = "https://bitdepth.dev/method"
 FOOTER = "Numbers against a stated reference. Not a claim about intent."
 MIN_NIGHTS = 7
+# Models held as first look (unranked, no endpoint named outside) until a date, so
+# providers get notice before their rows are graded in public. Mancy, Nov 11 2026.
+FIRST_LOOK_UNTIL = {"deepseek/deepseek-v4.1-flash-1017": "2026-11-19"}
 STALE_DAYS = 3
 # Calibrated 2026-11-10: 10 was reachable by noise (V4.1 Flash stepfun/fp8 at 10.2, mid-pack).
 # At 15 the four V4 Pro outliers keep a 5-point margin and no mid-pack endpoint reaches it.
@@ -127,6 +130,12 @@ def model_doc(m: dict[str, Any], prices: dict[str, tuple[float, float]], as_of: 
     fams = m.get("families", {})
     rows = [endpoint_row(e, prices, as_of, today) for e in m["endpoints"]]
     apply_floor(rows, primary_columns(m["slug"], fams)[0])
+    hold = FIRST_LOOK_UNTIL.get(m["slug"])
+    held = bool(hold and as_of < hold)
+    if held:
+        for r in rows:
+            if r["state"] in ("within", "outside"):
+                r["state"] = "no_data"
     return {
         "schema": SCHEMA,
         "model": m["slug"],
@@ -141,6 +150,7 @@ def model_doc(m: dict[str, Any], prices: dict[str, tuple[float, float]], as_of: 
         "noise_floor": {f: (fams.get(f) or {}).get("noise_floor") for f in FAMILIES},
         "stable_families": [f for f in FAMILIES if (fams.get(f) or {}).get("stable")],
         "endpoints": rows,
+        "first_look_until": hold if held else None,
         "footer": FOOTER,
     }
 

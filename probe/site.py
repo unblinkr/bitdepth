@@ -163,7 +163,7 @@ def model_nights(m: dict[str, Any]) -> int:
 
 
 def is_first_look(m: dict[str, Any]) -> bool:
-    return model_nights(m) < MIN_NIGHTS
+    return bool(m.get("first_look_until")) or model_nights(m) < MIN_NIGHTS
 
 
 def rows(m: dict[str, Any]) -> dict[str, list[dict[str, Any]]]:
@@ -320,6 +320,11 @@ def headline(m: dict[str, Any]) -> str:
     n = len(m["endpoints"])
     if is_first_look(m) or not r["ranked"]:
         k = model_nights(m)
+        if m.get("first_look_until"):
+            d = m["first_look_until"]
+            when = f"{['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][int(d[5:7]) - 1]} {int(d[8:10])}"
+            return (f"First look at {name}: {n} endpoints on OpenRouter, {k} night{'s' if k != 1 else ''} measured. "
+                    f"Grades publish {when}.")
         return (f"First look at {name}: {n} endpoints on OpenRouter, {k} night{'s' if k != 1 else ''} measured. "
                 f"Grades start at {MIN_NIGHTS} nights.")
     best = r["ranked"][0]
