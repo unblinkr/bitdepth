@@ -30,7 +30,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from probe import BUDGET_USD, CONCURRENCY, MAX_TOKENS, MODELS, SEED
+from probe import BUDGET_USD, CONCURRENCY, MAX_TOKENS, MODELS, SEED, is_active
 from probe import budget as budget_mod
 from probe import openrouter
 from probe.generators import FIXED_PATH, fresh_set, load_jsonl, write_jsonl
@@ -51,11 +51,12 @@ def now_iso() -> str:
 def resolve_models(lister=openrouter.list_endpoints, on: str | None = None) -> dict[str, dict[str, Any]]:
     """Return {label: {slug, endpoints, short}} for every configured model active on the date.
 
-    A model with a "from" date (YYYY-MM-DD, UTC) is skipped on earlier run dates.
+    A model with a "from" date (YYYY-MM-DD, UTC) is skipped on earlier run dates, and one with
+    "days" runs only on those weekdays (see probe.is_active).
     """
     out: dict[str, dict[str, Any]] = {}
     for m in MODELS:
-        if on and m.get("from") and on < m["from"]:
+        if not is_active(m, on):
             continue
         eps = lister(m["slug"])
         out[m["label"]] = {
@@ -263,7 +264,7 @@ def main(argv: list[str] | None = None) -> int:
     args = ap.parse_args(argv)
 
     if args.list_models:
-        print(json.dumps([m["label"] for m in MODELS if not (m.get("from") and args.date < m["from"])]))
+        print(json.dumps([m["label"] for m in MODELS if is_active(m, args.date)]))
         return 0
 
     rd = runs_dir(args.date)
@@ -382,7 +383,7 @@ def merge_parts(date: str) -> int:
     """Join data/runs/<date>/parts/<label>/ into the files a single-job night writes."""
     rd = runs_dir(date)
     parts_dir = rd / "parts"
-    labels = [m["label"] for m in MODELS if not (m.get("from") and date < m["from"])]
+    labels = [m["label"] for m in MODELS if is_active(m, date)]
     parts = [(lbl, parts_dir / lbl) for lbl in labels if (parts_dir / lbl / "run.json").exists()]
     if not parts:
         print(f"no parts for {date}")
