@@ -2,8 +2,8 @@
   "schema": "bitdepth.or.v1",
   "model": "mistralai/mistral-large-4-0",
   "label": "mistral-large-4-0",
-  "as_of": "2026-11-10",
-  "nights": 14,
+  "as_of": "2026-11-11",
+  "nights": 15,
   "endpoint_count": 2,
   "reference_rule": "plurality across all endpoints (fewer than two declare bf16 or fp16)",
   "method_url": "https://bitdepth.dev/method",
@@ -28,7 +28,7 @@
       "provider_slug": "mistral",
       "declared_quant": "unknown",
       "declared_changed": false,
-      "nights": 5,
+      "nights": 6,
       "exact": 100.0,
       "exact_sd": 0.0,
       "string": 79.2,
@@ -65,6 +65,10 @@
         {
           "date": "2026-11-10",
           "exact": 100.0
+        },
+        {
+          "date": "2026-11-11",
+          "exact": null
         }
       ]
     },
@@ -73,7 +77,7 @@
       "provider_slug": "mistral",
       "declared_quant": "unknown",
       "declared_changed": false,
-      "nights": 5,
+      "nights": 6,
       "exact": 100.0,
       "exact_sd": 0.0,
       "string": 75.0,
@@ -110,6 +114,10 @@
         {
           "date": "2026-11-10",
           "exact": 100.0
+        },
+        {
+          "date": "2026-11-11",
+          "exact": null
         }
       ]
     }

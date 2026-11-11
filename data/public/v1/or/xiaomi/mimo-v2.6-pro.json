@@ -2,8 +2,8 @@
   "schema": "bitdepth.or.v1",
   "model": "xiaomi/mimo-v2.6-pro",
   "label": "mimo-v2.6-pro",
-  "as_of": "2026-11-10",
-  "nights": 14,
+  "as_of": "2026-11-11",
+  "nights": 15,
   "endpoint_count": 5,
   "reference_rule": "plurality across all endpoints (fewer than two declare bf16 or fp16)",
   "method_url": "https://bitdepth.dev/method",
@@ -26,7 +26,7 @@
       "provider_slug": "streamlake",
       "declared_quant": "unknown",
       "declared_changed": false,
-      "nights": 1,
+      "nights": 2,
       "exact": 94.9,
       "exact_sd": 0.0,
       "string": 62.5,
@@ -47,6 +47,10 @@
         {
           "date": "2026-11-10",
           "exact": 94.9
+        },
+        {
+          "date": "2026-11-11",
+          "exact": null
         }
       ]
     },
@@ -55,7 +59,7 @@
       "provider_slug": "deepinfra",
       "declared_quant": "fp8",
       "declared_changed": false,
-      "nights": 1,
+      "nights": 2,
       "exact": 94.2,
       "exact_sd": 0.0,
       "string": 66.7,
@@ -76,6 +80,10 @@
         {
           "date": "2026-11-10",
           "exact": 94.2
+        },
+        {
+          "date": "2026-11-11",
+          "exact": null
         }
       ]
     },
@@ -84,7 +92,7 @@
       "provider_slug": "gmicloud",
       "declared_quant": "bf16",
       "declared_changed": false,
-      "nights": 1,
+      "nights": 2,
       "exact": 93.5,
       "exact_sd": 0.0,
       "string": 66.7,
@@ -105,6 +113,10 @@
         {
           "date": "2026-11-10",
           "exact": 93.5
+        },
+        {
+          "date": "2026-11-11",
+          "exact": null
         }
       ]
     },
@@ -113,7 +125,7 @@
       "provider_slug": "primalabs",
       "declared_quant": "fp8",
       "declared_changed": false,
-      "nights": 1,
+      "nights": 2,
       "exact": 91.3,
       "exact_sd": 0.0,
       "string": 58.3,
@@ -134,6 +146,10 @@
         {
           "date": "2026-11-10",
           "exact": 91.3
+        },
+        {
+          "date": "2026-11-11",
+          "exact": null
         }
       ]
     },
@@ -142,7 +158,7 @@
       "provider_slug": "xiaomi",
       "declared_quant": "fp8",
       "declared_changed": false,
-      "nights": 1,
+      "nights": 2,
       "exact": 91.3,
       "exact_sd": 0.0,
       "string": 70.8,
@@ -163,6 +179,10 @@
         {
           "date": "2026-11-10",
           "exact": 91.3
+        },
+        {
+          "date": "2026-11-11",
+          "exact": null
         }
       ]
     }

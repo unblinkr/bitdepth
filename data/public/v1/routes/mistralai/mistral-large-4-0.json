@@ -2,18 +2,18 @@
   "schema": "bitdepth.routelist.v1",
   "model": "mistralai/mistral-large-4-0",
   "label": "mistral-large-4-0",
-  "as_of": "2026-11-10",
+  "as_of": "2026-11-11",
   "rule": "state within and 7+ nights (the check_before_route rule); allowed endpoints ordered by blended price, cheapest first",
   "allow": [],
   "allowed": [],
   "excluded": [
     {
       "tag": "mistral/eu",
-      "why": "only 5 nights; 7 needed"
+      "why": "only 6 nights; 7 needed"
     },
     {
       "tag": "mistral/zdr",
-      "why": "only 5 nights; 7 needed"
+      "why": "only 6 nights; 7 needed"
     }
   ],
   "openrouter": null,

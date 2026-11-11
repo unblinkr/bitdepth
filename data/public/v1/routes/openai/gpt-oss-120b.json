@@ -2,173 +2,125 @@
   "schema": "bitdepth.routelist.v1",
   "model": "openai/gpt-oss-120b",
   "label": "gpt-oss-120b",
-  "as_of": "2026-11-10",
+  "as_of": "2026-11-11",
   "rule": "state within and 7+ nights (the check_before_route rule); allowed endpoints ordered by blended price, cheapest first",
   "allow": [
-    "primeintellect/fp4",
-    "near-ai/fp4",
-    "coreweave/fp4",
-    "dekallm/bf16",
-    "deepinfra/bf16",
-    "crusoe/bf16",
-    "mancer/fp8",
-    "sail-research/fp4",
-    "digitalocean",
-    "google-vertex/global",
-    "baseten/fp4",
-    "baseten/fp4/us",
+    "akashml/bf16",
     "amazon-bedrock",
     "amazon-bedrock/eu-west-1",
-    "groq",
-    "nebius/fp4",
-    "siliconflow/fp8",
-    "together",
-    "parasail/fp4",
-    "sambanova",
-    "deepinfra/fp8",
+    "baseten/fp4",
+    "baseten/fp4/us",
     "cerebras/fp16",
-    "akashml/bf16",
+    "coreweave/fp4",
+    "crusoe/bf16",
+    "deepinfra/bf16",
+    "deepinfra/fp8",
+    "dekallm/bf16",
+    "digitalocean",
+    "google-vertex/global",
+    "groq",
+    "mancer/fp8",
     "mara",
+    "near-ai/fp4",
+    "nebius/fp4",
     "novita/fp4",
-    "phala"
+    "parasail/fp4",
+    "phala",
+    "primeintellect/fp4",
+    "sail-research/fp4",
+    "sambanova",
+    "siliconflow/fp8",
+    "together"
   ],
   "allowed": [
     {
-      "tag": "primeintellect/fp4",
-      "declared_quant": "fp4",
-      "nights": 9,
-      "blended_price_per_m": 0.054
-    },
-    {
-      "tag": "near-ai/fp4",
-      "declared_quant": "fp4",
-      "nights": 14,
-      "blended_price_per_m": 0.06
-    },
-    {
-      "tag": "coreweave/fp4",
-      "declared_quant": "fp4",
-      "nights": 14,
-      "blended_price_per_m": 0.065
-    },
-    {
-      "tag": "dekallm/bf16",
+      "tag": "akashml/bf16",
       "declared_quant": "bf16",
-      "nights": 14,
-      "blended_price_per_m": 0.0675
-    },
-    {
-      "tag": "deepinfra/bf16",
-      "declared_quant": "bf16",
-      "nights": 14,
-      "blended_price_per_m": 0.0703
-    },
-    {
-      "tag": "crusoe/bf16",
-      "declared_quant": "bf16",
-      "nights": 14,
-      "blended_price_per_m": 0.1
-    },
-    {
-      "tag": "mancer/fp8",
-      "declared_quant": "fp8",
-      "nights": 14,
-      "blended_price_per_m": 0.1038
-    },
-    {
-      "tag": "sail-research/fp4",
-      "declared_quant": "fp4",
-      "nights": 14,
-      "blended_price_per_m": 0.145
-    },
-    {
-      "tag": "digitalocean",
-      "declared_quant": "unknown",
-      "nights": 14,
-      "blended_price_per_m": 0.15
-    },
-    {
-      "tag": "google-vertex/global",
-      "declared_quant": "unknown",
-      "nights": 14,
-      "blended_price_per_m": 0.1575
-    },
-    {
-      "tag": "baseten/fp4",
-      "declared_quant": "fp4",
-      "nights": 14,
-      "blended_price_per_m": 0.2
-    },
-    {
-      "tag": "baseten/fp4/us",
-      "declared_quant": "fp4",
-      "nights": 14,
-      "blended_price_per_m": 0.2
+      "nights": 8,
+      "blended_price_per_m": null
     },
     {
       "tag": "amazon-bedrock",
       "declared_quant": "unknown",
       "nights": 14,
-      "blended_price_per_m": 0.2625
+      "blended_price_per_m": null
     },
     {
       "tag": "amazon-bedrock/eu-west-1",
       "declared_quant": "unknown",
       "nights": 14,
-      "blended_price_per_m": 0.2625
+      "blended_price_per_m": null
     },
     {
-      "tag": "groq",
-      "declared_quant": "unknown",
-      "nights": 14,
-      "blended_price_per_m": 0.2625
-    },
-    {
-      "tag": "nebius/fp4",
+      "tag": "baseten/fp4",
       "declared_quant": "fp4",
       "nights": 14,
-      "blended_price_per_m": 0.2625
+      "blended_price_per_m": null
     },
     {
-      "tag": "siliconflow/fp8",
-      "declared_quant": "fp8",
-      "nights": 14,
-      "blended_price_per_m": 0.2625
-    },
-    {
-      "tag": "together",
-      "declared_quant": "unknown",
-      "nights": 14,
-      "blended_price_per_m": 0.2625
-    },
-    {
-      "tag": "parasail/fp4",
+      "tag": "baseten/fp4/us",
       "declared_quant": "fp4",
       "nights": 14,
-      "blended_price_per_m": 0.2625
-    },
-    {
-      "tag": "sambanova",
-      "declared_quant": "unknown",
-      "nights": 14,
-      "blended_price_per_m": 0.3425
-    },
-    {
-      "tag": "deepinfra/fp8",
-      "declared_quant": "fp8",
-      "nights": 11,
-      "blended_price_per_m": 0.3875
+      "blended_price_per_m": null
     },
     {
       "tag": "cerebras/fp16",
       "declared_quant": "fp16",
       "nights": 14,
-      "blended_price_per_m": 0.45
+      "blended_price_per_m": null
     },
     {
-      "tag": "akashml/bf16",
+      "tag": "coreweave/fp4",
+      "declared_quant": "fp4",
+      "nights": 14,
+      "blended_price_per_m": null
+    },
+    {
+      "tag": "crusoe/bf16",
       "declared_quant": "bf16",
-      "nights": 8,
+      "nights": 14,
+      "blended_price_per_m": null
+    },
+    {
+      "tag": "deepinfra/bf16",
+      "declared_quant": "bf16",
+      "nights": 14,
+      "blended_price_per_m": null
+    },
+    {
+      "tag": "deepinfra/fp8",
+      "declared_quant": "fp8",
+      "nights": 11,
+      "blended_price_per_m": null
+    },
+    {
+      "tag": "dekallm/bf16",
+      "declared_quant": "bf16",
+      "nights": 14,
+      "blended_price_per_m": null
+    },
+    {
+      "tag": "digitalocean",
+      "declared_quant": "unknown",
+      "nights": 14,
+      "blended_price_per_m": null
+    },
+    {
+      "tag": "google-vertex/global",
+      "declared_quant": "unknown",
+      "nights": 14,
+      "blended_price_per_m": null
+    },
+    {
+      "tag": "groq",
+      "declared_quant": "unknown",
+      "nights": 14,
+      "blended_price_per_m": null
+    },
+    {
+      "tag": "mancer/fp8",
+      "declared_quant": "fp8",
+      "nights": 14,
       "blended_price_per_m": null
     },
     {
@@ -178,15 +130,63 @@
       "blended_price_per_m": null
     },
     {
+      "tag": "near-ai/fp4",
+      "declared_quant": "fp4",
+      "nights": 14,
+      "blended_price_per_m": null
+    },
+    {
+      "tag": "nebius/fp4",
+      "declared_quant": "fp4",
+      "nights": 14,
+      "blended_price_per_m": null
+    },
+    {
       "tag": "novita/fp4",
       "declared_quant": "fp4",
       "nights": 7,
       "blended_price_per_m": null
     },
     {
+      "tag": "parasail/fp4",
+      "declared_quant": "fp4",
+      "nights": 14,
+      "blended_price_per_m": null
+    },
+    {
       "tag": "phala",
       "declared_quant": "unknown",
       "nights": 13,
+      "blended_price_per_m": null
+    },
+    {
+      "tag": "primeintellect/fp4",
+      "declared_quant": "fp4",
+      "nights": 9,
+      "blended_price_per_m": null
+    },
+    {
+      "tag": "sail-research/fp4",
+      "declared_quant": "fp4",
+      "nights": 14,
+      "blended_price_per_m": null
+    },
+    {
+      "tag": "sambanova",
+      "declared_quant": "unknown",
+      "nights": 14,
+      "blended_price_per_m": null
+    },
+    {
+      "tag": "siliconflow/fp8",
+      "declared_quant": "fp8",
+      "nights": 14,
+      "blended_price_per_m": null
+    },
+    {
+      "tag": "together",
+      "declared_quant": "unknown",
+      "nights": 14,
       "blended_price_per_m": null
     }
   ],
@@ -207,32 +207,32 @@
   "openrouter": {
     "provider": {
       "only": [
-        "primeintellect/fp4",
-        "near-ai/fp4",
-        "coreweave/fp4",
-        "dekallm/bf16",
-        "deepinfra/bf16",
-        "crusoe/bf16",
-        "mancer/fp8",
-        "sail-research/fp4",
-        "digitalocean",
-        "google-vertex/global",
-        "baseten/fp4",
-        "baseten/fp4/us",
+        "akashml/bf16",
         "amazon-bedrock",
         "amazon-bedrock/eu-west-1",
-        "groq",
-        "nebius/fp4",
-        "siliconflow/fp8",
-        "together",
-        "parasail/fp4",
-        "sambanova",
-        "deepinfra/fp8",
+        "baseten/fp4",
+        "baseten/fp4/us",
         "cerebras/fp16",
-        "akashml/bf16",
+        "coreweave/fp4",
+        "crusoe/bf16",
+        "deepinfra/bf16",
+        "deepinfra/fp8",
+        "dekallm/bf16",
+        "digitalocean",
+        "google-vertex/global",
+        "groq",
+        "mancer/fp8",
         "mara",
+        "near-ai/fp4",
+        "nebius/fp4",
         "novita/fp4",
-        "phala"
+        "parasail/fp4",
+        "phala",
+        "primeintellect/fp4",
+        "sail-research/fp4",
+        "sambanova",
+        "siliconflow/fp8",
+        "together"
       ],
       "sort": "price",
       "allow_fallbacks": true
