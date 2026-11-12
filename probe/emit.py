@@ -228,6 +228,16 @@ def build(trend_dir: Path, runs_dir: Path, date: str | None, today: str | None =
     as_of, t = load_trend(trend_dir, date)
     today = today or as_of
     prices = load_prices(runs_dir, as_of)
+    # A model with no prices on the as-of night (a run cut short) takes them from the
+    # latest earlier night that has them, so the page never shows "n/a" for a whole model.
+    for d in sorted((x for x in t["dates"] if x < as_of), reverse=True):
+        missing = [m["label"] for m in t["models"] if not prices.get(m["label"])]
+        if not missing:
+            break
+        older = load_prices(runs_dir, d)
+        for lbl in missing:
+            if older.get(lbl):
+                prices[lbl] = older[lbl]
     nights = len(t["dates"])
     models = [model_doc(m, prices.get(m["label"], {}), as_of, nights, today) for m in t["models"]]
     index = {
