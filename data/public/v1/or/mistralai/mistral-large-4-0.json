@@ -2,8 +2,8 @@
   "schema": "bitdepth.or.v1",
   "model": "mistralai/mistral-large-4-0",
   "label": "mistral-large-4-0",
-  "as_of": "2026-11-11",
-  "nights": 15,
+  "as_of": "2026-11-12",
+  "nights": 16,
   "endpoint_count": 2,
   "reference_rule": "plurality across all endpoints (fewer than two declare bf16 or fp16)",
   "method_url": "https://bitdepth.dev/method",
@@ -28,23 +28,23 @@
       "provider_slug": "mistral",
       "declared_quant": "unknown",
       "declared_changed": false,
-      "nights": 6,
+      "nights": 7,
       "exact": 100.0,
       "exact_sd": 0.0,
       "string": 79.2,
       "self_agree": 89.0,
       "families": {
-        "math": 99.2,
-        "json": 50.0,
+        "math": 99.3,
+        "json": 48.6,
         "string": 79.2,
         "needle": 100.0,
-        "echo": 90.0
+        "echo": 90.3
       },
       "movement": 0.0,
       "movement_flag": false,
       "price_in_per_m": 0.77,
       "price_out_per_m": 2.31,
-      "state": "no_data",
+      "state": "within",
       "nightly_exact": [
         {
           "date": "2026-11-05",
@@ -69,6 +69,10 @@
         {
           "date": "2026-11-11",
           "exact": null
+        },
+        {
+          "date": "2026-11-12",
+          "exact": 100.0
         }
       ]
     },
@@ -77,23 +81,23 @@
       "provider_slug": "mistral",
       "declared_quant": "unknown",
       "declared_changed": false,
-      "nights": 6,
+      "nights": 7,
       "exact": 100.0,
       "exact_sd": 0.0,
-      "string": 75.0,
+      "string": 76.4,
       "self_agree": 89.8,
       "families": {
-        "math": 100.0,
-        "json": 51.7,
-        "string": 75.0,
+        "math": 99.6,
+        "json": 53.5,
+        "string": 76.4,
         "needle": 100.0,
-        "echo": 86.7
+        "echo": 86.8
       },
       "movement": 0.0,
       "movement_flag": false,
       "price_in_per_m": 0.7,
       "price_out_per_m": 2.1,
-      "state": "no_data",
+      "state": "within",
       "nightly_exact": [
         {
           "date": "2026-11-05",
@@ -118,6 +122,10 @@
         {
           "date": "2026-11-11",
           "exact": null
+        },
+        {
+          "date": "2026-11-12",
+          "exact": 100.0
         }
       ]
     }

@@ -2,21 +2,37 @@
   "schema": "bitdepth.routelist.v1",
   "model": "mistralai/mistral-large-4-0",
   "label": "mistral-large-4-0",
-  "as_of": "2026-11-11",
+  "as_of": "2026-11-12",
   "rule": "state within and 7+ nights (the check_before_route rule); allowed endpoints ordered by blended price, cheapest first",
-  "allow": [],
-  "allowed": [],
-  "excluded": [
-    {
-      "tag": "mistral/eu",
-      "why": "only 6 nights; 7 needed"
-    },
+  "allow": [
+    "mistral/zdr",
+    "mistral/eu"
+  ],
+  "allowed": [
     {
       "tag": "mistral/zdr",
-      "why": "only 6 nights; 7 needed"
+      "declared_quant": "unknown",
+      "nights": 7,
+      "blended_price_per_m": 1.05
+    },
+    {
+      "tag": "mistral/eu",
+      "declared_quant": "unknown",
+      "nights": 7,
+      "blended_price_per_m": 1.155
     }
   ],
-  "openrouter": null,
+  "excluded": [],
+  "openrouter": {
+    "provider": {
+      "only": [
+        "mistral/zdr",
+        "mistral/eu"
+      ],
+      "sort": "price",
+      "allow_fallbacks": true
+    }
+  },
   "usage": "Put openrouter.provider in the request body. Fallbacks stay on and move only among the allowed endpoints. An account-wide allowed providers list in OpenRouter settings also applies; if the two do not overlap, requests fail.",
   "method_url": "https://bitdepth.dev/method",
   "footer": "Numbers against a stated reference. Not a claim about intent."

@@ -2,34 +2,34 @@
   "schema": "bitdepth.routelist.v1",
   "model": "deepseek/deepseek-v4.1-flash-1017",
   "label": "deepseek-v4.1-flash-1017",
-  "as_of": "2026-11-11",
+  "as_of": "2026-11-12",
   "rule": "state within and 7+ nights (the check_before_route rule); allowed endpoints ordered by blended price, cheapest first",
   "allow": [],
   "allowed": [],
   "excluded": [
     {
       "tag": "alibaba",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "atlas-cloud/fp8",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "baidu/fp8",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "baseten",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "baseten/fast",
-      "why": "only 6 nights; 7 needed"
+      "why": "only 7 nights; 7 needed"
     },
     {
       "tag": "cloudflare",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "cohere",
@@ -37,15 +37,15 @@
     },
     {
       "tag": "cohere/fp8",
-      "why": "only 4 nights; 7 needed"
+      "why": "only 5 nights; 7 needed"
     },
     {
       "tag": "coreweave/fp8",
-      "why": "only 6 nights; 7 needed"
+      "why": "only 7 nights; 7 needed"
     },
     {
       "tag": "crusoe/fp8",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "decart/fp4",
@@ -57,35 +57,35 @@
     },
     {
       "tag": "deepinfra/fp8",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "deepinfra/fp8/flex",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "deepinfra/fp8/priority",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "deepseek",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "dekallm",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "digitalocean",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "fireworks",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "fireworks/spot",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "fireworks/ultrafast",
@@ -93,39 +93,39 @@
     },
     {
       "tag": "fireworks/us",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "gmicloud/fp8",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "inference-net/fp8",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "inference-net/us",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "ionstream",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "ionstream/flex",
-      "why": "only 2 nights; 7 needed"
+      "why": "only 3 nights; 7 needed"
     },
     {
       "tag": "makora/fp8",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "mistral/fp8",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "modal",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "modelrun/fp4",
@@ -133,35 +133,35 @@
     },
     {
       "tag": "morph/fp8",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "near-ai",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "nebius/fp8",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "novita/fp8",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "open-inference/fp4",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "parasail/fp8",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "particle-ai/us",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "particle-ai/us/flex",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "phala",
@@ -169,15 +169,15 @@
     },
     {
       "tag": "primalabs",
-      "why": "only 6 nights; 7 needed"
+      "why": "only 7 nights; 7 needed"
     },
     {
       "tag": "primeintellect",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "reka",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "relace/fast",
@@ -185,43 +185,47 @@
     },
     {
       "tag": "relace/fp4",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
+    },
+    {
+      "tag": "river",
+      "why": "only 1 nights; 7 needed"
     },
     {
       "tag": "sail-research/fp4",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "sail-research/fp4/us",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "siliconflow/fp8",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "stepfun/fp8",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "streamlake/fp8",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "together",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "venice/fp8",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "wafer/mxfp4",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     },
     {
       "tag": "wafer/us",
-      "why": "only 7 nights; 7 needed"
+      "why": "only 8 nights; 7 needed"
     }
   ],
   "openrouter": null,

@@ -2,8 +2,8 @@
   "schema": "bitdepth.or.v1",
   "model": "xiaomi/mimo-v2.6-pro",
   "label": "mimo-v2.6-pro",
-  "as_of": "2026-11-11",
-  "nights": 15,
+  "as_of": "2026-11-12",
+  "nights": 16,
   "endpoint_count": 5,
   "reference_rule": "plurality across all endpoints (fewer than two declare bf16 or fp16)",
   "method_url": "https://bitdepth.dev/method",
@@ -26,19 +26,19 @@
       "provider_slug": "streamlake",
       "declared_quant": "unknown",
       "declared_changed": false,
-      "nights": 2,
-      "exact": 94.9,
-      "exact_sd": 0.0,
-      "string": 62.5,
+      "nights": 3,
+      "exact": 94.2,
+      "exact_sd": 0.7,
+      "string": 64.6,
       "self_agree": null,
       "families": {
-        "math": 70.8,
+        "math": 72.9,
         "json": 100.0,
-        "string": 62.5,
+        "string": 64.6,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": null,
+      "movement": 0.0,
       "movement_flag": false,
       "price_in_per_m": 0.522,
       "price_out_per_m": 1.044,
@@ -51,105 +51,10 @@
         {
           "date": "2026-11-11",
           "exact": null
-        }
-      ]
-    },
-    {
-      "tag": "deepinfra/fp8",
-      "provider_slug": "deepinfra",
-      "declared_quant": "fp8",
-      "declared_changed": false,
-      "nights": 2,
-      "exact": 94.2,
-      "exact_sd": 0.0,
-      "string": 66.7,
-      "self_agree": null,
-      "families": {
-        "math": 70.8,
-        "json": 100.0,
-        "string": 66.7,
-        "needle": 100.0,
-        "echo": 100.0
-      },
-      "movement": null,
-      "movement_flag": false,
-      "price_in_per_m": 0.387,
-      "price_out_per_m": 0.783,
-      "state": "no_data",
-      "nightly_exact": [
-        {
-          "date": "2026-11-10",
-          "exact": 94.2
         },
         {
-          "date": "2026-11-11",
-          "exact": null
-        }
-      ]
-    },
-    {
-      "tag": "gmicloud/bf16",
-      "provider_slug": "gmicloud",
-      "declared_quant": "bf16",
-      "declared_changed": false,
-      "nights": 2,
-      "exact": 93.5,
-      "exact_sd": 0.0,
-      "string": 66.7,
-      "self_agree": null,
-      "families": {
-        "math": 72.9,
-        "json": 100.0,
-        "string": 66.7,
-        "needle": 100.0,
-        "echo": 100.0
-      },
-      "movement": null,
-      "movement_flag": false,
-      "price_in_per_m": 0.3262,
-      "price_out_per_m": 0.6525,
-      "state": "no_data",
-      "nightly_exact": [
-        {
-          "date": "2026-11-10",
-          "exact": 93.5
-        },
-        {
-          "date": "2026-11-11",
-          "exact": null
-        }
-      ]
-    },
-    {
-      "tag": "primalabs/fp8",
-      "provider_slug": "primalabs",
-      "declared_quant": "fp8",
-      "declared_changed": false,
-      "nights": 2,
-      "exact": 91.3,
-      "exact_sd": 0.0,
-      "string": 58.3,
-      "self_agree": null,
-      "families": {
-        "math": 75.0,
-        "json": 100.0,
-        "string": 58.3,
-        "needle": 100.0,
-        "echo": 100.0
-      },
-      "movement": null,
-      "movement_flag": false,
-      "price_in_per_m": 4.0,
-      "price_out_per_m": 8.0,
-      "state": "no_data",
-      "nightly_exact": [
-        {
-          "date": "2026-11-10",
-          "exact": 91.3
-        },
-        {
-          "date": "2026-11-11",
-          "exact": null
+          "date": "2026-11-12",
+          "exact": 93.6
         }
       ]
     },
@@ -158,19 +63,19 @@
       "provider_slug": "xiaomi",
       "declared_quant": "fp8",
       "declared_changed": false,
-      "nights": 2,
-      "exact": 91.3,
-      "exact_sd": 0.0,
+      "nights": 3,
+      "exact": 94.2,
+      "exact_sd": 2.9,
       "string": 70.8,
       "self_agree": null,
       "families": {
-        "math": 66.7,
+        "math": 68.8,
         "json": 100.0,
         "string": 70.8,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": null,
+      "movement": 0.0,
       "movement_flag": false,
       "price_in_per_m": 0.435,
       "price_out_per_m": 0.87,
@@ -183,6 +88,121 @@
         {
           "date": "2026-11-11",
           "exact": null
+        },
+        {
+          "date": "2026-11-12",
+          "exact": 97.1
+        }
+      ]
+    },
+    {
+      "tag": "primalabs/fp8",
+      "provider_slug": "primalabs",
+      "declared_quant": "fp8",
+      "declared_changed": false,
+      "nights": 3,
+      "exact": 93.5,
+      "exact_sd": 2.2,
+      "string": 62.5,
+      "self_agree": null,
+      "families": {
+        "math": 75.0,
+        "json": 100.0,
+        "string": 62.5,
+        "needle": 100.0,
+        "echo": 100.0
+      },
+      "movement": 0.0,
+      "movement_flag": false,
+      "price_in_per_m": 4.0,
+      "price_out_per_m": 8.0,
+      "state": "no_data",
+      "nightly_exact": [
+        {
+          "date": "2026-11-10",
+          "exact": 91.3
+        },
+        {
+          "date": "2026-11-11",
+          "exact": null
+        },
+        {
+          "date": "2026-11-12",
+          "exact": 95.7
+        }
+      ]
+    },
+    {
+      "tag": "deepinfra/fp8",
+      "provider_slug": "deepinfra",
+      "declared_quant": "fp8",
+      "declared_changed": false,
+      "nights": 3,
+      "exact": 92.5,
+      "exact_sd": 1.8,
+      "string": 68.8,
+      "self_agree": null,
+      "families": {
+        "math": 70.8,
+        "json": 100.0,
+        "string": 68.8,
+        "needle": 100.0,
+        "echo": 100.0
+      },
+      "movement": 0.0,
+      "movement_flag": false,
+      "price_in_per_m": 0.387,
+      "price_out_per_m": 0.783,
+      "state": "no_data",
+      "nightly_exact": [
+        {
+          "date": "2026-11-10",
+          "exact": 94.2
+        },
+        {
+          "date": "2026-11-11",
+          "exact": null
+        },
+        {
+          "date": "2026-11-12",
+          "exact": 90.7
+        }
+      ]
+    },
+    {
+      "tag": "gmicloud/bf16",
+      "provider_slug": "gmicloud",
+      "declared_quant": "bf16",
+      "declared_changed": false,
+      "nights": 3,
+      "exact": 85.3,
+      "exact_sd": 8.2,
+      "string": 60.5,
+      "self_agree": null,
+      "families": {
+        "math": 65.6,
+        "json": 100.0,
+        "string": 60.5,
+        "needle": 100.0,
+        "echo": 100.0
+      },
+      "movement": 0.0,
+      "movement_flag": false,
+      "price_in_per_m": 0.3262,
+      "price_out_per_m": 0.6525,
+      "state": "no_data",
+      "nightly_exact": [
+        {
+          "date": "2026-11-10",
+          "exact": 93.5
+        },
+        {
+          "date": "2026-11-11",
+          "exact": null
+        },
+        {
+          "date": "2026-11-12",
+          "exact": 77.1
         }
       ]
     }

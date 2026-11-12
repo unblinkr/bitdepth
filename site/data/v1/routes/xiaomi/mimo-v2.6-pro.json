@@ -2,30 +2,30 @@
   "schema": "bitdepth.routelist.v1",
   "model": "xiaomi/mimo-v2.6-pro",
   "label": "mimo-v2.6-pro",
-  "as_of": "2026-11-11",
+  "as_of": "2026-11-12",
   "rule": "state within and 7+ nights (the check_before_route rule); allowed endpoints ordered by blended price, cheapest first",
   "allow": [],
   "allowed": [],
   "excluded": [
     {
       "tag": "deepinfra/fp8",
-      "why": "only 2 nights; 7 needed"
+      "why": "only 3 nights; 7 needed"
     },
     {
       "tag": "gmicloud/bf16",
-      "why": "only 2 nights; 7 needed"
+      "why": "only 3 nights; 7 needed"
     },
     {
       "tag": "primalabs/fp8",
-      "why": "only 2 nights; 7 needed"
+      "why": "only 3 nights; 7 needed"
     },
     {
       "tag": "streamlake",
-      "why": "only 2 nights; 7 needed"
+      "why": "only 3 nights; 7 needed"
     },
     {
       "tag": "xiaomi/fp8",
-      "why": "only 2 nights; 7 needed"
+      "why": "only 3 nights; 7 needed"
     }
   ],
   "openrouter": null,
