@@ -1,0 +1,191 @@
+{
+  "schema": "bitdepth.routelist.v1",
+  "model": "z-ai/glm-5.3-flash",
+  "label": "glm-5.3-flash",
+  "as_of": "2026-11-11",
+  "rule": "state within and 7+ nights (the check_before_route rule); allowed endpoints ordered by blended price, cheapest first",
+  "allow": [],
+  "allowed": [],
+  "excluded": [
+    {
+      "tag": "atlas-cloud/fp8",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "baseten/fp8",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "baseten/fp8/us",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "cohere/nvfp4",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "coreweave/nvfp4",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "crusoe/fp4",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "darkbloom/fp4",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "deepinfra/fp4",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "dekallm",
+      "why": "only 1 nights; 7 needed"
+    },
+    {
+      "tag": "digitalocean",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "fireworks",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "friendli",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "gmicloud/fp8",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "inceptron/fp8",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "inference-net/fp4",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "inference-net/us",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "kt",
+      "why": "only 1 nights; 7 needed"
+    },
+    {
+      "tag": "makora/fp4",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "mistral",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "modal/fp4",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "morph/fp8",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "near-ai/fp8",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "nebius/fp4",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "nextbit/fp4",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "novita/fp8",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "open-inference/fp4",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "parasail/fast",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "parasail/fp4",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "particle-ai/nvfp4",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "phala/nvfp4",
+      "why": "only 1 nights; 7 needed"
+    },
+    {
+      "tag": "primeintellect",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "reka",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "relace/fp4",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "river",
+      "why": "only 1 nights; 7 needed"
+    },
+    {
+      "tag": "sail-research/fp4",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "sail-research/us",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "siliconflow/fp8",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "streamlake/fp8",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "tenstorrent/fp8",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "together",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "venice",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "wafer/nvfp4",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "wafer/us",
+      "why": "only 2 nights; 7 needed"
+    },
+    {
+      "tag": "z-ai/fp8",
+      "why": "only 2 nights; 7 needed"
+    }
+  ],
+  "openrouter": null,
+  "usage": "Put openrouter.provider in the request body. Fallbacks stay on and move only among the allowed endpoints. An account-wide allowed providers list in OpenRouter settings also applies; if the two do not overlap, requests fail.",
+  "method_url": "https://bitdepth.dev/method",
+  "footer": "Numbers against a stated reference. Not a claim about intent."
+}

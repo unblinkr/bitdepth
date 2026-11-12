@@ -12,6 +12,11 @@
       ],
       "destination": "https://bitdepth.dev/$1",
       "permanent": true
+    },
+    {
+      "source": "/lab/:path*",
+      "destination": "/:path*",
+      "permanent": false
     }
   ],
   "rewrites": [
@@ -85,24 +90,6 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=3600"
-        }
-      ]
-    },
-    {
-      "source": "/lab/(.*)",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        }
-      ]
-    },
-    {
-      "source": "/lab",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
         }
       ]
     }

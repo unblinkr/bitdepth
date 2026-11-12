@@ -1,0 +1,192 @@
+{
+  "schema": "bitdepth.or.v1",
+  "model": "xiaomi/mimo-v2.6-pro",
+  "label": "mimo-v2.6-pro",
+  "as_of": "2026-11-11",
+  "nights": 15,
+  "endpoint_count": 5,
+  "reference_rule": "plurality across all endpoints (fewer than two declare bf16 or fp16)",
+  "method_url": "https://bitdepth.dev/method",
+  "primary_columns": [
+    "string",
+    "self_agree"
+  ],
+  "state_rule": "outside when self-agreement exceeds agreement with the reference by more than 15 points, or when the endpoint's mean on the model's first primary column is more than 8 points below the median of endpoints with 7+ nights; no_data under 7 nights; stale when the data is more than 3 days old.",
+  "noise_floor": {
+    "math": null,
+    "json": null,
+    "string": null,
+    "needle": null,
+    "echo": null
+  },
+  "stable_families": [],
+  "endpoints": [
+    {
+      "tag": "streamlake",
+      "provider_slug": "streamlake",
+      "declared_quant": "unknown",
+      "declared_changed": false,
+      "nights": 2,
+      "exact": 94.9,
+      "exact_sd": 0.0,
+      "string": 62.5,
+      "self_agree": null,
+      "families": {
+        "math": 70.8,
+        "json": 100.0,
+        "string": 62.5,
+        "needle": 100.0,
+        "echo": 100.0
+      },
+      "movement": null,
+      "movement_flag": false,
+      "price_in_per_m": 0.522,
+      "price_out_per_m": 1.044,
+      "state": "no_data",
+      "nightly_exact": [
+        {
+          "date": "2026-11-10",
+          "exact": 94.9
+        },
+        {
+          "date": "2026-11-11",
+          "exact": null
+        }
+      ]
+    },
+    {
+      "tag": "deepinfra/fp8",
+      "provider_slug": "deepinfra",
+      "declared_quant": "fp8",
+      "declared_changed": false,
+      "nights": 2,
+      "exact": 94.2,
+      "exact_sd": 0.0,
+      "string": 66.7,
+      "self_agree": null,
+      "families": {
+        "math": 70.8,
+        "json": 100.0,
+        "string": 66.7,
+        "needle": 100.0,
+        "echo": 100.0
+      },
+      "movement": null,
+      "movement_flag": false,
+      "price_in_per_m": 0.387,
+      "price_out_per_m": 0.783,
+      "state": "no_data",
+      "nightly_exact": [
+        {
+          "date": "2026-11-10",
+          "exact": 94.2
+        },
+        {
+          "date": "2026-11-11",
+          "exact": null
+        }
+      ]
+    },
+    {
+      "tag": "gmicloud/bf16",
+      "provider_slug": "gmicloud",
+      "declared_quant": "bf16",
+      "declared_changed": false,
+      "nights": 2,
+      "exact": 93.5,
+      "exact_sd": 0.0,
+      "string": 66.7,
+      "self_agree": null,
+      "families": {
+        "math": 72.9,
+        "json": 100.0,
+        "string": 66.7,
+        "needle": 100.0,
+        "echo": 100.0
+      },
+      "movement": null,
+      "movement_flag": false,
+      "price_in_per_m": 0.3262,
+      "price_out_per_m": 0.6525,
+      "state": "no_data",
+      "nightly_exact": [
+        {
+          "date": "2026-11-10",
+          "exact": 93.5
+        },
+        {
+          "date": "2026-11-11",
+          "exact": null
+        }
+      ]
+    },
+    {
+      "tag": "primalabs/fp8",
+      "provider_slug": "primalabs",
+      "declared_quant": "fp8",
+      "declared_changed": false,
+      "nights": 2,
+      "exact": 91.3,
+      "exact_sd": 0.0,
+      "string": 58.3,
+      "self_agree": null,
+      "families": {
+        "math": 75.0,
+        "json": 100.0,
+        "string": 58.3,
+        "needle": 100.0,
+        "echo": 100.0
+      },
+      "movement": null,
+      "movement_flag": false,
+      "price_in_per_m": 4.0,
+      "price_out_per_m": 8.0,
+      "state": "no_data",
+      "nightly_exact": [
+        {
+          "date": "2026-11-10",
+          "exact": 91.3
+        },
+        {
+          "date": "2026-11-11",
+          "exact": null
+        }
+      ]
+    },
+    {
+      "tag": "xiaomi/fp8",
+      "provider_slug": "xiaomi",
+      "declared_quant": "fp8",
+      "declared_changed": false,
+      "nights": 2,
+      "exact": 91.3,
+      "exact_sd": 0.0,
+      "string": 70.8,
+      "self_agree": null,
+      "families": {
+        "math": 66.7,
+        "json": 100.0,
+        "string": 70.8,
+        "needle": 100.0,
+        "echo": 100.0
+      },
+      "movement": null,
+      "movement_flag": false,
+      "price_in_per_m": 0.435,
+      "price_out_per_m": 0.87,
+      "state": "no_data",
+      "nightly_exact": [
+        {
+          "date": "2026-11-10",
+          "exact": 91.3
+        },
+        {
+          "date": "2026-11-11",
+          "exact": null
+        }
+      ]
+    }
+  ],
+  "first_look_until": null,
+  "footer": "Numbers against a stated reference. Not a claim about intent."
+}
