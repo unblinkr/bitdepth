@@ -115,7 +115,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.1,
       "price_out_per_m": 0.6,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -168,7 +168,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.0437,
       "price_out_per_m": 0.7,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -221,7 +221,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.15,
       "price_out_per_m": 1.2,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -274,7 +274,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.022,
       "price_out_per_m": 0.4,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -364,7 +364,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.3,
       "price_out_per_m": 1.2,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -466,7 +466,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.147,
       "price_out_per_m": 0.441,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -519,7 +519,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.066,
       "price_out_per_m": 0.5,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -572,7 +572,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.06,
       "price_out_per_m": 0.5,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -625,7 +625,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.038,
       "price_out_per_m": 0.5,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -678,7 +678,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.03,
       "price_out_per_m": 0.25,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -780,7 +780,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.135,
       "price_out_per_m": 0.54,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -882,7 +882,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.3,
       "price_out_per_m": 1.2,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -935,7 +935,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.195,
       "price_out_per_m": 0.78,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -988,7 +988,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.0784,
       "price_out_per_m": 0.2352,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -1041,7 +1041,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.25,
       "price_out_per_m": 1.0,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -1094,7 +1094,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.098,
       "price_out_per_m": 0.294,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -1147,7 +1147,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.006,
       "price_out_per_m": 0.5,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -1200,7 +1200,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.3,
       "price_out_per_m": 1.2,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -1253,7 +1253,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.21,
       "price_out_per_m": 0.84,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -1306,7 +1306,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.165,
       "price_out_per_m": 0.66,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -1404,7 +1404,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.18,
       "price_out_per_m": 0.68,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -1457,7 +1457,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.3,
       "price_out_per_m": 1.2,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -1510,7 +1510,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.3,
       "price_out_per_m": 1.2,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -1563,7 +1563,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.3,
       "price_out_per_m": 1.2,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -1616,7 +1616,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.105,
       "price_out_per_m": 0.42,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -1669,7 +1669,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.08,
       "price_out_per_m": 0.605,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -1820,7 +1820,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.3,
       "price_out_per_m": 0.55,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -1873,7 +1873,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.45,
       "price_out_per_m": 1.8,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -1926,7 +1926,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.08,
       "price_out_per_m": 0.605,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -2028,7 +2028,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.3,
       "price_out_per_m": 1.2,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -2130,7 +2130,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.29,
       "price_out_per_m": 1.2,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -2236,7 +2236,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.18,
       "price_out_per_m": 0.72,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -2289,7 +2289,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.111,
       "price_out_per_m": 0.444,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -2375,7 +2375,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.165,
       "price_out_per_m": 0.495,
-      "state": "within",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -2428,7 +2428,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.18,
       "price_out_per_m": 0.72,
-      "state": "outside",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -2510,7 +2510,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.1498,
       "price_out_per_m": 0.6046,
-      "state": "outside",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -2563,7 +2563,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.16,
       "price_out_per_m": 1.1,
-      "state": "outside",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -2616,7 +2616,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.3,
       "price_out_per_m": 1.2,
-      "state": "outside",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -2669,7 +2669,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.07,
       "price_out_per_m": 0.8,
-      "state": "outside",
+      "state": "no_data",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -2755,5 +2755,6 @@
       ]
     }
   ],
+  "first_look_until": "2026-11-19",
   "footer": "Numbers against a stated reference. Not a claim about intent."
 }

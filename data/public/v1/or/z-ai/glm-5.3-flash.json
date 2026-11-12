@@ -1458,5 +1458,6 @@
       ]
     }
   ],
+  "first_look_until": null,
   "footer": "Numbers against a stated reference. Not a claim about intent."
 }
