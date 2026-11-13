@@ -15,7 +15,8 @@
   "2026-11-08",
   "2026-11-10",
   "2026-11-11",
-  "2026-11-12"
+  "2026-11-12",
+  "2026-11-13"
  ],
  "selfcheck_dates": [
   "2026-10-27",
@@ -38,47 +39,48 @@
      "tag": "io-net/fp4",
      "declared_quant": "fp4",
      "declared_changed": false,
-     "nights": 1,
+     "nights": 2,
      "exact_by_night": {
-      "2026-11-12": 99.2
+      "2026-11-12": 99.2,
+      "2026-11-13": 97.9
      },
-     "exact_mean": 99.2,
-     "exact_sd": 0.0,
-     "exact_min": 99.2,
+     "exact_mean": 98.6,
+     "exact_sd": 0.6,
+     "exact_min": 97.9,
      "exact_max": 99.2,
-     "movement": null,
-     "movement_overlap": false,
+     "movement": 0.0,
+     "movement_overlap": true,
      "movement_flag": false,
      "families": {
       "math": 100.0,
       "json": 100.0,
-      "string": 81.8,
+      "string": 78.4,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 0,
-      "agree_pct": null,
+      "pairs": 114,
+      "agree_pct": 95.6,
       "by_family": {
        "math": {
-        "pairs": 0,
-        "agree_pct": null
+        "pairs": 39,
+        "agree_pct": 100.0
        },
        "json": {
-        "pairs": 0,
-        "agree_pct": null
+        "pairs": 18,
+        "agree_pct": 77.8
        },
        "string": {
-        "pairs": 0,
-        "agree_pct": null
+        "pairs": 18,
+        "agree_pct": 94.4
        },
        "needle": {
-        "pairs": 0,
-        "agree_pct": null
+        "pairs": 20,
+        "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 0,
-        "agree_pct": null
+        "pairs": 19,
+        "agree_pct": 100.0
        }
       }
      },
@@ -91,7 +93,7 @@
      "tag": "baseten/fp4",
      "declared_quant": "fp4",
      "declared_changed": false,
-     "nights": 15,
+     "nights": 16,
      "exact_by_night": {
       "2026-10-27": 97.2,
       "2026-10-28": 96.5,
@@ -107,7 +109,8 @@
       "2026-11-07": 97.9,
       "2026-11-08": 97.9,
       "2026-11-10": 97.9,
-      "2026-11-12": 95.7
+      "2026-11-12": 95.7,
+      "2026-11-13": 97.9
      },
      "exact_mean": 97.8,
      "exact_sd": 1.0,
@@ -119,32 +122,32 @@
      "families": {
       "math": 99.7,
       "json": 100.0,
-      "string": 83.3,
+      "string": 82.8,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 1680,
+      "pairs": 1800,
       "agree_pct": 97.7,
       "by_family": {
        "math": {
-        "pairs": 560,
+        "pairs": 600,
         "agree_pct": 100.0
        },
        "json": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 99.3
        },
        "string": {
-        "pairs": 280,
-        "agree_pct": 87.1
+        "pairs": 300,
+        "agree_pct": 86.7
        },
        "needle": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 100.0
        }
       }
@@ -170,7 +173,7 @@
      "tag": "cerebras/fp16",
      "declared_quant": "fp16",
      "declared_changed": false,
-     "nights": 15,
+     "nights": 16,
      "exact_by_night": {
       "2026-10-27": 96.5,
       "2026-10-28": 97.2,
@@ -186,44 +189,45 @@
       "2026-11-07": 98.6,
       "2026-11-08": 98.6,
       "2026-11-10": 97.9,
-      "2026-11-12": 96.5
+      "2026-11-12": 96.5,
+      "2026-11-13": 97.1
      },
      "exact_mean": 97.8,
-     "exact_sd": 1.3,
+     "exact_sd": 1.2,
      "exact_min": 95.8,
      "exact_max": 99.3,
-     "movement": 1.2,
+     "movement": 0.7,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
       "math": 99.9,
       "json": 100.0,
-      "string": 88.1,
+      "string": 87.5,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 1680,
+      "pairs": 1800,
       "agree_pct": 98.0,
       "by_family": {
        "math": {
-        "pairs": 560,
-        "agree_pct": 99.6
+        "pairs": 600,
+        "agree_pct": 99.7
        },
        "json": {
-        "pairs": 280,
-        "agree_pct": 96.8
+        "pairs": 300,
+        "agree_pct": 96.7
        },
        "string": {
-        "pairs": 280,
-        "agree_pct": 91.8
+        "pairs": 300,
+        "agree_pct": 92.0
        },
        "needle": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 100.0
        }
       }
@@ -249,7 +253,7 @@
      "tag": "crusoe/bf16",
      "declared_quant": "bf16",
      "declared_changed": false,
-     "nights": 15,
+     "nights": 16,
      "exact_by_night": {
       "2026-10-27": 97.2,
       "2026-10-28": 97.9,
@@ -265,44 +269,45 @@
       "2026-11-07": 100.0,
       "2026-11-08": 97.2,
       "2026-11-10": 98.6,
-      "2026-11-12": 96.5
+      "2026-11-12": 96.5,
+      "2026-11-13": 97.9
      },
      "exact_mean": 97.7,
      "exact_sd": 1.3,
      "exact_min": 95.1,
      "exact_max": 100.0,
-     "movement": -0.5,
+     "movement": -0.2,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
       "math": 99.9,
       "json": 100.0,
-      "string": 80.5,
+      "string": 80.2,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 1680,
-      "agree_pct": 96.0,
+      "pairs": 1800,
+      "agree_pct": 95.9,
       "by_family": {
        "math": {
-        "pairs": 560,
+        "pairs": 600,
         "agree_pct": 100.0
        },
        "json": {
-        "pairs": 280,
-        "agree_pct": 91.4
+        "pairs": 300,
+        "agree_pct": 91.3
        },
        "string": {
-        "pairs": 280,
-        "agree_pct": 84.3
+        "pairs": 300,
+        "agree_pct": 84.0
        },
        "needle": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 100.0
        }
       }
@@ -328,7 +333,7 @@
      "tag": "baseten/fp4/us",
      "declared_quant": "fp4",
      "declared_changed": false,
-     "nights": 15,
+     "nights": 16,
      "exact_by_night": {
       "2026-10-27": 97.9,
       "2026-10-28": 98.6,
@@ -344,9 +349,10 @@
       "2026-11-07": 97.9,
       "2026-11-08": 97.2,
       "2026-11-10": 96.5,
-      "2026-11-12": 99.3
+      "2026-11-12": 99.3,
+      "2026-11-13": 97.1
      },
-     "exact_mean": 97.6,
+     "exact_mean": 97.5,
      "exact_sd": 0.8,
      "exact_min": 96.5,
      "exact_max": 99.3,
@@ -356,32 +362,32 @@
      "families": {
       "math": 99.6,
       "json": 100.0,
-      "string": 81.1,
+      "string": 80.7,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 1678,
-      "agree_pct": 97.1,
+      "pairs": 1798,
+      "agree_pct": 97.2,
       "by_family": {
        "math": {
-        "pairs": 558,
+        "pairs": 598,
         "agree_pct": 100.0
        },
        "json": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 99.3
        },
        "string": {
-        "pairs": 280,
-        "agree_pct": 83.2
+        "pairs": 300,
+        "agree_pct": 83.7
        },
        "needle": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 100.0
        }
       }
@@ -407,7 +413,7 @@
      "tag": "deepinfra/fp8",
      "declared_quant": "fp8",
      "declared_changed": false,
-     "nights": 12,
+     "nights": 13,
      "exact_by_night": {
       "2026-10-30": 96.9,
       "2026-10-31": 97.7,
@@ -420,44 +426,45 @@
       "2026-11-07": 97.1,
       "2026-11-08": 95.0,
       "2026-11-10": 98.6,
-      "2026-11-12": 96.9
+      "2026-11-12": 96.9,
+      "2026-11-13": 97.9
      },
      "exact_mean": 97.4,
-     "exact_sd": 1.2,
+     "exact_sd": 1.1,
      "exact_min": 95.0,
      "exact_max": 100.0,
-     "movement": -0.4,
+     "movement": 0.6,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
       "math": 100.0,
       "json": 100.0,
-      "string": 80.9,
+      "string": 80.4,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 1171,
-      "agree_pct": 95.6,
+      "pairs": 1278,
+      "agree_pct": 95.9,
       "by_family": {
        "math": {
-        "pairs": 382,
+        "pairs": 413,
         "agree_pct": 100.0
        },
        "json": {
-        "pairs": 194,
-        "agree_pct": 87.6
+        "pairs": 214,
+        "agree_pct": 88.8
        },
        "string": {
-        "pairs": 201,
-        "agree_pct": 86.6
+        "pairs": 220,
+        "agree_pct": 86.8
        },
        "needle": {
-        "pairs": 197,
+        "pairs": 216,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 197,
+        "pairs": 215,
         "agree_pct": 100.0
        }
       }
@@ -474,10 +481,90 @@
      }
     },
     {
+     "tag": "sambanova",
+     "declared_quant": "unknown",
+     "declared_changed": false,
+     "nights": 16,
+     "exact_by_night": {
+      "2026-10-27": 95.8,
+      "2026-10-28": 95.1,
+      "2026-10-29": 97.2,
+      "2026-10-30": 96.5,
+      "2026-10-31": 97.2,
+      "2026-11-01": 97.2,
+      "2026-11-02": 99.3,
+      "2026-11-03": 97.9,
+      "2026-11-04": 97.2,
+      "2026-11-05": 97.8,
+      "2026-11-06": 97.9,
+      "2026-11-07": 97.1,
+      "2026-11-08": 95.1,
+      "2026-11-10": 98.6,
+      "2026-11-12": 97.2,
+      "2026-11-13": 97.9
+     },
+     "exact_mean": 97.2,
+     "exact_sd": 1.1,
+     "exact_min": 95.1,
+     "exact_max": 99.3,
+     "movement": 1.9,
+     "movement_overlap": false,
+     "movement_flag": false,
+     "families": {
+      "math": 100.0,
+      "json": 100.0,
+      "string": 79.9,
+      "needle": 99.7,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 1800,
+      "agree_pct": 96.0,
+      "by_family": {
+       "math": {
+        "pairs": 600,
+        "agree_pct": 100.0
+       },
+       "json": {
+        "pairs": 300,
+        "agree_pct": 89.3
+       },
+       "string": {
+        "pairs": 300,
+        "agree_pct": 86.7
+       },
+       "needle": {
+        "pairs": 300,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 300,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "sambanova",
+       "n": 12,
+       "agree": 12,
+       "agree_pct": 100.0
+      },
+      "2026-11-02": {
+       "model": "gpt-oss-120b",
+       "tag": "sambanova",
+       "n": 36,
+       "agree": 36,
+       "agree_pct": 100.0
+      }
+     }
+    },
+    {
      "tag": "together",
      "declared_quant": "unknown",
      "declared_changed": false,
-     "nights": 15,
+     "nights": 16,
      "exact_by_night": {
       "2026-10-27": 97.9,
       "2026-10-28": 97.2,
@@ -493,44 +580,45 @@
       "2026-11-07": 96.4,
       "2026-11-08": 97.9,
       "2026-11-10": 97.9,
-      "2026-11-12": 97.2
+      "2026-11-12": 97.2,
+      "2026-11-13": 97.1
      },
      "exact_mean": 97.2,
      "exact_sd": 0.7,
      "exact_min": 95.8,
      "exact_max": 97.9,
-     "movement": 0.2,
+     "movement": -0.0,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
       "math": 99.9,
       "json": 100.0,
-      "string": 76.3,
+      "string": 75.7,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 1680,
-      "agree_pct": 97.3,
+      "pairs": 1800,
+      "agree_pct": 97.2,
       "by_family": {
        "math": {
-        "pairs": 560,
+        "pairs": 600,
         "agree_pct": 100.0
        },
        "json": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 99.3
        },
        "string": {
-        "pairs": 280,
-        "agree_pct": 84.6
+        "pairs": 300,
+        "agree_pct": 83.7
        },
        "needle": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 100.0
        }
       }
@@ -546,6 +634,86 @@
       "2026-11-02": {
        "model": "gpt-oss-120b",
        "tag": "together",
+       "n": 36,
+       "agree": 36,
+       "agree_pct": 100.0
+      }
+     }
+    },
+    {
+     "tag": "deepinfra/bf16",
+     "declared_quant": "bf16",
+     "declared_changed": false,
+     "nights": 16,
+     "exact_by_night": {
+      "2026-10-27": 97.2,
+      "2026-10-28": 97.9,
+      "2026-10-29": 97.9,
+      "2026-10-30": 97.9,
+      "2026-10-31": 97.2,
+      "2026-11-01": 97.2,
+      "2026-11-02": 94.4,
+      "2026-11-03": 85.3,
+      "2026-11-04": 99.3,
+      "2026-11-05": 97.1,
+      "2026-11-06": 99.3,
+      "2026-11-07": 97.9,
+      "2026-11-08": 98.6,
+      "2026-11-10": 98.6,
+      "2026-11-12": 98.6,
+      "2026-11-13": 98.6
+     },
+     "exact_mean": 97.1,
+     "exact_sd": 3.2,
+     "exact_min": 85.3,
+     "exact_max": 99.3,
+     "movement": 0.9,
+     "movement_overlap": false,
+     "movement_flag": false,
+     "families": {
+      "math": 98.9,
+      "json": 99.7,
+      "string": 79.6,
+      "needle": 99.1,
+      "echo": 99.7
+     },
+     "self": {
+      "pairs": 1746,
+      "agree_pct": 96.3,
+      "by_family": {
+       "math": {
+        "pairs": 572,
+        "agree_pct": 98.6
+       },
+       "json": {
+        "pairs": 288,
+        "agree_pct": 91.7
+       },
+       "string": {
+        "pairs": 296,
+        "agree_pct": 90.5
+       },
+       "needle": {
+        "pairs": 294,
+        "agree_pct": 99.3
+       },
+       "echo": {
+        "pairs": 296,
+        "agree_pct": 99.3
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "deepinfra/bf16",
+       "n": 10,
+       "agree": 9,
+       "agree_pct": 90.0
+      },
+      "2026-11-02": {
+       "model": "gpt-oss-120b",
+       "tag": "deepinfra/bf16",
        "n": 36,
        "agree": 36,
        "agree_pct": 100.0
@@ -626,168 +794,10 @@
      }
     },
     {
-     "tag": "sambanova",
-     "declared_quant": "unknown",
-     "declared_changed": false,
-     "nights": 15,
-     "exact_by_night": {
-      "2026-10-27": 95.8,
-      "2026-10-28": 95.1,
-      "2026-10-29": 97.2,
-      "2026-10-30": 96.5,
-      "2026-10-31": 97.2,
-      "2026-11-01": 97.2,
-      "2026-11-02": 99.3,
-      "2026-11-03": 97.9,
-      "2026-11-04": 97.2,
-      "2026-11-05": 97.8,
-      "2026-11-06": 97.9,
-      "2026-11-07": 97.1,
-      "2026-11-08": 95.1,
-      "2026-11-10": 98.6,
-      "2026-11-12": 97.2
-     },
-     "exact_mean": 97.1,
-     "exact_sd": 1.1,
-     "exact_min": 95.1,
-     "exact_max": 99.3,
-     "movement": 0.9,
-     "movement_overlap": false,
-     "movement_flag": false,
-     "families": {
-      "math": 100.0,
-      "json": 100.0,
-      "string": 80.3,
-      "needle": 99.7,
-      "echo": 100.0
-     },
-     "self": {
-      "pairs": 1680,
-      "agree_pct": 95.8,
-      "by_family": {
-       "math": {
-        "pairs": 560,
-        "agree_pct": 100.0
-       },
-       "json": {
-        "pairs": 280,
-        "agree_pct": 88.6
-       },
-       "string": {
-        "pairs": 280,
-        "agree_pct": 86.4
-       },
-       "needle": {
-        "pairs": 280,
-        "agree_pct": 100.0
-       },
-       "echo": {
-        "pairs": 280,
-        "agree_pct": 100.0
-       }
-      }
-     },
-     "selfcheck": {
-      "2026-10-27": {
-       "model": "gpt-oss-120b",
-       "tag": "sambanova",
-       "n": 12,
-       "agree": 12,
-       "agree_pct": 100.0
-      },
-      "2026-11-02": {
-       "model": "gpt-oss-120b",
-       "tag": "sambanova",
-       "n": 36,
-       "agree": 36,
-       "agree_pct": 100.0
-      }
-     }
-    },
-    {
-     "tag": "deepinfra/bf16",
-     "declared_quant": "bf16",
-     "declared_changed": false,
-     "nights": 15,
-     "exact_by_night": {
-      "2026-10-27": 97.2,
-      "2026-10-28": 97.9,
-      "2026-10-29": 97.9,
-      "2026-10-30": 97.9,
-      "2026-10-31": 97.2,
-      "2026-11-01": 97.2,
-      "2026-11-02": 94.4,
-      "2026-11-03": 85.3,
-      "2026-11-04": 99.3,
-      "2026-11-05": 97.1,
-      "2026-11-06": 99.3,
-      "2026-11-07": 97.9,
-      "2026-11-08": 98.6,
-      "2026-11-10": 98.6,
-      "2026-11-12": 98.6
-     },
-     "exact_mean": 97.0,
-     "exact_sd": 3.3,
-     "exact_min": 85.3,
-     "exact_max": 99.3,
-     "movement": 0.9,
-     "movement_overlap": false,
-     "movement_flag": false,
-     "families": {
-      "math": 98.9,
-      "json": 99.7,
-      "string": 79.9,
-      "needle": 99.1,
-      "echo": 99.7
-     },
-     "self": {
-      "pairs": 1626,
-      "agree_pct": 96.2,
-      "by_family": {
-       "math": {
-        "pairs": 532,
-        "agree_pct": 98.5
-       },
-       "json": {
-        "pairs": 268,
-        "agree_pct": 91.8
-       },
-       "string": {
-        "pairs": 276,
-        "agree_pct": 90.2
-       },
-       "needle": {
-        "pairs": 274,
-        "agree_pct": 99.3
-       },
-       "echo": {
-        "pairs": 276,
-        "agree_pct": 99.3
-       }
-      }
-     },
-     "selfcheck": {
-      "2026-10-27": {
-       "model": "gpt-oss-120b",
-       "tag": "deepinfra/bf16",
-       "n": 10,
-       "agree": 9,
-       "agree_pct": 90.0
-      },
-      "2026-11-02": {
-       "model": "gpt-oss-120b",
-       "tag": "deepinfra/bf16",
-       "n": 36,
-       "agree": 36,
-       "agree_pct": 100.0
-      }
-     }
-    },
-    {
      "tag": "groq",
      "declared_quant": "unknown",
      "declared_changed": false,
-     "nights": 15,
+     "nights": 16,
      "exact_by_night": {
       "2026-10-27": 97.2,
       "2026-10-28": 96.5,
@@ -803,44 +813,45 @@
       "2026-11-07": 97.1,
       "2026-11-08": 98.6,
       "2026-11-10": 97.9,
-      "2026-11-12": 97.9
+      "2026-11-12": 97.9,
+      "2026-11-13": 95.0
      },
-     "exact_mean": 96.9,
-     "exact_sd": 1.0,
-     "exact_min": 95.1,
+     "exact_mean": 96.8,
+     "exact_sd": 1.1,
+     "exact_min": 95.0,
      "exact_max": 98.6,
-     "movement": 1.2,
+     "movement": -0.0,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
       "math": 100.0,
       "json": 100.0,
-      "string": 80.8,
+      "string": 80.2,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 1680,
-      "agree_pct": 98.5,
+      "pairs": 1800,
+      "agree_pct": 98.4,
       "by_family": {
        "math": {
-        "pairs": 560,
+        "pairs": 600,
         "agree_pct": 100.0
        },
        "json": {
-        "pairs": 280,
-        "agree_pct": 98.6
+        "pairs": 300,
+        "agree_pct": 98.3
        },
        "string": {
-        "pairs": 280,
-        "agree_pct": 92.1
+        "pairs": 300,
+        "agree_pct": 92.0
        },
        "needle": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 100.0
        }
       }
@@ -866,7 +877,7 @@
      "tag": "dekallm/bf16",
      "declared_quant": "bf16",
      "declared_changed": false,
-     "nights": 15,
+     "nights": 16,
      "exact_by_night": {
       "2026-10-27": 96.5,
       "2026-10-28": 95.8,
@@ -882,44 +893,45 @@
       "2026-11-07": 97.1,
       "2026-11-08": 97.2,
       "2026-11-10": 95.1,
-      "2026-11-12": 99.3
+      "2026-11-12": 99.3,
+      "2026-11-13": 96.4
      },
      "exact_mean": 96.6,
-     "exact_sd": 1.5,
+     "exact_sd": 1.4,
      "exact_min": 93.8,
      "exact_max": 99.3,
-     "movement": 1.2,
+     "movement": 0.9,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
       "math": 99.7,
       "json": 100.0,
-      "string": 80.3,
+      "string": 80.0,
       "needle": 99.7,
       "echo": 100.0
      },
      "self": {
-      "pairs": 1680,
-      "agree_pct": 94.5,
+      "pairs": 1800,
+      "agree_pct": 94.4,
       "by_family": {
        "math": {
-        "pairs": 560,
+        "pairs": 600,
         "agree_pct": 100.0
        },
        "json": {
-        "pairs": 280,
-        "agree_pct": 73.6
+        "pairs": 300,
+        "agree_pct": 73.0
        },
        "string": {
-        "pairs": 280,
-        "agree_pct": 93.2
+        "pairs": 300,
+        "agree_pct": 93.7
        },
        "needle": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 100.0
        }
       }
@@ -945,7 +957,7 @@
      "tag": "parasail/fp4",
      "declared_quant": "fp4",
      "declared_changed": false,
-     "nights": 15,
+     "nights": 16,
      "exact_by_night": {
       "2026-10-27": 95.1,
       "2026-10-28": 97.9,
@@ -961,44 +973,45 @@
       "2026-11-07": 97.9,
       "2026-11-08": 97.2,
       "2026-11-10": 94.4,
-      "2026-11-12": 97.2
+      "2026-11-12": 97.2,
+      "2026-11-13": 95.0
      },
-     "exact_mean": 96.4,
-     "exact_sd": 1.6,
+     "exact_mean": 96.3,
+     "exact_sd": 1.5,
      "exact_min": 93.7,
      "exact_max": 98.6,
-     "movement": -0.7,
+     "movement": -1.4,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
       "math": 99.7,
       "json": 100.0,
-      "string": 80.3,
+      "string": 80.5,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 1678,
-      "agree_pct": 93.9,
+      "pairs": 1798,
+      "agree_pct": 93.8,
       "by_family": {
        "math": {
-        "pairs": 560,
+        "pairs": 600,
         "agree_pct": 100.0
        },
        "json": {
-        "pairs": 280,
-        "agree_pct": 83.2
+        "pairs": 300,
+        "agree_pct": 82.7
        },
        "string": {
-        "pairs": 280,
-        "agree_pct": 80.0
+        "pairs": 300,
+        "agree_pct": 80.3
        },
        "needle": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 278,
+        "pairs": 298,
         "agree_pct": 100.0
        }
       }
@@ -1024,7 +1037,7 @@
      "tag": "amazon-bedrock/eu-west-1",
      "declared_quant": "unknown",
      "declared_changed": false,
-     "nights": 15,
+     "nights": 16,
      "exact_by_night": {
       "2026-10-27": 92.4,
       "2026-10-28": 95.8,
@@ -1040,44 +1053,45 @@
       "2026-11-07": 97.1,
       "2026-11-08": 96.5,
       "2026-11-10": 93.0,
-      "2026-11-12": 94.3
+      "2026-11-12": 94.3,
+      "2026-11-13": 97.1
      },
      "exact_mean": 96.2,
      "exact_sd": 1.7,
      "exact_min": 92.4,
      "exact_max": 98.6,
-     "movement": -0.3,
+     "movement": -0.1,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
       "math": 100.0,
       "json": 100.0,
-      "string": 76.1,
+      "string": 76.0,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 1680,
-      "agree_pct": 94.3,
+      "pairs": 1800,
+      "agree_pct": 94.2,
       "by_family": {
        "math": {
-        "pairs": 560,
+        "pairs": 600,
         "agree_pct": 100.0
        },
        "json": {
-        "pairs": 280,
-        "agree_pct": 80.4
+        "pairs": 300,
+        "agree_pct": 79.7
        },
        "string": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 85.7
        },
        "needle": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 100.0
        }
       }
@@ -1093,85 +1107,6 @@
       "2026-11-02": {
        "model": "gpt-oss-120b",
        "tag": "amazon-bedrock/eu-west-1",
-       "n": 36,
-       "agree": 35,
-       "agree_pct": 97.2
-      }
-     }
-    },
-    {
-     "tag": "near-ai/fp4",
-     "declared_quant": "fp4",
-     "declared_changed": false,
-     "nights": 15,
-     "exact_by_night": {
-      "2026-10-27": 97.2,
-      "2026-10-28": 95.1,
-      "2026-10-29": 95.8,
-      "2026-10-30": 92.4,
-      "2026-10-31": 95.8,
-      "2026-11-01": 97.2,
-      "2026-11-02": 95.1,
-      "2026-11-03": 95.8,
-      "2026-11-04": 95.8,
-      "2026-11-05": 100.0,
-      "2026-11-06": 96.5,
-      "2026-11-07": 95.0,
-      "2026-11-08": 96.5,
-      "2026-11-10": 97.2,
-      "2026-11-12": 97.9
-     },
-     "exact_mean": 96.2,
-     "exact_sd": 1.6,
-     "exact_min": 92.4,
-     "exact_max": 100.0,
-     "movement": 1.2,
-     "movement_overlap": false,
-     "movement_flag": false,
-     "families": {
-      "math": 99.9,
-      "json": 100.0,
-      "string": 79.4,
-      "needle": 100.0,
-      "echo": 100.0
-     },
-     "self": {
-      "pairs": 1680,
-      "agree_pct": 94.6,
-      "by_family": {
-       "math": {
-        "pairs": 560,
-        "agree_pct": 100.0
-       },
-       "json": {
-        "pairs": 280,
-        "agree_pct": 86.4
-       },
-       "string": {
-        "pairs": 280,
-        "agree_pct": 81.1
-       },
-       "needle": {
-        "pairs": 280,
-        "agree_pct": 100.0
-       },
-       "echo": {
-        "pairs": 280,
-        "agree_pct": 100.0
-       }
-      }
-     },
-     "selfcheck": {
-      "2026-10-27": {
-       "model": "gpt-oss-120b",
-       "tag": "near-ai/fp4",
-       "n": 12,
-       "agree": 11,
-       "agree_pct": 91.7
-      },
-      "2026-11-02": {
-       "model": "gpt-oss-120b",
-       "tag": "near-ai/fp4",
        "n": 36,
        "agree": 35,
        "agree_pct": 97.2
@@ -1182,7 +1117,7 @@
      "tag": "sail-research/fp4",
      "declared_quant": "fp4",
      "declared_changed": false,
-     "nights": 15,
+     "nights": 16,
      "exact_by_night": {
       "2026-10-27": 95.6,
       "2026-10-28": 95.1,
@@ -1198,44 +1133,45 @@
       "2026-11-07": 95.0,
       "2026-11-08": 97.9,
       "2026-11-10": 95.1,
-      "2026-11-12": 97.9
+      "2026-11-12": 97.9,
+      "2026-11-13": 96.4
      },
      "exact_mean": 96.2,
-     "exact_sd": 1.7,
+     "exact_sd": 1.6,
      "exact_min": 93.1,
      "exact_max": 100.0,
-     "movement": 1.9,
+     "movement": 1.4,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
       "math": 100.0,
       "json": 100.0,
-      "string": 76.1,
+      "string": 76.0,
       "needle": 99.7,
       "echo": 100.0
      },
      "self": {
-      "pairs": 1623,
-      "agree_pct": 94.5,
+      "pairs": 1743,
+      "agree_pct": 94.6,
       "by_family": {
        "math": {
-        "pairs": 550,
+        "pairs": 590,
         "agree_pct": 100.0
        },
        "json": {
-        "pairs": 267,
-        "agree_pct": 81.6
+        "pairs": 287,
+        "agree_pct": 81.9
        },
        "string": {
-        "pairs": 268,
-        "agree_pct": 85.1
+        "pairs": 288,
+        "agree_pct": 85.4
        },
        "needle": {
-        "pairs": 268,
+        "pairs": 288,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 270,
+        "pairs": 290,
         "agree_pct": 100.0
        }
       }
@@ -1258,68 +1194,90 @@
      }
     },
     {
-     "tag": "parasail/fast",
+     "tag": "near-ai/fp4",
      "declared_quant": "fp4",
      "declared_changed": false,
-     "nights": 6,
+     "nights": 16,
      "exact_by_night": {
-      "2026-11-05": 97.1,
-      "2026-11-06": 93.8,
-      "2026-11-07": 98.6,
-      "2026-11-08": 95.1,
+      "2026-10-27": 97.2,
+      "2026-10-28": 95.1,
+      "2026-10-29": 95.8,
+      "2026-10-30": 92.4,
+      "2026-10-31": 95.8,
+      "2026-11-01": 97.2,
+      "2026-11-02": 95.1,
+      "2026-11-03": 95.8,
+      "2026-11-04": 95.8,
+      "2026-11-05": 100.0,
+      "2026-11-06": 96.5,
+      "2026-11-07": 95.0,
+      "2026-11-08": 96.5,
       "2026-11-10": 97.2,
-      "2026-11-12": 95.0
+      "2026-11-12": 97.9,
+      "2026-11-13": 95.0
      },
      "exact_mean": 96.1,
      "exact_sd": 1.6,
-     "exact_min": 93.8,
-     "exact_max": 98.6,
-     "movement": -0.7,
+     "exact_min": 92.4,
+     "exact_max": 100.0,
+     "movement": 0.7,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 99.6,
+      "math": 99.9,
       "json": 100.0,
-      "string": 81.2,
-      "needle": 99.3,
+      "string": 79.2,
+      "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 600,
-      "agree_pct": 91.7,
+      "pairs": 1800,
+      "agree_pct": 94.6,
       "by_family": {
        "math": {
-        "pairs": 200,
+        "pairs": 600,
         "agree_pct": 100.0
        },
        "json": {
-        "pairs": 100,
-        "agree_pct": 73.0
+        "pairs": 300,
+        "agree_pct": 86.3
        },
        "string": {
-        "pairs": 100,
-        "agree_pct": 77.0
+        "pairs": 300,
+        "agree_pct": 81.3
        },
        "needle": {
-        "pairs": 100,
+        "pairs": 300,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 100,
+        "pairs": 300,
         "agree_pct": 100.0
        }
       }
      },
      "selfcheck": {
-      "2026-10-27": null,
-      "2026-11-02": null
+      "2026-10-27": {
+       "model": "gpt-oss-120b",
+       "tag": "near-ai/fp4",
+       "n": 12,
+       "agree": 11,
+       "agree_pct": 91.7
+      },
+      "2026-11-02": {
+       "model": "gpt-oss-120b",
+       "tag": "near-ai/fp4",
+       "n": 36,
+       "agree": 35,
+       "agree_pct": 97.2
+      }
      }
     },
     {
      "tag": "amazon-bedrock",
      "declared_quant": "unknown",
      "declared_changed": false,
-     "nights": 15,
+     "nights": 16,
      "exact_by_night": {
       "2026-10-27": 95.8,
       "2026-10-28": 97.9,
@@ -1335,44 +1293,45 @@
       "2026-11-07": 95.7,
       "2026-11-08": 97.2,
       "2026-11-10": 93.7,
-      "2026-11-12": 95.0
+      "2026-11-12": 95.0,
+      "2026-11-13": 95.7
      },
      "exact_mean": 96.0,
-     "exact_sd": 1.6,
+     "exact_sd": 1.5,
      "exact_min": 93.7,
      "exact_max": 98.6,
-     "movement": -1.9,
+     "movement": -2.4,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
       "math": 100.0,
       "json": 100.0,
-      "string": 78.9,
+      "string": 78.1,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 1680,
-      "agree_pct": 94.0,
+      "pairs": 1800,
+      "agree_pct": 93.8,
       "by_family": {
        "math": {
-        "pairs": 560,
+        "pairs": 600,
         "agree_pct": 100.0
        },
        "json": {
-        "pairs": 280,
-        "agree_pct": 76.8
+        "pairs": 300,
+        "agree_pct": 76.3
        },
        "string": {
-        "pairs": 280,
-        "agree_pct": 87.1
+        "pairs": 300,
+        "agree_pct": 86.7
        },
        "needle": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 100.0
        }
       }
@@ -1391,6 +1350,75 @@
        "n": 36,
        "agree": 35,
        "agree_pct": 97.2
+      }
+     }
+    },
+    {
+     "tag": "primeintellect/fp4",
+     "declared_quant": "fp4",
+     "declared_changed": false,
+     "nights": 11,
+     "exact_by_night": {
+      "2026-11-01": 93.1,
+      "2026-11-02": 96.4,
+      "2026-11-03": 95.8,
+      "2026-11-04": 95.8,
+      "2026-11-05": 97.1,
+      "2026-11-06": 94.4,
+      "2026-11-07": 96.4,
+      "2026-11-08": 96.5,
+      "2026-11-10": 98.6,
+      "2026-11-12": 94.3,
+      "2026-11-13": 97.1
+     },
+     "exact_mean": 96.0,
+     "exact_sd": 1.5,
+     "exact_min": 93.1,
+     "exact_max": 98.6,
+     "movement": 1.6,
+     "movement_overlap": false,
+     "movement_flag": false,
+     "families": {
+      "math": 100.0,
+      "json": 100.0,
+      "string": 75.2,
+      "needle": 99.6,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 1192,
+      "agree_pct": 94.7,
+      "by_family": {
+       "math": {
+        "pairs": 398,
+        "agree_pct": 100.0
+       },
+       "json": {
+        "pairs": 200,
+        "agree_pct": 82.5
+       },
+       "string": {
+        "pairs": 198,
+        "agree_pct": 85.9
+       },
+       "needle": {
+        "pairs": 198,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 198,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": null,
+      "2026-11-02": {
+       "model": "gpt-oss-120b",
+       "tag": "primeintellect/fp4",
+       "n": 36,
+       "agree": 36,
+       "agree_pct": 100.0
       }
      }
     },
@@ -1470,7 +1498,7 @@
      "tag": "mancer/fp8",
      "declared_quant": "fp8",
      "declared_changed": false,
-     "nights": 15,
+     "nights": 16,
      "exact_by_night": {
       "2026-10-27": 95.1,
       "2026-10-28": 95.8,
@@ -1486,44 +1514,45 @@
       "2026-11-07": 97.9,
       "2026-11-08": 95.8,
       "2026-11-10": 94.4,
-      "2026-11-12": 97.2
+      "2026-11-12": 97.2,
+      "2026-11-13": 95.7
      },
      "exact_mean": 95.8,
-     "exact_sd": 1.9,
+     "exact_sd": 1.8,
      "exact_min": 91.5,
      "exact_max": 99.3,
      "movement": -0.5,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 99.9,
+      "math": 99.7,
       "json": 100.0,
-      "string": 81.6,
+      "string": 81.5,
       "needle": 100.0,
       "echo": 99.7
      },
      "self": {
-      "pairs": 1680,
-      "agree_pct": 93.7,
+      "pairs": 1800,
+      "agree_pct": 93.8,
       "by_family": {
        "math": {
-        "pairs": 560,
+        "pairs": 600,
         "agree_pct": 100.0
        },
        "json": {
-        "pairs": 280,
-        "agree_pct": 77.1
+        "pairs": 300,
+        "agree_pct": 77.7
        },
        "string": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 85.7
        },
        "needle": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 99.3
        }
       }
@@ -1549,7 +1578,7 @@
      "tag": "nebius/fp4",
      "declared_quant": "fp4",
      "declared_changed": false,
-     "nights": 15,
+     "nights": 16,
      "exact_by_night": {
       "2026-10-27": 93.8,
       "2026-10-28": 97.2,
@@ -1565,44 +1594,45 @@
       "2026-11-07": 95.7,
       "2026-11-08": 96.5,
       "2026-11-10": 96.5,
-      "2026-11-12": 97.1
+      "2026-11-12": 97.1,
+      "2026-11-13": 95.7
      },
      "exact_mean": 95.8,
-     "exact_sd": 1.5,
+     "exact_sd": 1.4,
      "exact_min": 93.1,
      "exact_max": 97.9,
-     "movement": 1.1,
+     "movement": 0.8,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
       "math": 99.9,
       "json": 100.0,
-      "string": 77.2,
+      "string": 77.3,
       "needle": 99.7,
       "echo": 100.0
      },
      "self": {
-      "pairs": 1679,
+      "pairs": 1798,
       "agree_pct": 94.5,
       "by_family": {
        "math": {
-        "pairs": 560,
+        "pairs": 600,
         "agree_pct": 100.0
        },
        "json": {
-        "pairs": 280,
-        "agree_pct": 80.7
+        "pairs": 300,
+        "agree_pct": 81.3
        },
        "string": {
-        "pairs": 280,
-        "agree_pct": 86.8
+        "pairs": 300,
+        "agree_pct": 86.7
        },
        "needle": {
-        "pairs": 279,
+        "pairs": 298,
         "agree_pct": 99.3
        },
        "echo": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 100.0
        }
       }
@@ -1625,78 +1655,69 @@
      }
     },
     {
-     "tag": "primeintellect/fp4",
+     "tag": "parasail/fast",
      "declared_quant": "fp4",
      "declared_changed": false,
-     "nights": 10,
+     "nights": 7,
      "exact_by_night": {
-      "2026-11-01": 93.1,
-      "2026-11-02": 96.4,
-      "2026-11-03": 95.8,
-      "2026-11-04": 95.8,
       "2026-11-05": 97.1,
-      "2026-11-06": 94.4,
-      "2026-11-07": 96.4,
-      "2026-11-08": 96.5,
-      "2026-11-10": 98.6,
-      "2026-11-12": 94.3
+      "2026-11-06": 93.8,
+      "2026-11-07": 98.6,
+      "2026-11-08": 95.1,
+      "2026-11-10": 97.2,
+      "2026-11-12": 95.0,
+      "2026-11-13": 93.6
      },
      "exact_mean": 95.8,
-     "exact_sd": 1.5,
-     "exact_min": 93.1,
+     "exact_sd": 1.8,
+     "exact_min": 93.6,
      "exact_max": 98.6,
-     "movement": 1.4,
+     "movement": -1.2,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 100.0,
+      "math": 99.7,
       "json": 100.0,
-      "string": 76.0,
-      "needle": 99.6,
+      "string": 80.4,
+      "needle": 99.4,
       "echo": 100.0
      },
      "self": {
-      "pairs": 1072,
-      "agree_pct": 95.0,
+      "pairs": 720,
+      "agree_pct": 91.1,
       "by_family": {
        "math": {
-        "pairs": 358,
+        "pairs": 240,
         "agree_pct": 100.0
        },
        "json": {
-        "pairs": 180,
-        "agree_pct": 83.3
+        "pairs": 120,
+        "agree_pct": 70.8
        },
        "string": {
-        "pairs": 178,
-        "agree_pct": 86.5
+        "pairs": 120,
+        "agree_pct": 75.8
        },
        "needle": {
-        "pairs": 178,
+        "pairs": 120,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 178,
+        "pairs": 120,
         "agree_pct": 100.0
        }
       }
      },
      "selfcheck": {
       "2026-10-27": null,
-      "2026-11-02": {
-       "model": "gpt-oss-120b",
-       "tag": "primeintellect/fp4",
-       "n": 36,
-       "agree": 36,
-       "agree_pct": 100.0
-      }
+      "2026-11-02": null
      }
     },
     {
      "tag": "siliconflow/fp8",
      "declared_quant": "fp8",
      "declared_changed": false,
-     "nights": 15,
+     "nights": 16,
      "exact_by_night": {
       "2026-10-27": 93.1,
       "2026-10-28": 93.1,
@@ -1712,44 +1733,45 @@
       "2026-11-07": 95.7,
       "2026-11-08": 91.5,
       "2026-11-10": 97.9,
-      "2026-11-12": 95.7
+      "2026-11-12": 95.7,
+      "2026-11-13": 95.0
      },
      "exact_mean": 95.4,
-     "exact_sd": 1.7,
+     "exact_sd": 1.6,
      "exact_min": 91.5,
      "exact_max": 97.9,
-     "movement": 1.3,
+     "movement": 2.5,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 98.7,
+      "math": 98.3,
       "json": 100.0,
-      "string": 89.1,
+      "string": 88.7,
       "needle": 99.7,
       "echo": 99.7
      },
      "self": {
-      "pairs": 1654,
-      "agree_pct": 95.3,
+      "pairs": 1774,
+      "agree_pct": 95.2,
       "by_family": {
        "math": {
-        "pairs": 554,
-        "agree_pct": 98.7
+        "pairs": 594,
+        "agree_pct": 98.5
        },
        "json": {
-        "pairs": 272,
+        "pairs": 292,
         "agree_pct": 86.0
        },
        "string": {
-        "pairs": 274,
-        "agree_pct": 89.8
+        "pairs": 294,
+        "agree_pct": 89.1
        },
        "needle": {
-        "pairs": 278,
+        "pairs": 298,
         "agree_pct": 99.3
        },
        "echo": {
-        "pairs": 276,
+        "pairs": 296,
         "agree_pct": 99.3
        }
       }
@@ -1775,7 +1797,7 @@
      "tag": "akashml/fp4",
      "declared_quant": "fp4",
      "declared_changed": false,
-     "nights": 7,
+     "nights": 8,
      "exact_by_night": {
       "2026-11-04": 94.4,
       "2026-11-05": 94.2,
@@ -1783,44 +1805,45 @@
       "2026-11-07": 96.4,
       "2026-11-08": 95.8,
       "2026-11-10": 94.4,
-      "2026-11-12": 96.5
+      "2026-11-12": 96.5,
+      "2026-11-13": 96.4
      },
-     "exact_mean": 95.1,
-     "exact_sd": 1.0,
+     "exact_mean": 95.2,
+     "exact_sd": 1.1,
      "exact_min": 93.8,
      "exact_max": 96.5,
-     "movement": 1.4,
+     "movement": 1.6,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
       "math": 100.0,
       "json": 100.0,
-      "string": 78.0,
-      "needle": 99.4,
+      "string": 78.1,
+      "needle": 99.5,
       "echo": 100.0
      },
      "self": {
-      "pairs": 720,
-      "agree_pct": 93.1,
+      "pairs": 840,
+      "agree_pct": 93.6,
       "by_family": {
        "math": {
-        "pairs": 240,
+        "pairs": 280,
         "agree_pct": 100.0
        },
        "json": {
-        "pairs": 120,
-        "agree_pct": 70.0
+        "pairs": 140,
+        "agree_pct": 72.9
        },
        "string": {
-        "pairs": 120,
-        "agree_pct": 88.3
+        "pairs": 140,
+        "agree_pct": 88.6
        },
        "needle": {
-        "pairs": 120,
+        "pairs": 140,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 120,
+        "pairs": 140,
         "agree_pct": 100.0
        }
       }
@@ -1834,7 +1857,7 @@
      "tag": "coreweave/fp4",
      "declared_quant": "fp4",
      "declared_changed": false,
-     "nights": 15,
+     "nights": 16,
      "exact_by_night": {
       "2026-10-27": 93.8,
       "2026-10-28": 95.8,
@@ -1850,44 +1873,45 @@
       "2026-11-07": 93.6,
       "2026-11-08": 97.9,
       "2026-11-10": 95.8,
-      "2026-11-12": 97.2
+      "2026-11-12": 97.2,
+      "2026-11-13": 97.1
      },
-     "exact_mean": 95.0,
+     "exact_mean": 95.1,
      "exact_sd": 2.1,
      "exact_min": 90.8,
      "exact_max": 98.6,
-     "movement": 1.8,
+     "movement": 1.6,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
       "math": 99.6,
       "json": 100.0,
-      "string": 77.8,
+      "string": 77.4,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 1674,
-      "agree_pct": 93.2,
+      "pairs": 1792,
+      "agree_pct": 93.5,
       "by_family": {
        "math": {
-        "pairs": 560,
+        "pairs": 600,
         "agree_pct": 100.0
        },
        "json": {
-        "pairs": 278,
-        "agree_pct": 71.6
+        "pairs": 298,
+        "agree_pct": 73.2
        },
        "string": {
-        "pairs": 280,
-        "agree_pct": 87.5
+        "pairs": 300,
+        "agree_pct": 87.7
        },
        "needle": {
-        "pairs": 276,
+        "pairs": 295,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 280,
+        "pairs": 299,
         "agree_pct": 100.0
        }
       }
@@ -1913,7 +1937,7 @@
      "tag": "google-vertex/global",
      "declared_quant": "unknown",
      "declared_changed": false,
-     "nights": 15,
+     "nights": 16,
      "exact_by_night": {
       "2026-10-27": 94.4,
       "2026-10-28": 95.1,
@@ -1929,45 +1953,46 @@
       "2026-11-07": 96.4,
       "2026-11-08": 95.7,
       "2026-11-10": 95.0,
-      "2026-11-12": 97.8
+      "2026-11-12": 97.8,
+      "2026-11-13": 92.9
      },
-     "exact_mean": 94.4,
-     "exact_sd": 2.3,
+     "exact_mean": 94.3,
+     "exact_sd": 2.2,
      "exact_min": 90.4,
      "exact_max": 97.8,
-     "movement": 2.7,
+     "movement": 1.7,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
       "math": 96.3,
-      "json": 99.4,
-      "string": 75.6,
+      "json": 99.5,
+      "string": 75.0,
       "needle": 100.0,
-      "echo": 98.9
+      "echo": 99.0
      },
      "self": {
-      "pairs": 1643,
-      "agree_pct": 93.1,
+      "pairs": 1760,
+      "agree_pct": 93.3,
       "by_family": {
        "math": {
-        "pairs": 535,
-        "agree_pct": 97.9
+        "pairs": 573,
+        "agree_pct": 98.1
        },
        "json": {
-        "pairs": 278,
-        "agree_pct": 80.6
+        "pairs": 298,
+        "agree_pct": 81.5
        },
        "string": {
-        "pairs": 272,
-        "agree_pct": 85.3
+        "pairs": 291,
+        "agree_pct": 84.9
        },
        "needle": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 278,
-        "agree_pct": 97.1
+        "pairs": 298,
+        "agree_pct": 97.3
        }
       }
      },
@@ -2140,7 +2165,7 @@
      "tag": "digitalocean",
      "declared_quant": "unknown",
      "declared_changed": false,
-     "nights": 15,
+     "nights": 16,
      "exact_by_night": {
       "2026-10-27": 94.4,
       "2026-10-28": 91.0,
@@ -2156,44 +2181,45 @@
       "2026-11-07": 93.6,
       "2026-11-08": 92.3,
       "2026-11-10": 92.3,
-      "2026-11-12": 90.8
+      "2026-11-12": 90.8,
+      "2026-11-13": 95.7
      },
-     "exact_mean": 92.0,
-     "exact_sd": 1.5,
+     "exact_mean": 92.2,
+     "exact_sd": 1.7,
      "exact_min": 88.9,
-     "exact_max": 94.4,
-     "movement": -0.1,
+     "exact_max": 95.7,
+     "movement": 1.0,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
       "math": 99.9,
       "json": 100.0,
-      "string": 86.9,
+      "string": 86.7,
       "needle": 99.7,
       "echo": 99.7
      },
      "self": {
-      "pairs": 1680,
-      "agree_pct": 89.2,
+      "pairs": 1800,
+      "agree_pct": 89.3,
       "by_family": {
        "math": {
-        "pairs": 560,
+        "pairs": 600,
         "agree_pct": 100.0
        },
        "json": {
-        "pairs": 280,
-        "agree_pct": 51.8
+        "pairs": 300,
+        "agree_pct": 51.7
        },
        "string": {
-        "pairs": 280,
-        "agree_pct": 84.3
+        "pairs": 300,
+        "agree_pct": 84.7
        },
        "needle": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 99.3
        }
       }
@@ -2219,7 +2245,7 @@
      "tag": "venice/int4",
      "declared_quant": "int4",
      "declared_changed": false,
-     "nights": 15,
+     "nights": 16,
      "exact_by_night": {
       "2026-10-27": 91.0,
       "2026-10-28": 95.8,
@@ -2235,45 +2261,46 @@
       "2026-11-07": 85.7,
       "2026-11-08": 78.9,
       "2026-11-10": 85.2,
-      "2026-11-12": 86.5
+      "2026-11-12": 86.5,
+      "2026-11-13": 83.6
      },
-     "exact_mean": 85.9,
-     "exact_sd": 7.2,
+     "exact_mean": 85.7,
+     "exact_sd": 7.0,
      "exact_min": 75.0,
      "exact_max": 97.2,
-     "movement": -11.1,
+     "movement": -9.6,
      "movement_overlap": false,
-     "movement_flag": true,
+     "movement_flag": false,
      "families": {
       "math": 81.8,
       "json": 100.0,
-      "string": 75.8,
+      "string": 75.3,
       "needle": 100.0,
-      "echo": 89.5
+      "echo": 89.6
      },
      "self": {
-      "pairs": 1678,
-      "agree_pct": 79.7,
+      "pairs": 1798,
+      "agree_pct": 79.5,
       "by_family": {
        "math": {
-        "pairs": 558,
-        "agree_pct": 68.5
+        "pairs": 598,
+        "agree_pct": 68.6
        },
        "json": {
-        "pairs": 280,
-        "agree_pct": 75.7
+        "pairs": 300,
+        "agree_pct": 76.0
        },
        "string": {
-        "pairs": 280,
-        "agree_pct": 78.9
+        "pairs": 300,
+        "agree_pct": 77.7
        },
        "needle": {
-        "pairs": 280,
+        "pairs": 300,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 280,
-        "agree_pct": 86.8
+        "pairs": 300,
+        "agree_pct": 86.3
        }
       }
      },
@@ -2297,38 +2324,38 @@
    ],
    "families": {
     "math": {
-     "endpoints": 29,
+     "endpoints": 30,
      "median_agree_pct": 100.0,
      "p75_disagree_pct": 0.0,
      "noise_floor": 100.0,
      "stable": true
     },
     "json": {
-     "endpoints": 29,
-     "median_agree_pct": 81.6,
-     "p75_disagree_pct": 24.3,
-     "noise_floor": 75.7,
+     "endpoints": 30,
+     "median_agree_pct": 81.7,
+     "p75_disagree_pct": 23.9,
+     "noise_floor": 76.1,
      "stable": false
     },
     "string": {
-     "endpoints": 29,
-     "median_agree_pct": 86.4,
-     "p75_disagree_pct": 15.7,
-     "noise_floor": 84.3,
+     "endpoints": 30,
+     "median_agree_pct": 86.3,
+     "p75_disagree_pct": 16.2,
+     "noise_floor": 83.8,
      "stable": false
     },
     "needle": {
-     "endpoints": 29,
+     "endpoints": 30,
      "median_agree_pct": 100.0,
      "p75_disagree_pct": 0.0,
      "noise_floor": 100.0,
      "stable": true
     },
     "echo": {
-     "endpoints": 29,
+     "endpoints": 30,
      "median_agree_pct": 100.0,
-     "p75_disagree_pct": 0.7,
-     "noise_floor": 99.3,
+     "p75_disagree_pct": 0.5,
+     "noise_floor": 99.5,
      "stable": true
     }
    }
@@ -2344,7 +2371,7 @@
      "tag": "alibaba/fp8/us-east-1",
      "declared_quant": "fp8",
      "declared_changed": false,
-     "nights": 16,
+     "nights": 17,
      "exact_by_night": {
       "2026-10-27": 80.3,
       "2026-10-28": 80.3,
@@ -2361,44 +2388,45 @@
       "2026-11-08": 89.6,
       "2026-11-10": 85.0,
       "2026-11-11": 89.9,
-      "2026-11-12": 87.6
+      "2026-11-12": 87.6,
+      "2026-11-13": 78.6
      },
-     "exact_mean": 85.1,
-     "exact_sd": 4.2,
+     "exact_mean": 84.7,
+     "exact_sd": 4.3,
      "exact_min": 77.3,
      "exact_max": 92.5,
-     "movement": 8.2,
+     "movement": 6.1,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
       "math": 99.9,
       "json": 100.0,
-      "string": 58.8,
+      "string": 59.5,
       "needle": 100.0,
       "echo": 95.3
      },
      "self": {
-      "pairs": 1786,
-      "agree_pct": 77.3,
+      "pairs": 1906,
+      "agree_pct": 76.8,
       "by_family": {
        "math": {
-        "pairs": 596,
-        "agree_pct": 54.0
+        "pairs": 636,
+        "agree_pct": 53.0
        },
        "json": {
-        "pairs": 298,
-        "agree_pct": 78.5
+        "pairs": 318,
+        "agree_pct": 78.0
        },
        "string": {
-        "pairs": 298,
-        "agree_pct": 77.2
+        "pairs": 318,
+        "agree_pct": 76.7
        },
        "needle": {
-        "pairs": 295,
+        "pairs": 315,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 299,
+        "pairs": 319,
         "agree_pct": 100.0
        }
       }
@@ -2424,7 +2452,7 @@
      "tag": "alibaba/fp8",
      "declared_quant": "fp8",
      "declared_changed": false,
-     "nights": 16,
+     "nights": 17,
      "exact_by_night": {
       "2026-10-27": 82.3,
       "2026-10-28": 75.0,
@@ -2441,44 +2469,45 @@
       "2026-11-08": 88.1,
       "2026-11-10": 82.7,
       "2026-11-11": 85.4,
-      "2026-11-12": 86.0
+      "2026-11-12": 86.0,
+      "2026-11-13": 79.4
      },
-     "exact_mean": 84.4,
-     "exact_sd": 4.3,
+     "exact_mean": 84.1,
+     "exact_sd": 4.4,
      "exact_min": 75.0,
      "exact_max": 91.7,
-     "movement": 6.3,
+     "movement": 5.2,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
       "math": 99.9,
       "json": 100.0,
-      "string": 58.7,
+      "string": 59.1,
       "needle": 100.0,
-      "echo": 95.3
+      "echo": 95.1
      },
      "self": {
-      "pairs": 1792,
-      "agree_pct": 76.5,
+      "pairs": 1912,
+      "agree_pct": 76.0,
       "by_family": {
        "math": {
-        "pairs": 598,
-        "agree_pct": 52.2
+        "pairs": 638,
+        "agree_pct": 51.9
        },
        "json": {
-        "pairs": 298,
-        "agree_pct": 75.8
+        "pairs": 318,
+        "agree_pct": 74.2
        },
        "string": {
-        "pairs": 298,
-        "agree_pct": 78.5
+        "pairs": 318,
+        "agree_pct": 78.0
        },
        "needle": {
-        "pairs": 298,
+        "pairs": 318,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 300,
+        "pairs": 320,
         "agree_pct": 100.0
        }
       }
@@ -2504,7 +2533,7 @@
      "tag": "streamlake/fp8",
      "declared_quant": "fp8",
      "declared_changed": false,
-     "nights": 16,
+     "nights": 17,
      "exact_by_night": {
       "2026-10-27": 86.2,
       "2026-10-28": 78.0,
@@ -2521,45 +2550,46 @@
       "2026-11-08": 73.1,
       "2026-11-10": 80.3,
       "2026-11-11": 77.3,
-      "2026-11-12": 79.8
+      "2026-11-12": 79.8,
+      "2026-11-13": 76.3
      },
-     "exact_mean": 77.5,
-     "exact_sd": 3.5,
+     "exact_mean": 77.4,
+     "exact_sd": 3.4,
      "exact_min": 72.2,
      "exact_max": 86.2,
-     "movement": -2.1,
+     "movement": -3.4,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
       "math": 99.9,
       "json": 100.0,
-      "string": 62.2,
+      "string": 62.3,
       "needle": 100.0,
       "echo": 96.3
      },
      "self": {
-      "pairs": 1796,
-      "agree_pct": 66.1,
+      "pairs": 1916,
+      "agree_pct": 66.2,
       "by_family": {
        "math": {
-        "pairs": 600,
-        "agree_pct": 29.7
+        "pairs": 640,
+        "agree_pct": 29.8
        },
        "json": {
-        "pairs": 298,
-        "agree_pct": 63.8
+        "pairs": 318,
+        "agree_pct": 63.5
        },
        "string": {
-        "pairs": 300,
-        "agree_pct": 76.0
+        "pairs": 320,
+        "agree_pct": 76.2
        },
        "needle": {
-        "pairs": 298,
+        "pairs": 318,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 300,
-        "agree_pct": 98.0
+        "pairs": 320,
+        "agree_pct": 97.8
        }
       }
      },
@@ -2584,7 +2614,7 @@
      "tag": "atlas-cloud/fp4",
      "declared_quant": "fp4",
      "declared_changed": false,
-     "nights": 16,
+     "nights": 17,
      "exact_by_night": {
       "2026-10-27": 78.7,
       "2026-10-28": 78.0,
@@ -2601,44 +2631,45 @@
       "2026-11-08": 76.1,
       "2026-11-10": 81.1,
       "2026-11-11": 74.8,
-      "2026-11-12": 72.1
+      "2026-11-12": 72.1,
+      "2026-11-13": 77.1
      },
      "exact_mean": 76.5,
-     "exact_sd": 3.0,
+     "exact_sd": 2.9,
      "exact_min": 72.1,
      "exact_max": 82.0,
-     "movement": -0.5,
+     "movement": -1.8,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
       "math": 99.9,
       "json": 100.0,
-      "string": 55.9,
+      "string": 55.5,
       "needle": 100.0,
-      "echo": 99.7
+      "echo": 99.5
      },
      "self": {
-      "pairs": 1789,
-      "agree_pct": 68.6,
+      "pairs": 1909,
+      "agree_pct": 68.5,
       "by_family": {
        "math": {
-        "pairs": 597,
-        "agree_pct": 33.5
+        "pairs": 637,
+        "agree_pct": 32.8
        },
        "json": {
-        "pairs": 296,
-        "agree_pct": 72.0
+        "pairs": 316,
+        "agree_pct": 72.5
        },
        "string": {
-        "pairs": 300,
-        "agree_pct": 73.0
+        "pairs": 320,
+        "agree_pct": 72.8
        },
        "needle": {
-        "pairs": 298,
+        "pairs": 318,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 298,
+        "pairs": 318,
         "agree_pct": 100.0
        }
       }
@@ -2664,7 +2695,7 @@
      "tag": "deepinfra/fp8",
      "declared_quant": "fp8",
      "declared_changed": false,
-     "nights": 16,
+     "nights": 17,
      "exact_by_night": {
       "2026-10-27": 71.5,
       "2026-10-28": 76.5,
@@ -2681,45 +2712,46 @@
       "2026-11-08": 81.1,
       "2026-11-10": 78.0,
       "2026-11-11": 73.4,
-      "2026-11-12": 74.4
+      "2026-11-12": 74.4,
+      "2026-11-13": 80.2
      },
-     "exact_mean": 75.9,
+     "exact_mean": 76.1,
      "exact_sd": 3.6,
      "exact_min": 70.1,
      "exact_max": 83.7,
-     "movement": 1.7,
+     "movement": 2.4,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
       "math": 100.0,
       "json": 100.0,
-      "string": 62.1,
-      "needle": 99.7,
-      "echo": 96.2
+      "string": 61.9,
+      "needle": 99.8,
+      "echo": 96.0
      },
      "self": {
-      "pairs": 1696,
+      "pairs": 1816,
       "agree_pct": 66.2,
       "by_family": {
        "math": {
-        "pairs": 542,
-        "agree_pct": 27.9
+        "pairs": 582,
+        "agree_pct": 28.4
        },
        "json": {
-        "pairs": 290,
-        "agree_pct": 68.3
+        "pairs": 310,
+        "agree_pct": 68.1
        },
        "string": {
-        "pairs": 288,
-        "agree_pct": 73.3
+        "pairs": 308,
+        "agree_pct": 73.1
        },
        "needle": {
-        "pairs": 288,
-        "agree_pct": 98.6
+        "pairs": 308,
+        "agree_pct": 98.7
        },
        "echo": {
-        "pairs": 288,
-        "agree_pct": 96.5
+        "pairs": 308,
+        "agree_pct": 96.8
        }
       }
      },
@@ -2798,90 +2830,10 @@
      }
     },
     {
-     "tag": "relace/fp4",
-     "declared_quant": "fp4",
-     "declared_changed": false,
-     "nights": 16,
-     "exact_by_night": {
-      "2026-10-27": 78.5,
-      "2026-10-28": 78.6,
-      "2026-10-29": 74.0,
-      "2026-10-30": 74.8,
-      "2026-10-31": 71.4,
-      "2026-11-01": 70.1,
-      "2026-11-02": 74.4,
-      "2026-11-03": 74.1,
-      "2026-11-04": 76.6,
-      "2026-11-05": 77.5,
-      "2026-11-06": 77.4,
-      "2026-11-07": 75.7,
-      "2026-11-08": 75.4,
-      "2026-11-10": 71.0,
-      "2026-11-11": 73.6,
-      "2026-11-12": 77.5
-     },
-     "exact_mean": 75.0,
-     "exact_sd": 2.5,
-     "exact_min": 70.1,
-     "exact_max": 78.6,
-     "movement": -3.0,
-     "movement_overlap": false,
-     "movement_flag": false,
-     "families": {
-      "math": 99.9,
-      "json": 100.0,
-      "string": 64.3,
-      "needle": 100.0,
-      "echo": 96.1
-     },
-     "self": {
-      "pairs": 1774,
-      "agree_pct": 67.5,
-      "by_family": {
-       "math": {
-        "pairs": 592,
-        "agree_pct": 30.6
-       },
-       "json": {
-        "pairs": 298,
-        "agree_pct": 70.1
-       },
-       "string": {
-        "pairs": 292,
-        "agree_pct": 74.7
-       },
-       "needle": {
-        "pairs": 296,
-        "agree_pct": 100.0
-       },
-       "echo": {
-        "pairs": 296,
-        "agree_pct": 99.0
-       }
-      }
-     },
-     "selfcheck": {
-      "2026-10-27": {
-       "model": "deepseek-v4-pro",
-       "tag": "relace/fp4",
-       "n": 12,
-       "agree": 10,
-       "agree_pct": 83.3
-      },
-      "2026-11-02": {
-       "model": "deepseek-v4-pro",
-       "tag": "relace/fp4",
-       "n": 36,
-       "agree": 33,
-       "agree_pct": 91.7
-      }
-     }
-    },
-    {
      "tag": "venice",
      "declared_quant": "unknown",
      "declared_changed": false,
-     "nights": 16,
+     "nights": 17,
      "exact_by_night": {
       "2026-10-27": 80.2,
       "2026-10-28": 72.7,
@@ -2898,45 +2850,46 @@
       "2026-11-08": 76.1,
       "2026-11-10": 75.6,
       "2026-11-11": 69.5,
-      "2026-11-12": 75.2
+      "2026-11-12": 75.2,
+      "2026-11-13": 80.9
      },
-     "exact_mean": 74.8,
-     "exact_sd": 3.3,
+     "exact_mean": 75.1,
+     "exact_sd": 3.5,
      "exact_min": 68.9,
-     "exact_max": 80.5,
-     "movement": -2.5,
+     "exact_max": 80.9,
+     "movement": -0.8,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
       "math": 99.9,
       "json": 100.0,
-      "string": 60.3,
-      "needle": 99.7,
-      "echo": 96.5
+      "string": 60.4,
+      "needle": 99.8,
+      "echo": 96.2
      },
      "self": {
-      "pairs": 1786,
-      "agree_pct": 64.2,
+      "pairs": 1906,
+      "agree_pct": 64.4,
       "by_family": {
        "math": {
-        "pairs": 596,
-        "agree_pct": 30.9
+        "pairs": 636,
+        "agree_pct": 31.0
        },
        "json": {
-        "pairs": 297,
-        "agree_pct": 61.6
+        "pairs": 317,
+        "agree_pct": 61.8
        },
        "string": {
-        "pairs": 300,
-        "agree_pct": 68.7
+        "pairs": 320,
+        "agree_pct": 69.4
        },
        "needle": {
-        "pairs": 295,
-        "agree_pct": 98.6
+        "pairs": 315,
+        "agree_pct": 98.7
        },
        "echo": {
-        "pairs": 298,
-        "agree_pct": 94.6
+        "pairs": 318,
+        "agree_pct": 95.0
        }
       }
      },
@@ -2958,10 +2911,91 @@
      }
     },
     {
+     "tag": "relace/fp4",
+     "declared_quant": "fp4",
+     "declared_changed": false,
+     "nights": 17,
+     "exact_by_night": {
+      "2026-10-27": 78.5,
+      "2026-10-28": 78.6,
+      "2026-10-29": 74.0,
+      "2026-10-30": 74.8,
+      "2026-10-31": 71.4,
+      "2026-11-01": 70.1,
+      "2026-11-02": 74.4,
+      "2026-11-03": 74.1,
+      "2026-11-04": 76.6,
+      "2026-11-05": 77.5,
+      "2026-11-06": 77.4,
+      "2026-11-07": 75.7,
+      "2026-11-08": 75.4,
+      "2026-11-10": 71.0,
+      "2026-11-11": 73.6,
+      "2026-11-12": 77.5,
+      "2026-11-13": 70.2
+     },
+     "exact_mean": 74.8,
+     "exact_sd": 2.7,
+     "exact_min": 70.1,
+     "exact_max": 78.6,
+     "movement": -3.3,
+     "movement_overlap": false,
+     "movement_flag": false,
+     "families": {
+      "math": 99.9,
+      "json": 100.0,
+      "string": 64.2,
+      "needle": 100.0,
+      "echo": 96.0
+     },
+     "self": {
+      "pairs": 1894,
+      "agree_pct": 67.6,
+      "by_family": {
+       "math": {
+        "pairs": 632,
+        "agree_pct": 30.9
+       },
+       "json": {
+        "pairs": 318,
+        "agree_pct": 70.4
+       },
+       "string": {
+        "pairs": 312,
+        "agree_pct": 74.7
+       },
+       "needle": {
+        "pairs": 316,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 316,
+        "agree_pct": 99.1
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "deepseek-v4-pro",
+       "tag": "relace/fp4",
+       "n": 12,
+       "agree": 10,
+       "agree_pct": 83.3
+      },
+      "2026-11-02": {
+       "model": "deepseek-v4-pro",
+       "tag": "relace/fp4",
+       "n": 36,
+       "agree": 33,
+       "agree_pct": 91.7
+      }
+     }
+    },
+    {
      "tag": "siliconflow/fp8",
      "declared_quant": "fp8",
      "declared_changed": false,
-     "nights": 16,
+     "nights": 17,
      "exact_by_night": {
       "2026-10-27": 73.0,
       "2026-10-28": 71.2,
@@ -2978,45 +3012,46 @@
       "2026-11-08": 67.9,
       "2026-11-10": 73.2,
       "2026-11-11": 68.5,
-      "2026-11-12": 72.1
+      "2026-11-12": 72.1,
+      "2026-11-13": 74.8
      },
-     "exact_mean": 70.3,
-     "exact_sd": 2.2,
+     "exact_mean": 70.6,
+     "exact_sd": 2.4,
      "exact_min": 65.7,
      "exact_max": 74.8,
-     "movement": -0.0,
+     "movement": 0.5,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
       "math": 100.0,
       "json": 100.0,
-      "string": 59.4,
+      "string": 59.6,
       "needle": 100.0,
       "echo": 96.3
      },
      "self": {
-      "pairs": 1797,
-      "agree_pct": 66.2,
+      "pairs": 1917,
+      "agree_pct": 66.7,
       "by_family": {
        "math": {
-        "pairs": 599,
-        "agree_pct": 29.0
+        "pairs": 639,
+        "agree_pct": 30.2
        },
        "json": {
-        "pairs": 300,
-        "agree_pct": 67.3
+        "pairs": 320,
+        "agree_pct": 67.2
        },
        "string": {
-        "pairs": 300,
-        "agree_pct": 75.3
+        "pairs": 320,
+        "agree_pct": 75.6
        },
        "needle": {
-        "pairs": 299,
+        "pairs": 319,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 299,
-        "agree_pct": 96.7
+        "pairs": 319,
+        "agree_pct": 96.9
        }
       }
      },
@@ -3041,7 +3076,7 @@
      "tag": "baidu/fp8",
      "declared_quant": "fp8",
      "declared_changed": false,
-     "nights": 16,
+     "nights": 17,
      "exact_by_night": {
       "2026-10-27": 75.4,
       "2026-10-28": 68.9,
@@ -3058,45 +3093,46 @@
       "2026-11-08": 77.6,
       "2026-11-10": 86.5,
       "2026-11-11": 47.2,
-      "2026-11-12": 46.5
+      "2026-11-12": 46.5,
+      "2026-11-13": 78.6
      },
-     "exact_mean": 68.3,
-     "exact_sd": 13.7,
+     "exact_mean": 68.9,
+     "exact_sd": 13.5,
      "exact_min": 46.5,
      "exact_max": 86.5,
-     "movement": -13.0,
+     "movement": -15.7,
      "movement_overlap": false,
      "movement_flag": true,
      "families": {
       "math": 99.5,
       "json": 100.0,
-      "string": 48.9,
+      "string": 49.7,
       "needle": 100.0,
-      "echo": 97.0
+      "echo": 96.6
      },
      "self": {
-      "pairs": 1698,
-      "agree_pct": 59.0,
+      "pairs": 1818,
+      "agree_pct": 57.6,
       "by_family": {
        "math": {
-        "pairs": 558,
-        "agree_pct": 22.2
+        "pairs": 598,
+        "agree_pct": 20.7
        },
        "json": {
-        "pairs": 284,
-        "agree_pct": 49.6
+        "pairs": 304,
+        "agree_pct": 46.4
        },
        "string": {
-        "pairs": 290,
-        "agree_pct": 61.0
+        "pairs": 310,
+        "agree_pct": 59.4
        },
        "needle": {
-        "pairs": 284,
+        "pairs": 304,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 282,
-        "agree_pct": 97.5
+        "pairs": 302,
+        "agree_pct": 97.4
        }
       }
      },
@@ -3121,7 +3157,7 @@
      "tag": "azure/us",
      "declared_quant": "unknown",
      "declared_changed": false,
-     "nights": 16,
+     "nights": 17,
      "exact_by_night": {
       "2026-10-27": 53.9,
       "2026-10-28": 59.5,
@@ -3138,44 +3174,45 @@
       "2026-11-08": 53.0,
       "2026-11-10": 62.2,
       "2026-11-11": 55.2,
-      "2026-11-12": 58.9
+      "2026-11-12": 58.9,
+      "2026-11-13": 56.5
      },
-     "exact_mean": 57.3,
-     "exact_sd": 2.8,
+     "exact_mean": 57.2,
+     "exact_sd": 2.7,
      "exact_min": 53.0,
      "exact_max": 62.2,
-     "movement": 1.8,
+     "movement": -0.1,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 99.3,
-      "json": 99.7,
-      "string": 55.5,
+      "math": 99.4,
+      "json": 99.8,
+      "string": 55.0,
       "needle": 100.0,
-      "echo": 95.2
+      "echo": 95.0
      },
      "self": {
-      "pairs": 1760,
+      "pairs": 1880,
       "agree_pct": 50.6,
       "by_family": {
        "math": {
-        "pairs": 587,
+        "pairs": 627,
         "agree_pct": 0.2
        },
        "json": {
-        "pairs": 294,
-        "agree_pct": 54.8
+        "pairs": 314,
+        "agree_pct": 55.1
        },
        "string": {
-        "pairs": 296,
-        "agree_pct": 54.1
+        "pairs": 316,
+        "agree_pct": 53.8
        },
        "needle": {
-        "pairs": 291,
+        "pairs": 311,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 292,
+        "pairs": 312,
         "agree_pct": 94.9
        }
       }
@@ -3201,7 +3238,7 @@
      "tag": "digitalocean",
      "declared_quant": "unknown",
      "declared_changed": false,
-     "nights": 16,
+     "nights": 17,
      "exact_by_night": {
       "2026-10-27": 58.5,
       "2026-10-28": 55.3,
@@ -3218,44 +3255,45 @@
       "2026-11-08": 56.0,
       "2026-11-10": 55.9,
       "2026-11-11": 57.9,
-      "2026-11-12": 54.3
+      "2026-11-12": 54.3,
+      "2026-11-13": 58.0
      },
-     "exact_mean": 57.1,
+     "exact_mean": 57.2,
      "exact_sd": 2.2,
      "exact_min": 51.8,
      "exact_max": 60.9,
-     "movement": -1.3,
+     "movement": -0.6,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
       "math": 99.3,
-      "json": 99.7,
-      "string": 51.3,
+      "json": 99.8,
+      "string": 51.2,
       "needle": 100.0,
-      "echo": 95.5
+      "echo": 95.3
      },
      "self": {
-      "pairs": 1774,
-      "agree_pct": 49.7,
+      "pairs": 1894,
+      "agree_pct": 49.6,
       "by_family": {
        "math": {
-        "pairs": 594,
+        "pairs": 634,
         "agree_pct": 0.0
        },
        "json": {
-        "pairs": 294,
-        "agree_pct": 53.4
+        "pairs": 314,
+        "agree_pct": 53.2
        },
        "string": {
-        "pairs": 292,
-        "agree_pct": 50.0
+        "pairs": 312,
+        "agree_pct": 49.7
        },
        "needle": {
-        "pairs": 294,
+        "pairs": 314,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 300,
+        "pairs": 320,
         "agree_pct": 95.0
        }
       }
@@ -3350,90 +3388,10 @@
      }
     },
     {
-     "tag": "gmicloud/fp8",
-     "declared_quant": "fp8",
-     "declared_changed": false,
-     "nights": 16,
-     "exact_by_night": {
-      "2026-10-27": 44.6,
-      "2026-10-28": 47.7,
-      "2026-10-29": 48.5,
-      "2026-10-30": 53.8,
-      "2026-10-31": 54.1,
-      "2026-11-01": 48.2,
-      "2026-11-02": 46.3,
-      "2026-11-03": 47.4,
-      "2026-11-04": 46.9,
-      "2026-11-05": 48.1,
-      "2026-11-06": 42.9,
-      "2026-11-07": 41.4,
-      "2026-11-08": 41.0,
-      "2026-11-10": 50.4,
-      "2026-11-11": 49.6,
-      "2026-11-12": 45.7
-     },
-     "exact_mean": 47.3,
-     "exact_sd": 3.6,
-     "exact_min": 41.0,
-     "exact_max": 54.1,
-     "movement": 1.6,
-     "movement_overlap": false,
-     "movement_flag": false,
-     "families": {
-      "math": 98.3,
-      "json": 100.0,
-      "string": 27.7,
-      "needle": 100.0,
-      "echo": 100.0
-     },
-     "self": {
-      "pairs": 1792,
-      "agree_pct": 67.2,
-      "by_family": {
-       "math": {
-        "pairs": 598,
-        "agree_pct": 32.3
-       },
-       "json": {
-        "pairs": 298,
-        "agree_pct": 74.8
-       },
-       "string": {
-        "pairs": 298,
-        "agree_pct": 63.8
-       },
-       "needle": {
-        "pairs": 298,
-        "agree_pct": 100.0
-       },
-       "echo": {
-        "pairs": 300,
-        "agree_pct": 100.0
-       }
-      }
-     },
-     "selfcheck": {
-      "2026-10-27": {
-       "model": "deepseek-v4-pro",
-       "tag": "gmicloud/fp8",
-       "n": 12,
-       "agree": 9,
-       "agree_pct": 75.0
-      },
-      "2026-11-02": {
-       "model": "deepseek-v4-pro",
-       "tag": "gmicloud/fp8",
-       "n": 36,
-       "agree": 27,
-       "agree_pct": 75.0
-      }
-     }
-    },
-    {
      "tag": "novita/fp8",
      "declared_quant": "fp8",
      "declared_changed": false,
-     "nights": 16,
+     "nights": 17,
      "exact_by_night": {
       "2026-10-27": 47.2,
       "2026-10-28": 48.5,
@@ -3450,44 +3408,45 @@
       "2026-11-08": 44.0,
       "2026-11-10": 48.8,
       "2026-11-11": 49.6,
-      "2026-11-12": 48.1
+      "2026-11-12": 48.1,
+      "2026-11-13": 48.1
      },
      "exact_mean": 47.3,
-     "exact_sd": 2.9,
+     "exact_sd": 2.8,
      "exact_min": 41.4,
      "exact_max": 53.4,
-     "movement": 0.5,
+     "movement": 0.3,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 96.5,
+      "math": 96.3,
       "json": 100.0,
-      "string": 29.2,
+      "string": 29.5,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 1789,
-      "agree_pct": 70.2,
+      "pairs": 1909,
+      "agree_pct": 69.9,
       "by_family": {
        "math": {
-        "pairs": 597,
-        "agree_pct": 35.8
+        "pairs": 637,
+        "agree_pct": 35.6
        },
        "json": {
-        "pairs": 298,
-        "agree_pct": 78.2
+        "pairs": 318,
+        "agree_pct": 77.7
        },
        "string": {
-        "pairs": 300,
-        "agree_pct": 71.7
+        "pairs": 320,
+        "agree_pct": 70.9
        },
        "needle": {
-        "pairs": 295,
+        "pairs": 315,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 299,
+        "pairs": 319,
         "agree_pct": 100.0
        }
       }
@@ -3506,6 +3465,87 @@
        "n": 36,
        "agree": 28,
        "agree_pct": 77.8
+      }
+     }
+    },
+    {
+     "tag": "gmicloud/fp8",
+     "declared_quant": "fp8",
+     "declared_changed": false,
+     "nights": 17,
+     "exact_by_night": {
+      "2026-10-27": 44.6,
+      "2026-10-28": 47.7,
+      "2026-10-29": 48.5,
+      "2026-10-30": 53.8,
+      "2026-10-31": 54.1,
+      "2026-11-01": 48.2,
+      "2026-11-02": 46.3,
+      "2026-11-03": 47.4,
+      "2026-11-04": 46.9,
+      "2026-11-05": 48.1,
+      "2026-11-06": 42.9,
+      "2026-11-07": 41.4,
+      "2026-11-08": 41.0,
+      "2026-11-10": 50.4,
+      "2026-11-11": 49.6,
+      "2026-11-12": 45.7,
+      "2026-11-13": 46.6
+     },
+     "exact_mean": 47.2,
+     "exact_sd": 3.5,
+     "exact_min": 41.0,
+     "exact_max": 54.1,
+     "movement": 0.4,
+     "movement_overlap": false,
+     "movement_flag": false,
+     "families": {
+      "math": 98.2,
+      "json": 100.0,
+      "string": 28.0,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 1912,
+      "agree_pct": 67.5,
+      "by_family": {
+       "math": {
+        "pairs": 638,
+        "agree_pct": 32.6
+       },
+       "json": {
+        "pairs": 318,
+        "agree_pct": 75.8
+       },
+       "string": {
+        "pairs": 318,
+        "agree_pct": 64.2
+       },
+       "needle": {
+        "pairs": 318,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 320,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": {
+       "model": "deepseek-v4-pro",
+       "tag": "gmicloud/fp8",
+       "n": 12,
+       "agree": 9,
+       "agree_pct": 75.0
+      },
+      "2026-11-02": {
+       "model": "deepseek-v4-pro",
+       "tag": "gmicloud/fp8",
+       "n": 36,
+       "agree": 27,
+       "agree_pct": 75.0
       }
      }
     },
@@ -3585,23 +3625,23 @@
    "families": {
     "math": {
      "endpoints": 16,
-     "median_agree_pct": 31.6,
-     "p75_disagree_pct": 71.3,
-     "noise_floor": 28.7,
+     "median_agree_pct": 31.8,
+     "p75_disagree_pct": 70.5,
+     "noise_floor": 29.5,
      "stable": false
     },
     "json": {
      "endpoints": 16,
-     "median_agree_pct": 71.0,
-     "p75_disagree_pct": 36.8,
-     "noise_floor": 63.2,
+     "median_agree_pct": 71.5,
+     "p75_disagree_pct": 36.9,
+     "noise_floor": 63.1,
      "stable": false
     },
     "string": {
      "endpoints": 16,
-     "median_agree_pct": 72.5,
-     "p75_disagree_pct": 32.5,
-     "noise_floor": 67.5,
+     "median_agree_pct": 72.4,
+     "p75_disagree_pct": 31.9,
+     "noise_floor": 68.1,
      "stable": false
     },
     "needle": {
@@ -3613,9 +3653,9 @@
     },
     "echo": {
      "endpoints": 16,
-     "median_agree_pct": 98.5,
-     "p75_disagree_pct": 3.3,
-     "noise_floor": 96.7,
+     "median_agree_pct": 98.4,
+     "p75_disagree_pct": 3.1,
+     "noise_floor": 96.9,
      "stable": true
     }
    }
@@ -3684,50 +3724,51 @@
      "tag": "cohere/fp8",
      "declared_quant": "fp8",
      "declared_changed": false,
-     "nights": 5,
+     "nights": 6,
      "exact_by_night": {
       "2026-11-07": 87.3,
       "2026-11-08": 88.0,
       "2026-11-10": 89.6,
       "2026-11-11": 95.2,
-      "2026-11-12": 84.3
+      "2026-11-12": 84.3,
+      "2026-11-13": 86.5
      },
-     "exact_mean": 88.9,
-     "exact_sd": 3.6,
+     "exact_mean": 88.5,
+     "exact_sd": 3.4,
      "exact_min": 84.3,
      "exact_max": 95.2,
-     "movement": 1.4,
-     "movement_overlap": true,
+     "movement": 0.4,
+     "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 70.1,
+      "math": 70.9,
       "json": 100.0,
-      "string": 51.5,
+      "string": 50.5,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 370,
-      "agree_pct": 89.2,
+      "pairs": 490,
+      "agree_pct": 87.3,
       "by_family": {
        "math": {
-        "pairs": 106,
-        "agree_pct": 77.4
+        "pairs": 146,
+        "agree_pct": 72.6
        },
        "json": {
-        "pairs": 66,
+        "pairs": 86,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 66,
-        "agree_pct": 75.8
+        "pairs": 86,
+        "agree_pct": 74.4
        },
        "needle": {
-        "pairs": 66,
+        "pairs": 86,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 66,
+        "pairs": 86,
         "agree_pct": 100.0
        }
       }
@@ -3741,7 +3782,7 @@
      "tag": "cloudflare",
      "declared_quant": "unknown",
      "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
       "2026-11-04": 85.0,
       "2026-11-05": 88.7,
@@ -3750,44 +3791,106 @@
       "2026-11-08": 84.8,
       "2026-11-10": 88.8,
       "2026-11-11": 93.7,
-      "2026-11-12": 84.7
+      "2026-11-12": 84.7,
+      "2026-11-13": 87.2
      },
-     "exact_mean": 88.1,
-     "exact_sd": 3.4,
+     "exact_mean": 88.0,
+     "exact_sd": 3.2,
      "exact_min": 84.7,
      "exact_max": 93.7,
-     "movement": 2.4,
+     "movement": 1.9,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 72.1,
+      "math": 72.4,
       "json": 100.0,
       "string": 50.5,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 715,
-      "agree_pct": 84.9,
+      "pairs": 813,
+      "agree_pct": 84.1,
       "by_family": {
        "math": {
-        "pairs": 217,
-        "agree_pct": 62.7
+        "pairs": 246,
+        "agree_pct": 61.4
        },
        "json": {
-        "pairs": 122,
+        "pairs": 139,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 126,
-        "agree_pct": 78.6
+        "pairs": 143,
+        "agree_pct": 76.2
        },
        "needle": {
-        "pairs": 126,
+        "pairs": 144,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 124,
+        "pairs": 141,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": null,
+      "2026-11-02": null
+     }
+    },
+    {
+     "tag": "morph/fp8",
+     "declared_quant": "fp8",
+     "declared_changed": false,
+     "nights": 9,
+     "exact_by_night": {
+      "2026-11-04": 86.8,
+      "2026-11-05": 88.7,
+      "2026-11-06": 87.8,
+      "2026-11-07": 85.9,
+      "2026-11-08": 85.9,
+      "2026-11-10": 88.9,
+      "2026-11-11": 90.6,
+      "2026-11-12": 87.1,
+      "2026-11-13": 88.7
+     },
+     "exact_mean": 87.8,
+     "exact_sd": 1.5,
+     "exact_min": 85.9,
+     "exact_max": 90.6,
+     "movement": 1.0,
+     "movement_overlap": false,
+     "movement_flag": false,
+     "families": {
+      "math": 75.2,
+      "json": 100.0,
+      "string": 50.0,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 850,
+      "agree_pct": 84.6,
+      "by_family": {
+       "math": {
+        "pairs": 268,
+        "agree_pct": 64.6
+       },
+       "json": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       },
+       "string": {
+        "pairs": 146,
+        "agree_pct": 75.3
+       },
+       "needle": {
+        "pairs": 144,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 146,
         "agree_pct": 100.0
        }
       }
@@ -3856,7 +3959,7 @@
      "tag": "makora/fp8",
      "declared_quant": "fp8",
      "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
       "2026-11-04": 84.0,
       "2026-11-05": 88.7,
@@ -3865,45 +3968,46 @@
       "2026-11-08": 88.0,
       "2026-11-10": 86.1,
       "2026-11-11": 91.7,
-      "2026-11-12": 85.7
+      "2026-11-12": 85.7,
+      "2026-11-13": 86.5
      },
-     "exact_mean": 87.7,
-     "exact_sd": 2.2,
+     "exact_mean": 87.5,
+     "exact_sd": 2.1,
      "exact_min": 84.0,
      "exact_max": 91.7,
-     "movement": 0.8,
+     "movement": 0.9,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 72.9,
+      "math": 74.1,
       "json": 99.5,
-      "string": 53.0,
+      "string": 52.2,
       "needle": 100.0,
-      "echo": 99.0
+      "echo": 99.1
      },
      "self": {
-      "pairs": 724,
-      "agree_pct": 90.9,
+      "pairs": 844,
+      "agree_pct": 89.3,
       "by_family": {
        "math": {
-        "pairs": 226,
-        "agree_pct": 81.4
+        "pairs": 266,
+        "agree_pct": 77.4
        },
        "json": {
-        "pairs": 126,
-        "agree_pct": 100.0
+        "pairs": 146,
+        "agree_pct": 99.3
        },
        "string": {
-        "pairs": 126,
-        "agree_pct": 81.0
+        "pairs": 146,
+        "agree_pct": 80.8
        },
        "needle": {
-        "pairs": 122,
+        "pairs": 142,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 124,
-        "agree_pct": 100.0
+        "pairs": 144,
+        "agree_pct": 99.3
        }
       }
      },
@@ -3913,56 +4017,57 @@
      }
     },
     {
-     "tag": "morph/fp8",
+     "tag": "venice/fp8",
      "declared_quant": "fp8",
      "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
-      "2026-11-04": 86.8,
-      "2026-11-05": 88.7,
-      "2026-11-06": 87.8,
-      "2026-11-07": 85.9,
-      "2026-11-08": 85.9,
-      "2026-11-10": 88.9,
-      "2026-11-11": 90.6,
-      "2026-11-12": 87.1
+      "2026-11-04": 87.5,
+      "2026-11-05": 85.2,
+      "2026-11-06": 87.1,
+      "2026-11-07": 86.6,
+      "2026-11-08": 84.5,
+      "2026-11-10": 87.5,
+      "2026-11-11": 93.2,
+      "2026-11-12": 87.1,
+      "2026-11-13": 88.7
      },
-     "exact_mean": 87.7,
-     "exact_sd": 1.5,
-     "exact_min": 85.9,
-     "exact_max": 90.6,
-     "movement": 1.1,
+     "exact_mean": 87.5,
+     "exact_sd": 2.3,
+     "exact_min": 84.5,
+     "exact_max": 93.2,
+     "movement": 3.1,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 74.7,
+      "math": 75.7,
       "json": 100.0,
-      "string": 50.6,
+      "string": 50.0,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 731,
-      "agree_pct": 84.8,
+      "pairs": 842,
+      "agree_pct": 86.1,
       "by_family": {
        "math": {
-        "pairs": 228,
-        "agree_pct": 65.4
+        "pairs": 266,
+        "agree_pct": 65.8
        },
        "json": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 126,
-        "agree_pct": 74.6
+        "pairs": 146,
+        "agree_pct": 82.2
        },
        "needle": {
-        "pairs": 125,
+        "pairs": 140,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 126,
+        "pairs": 144,
         "agree_pct": 100.0
        }
       }
@@ -3976,7 +4081,7 @@
      "tag": "primeintellect",
      "declared_quant": "unknown",
      "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
       "2026-11-04": 86.8,
       "2026-11-05": 90.1,
@@ -3985,104 +4090,45 @@
       "2026-11-08": 88.0,
       "2026-11-10": 86.1,
       "2026-11-11": 92.1,
-      "2026-11-12": 80.7
+      "2026-11-12": 80.7,
+      "2026-11-13": 85.8
      },
-     "exact_mean": 87.3,
-     "exact_sd": 3.1,
+     "exact_mean": 87.1,
+     "exact_sd": 3.0,
      "exact_min": 80.7,
      "exact_max": 92.1,
-     "movement": -1.7,
+     "movement": -1.8,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 73.6,
+      "math": 74.0,
       "json": 100.0,
-      "string": 50.0,
+      "string": 49.6,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 730,
-      "agree_pct": 86.8,
+      "pairs": 850,
+      "agree_pct": 87.3,
       "by_family": {
        "math": {
-        "pairs": 226,
-        "agree_pct": 66.4
+        "pairs": 266,
+        "agree_pct": 67.7
        },
        "json": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 126,
-        "agree_pct": 84.1
+        "pairs": 146,
+        "agree_pct": 84.9
        },
        "needle": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 126,
-        "agree_pct": 100.0
-       }
-      }
-     },
-     "selfcheck": {
-      "2026-10-27": null,
-      "2026-11-02": null
-     }
-    },
-    {
-     "tag": "venice/fp8",
-     "declared_quant": "fp8",
-     "declared_changed": false,
-     "nights": 8,
-     "exact_by_night": {
-      "2026-11-04": 87.5,
-      "2026-11-05": 85.2,
-      "2026-11-06": 87.1,
-      "2026-11-07": 86.6,
-      "2026-11-08": 84.5,
-      "2026-11-10": 87.5,
-      "2026-11-11": 93.2,
-      "2026-11-12": 87.1
-     },
-     "exact_mean": 87.3,
-     "exact_sd": 2.4,
-     "exact_min": 84.5,
-     "exact_max": 93.2,
-     "movement": 2.7,
-     "movement_overlap": false,
-     "movement_flag": false,
-     "families": {
-      "math": 75.0,
-      "json": 100.0,
-      "string": 50.6,
-      "needle": 100.0,
-      "echo": 100.0
-     },
-     "self": {
-      "pairs": 722,
-      "agree_pct": 85.2,
-      "by_family": {
-       "math": {
-        "pairs": 226,
-        "agree_pct": 63.3
-       },
-       "json": {
-        "pairs": 126,
-        "agree_pct": 100.0
-       },
-       "string": {
-        "pairs": 126,
-        "agree_pct": 81.0
-       },
-       "needle": {
-        "pairs": 120,
-        "agree_pct": 100.0
-       },
-       "echo": {
-        "pairs": 124,
+        "pairs": 146,
         "agree_pct": 100.0
        }
       }
@@ -4096,7 +4142,7 @@
      "tag": "wafer/us",
      "declared_quant": "mxfp4",
      "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
       "2026-11-04": 87.5,
       "2026-11-05": 87.3,
@@ -4105,223 +4151,45 @@
       "2026-11-08": 81.0,
       "2026-11-10": 85.4,
       "2026-11-11": 92.2,
-      "2026-11-12": 87.9
+      "2026-11-12": 87.9,
+      "2026-11-13": 86.5
      },
-     "exact_mean": 87.0,
-     "exact_sd": 3.2,
+     "exact_mean": 86.9,
+     "exact_sd": 3.0,
      "exact_min": 81.0,
      "exact_max": 92.2,
-     "movement": 0.3,
+     "movement": 0.6,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 75.2,
+      "math": 76.1,
       "json": 100.0,
-      "string": 51.5,
+      "string": 50.9,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 732,
-      "agree_pct": 81.4,
+      "pairs": 852,
+      "agree_pct": 81.6,
       "by_family": {
        "math": {
-        "pairs": 228,
+        "pairs": 268,
         "agree_pct": 52.2
        },
        "json": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 126,
-        "agree_pct": 78.6
+        "pairs": 146,
+        "agree_pct": 80.1
        },
        "needle": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 126,
-        "agree_pct": 100.0
-       }
-      }
-     },
-     "selfcheck": {
-      "2026-10-27": null,
-      "2026-11-02": null
-     }
-    },
-    {
-     "tag": "particle-ai/us",
-     "declared_quant": "unknown",
-     "declared_changed": false,
-     "nights": 8,
-     "exact_by_night": {
-      "2026-11-04": 87.5,
-      "2026-11-05": 86.6,
-      "2026-11-06": 84.2,
-      "2026-11-07": 89.4,
-      "2026-11-08": 86.6,
-      "2026-11-10": 83.3,
-      "2026-11-11": 90.6,
-      "2026-11-12": 87.1
-     },
-     "exact_mean": 86.9,
-     "exact_sd": 2.3,
-     "exact_min": 83.3,
-     "exact_max": 90.6,
-     "movement": 0.9,
-     "movement_overlap": false,
-     "movement_flag": false,
-     "families": {
-      "math": 69.8,
-      "json": 100.0,
-      "string": 50.6,
-      "needle": 100.0,
-      "echo": 100.0
-     },
-     "self": {
-      "pairs": 732,
-      "agree_pct": 88.5,
-      "by_family": {
-       "math": {
-        "pairs": 228,
-        "agree_pct": 72.4
-       },
-       "json": {
-        "pairs": 126,
-        "agree_pct": 100.0
-       },
-       "string": {
-        "pairs": 126,
-        "agree_pct": 83.3
-       },
-       "needle": {
-        "pairs": 126,
-        "agree_pct": 100.0
-       },
-       "echo": {
-        "pairs": 126,
-        "agree_pct": 100.0
-       }
-      }
-     },
-     "selfcheck": {
-      "2026-10-27": null,
-      "2026-11-02": null
-     }
-    },
-    {
-     "tag": "particle-ai/us/flex",
-     "declared_quant": "unknown",
-     "declared_changed": false,
-     "nights": 8,
-     "exact_by_night": {
-      "2026-11-04": 84.7,
-      "2026-11-05": 86.6,
-      "2026-11-06": 87.1,
-      "2026-11-07": 83.1,
-      "2026-11-08": 87.3,
-      "2026-11-10": 86.8,
-      "2026-11-11": 90.6,
-      "2026-11-12": 86.4
-     },
-     "exact_mean": 86.6,
-     "exact_sd": 2.0,
-     "exact_min": 83.1,
-     "exact_max": 90.6,
-     "movement": 1.8,
-     "movement_overlap": false,
-     "movement_flag": false,
-     "families": {
-      "math": 71.2,
-      "json": 100.0,
-      "string": 53.1,
-      "needle": 100.0,
-      "echo": 100.0
-     },
-     "self": {
-      "pairs": 732,
-      "agree_pct": 86.1,
-      "by_family": {
-       "math": {
-        "pairs": 228,
-        "agree_pct": 65.4
-       },
-       "json": {
-        "pairs": 126,
-        "agree_pct": 100.0
-       },
-       "string": {
-        "pairs": 126,
-        "agree_pct": 81.7
-       },
-       "needle": {
-        "pairs": 126,
-        "agree_pct": 100.0
-       },
-       "echo": {
-        "pairs": 126,
-        "agree_pct": 100.0
-       }
-      }
-     },
-     "selfcheck": {
-      "2026-10-27": null,
-      "2026-11-02": null
-     }
-    },
-    {
-     "tag": "baseten/fast",
-     "declared_quant": "unknown",
-     "declared_changed": false,
-     "nights": 7,
-     "exact_by_night": {
-      "2026-11-05": 85.3,
-      "2026-11-06": 88.2,
-      "2026-11-07": 83.2,
-      "2026-11-08": 84.1,
-      "2026-11-10": 81.9,
-      "2026-11-11": 95.8,
-      "2026-11-12": 87.0
-     },
-     "exact_mean": 86.5,
-     "exact_sd": 4.3,
-     "exact_min": 81.9,
-     "exact_max": 95.8,
-     "movement": 2.7,
-     "movement_overlap": false,
-     "movement_flag": false,
-     "families": {
-      "math": 66.0,
-      "json": 100.0,
-      "string": 43.9,
-      "needle": 100.0,
-      "echo": 100.0
-     },
-     "self": {
-      "pairs": 272,
-      "agree_pct": 95.6,
-      "by_family": {
-       "math": {
-        "pairs": 82,
-        "agree_pct": 89.0
-       },
-       "json": {
-        "pairs": 60,
-        "agree_pct": 100.0
-       },
-       "string": {
-        "pairs": 39,
-        "agree_pct": 92.3
-       },
-       "needle": {
-        "pairs": 44,
-        "agree_pct": 100.0
-       },
-       "echo": {
-        "pairs": 47,
+        "pairs": 146,
         "agree_pct": 100.0
        }
       }
@@ -4335,7 +4203,7 @@
      "tag": "deepinfra/fp8/priority",
      "declared_quant": "fp8",
      "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
       "2026-11-04": 89.6,
       "2026-11-05": 85.9,
@@ -4344,44 +4212,45 @@
       "2026-11-08": 83.1,
       "2026-11-10": 87.5,
       "2026-11-11": 90.5,
-      "2026-11-12": 83.6
+      "2026-11-12": 83.6,
+      "2026-11-13": 88.7
      },
-     "exact_mean": 86.5,
+     "exact_mean": 86.8,
      "exact_sd": 2.5,
      "exact_min": 83.1,
      "exact_max": 90.5,
-     "movement": 0.4,
+     "movement": 0.8,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 68.4,
+      "math": 69.4,
       "json": 100.0,
-      "string": 47.5,
+      "string": 47.8,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 730,
-      "agree_pct": 88.5,
+      "pairs": 850,
+      "agree_pct": 88.0,
       "by_family": {
        "math": {
-        "pairs": 226,
-        "agree_pct": 73.0
+        "pairs": 266,
+        "agree_pct": 71.4
        },
        "json": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 126,
-        "agree_pct": 81.7
+        "pairs": 146,
+        "agree_pct": 82.2
        },
        "needle": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        }
       }
@@ -4392,56 +4261,118 @@
      }
     },
     {
-     "tag": "wafer/mxfp4",
-     "declared_quant": "mxfp4",
+     "tag": "particle-ai/us",
+     "declared_quant": "unknown",
      "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
-      "2026-11-04": 84.7,
+      "2026-11-04": 87.5,
       "2026-11-05": 86.6,
-      "2026-11-06": 88.5,
-      "2026-11-07": 83.8,
+      "2026-11-06": 84.2,
+      "2026-11-07": 89.4,
       "2026-11-08": 86.6,
-      "2026-11-10": 86.8,
-      "2026-11-11": 92.2,
-      "2026-11-12": 82.9
+      "2026-11-10": 83.3,
+      "2026-11-11": 90.6,
+      "2026-11-12": 87.1,
+      "2026-11-13": 85.8
      },
-     "exact_mean": 86.5,
-     "exact_sd": 2.7,
-     "exact_min": 82.9,
-     "exact_max": 92.2,
-     "movement": 0.7,
+     "exact_mean": 86.8,
+     "exact_sd": 2.2,
+     "exact_min": 83.3,
+     "exact_max": 90.6,
+     "movement": 1.7,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 75.8,
+      "math": 70.6,
       "json": 100.0,
-      "string": 49.5,
+      "string": 51.0,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 732,
-      "agree_pct": 81.6,
+      "pairs": 852,
+      "agree_pct": 88.0,
       "by_family": {
        "math": {
-        "pairs": 228,
-        "agree_pct": 52.2
+        "pairs": 268,
+        "agree_pct": 71.3
        },
        "json": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 126,
-        "agree_pct": 79.4
+        "pairs": 146,
+        "agree_pct": 82.9
        },
        "needle": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 126,
+        "pairs": 146,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": null,
+      "2026-11-02": null
+     }
+    },
+    {
+     "tag": "modal",
+     "declared_quant": "unknown",
+     "declared_changed": false,
+     "nights": 9,
+     "exact_by_night": {
+      "2026-11-04": 84.0,
+      "2026-11-05": 84.4,
+      "2026-11-06": 86.3,
+      "2026-11-07": 82.4,
+      "2026-11-08": 87.3,
+      "2026-11-10": 84.0,
+      "2026-11-11": 95.0,
+      "2026-11-12": 87.9,
+      "2026-11-13": 87.9
+     },
+     "exact_mean": 86.6,
+     "exact_sd": 3.5,
+     "exact_min": 82.4,
+     "exact_max": 95.0,
+     "movement": 5.4,
+     "movement_overlap": false,
+     "movement_flag": false,
+     "families": {
+      "math": 75.4,
+      "json": 100.0,
+      "string": 51.2,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 830,
+      "agree_pct": 87.2,
+      "by_family": {
+       "math": {
+        "pairs": 266,
+        "agree_pct": 69.9
+       },
+       "json": {
+        "pairs": 142,
+        "agree_pct": 100.0
+       },
+       "string": {
+        "pairs": 144,
+        "agree_pct": 81.9
+       },
+       "needle": {
+        "pairs": 136,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 142,
         "agree_pct": 100.0
        }
       }
@@ -4455,7 +4386,7 @@
      "tag": "coreweave/fp8",
      "declared_quant": "fp8",
      "declared_changed": false,
-     "nights": 7,
+     "nights": 8,
      "exact_by_night": {
       "2026-11-05": 89.4,
       "2026-11-06": 86.3,
@@ -4463,45 +4394,46 @@
       "2026-11-08": 83.8,
       "2026-11-10": 85.4,
       "2026-11-11": 91.7,
-      "2026-11-12": 82.9
+      "2026-11-12": 82.9,
+      "2026-11-13": 87.2
      },
-     "exact_mean": 86.4,
-     "exact_sd": 2.9,
+     "exact_mean": 86.5,
+     "exact_sd": 2.7,
      "exact_min": 82.9,
      "exact_max": 91.7,
-     "movement": -0.3,
+     "movement": 0.3,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 71.9,
+      "math": 72.8,
       "json": 100.0,
-      "string": 47.7,
+      "string": 46.9,
       "needle": 100.0,
-      "echo": 99.4
+      "echo": 99.5
      },
      "self": {
-      "pairs": 604,
-      "agree_pct": 91.7,
+      "pairs": 724,
+      "agree_pct": 91.2,
       "by_family": {
        "math": {
-        "pairs": 186,
-        "agree_pct": 78.5
+        "pairs": 226,
+        "agree_pct": 77.4
        },
        "json": {
-        "pairs": 106,
+        "pairs": 126,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 106,
-        "agree_pct": 92.5
+        "pairs": 126,
+        "agree_pct": 91.3
        },
        "needle": {
-        "pairs": 102,
+        "pairs": 122,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 104,
-        "agree_pct": 98.1
+        "pairs": 124,
+        "agree_pct": 98.4
        }
       }
      },
@@ -4511,176 +4443,117 @@
      }
     },
     {
-     "tag": "modal",
+     "tag": "particle-ai/us/flex",
      "declared_quant": "unknown",
      "declared_changed": false,
-     "nights": 8,
-     "exact_by_night": {
-      "2026-11-04": 84.0,
-      "2026-11-05": 84.4,
-      "2026-11-06": 86.3,
-      "2026-11-07": 82.4,
-      "2026-11-08": 87.3,
-      "2026-11-10": 84.0,
-      "2026-11-11": 95.0,
-      "2026-11-12": 87.9
-     },
-     "exact_mean": 86.4,
-     "exact_sd": 3.7,
-     "exact_min": 82.4,
-     "exact_max": 95.0,
-     "movement": 4.1,
-     "movement_overlap": false,
-     "movement_flag": false,
-     "families": {
-      "math": 74.5,
-      "json": 100.0,
-      "string": 50.8,
-      "needle": 100.0,
-      "echo": 100.0
-     },
-     "self": {
-      "pairs": 710,
-      "agree_pct": 87.7,
-      "by_family": {
-       "math": {
-        "pairs": 226,
-        "agree_pct": 70.8
-       },
-       "json": {
-        "pairs": 122,
-        "agree_pct": 100.0
-       },
-       "string": {
-        "pairs": 124,
-        "agree_pct": 83.1
-       },
-       "needle": {
-        "pairs": 116,
-        "agree_pct": 100.0
-       },
-       "echo": {
-        "pairs": 122,
-        "agree_pct": 100.0
-       }
-      }
-     },
-     "selfcheck": {
-      "2026-10-27": null,
-      "2026-11-02": null
-     }
-    },
-    {
-     "tag": "stepfun/fp8",
-     "declared_quant": "fp8",
-     "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
       "2026-11-04": 84.7,
-      "2026-11-05": 84.5,
+      "2026-11-05": 86.6,
       "2026-11-06": 87.1,
-      "2026-11-07": 83.8,
-      "2026-11-08": 83.1,
-      "2026-11-10": 84.0,
-      "2026-11-11": 98.4,
-      "2026-11-12": 85.0
+      "2026-11-07": 83.1,
+      "2026-11-08": 87.3,
+      "2026-11-10": 86.8,
+      "2026-11-11": 90.6,
+      "2026-11-12": 86.4,
+      "2026-11-13": 85.8
      },
-     "exact_mean": 86.3,
-     "exact_sd": 4.7,
+     "exact_mean": 86.5,
+     "exact_sd": 1.9,
      "exact_min": 83.1,
-     "exact_max": 98.4,
-     "movement": 3.7,
-     "movement_overlap": false,
-     "movement_flag": false,
-     "families": {
-      "math": 70.0,
-      "json": 100.0,
-      "string": 52.6,
-      "needle": 100.0,
-      "echo": 100.0
-     },
-     "self": {
-      "pairs": 730,
-      "agree_pct": 92.9,
-      "by_family": {
-       "math": {
-        "pairs": 226,
-        "agree_pct": 82.3
-       },
-       "json": {
-        "pairs": 126,
-        "agree_pct": 100.0
-       },
-       "string": {
-        "pairs": 126,
-        "agree_pct": 90.5
-       },
-       "needle": {
-        "pairs": 126,
-        "agree_pct": 100.0
-       },
-       "echo": {
-        "pairs": 126,
-        "agree_pct": 100.0
-       }
-      }
-     },
-     "selfcheck": {
-      "2026-10-27": null,
-      "2026-11-02": null
-     }
-    },
-    {
-     "tag": "atlas-cloud/fp8",
-     "declared_quant": "fp8",
-     "declared_changed": false,
-     "nights": 8,
-     "exact_by_night": {
-      "2026-11-04": 84.7,
-      "2026-11-05": 85.9,
-      "2026-11-06": 86.3,
-      "2026-11-07": 85.2,
-      "2026-11-08": 85.9,
-      "2026-11-10": 89.6,
-      "2026-11-11": 86.7,
-      "2026-11-12": 85.0
-     },
-     "exact_mean": 86.2,
-     "exact_sd": 1.4,
-     "exact_min": 84.7,
-     "exact_max": 89.6,
+     "exact_max": 90.6,
      "movement": 1.5,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 73.8,
+      "math": 71.6,
       "json": 100.0,
-      "string": 50.6,
+      "string": 53.2,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 724,
-      "agree_pct": 84.5,
+      "pairs": 852,
+      "agree_pct": 85.7,
       "by_family": {
        "math": {
-        "pairs": 226,
-        "agree_pct": 61.5
+        "pairs": 268,
+        "agree_pct": 65.7
        },
        "json": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 126,
-        "agree_pct": 80.2
+        "pairs": 146,
+        "agree_pct": 79.5
        },
        "needle": {
-        "pairs": 122,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 124,
+        "pairs": 146,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": null,
+      "2026-11-02": null
+     }
+    },
+    {
+     "tag": "baseten/fast",
+     "declared_quant": "unknown",
+     "declared_changed": false,
+     "nights": 8,
+     "exact_by_night": {
+      "2026-11-05": 85.3,
+      "2026-11-06": 88.2,
+      "2026-11-07": 83.2,
+      "2026-11-08": 84.1,
+      "2026-11-10": 81.9,
+      "2026-11-11": 95.8,
+      "2026-11-12": 87.0,
+      "2026-11-13": 84.9
+     },
+     "exact_mean": 86.3,
+     "exact_sd": 4.0,
+     "exact_min": 81.9,
+     "exact_max": 95.8,
+     "movement": 3.7,
+     "movement_overlap": false,
+     "movement_flag": false,
+     "families": {
+      "math": 66.3,
+      "json": 100.0,
+      "string": 43.3,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 383,
+      "agree_pct": 96.9,
+      "by_family": {
+       "math": {
+        "pairs": 120,
+        "agree_pct": 92.5
+       },
+       "json": {
+        "pairs": 79,
+        "agree_pct": 100.0
+       },
+       "string": {
+        "pairs": 57,
+        "agree_pct": 94.7
+       },
+       "needle": {
+        "pairs": 62,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 65,
         "agree_pct": 100.0
        }
       }
@@ -4694,7 +4567,7 @@
      "tag": "fireworks",
      "declared_quant": "unknown",
      "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
       "2026-11-04": 81.9,
       "2026-11-05": 86.6,
@@ -4703,44 +4576,45 @@
       "2026-11-08": 85.2,
       "2026-11-10": 88.2,
       "2026-11-11": 91.5,
-      "2026-11-12": 85.0
+      "2026-11-12": 85.0,
+      "2026-11-13": 87.2
      },
-     "exact_mean": 86.2,
-     "exact_sd": 2.6,
+     "exact_mean": 86.3,
+     "exact_sd": 2.5,
      "exact_min": 81.9,
      "exact_max": 91.5,
-     "movement": 3.3,
+     "movement": 3.0,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 75.2,
+      "math": 75.7,
       "json": 100.0,
-      "string": 53.6,
+      "string": 53.2,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 722,
-      "agree_pct": 85.9,
+      "pairs": 842,
+      "agree_pct": 85.6,
       "by_family": {
        "math": {
-        "pairs": 226,
-        "agree_pct": 65.5
+        "pairs": 266,
+        "agree_pct": 65.0
        },
        "json": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 126,
-        "agree_pct": 81.0
+        "pairs": 146,
+        "agree_pct": 80.8
        },
        "needle": {
-        "pairs": 120,
+        "pairs": 140,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 124,
+        "pairs": 144,
         "agree_pct": 100.0
        }
       }
@@ -4751,115 +4625,57 @@
      }
     },
     {
-     "tag": "deepinfra/fp8",
+     "tag": "stepfun/fp8",
      "declared_quant": "fp8",
      "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
-      "2026-11-04": 86.1,
-      "2026-11-05": 88.0,
-      "2026-11-06": 84.2,
-      "2026-11-07": 85.9,
-      "2026-11-08": 83.8,
+      "2026-11-04": 84.7,
+      "2026-11-05": 84.5,
+      "2026-11-06": 87.1,
+      "2026-11-07": 83.8,
+      "2026-11-08": 83.1,
       "2026-11-10": 84.0,
-      "2026-11-11": 90.6,
-      "2026-11-12": 85.0
+      "2026-11-11": 98.4,
+      "2026-11-12": 85.0,
+      "2026-11-13": 86.5
      },
-     "exact_mean": 86.0,
-     "exact_sd": 2.2,
-     "exact_min": 83.8,
-     "exact_max": 90.6,
-     "movement": 0.4,
-     "movement_overlap": false,
-     "movement_flag": false,
-     "families": {
-      "math": 67.7,
-      "json": 100.0,
-      "string": 48.5,
-      "needle": 100.0,
-      "echo": 100.0
-     },
-     "self": {
-      "pairs": 732,
-      "agree_pct": 87.6,
-      "by_family": {
-       "math": {
-        "pairs": 228,
-        "agree_pct": 69.7
-       },
-       "json": {
-        "pairs": 126,
-        "agree_pct": 100.0
-       },
-       "string": {
-        "pairs": 126,
-        "agree_pct": 82.5
-       },
-       "needle": {
-        "pairs": 126,
-        "agree_pct": 100.0
-       },
-       "echo": {
-        "pairs": 126,
-        "agree_pct": 100.0
-       }
-      }
-     },
-     "selfcheck": {
-      "2026-10-27": null,
-      "2026-11-02": null
-     }
-    },
-    {
-     "tag": "primalabs",
-     "declared_quant": "unknown",
-     "declared_changed": false,
-     "nights": 7,
-     "exact_by_night": {
-      "2026-11-05": 85.6,
-      "2026-11-06": 84.7,
-      "2026-11-07": 85.8,
-      "2026-11-08": 85.9,
-      "2026-11-10": 86.7,
-      "2026-11-11": 90.0,
-      "2026-11-12": 83.1
-     },
-     "exact_mean": 86.0,
-     "exact_sd": 2.0,
+     "exact_mean": 86.3,
+     "exact_sd": 4.4,
      "exact_min": 83.1,
-     "exact_max": 90.0,
-     "movement": 1.2,
+     "exact_max": 98.4,
+     "movement": 4.5,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 68.9,
+      "math": 70.4,
       "json": 100.0,
-      "string": 49.9,
+      "string": 52.4,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 543,
-      "agree_pct": 91.7,
+      "pairs": 850,
+      "agree_pct": 93.3,
       "by_family": {
        "math": {
-        "pairs": 150,
-        "agree_pct": 76.7
+        "pairs": 266,
+        "agree_pct": 83.5
        },
        "json": {
-        "pairs": 100,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 97,
-        "agree_pct": 89.7
+        "pairs": 146,
+        "agree_pct": 91.1
        },
        "needle": {
-        "pairs": 98,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 98,
+        "pairs": 146,
         "agree_pct": 100.0
        }
       }
@@ -4873,7 +4689,7 @@
      "tag": "relace/fp4",
      "declared_quant": "fp4",
      "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
       "2026-11-04": 86.1,
       "2026-11-05": 83.8,
@@ -4882,164 +4698,289 @@
       "2026-11-08": 86.6,
       "2026-11-10": 84.0,
       "2026-11-11": 89.1,
-      "2026-11-12": 87.1
+      "2026-11-12": 87.1,
+      "2026-11-13": 87.2
      },
-     "exact_mean": 86.0,
+     "exact_mean": 86.2,
      "exact_sd": 1.7,
      "exact_min": 83.8,
      "exact_max": 89.1,
-     "movement": 1.1,
-     "movement_overlap": false,
-     "movement_flag": false,
-     "families": {
-      "math": 70.4,
-      "json": 100.0,
-      "string": 48.4,
-      "needle": 100.0,
-      "echo": 100.0
-     },
-     "self": {
-      "pairs": 639,
-      "agree_pct": 90.3,
-      "by_family": {
-       "math": {
-        "pairs": 209,
-        "agree_pct": 78.0
-       },
-       "json": {
-        "pairs": 108,
-        "agree_pct": 100.0
-       },
-       "string": {
-        "pairs": 103,
-        "agree_pct": 84.5
-       },
-       "needle": {
-        "pairs": 108,
-        "agree_pct": 100.0
-       },
-       "echo": {
-        "pairs": 111,
-        "agree_pct": 100.0
-       }
-      }
-     },
-     "selfcheck": {
-      "2026-10-27": null,
-      "2026-11-02": null
-     }
-    },
-    {
-     "tag": "deepinfra/fp8/flex",
-     "declared_quant": "fp8",
-     "declared_changed": false,
-     "nights": 8,
-     "exact_by_night": {
-      "2026-11-04": 85.4,
-      "2026-11-05": 85.9,
-      "2026-11-06": 86.3,
-      "2026-11-07": 87.3,
-      "2026-11-08": 82.4,
-      "2026-11-10": 86.8,
-      "2026-11-11": 89.1,
-      "2026-11-12": 83.6
-     },
-     "exact_mean": 85.8,
-     "exact_sd": 2.0,
-     "exact_min": 82.4,
-     "exact_max": 89.1,
-     "movement": 0.6,
-     "movement_overlap": false,
-     "movement_flag": false,
-     "families": {
-      "math": 67.4,
-      "json": 100.0,
-      "string": 48.5,
-      "needle": 100.0,
-      "echo": 100.0
-     },
-     "self": {
-      "pairs": 732,
-      "agree_pct": 87.4,
-      "by_family": {
-       "math": {
-        "pairs": 228,
-        "agree_pct": 69.3
-       },
-       "json": {
-        "pairs": 126,
-        "agree_pct": 100.0
-       },
-       "string": {
-        "pairs": 126,
-        "agree_pct": 82.5
-       },
-       "needle": {
-        "pairs": 126,
-        "agree_pct": 100.0
-       },
-       "echo": {
-        "pairs": 126,
-        "agree_pct": 100.0
-       }
-      }
-     },
-     "selfcheck": {
-      "2026-10-27": null,
-      "2026-11-02": null
-     }
-    },
-    {
-     "tag": "novita/fp8",
-     "declared_quant": "fp8",
-     "declared_changed": false,
-     "nights": 8,
-     "exact_by_night": {
-      "2026-11-04": 86.1,
-      "2026-11-05": 88.0,
-      "2026-11-06": 82.0,
-      "2026-11-07": 83.8,
-      "2026-11-08": 83.1,
-      "2026-11-10": 90.3,
-      "2026-11-11": 85.7,
-      "2026-11-12": 86.4
-     },
-     "exact_mean": 85.7,
-     "exact_sd": 2.5,
-     "exact_min": 82.0,
-     "exact_max": 90.3,
      "movement": 2.1,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 75.0,
+      "math": 70.9,
       "json": 100.0,
-      "string": 52.6,
+      "string": 48.1,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 730,
-      "agree_pct": 84.4,
+      "pairs": 759,
+      "agree_pct": 90.8,
       "by_family": {
        "math": {
-        "pairs": 226,
-        "agree_pct": 61.5
+        "pairs": 249,
+        "agree_pct": 79.5
        },
        "json": {
-        "pairs": 126,
+        "pairs": 128,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 126,
-        "agree_pct": 78.6
+        "pairs": 123,
+        "agree_pct": 84.6
        },
        "needle": {
-        "pairs": 126,
+        "pairs": 128,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 126,
+        "pairs": 131,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": null,
+      "2026-11-02": null
+     }
+    },
+    {
+     "tag": "wafer/mxfp4",
+     "declared_quant": "mxfp4",
+     "declared_changed": false,
+     "nights": 9,
+     "exact_by_night": {
+      "2026-11-04": 84.7,
+      "2026-11-05": 86.6,
+      "2026-11-06": 88.5,
+      "2026-11-07": 83.8,
+      "2026-11-08": 86.6,
+      "2026-11-10": 86.8,
+      "2026-11-11": 92.2,
+      "2026-11-12": 82.9,
+      "2026-11-13": 83.0
+     },
+     "exact_mean": 86.1,
+     "exact_sd": 2.8,
+     "exact_min": 82.9,
+     "exact_max": 92.2,
+     "movement": -0.6,
+     "movement_overlap": false,
+     "movement_flag": false,
+     "families": {
+      "math": 76.4,
+      "json": 100.0,
+      "string": 49.6,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 852,
+      "agree_pct": 81.0,
+      "by_family": {
+       "math": {
+        "pairs": 268,
+        "agree_pct": 51.1
+       },
+       "json": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       },
+       "string": {
+        "pairs": 146,
+        "agree_pct": 78.8
+       },
+       "needle": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": null,
+      "2026-11-02": null
+     }
+    },
+    {
+     "tag": "atlas-cloud/fp8",
+     "declared_quant": "fp8",
+     "declared_changed": false,
+     "nights": 9,
+     "exact_by_night": {
+      "2026-11-04": 84.7,
+      "2026-11-05": 85.9,
+      "2026-11-06": 86.3,
+      "2026-11-07": 85.2,
+      "2026-11-08": 85.9,
+      "2026-11-10": 89.6,
+      "2026-11-11": 86.7,
+      "2026-11-12": 85.0,
+      "2026-11-13": 83.7
+     },
+     "exact_mean": 85.9,
+     "exact_sd": 1.6,
+     "exact_min": 83.7,
+     "exact_max": 89.6,
+     "movement": -0.5,
+     "movement_overlap": false,
+     "movement_flag": false,
+     "families": {
+      "math": 73.9,
+      "json": 100.0,
+      "string": 51.0,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 844,
+      "agree_pct": 84.7,
+      "by_family": {
+       "math": {
+        "pairs": 266,
+        "agree_pct": 62.4
+       },
+       "json": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       },
+       "string": {
+        "pairs": 146,
+        "agree_pct": 80.1
+       },
+       "needle": {
+        "pairs": 142,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 144,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": null,
+      "2026-11-02": null
+     }
+    },
+    {
+     "tag": "deepinfra/fp8",
+     "declared_quant": "fp8",
+     "declared_changed": false,
+     "nights": 9,
+     "exact_by_night": {
+      "2026-11-04": 86.1,
+      "2026-11-05": 88.0,
+      "2026-11-06": 84.2,
+      "2026-11-07": 85.9,
+      "2026-11-08": 83.8,
+      "2026-11-10": 84.0,
+      "2026-11-11": 90.6,
+      "2026-11-12": 85.0,
+      "2026-11-13": 85.1
+     },
+     "exact_mean": 85.9,
+     "exact_sd": 2.1,
+     "exact_min": 83.8,
+     "exact_max": 90.6,
+     "movement": 0.8,
+     "movement_overlap": false,
+     "movement_flag": false,
+     "families": {
+      "math": 68.0,
+      "json": 100.0,
+      "string": 48.7,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 852,
+      "agree_pct": 86.9,
+      "by_family": {
+       "math": {
+        "pairs": 268,
+        "agree_pct": 67.9
+       },
+       "json": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       },
+       "string": {
+        "pairs": 146,
+        "agree_pct": 82.2
+       },
+       "needle": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": null,
+      "2026-11-02": null
+     }
+    },
+    {
+     "tag": "parasail/fp8",
+     "declared_quant": "fp8",
+     "declared_changed": false,
+     "nights": 9,
+     "exact_by_night": {
+      "2026-11-04": 84.7,
+      "2026-11-05": 87.3,
+      "2026-11-06": 84.9,
+      "2026-11-07": 82.4,
+      "2026-11-08": 83.8,
+      "2026-11-10": 84.0,
+      "2026-11-11": 91.5,
+      "2026-11-12": 85.7,
+      "2026-11-13": 88.7
+     },
+     "exact_mean": 85.9,
+     "exact_sd": 2.7,
+     "exact_min": 82.4,
+     "exact_max": 91.5,
+     "movement": 3.0,
+     "movement_overlap": false,
+     "movement_flag": false,
+     "families": {
+      "math": 69.7,
+      "json": 100.0,
+      "string": 55.1,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 842,
+      "agree_pct": 86.5,
+      "by_family": {
+       "math": {
+        "pairs": 266,
+        "agree_pct": 70.7
+       },
+       "json": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       },
+       "string": {
+        "pairs": 146,
+        "agree_pct": 75.3
+       },
+       "needle": {
+        "pairs": 140,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 144,
         "agree_pct": 100.0
        }
       }
@@ -5053,7 +4994,7 @@
      "tag": "siliconflow/fp8",
      "declared_quant": "fp8",
      "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
       "2026-11-04": 82.5,
       "2026-11-05": 86.6,
@@ -5062,44 +5003,471 @@
       "2026-11-08": 83.8,
       "2026-11-10": 88.2,
       "2026-11-11": 88.3,
-      "2026-11-12": 88.6
+      "2026-11-12": 88.6,
+      "2026-11-13": 87.9
      },
-     "exact_mean": 85.7,
-     "exact_sd": 2.4,
+     "exact_mean": 85.9,
+     "exact_sd": 2.3,
      "exact_min": 82.5,
      "exact_max": 88.6,
-     "movement": 4.2,
+     "movement": 4.1,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 70.6,
+      "math": 71.3,
       "json": 100.0,
       "string": 50.0,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 723,
-      "agree_pct": 88.4,
+      "pairs": 843,
+      "agree_pct": 89.3,
       "by_family": {
        "math": {
-        "pairs": 226,
-        "agree_pct": 73.0
+        "pairs": 266,
+        "agree_pct": 75.6
        },
        "json": {
-        "pairs": 125,
+        "pairs": 145,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 126,
-        "agree_pct": 81.7
+        "pairs": 146,
+        "agree_pct": 82.9
        },
        "needle": {
-        "pairs": 120,
+        "pairs": 140,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 126,
+        "pairs": 146,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": null,
+      "2026-11-02": null
+     }
+    },
+    {
+     "tag": "alibaba",
+     "declared_quant": "unknown",
+     "declared_changed": false,
+     "nights": 9,
+     "exact_by_night": {
+      "2026-11-04": 83.3,
+      "2026-11-05": 84.5,
+      "2026-11-06": 83.5,
+      "2026-11-07": 86.6,
+      "2026-11-08": 85.2,
+      "2026-11-10": 85.4,
+      "2026-11-11": 88.9,
+      "2026-11-12": 86.4,
+      "2026-11-13": 88.7
+     },
+     "exact_mean": 85.8,
+     "exact_sd": 1.9,
+     "exact_min": 83.3,
+     "exact_max": 88.9,
+     "movement": 4.2,
+     "movement_overlap": false,
+     "movement_flag": false,
+     "families": {
+      "math": 73.9,
+      "json": 100.0,
+      "string": 47.7,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 850,
+      "agree_pct": 81.8,
+      "by_family": {
+       "math": {
+        "pairs": 266,
+        "agree_pct": 54.9
+       },
+       "json": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       },
+       "string": {
+        "pairs": 146,
+        "agree_pct": 76.0
+       },
+       "needle": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": null,
+      "2026-11-02": null
+     }
+    },
+    {
+     "tag": "deepinfra/fp8/flex",
+     "declared_quant": "fp8",
+     "declared_changed": false,
+     "nights": 9,
+     "exact_by_night": {
+      "2026-11-04": 85.4,
+      "2026-11-05": 85.9,
+      "2026-11-06": 86.3,
+      "2026-11-07": 87.3,
+      "2026-11-08": 82.4,
+      "2026-11-10": 86.8,
+      "2026-11-11": 89.1,
+      "2026-11-12": 83.6,
+      "2026-11-13": 85.8
+     },
+     "exact_mean": 85.8,
+     "exact_sd": 1.9,
+     "exact_min": 82.4,
+     "exact_max": 89.1,
+     "movement": 0.3,
+     "movement_overlap": false,
+     "movement_flag": false,
+     "families": {
+      "math": 67.8,
+      "json": 100.0,
+      "string": 49.1,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 852,
+      "agree_pct": 86.6,
+      "by_family": {
+       "math": {
+        "pairs": 268,
+        "agree_pct": 66.0
+       },
+       "json": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       },
+       "string": {
+        "pairs": 146,
+        "agree_pct": 84.2
+       },
+       "needle": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": null,
+      "2026-11-02": null
+     }
+    },
+    {
+     "tag": "inference-net/fp8",
+     "declared_quant": "fp8",
+     "declared_changed": false,
+     "nights": 9,
+     "exact_by_night": {
+      "2026-11-04": 87.5,
+      "2026-11-05": 83.8,
+      "2026-11-06": 82.7,
+      "2026-11-07": 86.6,
+      "2026-11-08": 88.0,
+      "2026-11-10": 82.6,
+      "2026-11-11": 85.9,
+      "2026-11-12": 87.1,
+      "2026-11-13": 87.9
+     },
+     "exact_mean": 85.8,
+     "exact_sd": 2.1,
+     "exact_min": 82.6,
+     "exact_max": 88.0,
+     "movement": 2.3,
+     "movement_overlap": false,
+     "movement_flag": false,
+     "families": {
+      "math": 73.8,
+      "json": 100.0,
+      "string": 49.0,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 852,
+      "agree_pct": 82.3,
+      "by_family": {
+       "math": {
+        "pairs": 268,
+        "agree_pct": 56.3
+       },
+       "json": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       },
+       "string": {
+        "pairs": 146,
+        "agree_pct": 76.7
+       },
+       "needle": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": null,
+      "2026-11-02": null
+     }
+    },
+    {
+     "tag": "novita/fp8",
+     "declared_quant": "fp8",
+     "declared_changed": false,
+     "nights": 9,
+     "exact_by_night": {
+      "2026-11-04": 86.1,
+      "2026-11-05": 88.0,
+      "2026-11-06": 82.0,
+      "2026-11-07": 83.8,
+      "2026-11-08": 83.1,
+      "2026-11-10": 90.3,
+      "2026-11-11": 85.7,
+      "2026-11-12": 86.4,
+      "2026-11-13": 87.2
+     },
+     "exact_mean": 85.8,
+     "exact_sd": 2.4,
+     "exact_min": 82.0,
+     "exact_max": 90.3,
+     "movement": 1.1,
+     "movement_overlap": false,
+     "movement_flag": false,
+     "families": {
+      "math": 75.3,
+      "json": 100.0,
+      "string": 51.8,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 850,
+      "agree_pct": 84.4,
+      "by_family": {
+       "math": {
+        "pairs": 266,
+        "agree_pct": 61.3
+       },
+       "json": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       },
+       "string": {
+        "pairs": 146,
+        "agree_pct": 79.5
+       },
+       "needle": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": null,
+      "2026-11-02": null
+     }
+    },
+    {
+     "tag": "fireworks/us",
+     "declared_quant": "unknown",
+     "declared_changed": false,
+     "nights": 9,
+     "exact_by_night": {
+      "2026-11-04": 81.2,
+      "2026-11-05": 87.3,
+      "2026-11-06": 84.2,
+      "2026-11-07": 83.1,
+      "2026-11-08": 83.1,
+      "2026-11-10": 84.0,
+      "2026-11-11": 91.5,
+      "2026-11-12": 85.7,
+      "2026-11-13": 90.8
+     },
+     "exact_mean": 85.7,
+     "exact_sd": 3.4,
+     "exact_min": 81.2,
+     "exact_max": 91.5,
+     "movement": 5.1,
+     "movement_overlap": false,
+     "movement_flag": false,
+     "families": {
+      "math": 68.9,
+      "json": 100.0,
+      "string": 50.9,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 842,
+      "agree_pct": 86.2,
+      "by_family": {
+       "math": {
+        "pairs": 266,
+        "agree_pct": 66.2
+       },
+       "json": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       },
+       "string": {
+        "pairs": 146,
+        "agree_pct": 82.2
+       },
+       "needle": {
+        "pairs": 140,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 144,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": null,
+      "2026-11-02": null
+     }
+    },
+    {
+     "tag": "primalabs",
+     "declared_quant": "unknown",
+     "declared_changed": false,
+     "nights": 8,
+     "exact_by_night": {
+      "2026-11-05": 85.6,
+      "2026-11-06": 84.7,
+      "2026-11-07": 85.8,
+      "2026-11-08": 85.9,
+      "2026-11-10": 86.7,
+      "2026-11-11": 90.0,
+      "2026-11-12": 83.1,
+      "2026-11-13": 83.7
+     },
+     "exact_mean": 85.7,
+     "exact_sd": 2.0,
+     "exact_min": 83.1,
+     "exact_max": 90.0,
+     "movement": 0.2,
+     "movement_overlap": false,
+     "movement_flag": false,
+     "families": {
+      "math": 69.9,
+      "json": 100.0,
+      "string": 49.4,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 663,
+      "agree_pct": 91.4,
+      "by_family": {
+       "math": {
+        "pairs": 190,
+        "agree_pct": 76.3
+       },
+       "json": {
+        "pairs": 120,
+        "agree_pct": 100.0
+       },
+       "string": {
+        "pairs": 117,
+        "agree_pct": 89.7
+       },
+       "needle": {
+        "pairs": 118,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 118,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": null,
+      "2026-11-02": null
+     }
+    },
+    {
+     "tag": "baseten",
+     "declared_quant": "unknown",
+     "declared_changed": false,
+     "nights": 9,
+     "exact_by_night": {
+      "2026-11-04": 86.1,
+      "2026-11-05": 84.5,
+      "2026-11-06": 85.6,
+      "2026-11-07": 82.4,
+      "2026-11-08": 84.5,
+      "2026-11-10": 81.2,
+      "2026-11-11": 93.2,
+      "2026-11-12": 85.7,
+      "2026-11-13": 87.2
+     },
+     "exact_mean": 85.6,
+     "exact_sd": 3.2,
+     "exact_min": 81.2,
+     "exact_max": 93.2,
+     "movement": 3.3,
+     "movement_overlap": false,
+     "movement_flag": false,
+     "families": {
+      "math": 70.0,
+      "json": 100.0,
+      "string": 47.7,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 842,
+      "agree_pct": 89.3,
+      "by_family": {
+       "math": {
+        "pairs": 266,
+        "agree_pct": 72.2
+       },
+       "json": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       },
+       "string": {
+        "pairs": 146,
+        "agree_pct": 89.0
+       },
+       "needle": {
+        "pairs": 140,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 144,
         "agree_pct": 100.0
        }
       }
@@ -5167,56 +5535,57 @@
      }
     },
     {
-     "tag": "alibaba",
+     "tag": "dekallm",
      "declared_quant": "unknown",
      "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
-      "2026-11-04": 83.3,
+      "2026-11-04": 82.6,
       "2026-11-05": 84.5,
-      "2026-11-06": 83.5,
-      "2026-11-07": 86.6,
+      "2026-11-06": 84.9,
+      "2026-11-07": 88.7,
       "2026-11-08": 85.2,
-      "2026-11-10": 85.4,
-      "2026-11-11": 88.9,
-      "2026-11-12": 86.4
+      "2026-11-10": 84.0,
+      "2026-11-11": 88.5,
+      "2026-11-12": 84.3,
+      "2026-11-13": 87.2
      },
      "exact_mean": 85.5,
-     "exact_sd": 1.7,
-     "exact_min": 83.3,
-     "exact_max": 88.9,
-     "movement": 3.1,
+     "exact_sd": 2.0,
+     "exact_min": 82.6,
+     "exact_max": 88.7,
+     "movement": 2.7,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 73.2,
+      "math": 72.3,
       "json": 100.0,
-      "string": 48.0,
+      "string": 53.2,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 730,
-      "agree_pct": 81.6,
+      "pairs": 846,
+      "agree_pct": 81.9,
       "by_family": {
        "math": {
-        "pairs": 226,
-        "agree_pct": 54.4
+        "pairs": 266,
+        "agree_pct": 51.9
        },
        "json": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 126,
-        "agree_pct": 75.4
+        "pairs": 146,
+        "agree_pct": 82.9
        },
        "needle": {
-        "pairs": 126,
+        "pairs": 144,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 126,
+        "pairs": 144,
         "agree_pct": 100.0
        }
       }
@@ -5227,56 +5596,57 @@
      }
     },
     {
-     "tag": "inference-net/fp8",
-     "declared_quant": "fp8",
+     "tag": "fireworks/spot",
+     "declared_quant": "unknown",
      "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
-      "2026-11-04": 87.5,
-      "2026-11-05": 83.8,
-      "2026-11-06": 82.7,
-      "2026-11-07": 86.6,
-      "2026-11-08": 88.0,
-      "2026-11-10": 82.6,
-      "2026-11-11": 85.9,
-      "2026-11-12": 87.1
+      "2026-11-04": null,
+      "2026-11-05": null,
+      "2026-11-06": null,
+      "2026-11-07": 83.0,
+      "2026-11-08": 86.6,
+      "2026-11-10": 87.5,
+      "2026-11-11": null,
+      "2026-11-12": 82.9,
+      "2026-11-13": 87.2
      },
-     "exact_mean": 85.5,
-     "exact_sd": 2.0,
-     "exact_min": 82.6,
-     "exact_max": 88.0,
-     "movement": 0.5,
-     "movement_overlap": false,
+     "exact_mean": 85.4,
+     "exact_sd": 2.1,
+     "exact_min": 82.9,
+     "exact_max": 87.5,
+     "movement": 0.2,
+     "movement_overlap": true,
      "movement_flag": false,
      "families": {
-      "math": 73.1,
+      "math": 72.8,
       "json": 100.0,
-      "string": 49.5,
+      "string": 50.9,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 732,
-      "agree_pct": 82.2,
+      "pairs": 360,
+      "agree_pct": 82.8,
       "by_family": {
        "math": {
-        "pairs": 228,
-        "agree_pct": 55.7
+        "pairs": 120,
+        "agree_pct": 62.5
        },
        "json": {
-        "pairs": 126,
+        "pairs": 60,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 126,
-        "agree_pct": 77.0
+        "pairs": 60,
+        "agree_pct": 71.7
        },
        "needle": {
-        "pairs": 126,
+        "pairs": 60,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 126,
+        "pairs": 60,
         "agree_pct": 100.0
        }
       }
@@ -5290,7 +5660,7 @@
      "tag": "nebius/fp8",
      "declared_quant": "fp8",
      "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
       "2026-11-04": 84.0,
       "2026-11-05": 85.9,
@@ -5299,284 +5669,106 @@
       "2026-11-08": 87.3,
       "2026-11-10": 86.8,
       "2026-11-11": 91.5,
-      "2026-11-12": 83.6
-     },
-     "exact_mean": 85.5,
-     "exact_sd": 2.8,
-     "exact_min": 82.0,
-     "exact_max": 91.5,
-     "movement": 3.3,
-     "movement_overlap": false,
-     "movement_flag": false,
-     "families": {
-      "math": 71.5,
-      "json": 100.0,
-      "string": 50.0,
-      "needle": 100.0,
-      "echo": 100.0
-     },
-     "self": {
-      "pairs": 722,
-      "agree_pct": 82.4,
-      "by_family": {
-       "math": {
-        "pairs": 226,
-        "agree_pct": 56.6
-       },
-       "json": {
-        "pairs": 126,
-        "agree_pct": 100.0
-       },
-       "string": {
-        "pairs": 126,
-        "agree_pct": 77.0
-       },
-       "needle": {
-        "pairs": 120,
-        "agree_pct": 100.0
-       },
-       "echo": {
-        "pairs": 124,
-        "agree_pct": 100.0
-       }
-      }
-     },
-     "selfcheck": {
-      "2026-10-27": null,
-      "2026-11-02": null
-     }
-    },
-    {
-     "tag": "parasail/fp8",
-     "declared_quant": "fp8",
-     "declared_changed": false,
-     "nights": 8,
-     "exact_by_night": {
-      "2026-11-04": 84.7,
-      "2026-11-05": 87.3,
-      "2026-11-06": 84.9,
-      "2026-11-07": 82.4,
-      "2026-11-08": 83.8,
-      "2026-11-10": 84.0,
-      "2026-11-11": 91.5,
-      "2026-11-12": 85.7
-     },
-     "exact_mean": 85.5,
-     "exact_sd": 2.6,
-     "exact_min": 82.4,
-     "exact_max": 91.5,
-     "movement": 1.4,
-     "movement_overlap": false,
-     "movement_flag": false,
-     "families": {
-      "math": 69.1,
-      "json": 100.0,
-      "string": 55.7,
-      "needle": 100.0,
-      "echo": 100.0
-     },
-     "self": {
-      "pairs": 722,
-      "agree_pct": 86.1,
-      "by_family": {
-       "math": {
-        "pairs": 226,
-        "agree_pct": 70.4
-       },
-       "json": {
-        "pairs": 126,
-        "agree_pct": 100.0
-       },
-       "string": {
-        "pairs": 126,
-        "agree_pct": 73.8
-       },
-       "needle": {
-        "pairs": 120,
-        "agree_pct": 100.0
-       },
-       "echo": {
-        "pairs": 124,
-        "agree_pct": 100.0
-       }
-      }
-     },
-     "selfcheck": {
-      "2026-10-27": null,
-      "2026-11-02": null
-     }
-    },
-    {
-     "tag": "baseten",
-     "declared_quant": "unknown",
-     "declared_changed": false,
-     "nights": 8,
-     "exact_by_night": {
-      "2026-11-04": 86.1,
-      "2026-11-05": 84.5,
-      "2026-11-06": 85.6,
-      "2026-11-07": 82.4,
-      "2026-11-08": 84.5,
-      "2026-11-10": 81.2,
-      "2026-11-11": 93.2,
-      "2026-11-12": 85.7
+      "2026-11-12": 83.6,
+      "2026-11-13": 84.4
      },
      "exact_mean": 85.4,
-     "exact_sd": 3.3,
-     "exact_min": 81.2,
-     "exact_max": 93.2,
-     "movement": 1.3,
-     "movement_overlap": false,
-     "movement_flag": false,
-     "families": {
-      "math": 68.6,
-      "json": 100.0,
-      "string": 48.0,
-      "needle": 100.0,
-      "echo": 100.0
-     },
-     "self": {
-      "pairs": 722,
-      "agree_pct": 90.0,
-      "by_family": {
-       "math": {
-        "pairs": 226,
-        "agree_pct": 73.5
-       },
-       "json": {
-        "pairs": 126,
-        "agree_pct": 100.0
-       },
-       "string": {
-        "pairs": 126,
-        "agree_pct": 90.5
-       },
-       "needle": {
-        "pairs": 120,
-        "agree_pct": 100.0
-       },
-       "echo": {
-        "pairs": 124,
-        "agree_pct": 100.0
-       }
-      }
-     },
-     "selfcheck": {
-      "2026-10-27": null,
-      "2026-11-02": null
-     }
-    },
-    {
-     "tag": "dekallm",
-     "declared_quant": "unknown",
-     "declared_changed": false,
-     "nights": 8,
-     "exact_by_night": {
-      "2026-11-04": 82.6,
-      "2026-11-05": 84.5,
-      "2026-11-06": 84.9,
-      "2026-11-07": 88.7,
-      "2026-11-08": 85.2,
-      "2026-11-10": 84.0,
-      "2026-11-11": 88.5,
-      "2026-11-12": 84.3
-     },
-     "exact_mean": 85.3,
-     "exact_sd": 2.0,
-     "exact_min": 82.6,
-     "exact_max": 88.7,
-     "movement": 1.6,
-     "movement_overlap": false,
-     "movement_flag": false,
-     "families": {
-      "math": 71.7,
-      "json": 100.0,
-      "string": 54.1,
-      "needle": 100.0,
-      "echo": 100.0
-     },
-     "self": {
-      "pairs": 726,
-      "agree_pct": 82.0,
-      "by_family": {
-       "math": {
-        "pairs": 226,
-        "agree_pct": 52.2
-       },
-       "json": {
-        "pairs": 126,
-        "agree_pct": 100.0
-       },
-       "string": {
-        "pairs": 126,
-        "agree_pct": 81.7
-       },
-       "needle": {
-        "pairs": 124,
-        "agree_pct": 100.0
-       },
-       "echo": {
-        "pairs": 124,
-        "agree_pct": 100.0
-       }
-      }
-     },
-     "selfcheck": {
-      "2026-10-27": null,
-      "2026-11-02": null
-     }
-    },
-    {
-     "tag": "mistral/fp8",
-     "declared_quant": "fp8",
-     "declared_changed": false,
-     "nights": 8,
-     "exact_by_night": {
-      "2026-11-04": 86.1,
-      "2026-11-05": 89.4,
-      "2026-11-06": 84.2,
-      "2026-11-07": 82.4,
-      "2026-11-08": 87.3,
-      "2026-11-10": 81.9,
-      "2026-11-11": 86.4,
-      "2026-11-12": 85.0
-     },
-     "exact_mean": 85.3,
-     "exact_sd": 2.3,
-     "exact_min": 81.9,
-     "exact_max": 89.4,
-     "movement": -2.1,
+     "exact_sd": 2.7,
+     "exact_min": 82.0,
+     "exact_max": 91.5,
+     "movement": 2.5,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
       "math": 72.3,
       "json": 100.0,
-      "string": 46.8,
+      "string": 49.6,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 722,
-      "agree_pct": 87.5,
+      "pairs": 842,
+      "agree_pct": 82.7,
       "by_family": {
        "math": {
-        "pairs": 226,
-        "agree_pct": 71.7
+        "pairs": 266,
+        "agree_pct": 57.5
        },
        "json": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 126,
-        "agree_pct": 79.4
+        "pairs": 146,
+        "agree_pct": 77.4
        },
        "needle": {
-        "pairs": 120,
+        "pairs": 140,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 124,
+        "pairs": 144,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": null,
+      "2026-11-02": null
+     }
+    },
+    {
+     "tag": "sail-research/fp4/us",
+     "declared_quant": "fp4",
+     "declared_changed": false,
+     "nights": 9,
+     "exact_by_night": {
+      "2026-11-04": 79.7,
+      "2026-11-05": null,
+      "2026-11-06": null,
+      "2026-11-07": null,
+      "2026-11-08": null,
+      "2026-11-10": null,
+      "2026-11-11": 90.6,
+      "2026-11-12": 85.0,
+      "2026-11-13": 85.8
+     },
+     "exact_mean": 85.3,
+     "exact_sd": 3.9,
+     "exact_min": 79.7,
+     "exact_max": 90.6,
+     "movement": 2.0,
+     "movement_overlap": true,
+     "movement_flag": false,
+     "families": {
+      "math": 67.9,
+      "json": 100.0,
+      "string": 50.1,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 186,
+      "agree_pct": 90.9,
+      "by_family": {
+       "math": {
+        "pairs": 54,
+        "agree_pct": 74.1
+       },
+       "json": {
+        "pairs": 33,
+        "agree_pct": 100.0
+       },
+       "string": {
+        "pairs": 33,
+        "agree_pct": 90.9
+       },
+       "needle": {
+        "pairs": 33,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 33,
         "agree_pct": 100.0
        }
       }
@@ -5644,190 +5836,10 @@
      }
     },
     {
-     "tag": "sail-research/fp4/us",
-     "declared_quant": "fp4",
-     "declared_changed": false,
-     "nights": 8,
-     "exact_by_night": {
-      "2026-11-04": 79.7,
-      "2026-11-05": null,
-      "2026-11-06": null,
-      "2026-11-07": null,
-      "2026-11-08": null,
-      "2026-11-10": null,
-      "2026-11-11": 90.6,
-      "2026-11-12": 85.0
-     },
-     "exact_mean": 85.1,
-     "exact_sd": 4.5,
-     "exact_min": 79.7,
-     "exact_max": 90.6,
-     "movement": 0.0,
-     "movement_overlap": true,
-     "movement_flag": false,
-     "families": {
-      "math": 65.6,
-      "json": 100.0,
-      "string": 50.1,
-      "needle": 100.0,
-      "echo": 100.0
-     },
-     "self": {
-      "pairs": 66,
-      "agree_pct": 97.0,
-      "by_family": {
-       "math": {
-        "pairs": 14,
-        "agree_pct": 92.9
-       },
-       "json": {
-        "pairs": 13,
-        "agree_pct": 100.0
-       },
-       "string": {
-        "pairs": 13,
-        "agree_pct": 92.3
-       },
-       "needle": {
-        "pairs": 13,
-        "agree_pct": 100.0
-       },
-       "echo": {
-        "pairs": 13,
-        "agree_pct": 100.0
-       }
-      }
-     },
-     "selfcheck": {
-      "2026-10-27": null,
-      "2026-11-02": null
-     }
-    },
-    {
-     "tag": "fireworks/spot",
-     "declared_quant": "unknown",
-     "declared_changed": false,
-     "nights": 8,
-     "exact_by_night": {
-      "2026-11-04": null,
-      "2026-11-05": null,
-      "2026-11-06": null,
-      "2026-11-07": 83.0,
-      "2026-11-08": 86.6,
-      "2026-11-10": 87.5,
-      "2026-11-11": null,
-      "2026-11-12": 82.9
-     },
-     "exact_mean": 85.0,
-     "exact_sd": 2.1,
-     "exact_min": 82.9,
-     "exact_max": 87.5,
-     "movement": -0.0,
-     "movement_overlap": true,
-     "movement_flag": false,
-     "families": {
-      "math": 71.7,
-      "json": 100.0,
-      "string": 50.0,
-      "needle": 100.0,
-      "echo": 100.0
-     },
-     "self": {
-      "pairs": 240,
-      "agree_pct": 81.7,
-      "by_family": {
-       "math": {
-        "pairs": 80,
-        "agree_pct": 60.0
-       },
-       "json": {
-        "pairs": 40,
-        "agree_pct": 100.0
-       },
-       "string": {
-        "pairs": 40,
-        "agree_pct": 70.0
-       },
-       "needle": {
-        "pairs": 40,
-        "agree_pct": 100.0
-       },
-       "echo": {
-        "pairs": 40,
-        "agree_pct": 100.0
-       }
-      }
-     },
-     "selfcheck": {
-      "2026-10-27": null,
-      "2026-11-02": null
-     }
-    },
-    {
-     "tag": "fireworks/us",
-     "declared_quant": "unknown",
-     "declared_changed": false,
-     "nights": 8,
-     "exact_by_night": {
-      "2026-11-04": 81.2,
-      "2026-11-05": 87.3,
-      "2026-11-06": 84.2,
-      "2026-11-07": 83.1,
-      "2026-11-08": 83.1,
-      "2026-11-10": 84.0,
-      "2026-11-11": 91.5,
-      "2026-11-12": 85.7
-     },
-     "exact_mean": 85.0,
-     "exact_sd": 3.0,
-     "exact_min": 81.2,
-     "exact_max": 91.5,
-     "movement": 2.8,
-     "movement_overlap": false,
-     "movement_flag": false,
-     "families": {
-      "math": 67.8,
-      "json": 100.0,
-      "string": 51.0,
-      "needle": 100.0,
-      "echo": 100.0
-     },
-     "self": {
-      "pairs": 722,
-      "agree_pct": 86.4,
-      "by_family": {
-       "math": {
-        "pairs": 226,
-        "agree_pct": 66.4
-       },
-       "json": {
-        "pairs": 126,
-        "agree_pct": 100.0
-       },
-       "string": {
-        "pairs": 126,
-        "agree_pct": 82.5
-       },
-       "needle": {
-        "pairs": 120,
-        "agree_pct": 100.0
-       },
-       "echo": {
-        "pairs": 124,
-        "agree_pct": 100.0
-       }
-      }
-     },
-     "selfcheck": {
-      "2026-10-27": null,
-      "2026-11-02": null
-     }
-    },
-    {
      "tag": "inference-net/us",
      "declared_quant": "fp8",
      "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
       "2026-11-04": 85.4,
       "2026-11-05": 84.5,
@@ -5836,44 +5848,106 @@
       "2026-11-08": 85.9,
       "2026-11-10": 87.5,
       "2026-11-11": 87.5,
-      "2026-11-12": 87.1
+      "2026-11-12": 87.1,
+      "2026-11-13": 87.2
      },
-     "exact_mean": 84.9,
+     "exact_mean": 85.2,
      "exact_sd": 2.7,
      "exact_min": 79.1,
      "exact_max": 87.5,
-     "movement": 4.4,
+     "movement": 4.3,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 68.7,
+      "math": 69.9,
       "json": 100.0,
-      "string": 51.0,
+      "string": 50.9,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 732,
-      "agree_pct": 81.0,
+      "pairs": 852,
+      "agree_pct": 81.5,
       "by_family": {
        "math": {
-        "pairs": 228,
-        "agree_pct": 51.8
+        "pairs": 268,
+        "agree_pct": 52.6
        },
        "json": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 126,
-        "agree_pct": 77.0
+        "pairs": 146,
+        "agree_pct": 78.8
        },
        "needle": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 126,
+        "pairs": 146,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": null,
+      "2026-11-02": null
+     }
+    },
+    {
+     "tag": "mistral/fp8",
+     "declared_quant": "fp8",
+     "declared_changed": false,
+     "nights": 9,
+     "exact_by_night": {
+      "2026-11-04": 86.1,
+      "2026-11-05": 89.4,
+      "2026-11-06": 84.2,
+      "2026-11-07": 82.4,
+      "2026-11-08": 87.3,
+      "2026-11-10": 81.9,
+      "2026-11-11": 86.4,
+      "2026-11-12": 85.0,
+      "2026-11-13": 83.0
+     },
+     "exact_mean": 85.1,
+     "exact_sd": 2.3,
+     "exact_min": 81.9,
+     "exact_max": 89.4,
+     "movement": -1.8,
+     "movement_overlap": false,
+     "movement_flag": false,
+     "families": {
+      "math": 72.6,
+      "json": 100.0,
+      "string": 48.1,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 842,
+      "agree_pct": 87.9,
+      "by_family": {
+       "math": {
+        "pairs": 266,
+        "agree_pct": 73.3
+       },
+       "json": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       },
+       "string": {
+        "pairs": 146,
+        "agree_pct": 78.8
+       },
+       "needle": {
+        "pairs": 140,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 144,
         "agree_pct": 100.0
        }
       }
@@ -5942,66 +6016,6 @@
      }
     },
     {
-     "tag": "crusoe/fp8",
-     "declared_quant": "fp8",
-     "declared_changed": false,
-     "nights": 8,
-     "exact_by_night": {
-      "2026-11-04": 86.8,
-      "2026-11-05": 82.4,
-      "2026-11-06": 83.5,
-      "2026-11-07": 84.5,
-      "2026-11-08": 81.0,
-      "2026-11-10": 85.4,
-      "2026-11-11": 85.0,
-      "2026-11-12": 86.4
-     },
-     "exact_mean": 84.4,
-     "exact_sd": 1.9,
-     "exact_min": 81.0,
-     "exact_max": 86.8,
-     "movement": 1.4,
-     "movement_overlap": false,
-     "movement_flag": false,
-     "families": {
-      "math": 70.1,
-      "json": 100.0,
-      "string": 49.5,
-      "needle": 100.0,
-      "echo": 100.0
-     },
-     "self": {
-      "pairs": 724,
-      "agree_pct": 83.7,
-      "by_family": {
-       "math": {
-        "pairs": 226,
-        "agree_pct": 58.4
-       },
-       "json": {
-        "pairs": 126,
-        "agree_pct": 100.0
-       },
-       "string": {
-        "pairs": 126,
-        "agree_pct": 81.0
-       },
-       "needle": {
-        "pairs": 122,
-        "agree_pct": 100.0
-       },
-       "echo": {
-        "pairs": 124,
-        "agree_pct": 100.0
-       }
-      }
-     },
-     "selfcheck": {
-      "2026-10-27": null,
-      "2026-11-02": null
-     }
-    },
-    {
      "tag": "phala",
      "declared_quant": "unknown",
      "declared_changed": false,
@@ -6060,56 +6074,57 @@
      }
     },
     {
-     "tag": "together",
-     "declared_quant": "unknown",
+     "tag": "sail-research/fp4",
+     "declared_quant": "fp4",
      "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
-      "2026-11-04": 82.6,
-      "2026-11-05": 84.5,
-      "2026-11-06": 84.9,
-      "2026-11-07": 81.0,
-      "2026-11-08": 82.4,
-      "2026-11-10": 84.0,
-      "2026-11-11": 91.7,
-      "2026-11-12": 82.1
+      "2026-11-04": 79.5,
+      "2026-11-05": null,
+      "2026-11-06": null,
+      "2026-11-07": null,
+      "2026-11-08": null,
+      "2026-11-10": null,
+      "2026-11-11": 87.5,
+      "2026-11-12": 85.0,
+      "2026-11-13": 85.1
      },
-     "exact_mean": 84.2,
-     "exact_sd": 3.1,
-     "exact_min": 81.0,
-     "exact_max": 91.7,
+     "exact_mean": 84.3,
+     "exact_sd": 2.9,
+     "exact_min": 79.5,
+     "exact_max": 87.5,
      "movement": 1.9,
-     "movement_overlap": false,
+     "movement_overlap": true,
      "movement_flag": false,
      "families": {
-      "math": 76.0,
+      "math": 69.5,
       "json": 100.0,
-      "string": 49.0,
-      "needle": 83.8,
+      "string": 49.1,
+      "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 724,
-      "agree_pct": 79.3,
+      "pairs": 186,
+      "agree_pct": 84.9,
       "by_family": {
        "math": {
-        "pairs": 226,
-        "agree_pct": 63.7
+        "pairs": 54,
+        "agree_pct": 63.0
        },
        "json": {
-        "pairs": 126,
+        "pairs": 33,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 126,
-        "agree_pct": 79.4
+        "pairs": 33,
+        "agree_pct": 75.8
        },
        "needle": {
-        "pairs": 122,
-        "agree_pct": 65.6
+        "pairs": 33,
+        "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 124,
+        "pairs": 33,
         "agree_pct": 100.0
        }
       }
@@ -6120,56 +6135,118 @@
      }
     },
     {
-     "tag": "sail-research/fp4",
-     "declared_quant": "fp4",
+     "tag": "crusoe/fp8",
+     "declared_quant": "fp8",
      "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
-      "2026-11-04": 79.5,
-      "2026-11-05": null,
-      "2026-11-06": null,
-      "2026-11-07": null,
-      "2026-11-08": null,
-      "2026-11-10": null,
-      "2026-11-11": 87.5,
-      "2026-11-12": 85.0
+      "2026-11-04": 86.8,
+      "2026-11-05": 82.4,
+      "2026-11-06": 83.5,
+      "2026-11-07": 84.5,
+      "2026-11-08": 81.0,
+      "2026-11-10": 85.4,
+      "2026-11-11": 85.0,
+      "2026-11-12": 86.4,
+      "2026-11-13": 83.0
      },
-     "exact_mean": 84.0,
-     "exact_sd": 3.3,
-     "exact_min": 79.5,
-     "exact_max": 87.5,
-     "movement": 0.0,
-     "movement_overlap": true,
+     "exact_mean": 84.2,
+     "exact_sd": 1.8,
+     "exact_min": 81.0,
+     "exact_max": 86.8,
+     "movement": 0.6,
+     "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 65.6,
+      "math": 71.1,
       "json": 100.0,
-      "string": 47.4,
+      "string": 49.1,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 66,
-      "agree_pct": 93.9,
+      "pairs": 844,
+      "agree_pct": 83.2,
       "by_family": {
        "math": {
-        "pairs": 14,
-        "agree_pct": 85.7
+        "pairs": 266,
+        "agree_pct": 56.8
        },
        "json": {
-        "pairs": 13,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 13,
-        "agree_pct": 84.6
+        "pairs": 146,
+        "agree_pct": 81.5
        },
        "needle": {
-        "pairs": 13,
+        "pairs": 142,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 13,
+        "pairs": 144,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": null,
+      "2026-11-02": null
+     }
+    },
+    {
+     "tag": "together",
+     "declared_quant": "unknown",
+     "declared_changed": false,
+     "nights": 9,
+     "exact_by_night": {
+      "2026-11-04": 82.6,
+      "2026-11-05": 84.5,
+      "2026-11-06": 84.9,
+      "2026-11-07": 81.0,
+      "2026-11-08": 82.4,
+      "2026-11-10": 84.0,
+      "2026-11-11": 91.7,
+      "2026-11-12": 82.1,
+      "2026-11-13": 83.0
+     },
+     "exact_mean": 84.0,
+     "exact_sd": 3.0,
+     "exact_min": 81.0,
+     "exact_max": 91.7,
+     "movement": 1.6,
+     "movement_overlap": false,
+     "movement_flag": false,
+     "families": {
+      "math": 76.8,
+      "json": 100.0,
+      "string": 49.1,
+      "needle": 84.2,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 844,
+      "agree_pct": 79.3,
+      "by_family": {
+       "math": {
+        "pairs": 266,
+        "agree_pct": 63.2
+       },
+       "json": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       },
+       "string": {
+        "pairs": 146,
+        "agree_pct": 78.1
+       },
+       "needle": {
+        "pairs": 142,
+        "agree_pct": 68.3
+       },
+       "echo": {
+        "pairs": 144,
         "agree_pct": 100.0
        }
       }
@@ -6183,7 +6260,7 @@
      "tag": "gmicloud/fp8",
      "declared_quant": "fp8",
      "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
       "2026-11-04": 75.0,
       "2026-11-05": 85.9,
@@ -6192,44 +6269,45 @@
       "2026-11-08": 83.1,
       "2026-11-10": 86.8,
       "2026-11-11": 85.0,
-      "2026-11-12": 83.6
+      "2026-11-12": 83.6,
+      "2026-11-13": 87.2
      },
-     "exact_mean": 83.1,
-     "exact_sd": 3.4,
+     "exact_mean": 83.5,
+     "exact_sd": 3.5,
      "exact_min": 75.0,
-     "exact_max": 86.8,
-     "movement": 4.2,
+     "exact_max": 87.2,
+     "movement": 4.3,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 64.5,
-      "json": 100.0,
-      "string": 48.5,
+      "math": 64.8,
+      "json": 99.5,
+      "string": 48.2,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 724,
-      "agree_pct": 89.6,
+      "pairs": 844,
+      "agree_pct": 89.8,
       "by_family": {
        "math": {
-        "pairs": 226,
-        "agree_pct": 74.8
+        "pairs": 266,
+        "agree_pct": 77.1
        },
        "json": {
-        "pairs": 126,
-        "agree_pct": 100.0
+        "pairs": 146,
+        "agree_pct": 99.3
        },
        "string": {
-        "pairs": 126,
-        "agree_pct": 85.7
+        "pairs": 146,
+        "agree_pct": 83.6
        },
        "needle": {
-        "pairs": 122,
+        "pairs": 142,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 124,
+        "pairs": 144,
         "agree_pct": 100.0
        }
       }
@@ -6243,47 +6321,48 @@
      "tag": "river",
      "declared_quant": "unknown",
      "declared_changed": false,
-     "nights": 1,
+     "nights": 2,
      "exact_by_night": {
-      "2026-11-12": 82.1
+      "2026-11-12": 82.1,
+      "2026-11-13": 83.0
      },
-     "exact_mean": 82.1,
-     "exact_sd": 0.0,
+     "exact_mean": 82.5,
+     "exact_sd": 0.5,
      "exact_min": 82.1,
-     "exact_max": 82.1,
-     "movement": null,
-     "movement_overlap": false,
+     "exact_max": 83.0,
+     "movement": 0.0,
+     "movement_overlap": true,
      "movement_flag": false,
      "families": {
-      "math": 72.9,
+      "math": 76.1,
       "json": 100.0,
       "string": 50.0,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 0,
-      "agree_pct": null,
+      "pairs": 120,
+      "agree_pct": 95.0,
       "by_family": {
        "math": {
-        "pairs": 0,
-        "agree_pct": null
+        "pairs": 40,
+        "agree_pct": 90.0
        },
        "json": {
-        "pairs": 0,
-        "agree_pct": null
+        "pairs": 20,
+        "agree_pct": 100.0
        },
        "string": {
-        "pairs": 0,
-        "agree_pct": null
+        "pairs": 20,
+        "agree_pct": 90.0
        },
        "needle": {
-        "pairs": 0,
-        "agree_pct": null
+        "pairs": 20,
+        "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 0,
-        "agree_pct": null
+        "pairs": 20,
+        "agree_pct": 100.0
        }
       }
      },
@@ -6296,7 +6375,7 @@
      "tag": "streamlake/fp8",
      "declared_quant": "fp8",
      "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
       "2026-11-04": 76.4,
       "2026-11-05": 78.2,
@@ -6305,44 +6384,45 @@
       "2026-11-08": 76.8,
       "2026-11-10": 86.8,
       "2026-11-11": 85.7,
-      "2026-11-12": 87.1
+      "2026-11-12": 87.1,
+      "2026-11-13": 88.7
      },
-     "exact_mean": 80.3,
-     "exact_sd": 4.9,
+     "exact_mean": 81.3,
+     "exact_sd": 5.3,
      "exact_min": 75.4,
-     "exact_max": 87.1,
-     "movement": 9.6,
+     "exact_max": 88.7,
+     "movement": 10.2,
      "movement_overlap": false,
-     "movement_flag": false,
+     "movement_flag": true,
      "families": {
-      "math": 79.2,
+      "math": 78.7,
       "json": 100.0,
-      "string": 55.1,
+      "string": 54.0,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 730,
-      "agree_pct": 87.5,
+      "pairs": 850,
+      "agree_pct": 87.3,
       "by_family": {
        "math": {
-        "pairs": 226,
-        "agree_pct": 71.7
+        "pairs": 266,
+        "agree_pct": 70.3
        },
        "json": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 126,
-        "agree_pct": 78.6
+        "pairs": 146,
+        "agree_pct": 80.1
        },
        "needle": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        }
       }
@@ -6356,7 +6436,7 @@
      "tag": "ionstream",
      "declared_quant": "unknown",
      "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
       "2026-11-04": 77.1,
       "2026-11-05": 78.9,
@@ -6365,44 +6445,45 @@
       "2026-11-08": 80.3,
       "2026-11-10": 77.8,
       "2026-11-11": 82.5,
-      "2026-11-12": 80.0
+      "2026-11-12": 80.0,
+      "2026-11-13": 80.1
      },
-     "exact_mean": 78.7,
-     "exact_sd": 2.1,
+     "exact_mean": 78.9,
+     "exact_sd": 2.0,
      "exact_min": 75.4,
      "exact_max": 82.5,
-     "movement": 2.2,
+     "movement": 3.0,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 64.5,
+      "math": 65.2,
       "json": 100.0,
-      "string": 42.8,
+      "string": 43.2,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 730,
-      "agree_pct": 81.8,
+      "pairs": 850,
+      "agree_pct": 82.6,
       "by_family": {
        "math": {
-        "pairs": 226,
-        "agree_pct": 53.5
+        "pairs": 266,
+        "agree_pct": 56.0
        },
        "json": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 126,
-        "agree_pct": 77.8
+        "pairs": 146,
+        "agree_pct": 78.8
        },
        "needle": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        }
       }
@@ -6416,48 +6497,49 @@
      "tag": "ionstream/flex",
      "declared_quant": "unknown",
      "declared_changed": false,
-     "nights": 3,
+     "nights": 4,
      "exact_by_night": {
       "2026-11-10": 73.6,
       "2026-11-11": 84.4,
-      "2026-11-12": 76.4
+      "2026-11-12": 76.4,
+      "2026-11-13": 75.2
      },
-     "exact_mean": 78.1,
-     "exact_sd": 4.6,
+     "exact_mean": 77.4,
+     "exact_sd": 4.2,
      "exact_min": 73.6,
      "exact_max": 84.4,
-     "movement": 0.0,
+     "movement": 0.5,
      "movement_overlap": true,
      "movement_flag": false,
      "families": {
-      "math": 80.0,
+      "math": 81.9,
       "json": 100.0,
-      "string": 44.6,
+      "string": 45.9,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 132,
-      "agree_pct": 88.6,
+      "pairs": 252,
+      "agree_pct": 85.7,
       "by_family": {
        "math": {
-        "pairs": 28,
-        "agree_pct": 71.4
+        "pairs": 68,
+        "agree_pct": 64.7
        },
        "json": {
-        "pairs": 26,
+        "pairs": 46,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 26,
-        "agree_pct": 73.1
+        "pairs": 46,
+        "agree_pct": 73.9
        },
        "needle": {
-        "pairs": 26,
+        "pairs": 46,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 26,
+        "pairs": 46,
         "agree_pct": 100.0
        }
       }
@@ -6471,7 +6553,7 @@
      "tag": "digitalocean",
      "declared_quant": "unknown",
      "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
       "2026-11-04": 75.7,
       "2026-11-05": 78.2,
@@ -6480,44 +6562,106 @@
       "2026-11-08": 75.4,
       "2026-11-10": 74.3,
       "2026-11-11": 85.0,
-      "2026-11-12": 79.3
+      "2026-11-12": 79.3,
+      "2026-11-13": 76.3
      },
-     "exact_mean": 77.1,
-     "exact_sd": 3.5,
+     "exact_mean": 77.0,
+     "exact_sd": 3.3,
      "exact_min": 73.4,
      "exact_max": 85.0,
-     "movement": 3.8,
+     "movement": 4.4,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 61.8,
+      "math": 62.7,
       "json": 100.0,
-      "string": 56.7,
+      "string": 57.4,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 724,
-      "agree_pct": 72.2,
+      "pairs": 842,
+      "agree_pct": 72.3,
       "by_family": {
        "math": {
-        "pairs": 226,
-        "agree_pct": 30.1
+        "pairs": 265,
+        "agree_pct": 30.6
        },
        "json": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 126,
-        "agree_pct": 65.9
+        "pairs": 146,
+        "agree_pct": 66.4
        },
        "needle": {
-        "pairs": 122,
+        "pairs": 142,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 124,
+        "pairs": 143,
+        "agree_pct": 100.0
+       }
+      }
+     },
+     "selfcheck": {
+      "2026-10-27": null,
+      "2026-11-02": null
+     }
+    },
+    {
+     "tag": "baidu/fp8",
+     "declared_quant": "fp8",
+     "declared_changed": false,
+     "nights": 9,
+     "exact_by_night": {
+      "2026-11-04": 73.2,
+      "2026-11-05": 75.9,
+      "2026-11-06": 77.7,
+      "2026-11-07": 73.9,
+      "2026-11-08": 73.8,
+      "2026-11-10": 74.3,
+      "2026-11-11": 84.1,
+      "2026-11-12": 76.4,
+      "2026-11-13": 78.7
+     },
+     "exact_mean": 76.4,
+     "exact_sd": 3.2,
+     "exact_min": 73.2,
+     "exact_max": 84.1,
+     "movement": 4.1,
+     "movement_overlap": false,
+     "movement_flag": false,
+     "families": {
+      "math": 77.6,
+      "json": 100.0,
+      "string": 45.9,
+      "needle": 100.0,
+      "echo": 100.0
+     },
+     "self": {
+      "pairs": 846,
+      "agree_pct": 83.9,
+      "by_family": {
+       "math": {
+        "pairs": 266,
+        "agree_pct": 59.8
+       },
+       "json": {
+        "pairs": 146,
+        "agree_pct": 100.0
+       },
+       "string": {
+        "pairs": 146,
+        "agree_pct": 80.1
+       },
+       "needle": {
+        "pairs": 144,
+        "agree_pct": 100.0
+       },
+       "echo": {
+        "pairs": 144,
         "agree_pct": 100.0
        }
       }
@@ -6581,70 +6725,10 @@
      }
     },
     {
-     "tag": "baidu/fp8",
-     "declared_quant": "fp8",
-     "declared_changed": false,
-     "nights": 8,
-     "exact_by_night": {
-      "2026-11-04": 73.2,
-      "2026-11-05": 75.9,
-      "2026-11-06": 77.7,
-      "2026-11-07": 73.9,
-      "2026-11-08": 73.8,
-      "2026-11-10": 74.3,
-      "2026-11-11": 84.1,
-      "2026-11-12": 76.4
-     },
-     "exact_mean": 76.2,
-     "exact_sd": 3.3,
-     "exact_min": 73.2,
-     "exact_max": 84.1,
-     "movement": 2.7,
-     "movement_overlap": false,
-     "movement_flag": false,
-     "families": {
-      "math": 77.1,
-      "json": 100.0,
-      "string": 46.5,
-      "needle": 100.0,
-      "echo": 100.0
-     },
-     "self": {
-      "pairs": 726,
-      "agree_pct": 86.4,
-      "by_family": {
-       "math": {
-        "pairs": 226,
-        "agree_pct": 65.5
-       },
-       "json": {
-        "pairs": 126,
-        "agree_pct": 100.0
-       },
-       "string": {
-        "pairs": 126,
-        "agree_pct": 83.3
-       },
-       "needle": {
-        "pairs": 124,
-        "agree_pct": 100.0
-       },
-       "echo": {
-        "pairs": 124,
-        "agree_pct": 100.0
-       }
-      }
-     },
-     "selfcheck": {
-      "2026-10-27": null,
-      "2026-11-02": null
-     }
-    },
-    {
      "tag": "reka",
      "declared_quant": "unknown",
      "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
       "2026-11-04": 73.6,
       "2026-11-05": 72.3,
@@ -6653,44 +6737,45 @@
       "2026-11-08": 77.5,
       "2026-11-10": 77.1,
       "2026-11-11": 78.3,
-      "2026-11-12": 81.4
+      "2026-11-12": 81.4,
+      "2026-11-13": 78.7
      },
-     "exact_mean": 75.7,
+     "exact_mean": 76.0,
      "exact_sd": 3.2,
      "exact_min": 71.1,
      "exact_max": 81.4,
-     "movement": 5.6,
+     "movement": 6.1,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 76.0,
+      "math": 76.3,
       "json": 99.5,
-      "string": 52.6,
+      "string": 52.8,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 700,
-      "agree_pct": 80.4,
+      "pairs": 820,
+      "agree_pct": 80.6,
       "by_family": {
        "math": {
-        "pairs": 220,
-        "agree_pct": 57.3
+        "pairs": 260,
+        "agree_pct": 57.7
        },
        "json": {
-        "pairs": 120,
+        "pairs": 140,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 122,
-        "agree_pct": 64.8
+        "pairs": 142,
+        "agree_pct": 65.5
        },
        "needle": {
-        "pairs": 118,
+        "pairs": 138,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 120,
+        "pairs": 140,
         "agree_pct": 100.0
        }
       }
@@ -6704,7 +6789,7 @@
      "tag": "near-ai",
      "declared_quant": "unknown",
      "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
       "2026-11-04": 74.3,
       "2026-11-05": 70.4,
@@ -6713,44 +6798,45 @@
       "2026-11-08": 73.2,
       "2026-11-10": 77.1,
       "2026-11-11": 83.1,
-      "2026-11-12": 75.7
+      "2026-11-12": 75.7,
+      "2026-11-13": 73.8
      },
-     "exact_mean": 74.9,
-     "exact_sd": 3.7,
+     "exact_mean": 74.8,
+     "exact_sd": 3.5,
      "exact_min": 70.4,
      "exact_max": 83.1,
-     "movement": 5.7,
+     "movement": 4.6,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 68.7,
+      "math": 68.2,
       "json": 100.0,
-      "string": 51.4,
+      "string": 51.7,
       "needle": 100.0,
       "echo": 100.0
      },
      "self": {
-      "pairs": 722,
-      "agree_pct": 67.3,
+      "pairs": 842,
+      "agree_pct": 67.9,
       "by_family": {
        "math": {
-        "pairs": 226,
-        "agree_pct": 19.5
+        "pairs": 266,
+        "agree_pct": 22.2
        },
        "json": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 126,
-        "agree_pct": 57.1
+        "pairs": 146,
+        "agree_pct": 56.8
        },
        "needle": {
-        "pairs": 120,
+        "pairs": 140,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 124,
+        "pairs": 144,
         "agree_pct": 100.0
        }
       }
@@ -6764,7 +6850,7 @@
      "tag": "open-inference/fp4",
      "declared_quant": "fp4",
      "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
       "2026-11-04": 72.9,
       "2026-11-05": 73.2,
@@ -6773,44 +6859,45 @@
       "2026-11-08": 74.6,
       "2026-11-10": 75.0,
       "2026-11-11": 79.4,
-      "2026-11-12": 75.0
+      "2026-11-12": 75.0,
+      "2026-11-13": 73.0
      },
-     "exact_mean": 74.0,
-     "exact_sd": 2.5,
+     "exact_mean": 73.9,
+     "exact_sd": 2.4,
      "exact_min": 71.1,
      "exact_max": 79.4,
-     "movement": 4.0,
+     "movement": 3.4,
      "movement_overlap": false,
      "movement_flag": false,
      "families": {
-      "math": 63.2,
+      "math": 62.9,
       "json": 100.0,
-      "string": 52.0,
+      "string": 52.3,
       "needle": 99.5,
       "echo": 100.0
      },
      "self": {
-      "pairs": 730,
+      "pairs": 850,
       "agree_pct": 87.1,
       "by_family": {
        "math": {
-        "pairs": 226,
-        "agree_pct": 64.6
+        "pairs": 266,
+        "agree_pct": 64.3
        },
        "json": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "string": {
-        "pairs": 126,
-        "agree_pct": 88.9
+        "pairs": 146,
+        "agree_pct": 89.7
        },
        "needle": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        },
        "echo": {
-        "pairs": 126,
+        "pairs": 146,
         "agree_pct": 100.0
        }
       }
@@ -6824,7 +6911,7 @@
      "tag": "deepseek",
      "declared_quant": "unknown",
      "declared_changed": false,
-     "nights": 8,
+     "nights": 9,
      "exact_by_night": {
       "2026-11-04": null,
       "2026-11-05": null,
@@ -6833,7 +6920,8 @@
       "2026-11-08": null,
       "2026-11-10": null,
       "2026-11-11": null,
-      "2026-11-12": null
+      "2026-11-12": null,
+      "2026-11-13": null
      },
      "exact_mean": null,
      "exact_sd": null,
@@ -6883,35 +6971,35 @@
    ],
    "families": {
     "math": {
-     "endpoints": 51,
-     "median_agree_pct": 66.4,
-     "p75_disagree_pct": 40.8,
-     "noise_floor": 59.2,
+     "endpoints": 52,
+     "median_agree_pct": 65.9,
+     "p75_disagree_pct": 40.7,
+     "noise_floor": 59.3,
      "stable": false
     },
     "json": {
-     "endpoints": 51,
+     "endpoints": 52,
      "median_agree_pct": 100.0,
      "p75_disagree_pct": 0.0,
      "noise_floor": 100.0,
      "stable": true
     },
     "string": {
-     "endpoints": 51,
-     "median_agree_pct": 81.0,
-     "p75_disagree_pct": 22.5,
-     "noise_floor": 77.5,
+     "endpoints": 52,
+     "median_agree_pct": 80.1,
+     "p75_disagree_pct": 22.6,
+     "noise_floor": 77.4,
      "stable": false
     },
     "needle": {
-     "endpoints": 51,
+     "endpoints": 52,
      "median_agree_pct": 100.0,
      "p75_disagree_pct": 0.0,
      "noise_floor": 100.0,
      "stable": true
     },
     "echo": {
-     "endpoints": 51,
+     "endpoints": 52,
      "median_agree_pct": 100.0,
      "p75_disagree_pct": 0.0,
      "noise_floor": 100.0,

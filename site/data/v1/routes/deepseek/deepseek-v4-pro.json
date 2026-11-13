@@ -2,12 +2,12 @@
   "schema": "bitdepth.routelist.v1",
   "model": "deepseek/deepseek-v4-pro",
   "label": "deepseek-v4-pro",
-  "as_of": "2026-11-12",
+  "as_of": "2026-11-13",
   "rule": "state within and 7+ nights (the check_before_route rule); allowed endpoints ordered by blended price, cheapest first",
   "allow": [
-    "relace/fp4",
     "streamlake/fp8",
     "baidu/fp8",
+    "relace/fp4",
     "siliconflow/fp8",
     "digitalocean",
     "deepinfra/fp8",
@@ -19,69 +19,69 @@
   ],
   "allowed": [
     {
-      "tag": "relace/fp4",
-      "declared_quant": "fp4",
-      "nights": 16,
-      "blended_price_per_m": 1.05
-    },
-    {
       "tag": "streamlake/fp8",
       "declared_quant": "fp8",
-      "nights": 16,
-      "blended_price_per_m": 1.1153
+      "nights": 17,
+      "blended_price_per_m": 1.0369
     },
     {
       "tag": "baidu/fp8",
       "declared_quant": "fp8",
-      "nights": 16,
-      "blended_price_per_m": 1.1175
+      "nights": 17,
+      "blended_price_per_m": 1.0478
+    },
+    {
+      "tag": "relace/fp4",
+      "declared_quant": "fp4",
+      "nights": 17,
+      "blended_price_per_m": 1.05
     },
     {
       "tag": "siliconflow/fp8",
       "declared_quant": "fp8",
-      "nights": 16,
+      "nights": 17,
       "blended_price_per_m": 1.125
     },
     {
       "tag": "digitalocean",
       "declared_quant": "unknown",
-      "nights": 16,
+      "nights": 17,
       "blended_price_per_m": 1.305
     },
     {
       "tag": "deepinfra/fp8",
       "declared_quant": "fp8",
-      "nights": 16,
+      "nights": 17,
       "blended_price_per_m": 1.625
     },
     {
       "tag": "alibaba/fp8",
       "declared_quant": "fp8",
-      "nights": 16,
+      "nights": 17,
       "blended_price_per_m": 1.77
     },
     {
       "tag": "alibaba/fp8/us-east-1",
       "declared_quant": "fp8",
-      "nights": 16,
+      "nights": 17,
       "blended_price_per_m": 1.95
     },
     {
       "tag": "venice",
       "declared_quant": "unknown",
-      "nights": 16,
+      "nights": 17,
       "blended_price_per_m": 2.0627
     },
     {
       "tag": "atlas-cloud/fp4",
       "declared_quant": "fp4",
-      "nights": 16,
+      "nights": 17,
       "blended_price_per_m": 2.105
     },
     {
       "tag": "azure/us",
       "declared_quant": "unknown",
-      "nights": 16,
+      "nights": 17,
       "blended_price_per_m": 2.39
     }
   ],
@@ -110,9 +110,9 @@
   "openrouter": {
     "provider": {
       "only": [
-        "relace/fp4",
         "streamlake/fp8",
         "baidu/fp8",
+        "relace/fp4",
         "siliconflow/fp8",
         "digitalocean",
         "deepinfra/fp8",
