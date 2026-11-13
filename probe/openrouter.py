@@ -158,12 +158,15 @@ def _attempt(c: httpx.Client, body: dict[str, Any], mode: str) -> tuple[str, dic
 
 def complete(
     slug: str,
-    tag: str,
+    tag: str | None,
     messages: list[dict[str, str]],
     params: dict[str, Any] | None = None,
     client: httpx.Client | None = None,
 ) -> dict[str, Any]:
     """Send one chat completion pinned to one endpoint tag.
+
+    With tag None the request carries no provider block and OpenRouter's default
+    routing picks the endpoint (used only by probe.routine for its baseline model).
 
     Returns a dict with: status (ok or error), text, provider, usage, latency_ms,
     finish_reason, reasoning_mode, error, raw.
@@ -177,8 +180,9 @@ def complete(
         "seed": SEED,
         "max_tokens": MAX_TOKENS,
         "usage": {"include": True},
-        "provider": {"order": [tag], "allow_fallbacks": False},
     }
+    if tag:
+        base_body["provider"] = {"order": [tag], "allow_fallbacks": False}
     if params:
         base_body.update(params)
 
