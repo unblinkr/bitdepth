@@ -1,0 +1,405 @@
+{
+  "run_id": "routine-2026-11-13-pass2-dispatch",
+  "date": "2026-11-13",
+  "source": "dispatch",
+  "started": "2026-11-13T21:13:15Z",
+  "finished": "2026-11-13T21:20:13Z",
+  "baseline": {
+    "kind": "baseline",
+    "label": "claude-sonnet-5.5",
+    "slug": "anthropic/claude-sonnet-5.5",
+    "tag": null,
+    "provider_name": null,
+    "price_in": 2e-06,
+    "price_out": 1e-05,
+    "quantization": "n/a",
+    "resolved_from": null
+  },
+  "targets": [
+    {
+      "kind": "baseline",
+      "label": "claude-sonnet-5.5",
+      "slug": "anthropic/claude-sonnet-5.5",
+      "tag": null,
+      "provider_name": null,
+      "price_in": 2e-06,
+      "price_out": 1e-05,
+      "quantization": "n/a",
+      "resolved_from": null
+    },
+    {
+      "kind": "lane",
+      "label": "gpt-oss-120b",
+      "slug": "openai/gpt-oss-120b",
+      "tag": "near-ai/fp4",
+      "as_of": "2026-11-13",
+      "provider_name": "Near AI",
+      "price_in": 3e-08,
+      "price_out": 1.5e-07,
+      "quantization": "fp4"
+    },
+    {
+      "kind": "lane",
+      "label": "gpt-oss-120b",
+      "slug": "openai/gpt-oss-120b",
+      "tag": "coreweave/fp4",
+      "as_of": "2026-11-13",
+      "provider_name": "CoreWeave",
+      "price_in": 3e-08,
+      "price_out": 1.7e-07,
+      "quantization": "fp4"
+    },
+    {
+      "kind": "outside",
+      "label": "gpt-oss-120b",
+      "slug": "openai/gpt-oss-120b",
+      "tag": "venice/int4",
+      "as_of": "2026-11-13",
+      "provider_name": "Venice",
+      "price_in": 3e-08,
+      "price_out": 1.5e-07,
+      "quantization": "int4"
+    },
+    {
+      "kind": "lane",
+      "label": "deepseek-v4-pro",
+      "slug": "deepseek/deepseek-v4-pro",
+      "tag": "streamlake/fp8",
+      "as_of": "2026-11-13",
+      "provider_name": "StreamLake",
+      "price_in": 6.47106e-07,
+      "price_out": 1.294212e-06,
+      "quantization": "fp8"
+    },
+    {
+      "kind": "lane",
+      "label": "deepseek-v4-pro",
+      "slug": "deepseek/deepseek-v4-pro",
+      "tag": "baidu/fp8",
+      "as_of": "2026-11-13",
+      "provider_name": "Baidu",
+      "price_in": 6.5572e-07,
+      "price_out": 1.31144e-06,
+      "quantization": "fp8"
+    },
+    {
+      "kind": "outside",
+      "label": "deepseek-v4-pro",
+      "slug": "deepseek/deepseek-v4-pro",
+      "tag": "gmicloud/fp8",
+      "as_of": "2026-11-13",
+      "provider_name": "GMICloud",
+      "price_in": 9.57e-07,
+      "price_out": 1.914e-06,
+      "quantization": "fp8"
+    }
+  ],
+  "instances": 5,
+  "lane_hosts": 2,
+  "route_as_of": "2026-11-13",
+  "overhead_chars": 55818,
+  "calls_per_month": {
+    "heartbeat": 1440,
+    "monitor": 2880,
+    "digest": 150,
+    "briefing": 300,
+    "tagging": 1500
+  },
+  "cap_usd": 3.5,
+  "night_billed_usd": 2.4438,
+  "prior_routine_billed_usd": 1.2609,
+  "estimate_usd": 2.1615,
+  "max_tokens": {
+    "heartbeat": 1500,
+    "monitor": 1500,
+    "digest": 1500,
+    "briefing": 1500,
+    "tagging": 2000
+  },
+  "reasoning": "endpoint default",
+  "truncated": 1,
+  "total_billed_usd": 1.2877,
+  "skipped_budget": 0,
+  "by_status": {
+    "error": 1,
+    "ok": 174
+  },
+  "summary": {
+    "jobs": {
+      "heartbeat": {
+        "baseline": {
+          "sent": 5,
+          "ok": 5,
+          "passed": 5,
+          "pass_rate": 1.0,
+          "mean_cost_usd": 0.03998,
+          "mean_prompt_tokens": 19796,
+          "mean_cached_tokens": 0,
+          "monthly_usd": 57.57
+        },
+        "lane:deepseek-v4-pro": {
+          "sent": 10,
+          "ok": 10,
+          "passed": 10,
+          "pass_rate": 1.0,
+          "mean_cost_usd": 0.001842,
+          "mean_prompt_tokens": 14540,
+          "mean_cached_tokens": 13539,
+          "monthly_usd": 2.65
+        },
+        "lane:gpt-oss-120b": {
+          "sent": 10,
+          "ok": 10,
+          "passed": 9,
+          "pass_rate": 0.9,
+          "mean_cost_usd": 0.000403,
+          "mean_prompt_tokens": 14544,
+          "mean_cached_tokens": 9957,
+          "monthly_usd": 0.58
+        },
+        "outside:deepseek-v4-pro": {
+          "sent": 5,
+          "ok": 5,
+          "passed": 5,
+          "pass_rate": 1.0,
+          "mean_cost_usd": 0.005033,
+          "mean_prompt_tokens": 14619,
+          "mean_cached_tokens": 10650,
+          "monthly_usd": 7.25
+        },
+        "outside:gpt-oss-120b": {
+          "sent": 5,
+          "ok": 5,
+          "passed": 5,
+          "pass_rate": 1.0,
+          "mean_cost_usd": 0.000467,
+          "mean_prompt_tokens": 14544,
+          "mean_cached_tokens": 8166,
+          "monthly_usd": 0.67
+        }
+      },
+      "monitor": {
+        "baseline": {
+          "sent": 5,
+          "ok": 5,
+          "passed": 5,
+          "pass_rate": 1.0,
+          "mean_cost_usd": 0.041498,
+          "mean_prompt_tokens": 20136,
+          "mean_cached_tokens": 0,
+          "monthly_usd": 119.52
+        },
+        "lane:deepseek-v4-pro": {
+          "sent": 10,
+          "ok": 10,
+          "passed": 9,
+          "pass_rate": 0.9,
+          "mean_cost_usd": 0.002739,
+          "mean_prompt_tokens": 14703,
+          "mean_cached_tokens": 13618,
+          "monthly_usd": 7.89
+        },
+        "lane:gpt-oss-120b": {
+          "sent": 10,
+          "ok": 10,
+          "passed": 10,
+          "pass_rate": 1.0,
+          "mean_cost_usd": 0.000529,
+          "mean_prompt_tokens": 14703,
+          "mean_cached_tokens": 8557,
+          "monthly_usd": 1.52
+        },
+        "outside:deepseek-v4-pro": {
+          "sent": 5,
+          "ok": 5,
+          "passed": 5,
+          "pass_rate": 1.0,
+          "mean_cost_usd": 0.005755,
+          "mean_prompt_tokens": 14782,
+          "mean_cached_tokens": 10650,
+          "monthly_usd": 16.57
+        },
+        "outside:gpt-oss-120b": {
+          "sent": 5,
+          "ok": 4,
+          "passed": 4,
+          "pass_rate": 1.0,
+          "mean_cost_usd": 0.000556,
+          "mean_prompt_tokens": 14703,
+          "mean_cached_tokens": 10208,
+          "monthly_usd": 1.6
+        }
+      },
+      "digest": {
+        "baseline": {
+          "sent": 5,
+          "ok": 5,
+          "passed": 5,
+          "pass_rate": 1.0,
+          "mean_cost_usd": 0.040398,
+          "mean_prompt_tokens": 20023,
+          "mean_cached_tokens": 0,
+          "monthly_usd": 6.06
+        },
+        "lane:deepseek-v4-pro": {
+          "sent": 10,
+          "ok": 10,
+          "passed": 9,
+          "pass_rate": 0.9,
+          "mean_cost_usd": 0.002001,
+          "mean_prompt_tokens": 14644,
+          "mean_cached_tokens": 13492,
+          "monthly_usd": 0.3
+        },
+        "lane:gpt-oss-120b": {
+          "sent": 10,
+          "ok": 10,
+          "passed": 7,
+          "pass_rate": 0.7,
+          "mean_cost_usd": 0.000414,
+          "mean_prompt_tokens": 14640,
+          "mean_cached_tokens": 12798,
+          "monthly_usd": 0.06
+        },
+        "outside:deepseek-v4-pro": {
+          "sent": 5,
+          "ok": 5,
+          "passed": 5,
+          "pass_rate": 1.0,
+          "mean_cost_usd": 0.007892,
+          "mean_prompt_tokens": 14723,
+          "mean_cached_tokens": 7731,
+          "monthly_usd": 1.18
+        },
+        "outside:gpt-oss-120b": {
+          "sent": 5,
+          "ok": 5,
+          "passed": 2,
+          "pass_rate": 0.4,
+          "mean_cost_usd": 0.000488,
+          "mean_prompt_tokens": 14640,
+          "mean_cached_tokens": 10829,
+          "monthly_usd": 0.07
+        }
+      },
+      "briefing": {
+        "baseline": {
+          "sent": 5,
+          "ok": 5,
+          "passed": 5,
+          "pass_rate": 1.0,
+          "mean_cost_usd": 0.040792,
+          "mean_prompt_tokens": 19937,
+          "mean_cached_tokens": 0,
+          "monthly_usd": 12.24
+        },
+        "lane:deepseek-v4-pro": {
+          "sent": 10,
+          "ok": 10,
+          "passed": 10,
+          "pass_rate": 1.0,
+          "mean_cost_usd": 0.001774,
+          "mean_prompt_tokens": 14617,
+          "mean_cached_tokens": 13686,
+          "monthly_usd": 0.53
+        },
+        "lane:gpt-oss-120b": {
+          "sent": 10,
+          "ok": 10,
+          "passed": 10,
+          "pass_rate": 1.0,
+          "mean_cost_usd": 0.000408,
+          "mean_prompt_tokens": 14612,
+          "mean_cached_tokens": 12789,
+          "monthly_usd": 0.12
+        },
+        "outside:deepseek-v4-pro": {
+          "sent": 5,
+          "ok": 5,
+          "passed": 5,
+          "pass_rate": 1.0,
+          "mean_cost_usd": 0.002771,
+          "mean_prompt_tokens": 14696,
+          "mean_cached_tokens": 13466,
+          "monthly_usd": 0.83
+        },
+        "outside:gpt-oss-120b": {
+          "sent": 5,
+          "ok": 5,
+          "passed": 5,
+          "pass_rate": 1.0,
+          "mean_cost_usd": 0.000486,
+          "mean_prompt_tokens": 14612,
+          "mean_cached_tokens": 10829,
+          "monthly_usd": 0.15
+        }
+      },
+      "tagging": {
+        "baseline": {
+          "sent": 5,
+          "ok": 5,
+          "passed": 5,
+          "pass_rate": 1.0,
+          "mean_cost_usd": 0.042093,
+          "mean_prompt_tokens": 20081,
+          "mean_cached_tokens": 0,
+          "monthly_usd": 63.14
+        },
+        "lane:deepseek-v4-pro": {
+          "sent": 10,
+          "ok": 10,
+          "passed": 10,
+          "pass_rate": 1.0,
+          "mean_cost_usd": 0.002347,
+          "mean_prompt_tokens": 14684,
+          "mean_cached_tokens": 13406,
+          "monthly_usd": 3.52
+        },
+        "lane:gpt-oss-120b": {
+          "sent": 10,
+          "ok": 10,
+          "passed": 10,
+          "pass_rate": 1.0,
+          "mean_cost_usd": 0.00046,
+          "mean_prompt_tokens": 14676,
+          "mean_cached_tokens": 12808,
+          "monthly_usd": 0.69
+        },
+        "outside:deepseek-v4-pro": {
+          "sent": 5,
+          "ok": 5,
+          "passed": 5,
+          "pass_rate": 1.0,
+          "mean_cost_usd": 0.003064,
+          "mean_prompt_tokens": 14763,
+          "mean_cached_tokens": 13517,
+          "monthly_usd": 4.6
+        },
+        "outside:gpt-oss-120b": {
+          "sent": 5,
+          "ok": 5,
+          "passed": 5,
+          "pass_rate": 1.0,
+          "mean_cost_usd": 0.000542,
+          "mean_prompt_tokens": 14676,
+          "mean_cached_tokens": 11008,
+          "monthly_usd": 0.81
+        }
+      }
+    },
+    "groups": [
+      "baseline",
+      "lane:deepseek-v4-pro",
+      "lane:gpt-oss-120b",
+      "outside:deepseek-v4-pro",
+      "outside:gpt-oss-120b"
+    ],
+    "monthly_total_usd": {
+      "baseline": 258.53,
+      "lane:deepseek-v4-pro": 14.89,
+      "lane:gpt-oss-120b": 2.97,
+      "outside:deepseek-v4-pro": 30.43,
+      "outside:gpt-oss-120b": 3.3
+    }
+  }
+}
