@@ -160,6 +160,9 @@ def test_effective_cap_is_the_lowest_of_request_ceiling_and_night_headroom():
     assert rt.effective_cap(9.00, 0.0) == rt.HARD_CEILING
     assert rt.effective_cap(3.00, 6.75) == 1.00
     assert rt.effective_cap(3.00, 8.00) == 0.0
+    # earlier routine passes come off both the ceiling and the nightly headroom
+    assert rt.effective_cap(4.50, 2.44, 1.26) == 3.74
+    assert rt.effective_cap(4.50, 5.00, 1.26) == 1.49
 
 
 def _models():
@@ -181,8 +184,9 @@ def _args(tmp_path, *extra):
 def _completer(jobs, calls):
     by_user = {j["user"]: j for j in jobs}
 
-    def complete(slug, tag, messages, params=None, client=None):
+    def complete(slug, tag, messages, params=None, client=None, reasoning_modes=None):
         calls.append((slug, tag, params))
+        assert reasoning_modes == rt.DEFAULT_REASONING
         job = by_user[messages[1]["content"]]
         assert messages[0]["role"] == "system" and len(messages[0]["content"]) > 50_000
         assert params == {"max_tokens": job["max_tokens"]}
@@ -266,8 +270,8 @@ def test_a_misrouted_lane_row_is_not_counted_as_a_pass(tmp_path):
     jobs = rt.build_jobs(1)
     base = _completer(jobs, [])
 
-    def comp(slug, tag, messages, params=None, client=None):
-        r = base(slug, tag, messages, params, client)
+    def comp(slug, tag, messages, params=None, client=None, reasoning_modes=None):
+        r = base(slug, tag, messages, params, client, reasoning_modes)
         if tag == "a/fp4":
             r["provider"] = "SomeoneElse"
         return r
@@ -295,3 +299,33 @@ def test_complete_sends_no_provider_block_without_a_tag(monkeypatch):
     monkeypatch.setenv("OPENROUTER_API_KEY", "test-key")
     assert "provider" not in _capture_body(None)
     assert _capture_body("x/fp8")["provider"] == {"order": ["x/fp8"], "allow_fallbacks": False}
+
+
+def test_a_named_second_pass_gets_its_own_folder_and_nets_the_first(tmp_path, capsys):
+    _night(tmp_path)
+    comp = _completer(rt.build_jobs(3), [])
+    assert rt.main(_args(tmp_path), lister=_lister, model_lister=_models, completer=comp) == 0
+    first = json.loads((tmp_path / "routine" / DATE / "run.json").read_text())
+    assert rt.routine_billed(DATE, tmp_path / "routine") == pytest.approx(first["total_billed_usd"])
+
+    assert rt.main(_args(tmp_path, "--name", "Pass 2", "--cap", "5"), lister=_lister, model_lister=_models, completer=comp) == 0
+    second = json.loads((tmp_path / "routine" / f"{DATE}-pass-2" / "run.json").read_text())
+    assert second["prior_routine_billed_usd"] == pytest.approx(first["total_billed_usd"])
+    assert second["cap_usd"] == pytest.approx(rt.HARD_CEILING - first["total_billed_usd"])
+    assert second["run_id"] == f"routine-{DATE}-pass-2-local"
+
+
+def test_complete_uses_the_given_reasoning_modes(monkeypatch):
+    monkeypatch.setenv("OPENROUTER_API_KEY", "test-key")
+    seen = {}
+
+    def handler(request):
+        seen["body"] = json.loads(request.content)
+        return httpx.Response(200, json={"choices": [{"message": {"content": "ok"}, "finish_reason": "stop"}], "usage": {}})
+
+    client = httpx.Client(transport=httpx.MockTransport(handler))
+    r = openrouter.complete("a/b", "x/fp8", [{"role": "user", "content": "hi"}], client=client,
+                            reasoning_modes=rt.DEFAULT_REASONING)
+    assert "reasoning" not in seen["body"] and r["reasoning_mode"] == "default"
+    openrouter.complete("a/b", "x/fp8", [{"role": "user", "content": "hi"}], client=client)
+    assert seen["body"]["reasoning"] == {"enabled": False}

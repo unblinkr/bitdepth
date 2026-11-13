@@ -18,8 +18,12 @@ on:
         description: "Frontier model slug for the baseline"
         required: false
         default: "anthropic/claude-sonnet-5.5"
+      name:
+        description: "Pass name. Blank writes data/routine/<date>; a name writes data/routine/<date>-<name>."
+        required: false
+        default: ""
       cap:
-        description: "Spend cap in USD (never above 5.00)"
+        description: "Spend cap in USD (never above 5.00 across passes for one date)"
         required: false
         default: "3.00"
       confirm:
@@ -88,7 +92,8 @@ jobs:
           RUN_DATE: ${{ steps.when.outputs.date }}
           BASELINE: ${{ inputs.baseline }}
           CAP: ${{ inputs.cap }}
-        run: python -m probe.routine --date "$RUN_DATE" --baseline "$BASELINE" --cap "$CAP" --dry-run
+          PASS_NAME: ${{ inputs.name }}
+        run: python -m probe.routine --date "$RUN_DATE" --name "$PASS_NAME" --baseline "$BASELINE" --cap "$CAP" --dry-run
 
       - name: Run
         env:
@@ -97,17 +102,19 @@ jobs:
           RUN_DATE: ${{ steps.when.outputs.date }}
           BASELINE: ${{ inputs.baseline }}
           CAP: ${{ inputs.cap }}
-        run: python -m probe.routine --date "$RUN_DATE" --source dispatch --baseline "$BASELINE" --cap "$CAP"
+          PASS_NAME: ${{ inputs.name }}
+        run: python -m probe.routine --date "$RUN_DATE" --name "$PASS_NAME" --source dispatch --baseline "$BASELINE" --cap "$CAP"
 
       - name: Report to job summary
         if: ${{ always() }}
-        env:
-          RUN_DATE: ${{ steps.when.outputs.date }}
-        run: cat "data/routine/$RUN_DATE/report.md" >> "$GITHUB_STEP_SUMMARY" || true
+        run: |
+          latest=$(ls -t data/routine/*/report.md 2>/dev/null | head -n 1)
+          if [ -n "$latest" ]; then cat "$latest" >> "$GITHUB_STEP_SUMMARY"; fi
 
       - name: Commit
         env:
           RUN_DATE: ${{ steps.when.outputs.date }}
+          PASS_NAME: ${{ inputs.name }}
         run: |
           git config user.name "bitdepth-bot"
           git config user.email "bitdepth-bot@users.noreply.github.com"
@@ -116,7 +123,7 @@ jobs:
             echo "nothing to commit"
             exit 0
           fi
-          git commit -m "routine: $RUN_DATE (dispatch)"
+          git commit -m "routine: $RUN_DATE ${PASS_NAME:-pass one} (dispatch)"
           git pull --rebase origin main
           git push origin HEAD:main
 

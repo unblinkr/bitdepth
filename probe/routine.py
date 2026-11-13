@@ -50,10 +50,15 @@ BASELINE_PREFIX = "anthropic/claude-sonnet"
 DEFAULT_CAP = 3.00
 HARD_CEILING = 5.00
 MAX_WORKERS = 4
-RESERVE_MARGIN = 1.3  # the token estimate is chars / 4; real tokenizers can run higher
+RESERVE_MARGIN = 1.5  # the token estimate is chars / 4; one tokenizer billed 1.39 times that on pass one
 
 JOBS = ("heartbeat", "monitor", "digest", "briefing", "tagging")
-JOB_MAX_TOKENS = {"heartbeat": 64, "monitor": 96, "digest": 96, "briefing": 96, "tagging": 400}
+# Room for a model that reasons or shows working before the answer lines. The first pass on
+# 2026-11-13 used 64 to 400 with reasoning off or low, and endpoints that reason by default
+# returned empty text at the limit; see tasks/routine-jobs/REPORT.md.
+JOB_MAX_TOKENS = {"heartbeat": 1500, "monitor": 1500, "digest": 1500, "briefing": 1500, "tagging": 2000}
+# One mode, no reasoning parameter: every endpoint runs at its own default.
+DEFAULT_REASONING: list[tuple[str, dict[str, Any] | None]] = [("default", None)]
 # Schedule assumptions behind the monthly figure. One call per run except where noted.
 CALLS_PER_MONTH = {
     "heartbeat": 1440,  # every 30 minutes
@@ -527,8 +532,20 @@ def night_billed(date: str, runs_dir: Path = RUNS_DIR) -> float:
     return float(rec.get("total_billed_usd") or (rec.get("summary") or {}).get("billed_cost_usd") or 0.0)
 
 
-def effective_cap(requested: float, billed_tonight: float) -> float:
-    return round(max(0.0, min(requested, HARD_CEILING, BUDGET_USD - billed_tonight)), 4)
+def routine_billed(date: str, out_dir: Path = OUT_DIR) -> float:
+    """Billed cost of every earlier routine pass attached to this date."""
+    total = 0.0
+    for p in sorted(out_dir.glob(f"{date}*/run.json")):
+        try:
+            total += float(json.loads(p.read_text(encoding="utf-8")).get("total_billed_usd") or 0.0)
+        except (json.JSONDecodeError, ValueError):
+            continue
+    return round(total, 4)
+
+
+def effective_cap(requested: float, billed_tonight: float, prior_routine: float = 0.0) -> float:
+    """Lowest of the request, the ceiling less earlier passes, and the nightly cap less everything billed."""
+    return round(max(0.0, min(requested, HARD_CEILING - prior_routine, BUDGET_USD - billed_tonight - prior_routine)), 4)
 
 
 def call_estimate(system: str, job: dict[str, Any], target: dict[str, Any]) -> tuple[float, float]:
@@ -566,6 +583,7 @@ def send_all(run_id: str, system: str, jobs: list[dict[str, Any]], targets: list
                 t["slug"], t["tag"],
                 [{"role": "system", "content": system}, {"role": "user", "content": job["user"]}],
                 {"max_tokens": job["max_tokens"]},
+                reasoning_modes=DEFAULT_REASONING,
             )
             cost, source = run_mod.row_cost(result, t)
             cap.settle(worst, cost)
@@ -577,6 +595,7 @@ def send_all(run_id: str, system: str, jobs: list[dict[str, Any]], targets: list
             row.update({"status": status, "output": result.get("text") or "", "usage": result.get("usage") or {},
                         "cost_usd": round(cost, 6), "cost_source": source, "returned_provider": returned,
                         "latency_ms": result.get("latency_ms"), "finish_reason": result.get("finish_reason"),
+                        "reasoning_mode": result.get("reasoning_mode"), "max_tokens": job["max_tokens"],
                         "error": result.get("error") or "", **g})
         with lock:
             rows.append(row)
@@ -650,7 +669,8 @@ def report_md(record: dict[str, Any], summary: dict[str, Any], rows: list[dict[s
         f"- Lane: the cheapest {record['lane_hosts']} allowed endpoints on the route list as of {record.get('route_as_of')}, per model",
         "- Outside: the cheapest endpoint the route list excludes as outside, where OpenRouter still lists one",
         f"- System prompt: {record['overhead_chars']} characters (about {record['overhead_chars'] // 4} tokens), the same on every call",
-        f"- Instances per job: {record['instances']}. Temperature 0, reasoning off where the endpoint allows it.",
+        f"- Instances per job: {record['instances']}. Temperature 0. No reasoning parameter is sent, so each endpoint runs at its default.",
+        f"- Output limit: {min(JOB_MAX_TOKENS.values())} to {max(JOB_MAX_TOKENS.values())} tokens. Replies cut off at the limit: {record.get('truncated', 0)}.",
         f"- Billed: ${record['total_billed_usd']:.4f} of a ${record['cap_usd']:.2f} cap. Rows skipped for budget: {record['skipped_budget']}.",
         "",
         "## Monthly cost at the stated schedule, and passes",
@@ -722,14 +742,16 @@ def main(argv: list[str] | None = None, lister=openrouter.list_endpoints, model_
     ap.add_argument("--no-outside", action="store_true")
     ap.add_argument("--allow-no-night", action="store_true",
                     help="run even when the date has no nightly run record (the nightly cap is then not netted off)")
+    ap.add_argument("--name", default="", help="pass name; the run is written to data/routine/<date>-<name>")
     ap.add_argument("--out-dir", default=str(OUT_DIR))
     ap.add_argument("--routes-dir", default=str(ROUTES_DIR))
     ap.add_argument("--runs-dir", default=str(RUNS_DIR))
     args = ap.parse_args(argv)
 
-    out = Path(args.out_dir) / args.date
+    name = re.sub(r"[^a-z0-9]+", "-", args.name.lower()).strip("-")
+    out = Path(args.out_dir) / (f"{args.date}-{name}" if name else args.date)
     if (out / "run.json").exists() and not args.dry_run:
-        print(f"routine: {args.date} already has a run record; nothing sent")
+        print(f"routine: {out.name} already has a run record; nothing sent")
         return 0
 
     if not (Path(args.runs_dir) / args.date / "run.json").exists() and not args.allow_no_night:
@@ -737,7 +759,8 @@ def main(argv: list[str] | None = None, lister=openrouter.list_endpoints, model_
               f"together stay under ${BUDGET_USD:.2f}; nothing sent")
         return 2
     billed_tonight = night_billed(args.date, Path(args.runs_dir))
-    cap_usd = effective_cap(args.cap, billed_tonight)
+    prior = routine_billed(args.date, Path(args.out_dir))
+    cap_usd = effective_cap(args.cap, billed_tonight, prior)
     system = overhead()
 
     baseline = resolve_baseline(args.baseline, model_lister())
@@ -759,7 +782,7 @@ def main(argv: list[str] | None = None, lister=openrouter.list_endpoints, model_
             break
         instances -= 1
 
-    print(f"routine {args.date}: cap ${cap_usd:.2f} (night billed ${billed_tonight:.4f}), "
+    print(f"routine {out.name}: cap ${cap_usd:.2f} (night billed ${billed_tonight:.4f}, earlier passes ${prior:.4f}), "
           f"{len(jobs)} jobs x {len(targets)} targets = {len(jobs) * len(targets)} calls, "
           f"estimate ${est:.4f}, worst case ${worst:.4f}")
     for t in targets:
@@ -780,7 +803,7 @@ def main(argv: list[str] | None = None, lister=openrouter.list_endpoints, model_
     if resp.exists():
         resp.unlink()
 
-    run_id = f"routine-{args.date}-{args.source}"
+    run_id = f"routine-{out.name}-{args.source}"
     started = now_iso()
     cap = HardCap(cap_usd)
     rows = send_all(run_id, system, jobs, targets, cap, resp, completer=completer)
@@ -791,7 +814,9 @@ def main(argv: list[str] | None = None, lister=openrouter.list_endpoints, model_
         "baseline": baseline, "targets": targets, "instances": instances, "lane_hosts": args.lane_hosts,
         "route_as_of": next((t.get("as_of") for t in lanes), None),
         "overhead_chars": len(system), "calls_per_month": CALLS_PER_MONTH,
-        "cap_usd": cap_usd, "night_billed_usd": billed_tonight, "estimate_usd": round(est, 4),
+        "cap_usd": cap_usd, "night_billed_usd": billed_tonight, "prior_routine_billed_usd": prior,
+        "estimate_usd": round(est, 4), "max_tokens": JOB_MAX_TOKENS, "reasoning": "endpoint default",
+        "truncated": sum(1 for r in rows if r.get("finish_reason") == "length"),
         "total_billed_usd": round(cap.spent, 4),
         "skipped_budget": sum(1 for r in rows if r["status"] == "skipped_budget"),
         "by_status": {s: sum(1 for r in rows if r["status"] == s) for s in sorted({r["status"] for r in rows})},

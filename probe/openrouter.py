@@ -162,8 +162,12 @@ def complete(
     messages: list[dict[str, str]],
     params: dict[str, Any] | None = None,
     client: httpx.Client | None = None,
+    reasoning_modes: list[tuple[str, dict[str, Any] | None]] | None = None,
 ) -> dict[str, Any]:
     """Send one chat completion pinned to one endpoint tag.
+
+    reasoning_modes overrides REASONING_MODES; probe.routine passes a single mode with no
+    reasoning parameter so each endpoint runs at its default, as an agent would call it.
 
     With tag None the request carries no provider block and OpenRouter's default
     routing picks the endpoint (used only by probe.routine for its baseline model).
@@ -186,7 +190,7 @@ def complete(
     if params:
         base_body.update(params)
 
-    for mode, reasoning in REASONING_MODES:
+    for mode, reasoning in (reasoning_modes or REASONING_MODES):
         body = dict(base_body)
         if reasoning is not None:
             body["reasoning"] = reasoning
