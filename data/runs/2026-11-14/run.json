@@ -1,0 +1,217 @@
+{
+ "run_id": "2026-11-14-live",
+ "date": "2026-11-14",
+ "source": "live",
+ "started": "2026-11-14T14:13:25Z",
+ "models": {
+  "gpt-oss-120b": {
+   "slug": "openai/gpt-oss-120b",
+   "endpoints": 26,
+   "short": false
+  },
+  "deepseek-v4-pro": {
+   "slug": "deepseek/deepseek-v4-pro",
+   "endpoints": 13,
+   "short": false
+  },
+  "deepseek-v4.1-flash-1017": {
+   "slug": "deepseek/deepseek-v4.1-flash-1017",
+   "endpoints": 49,
+   "short": false
+  },
+  "mistral-large-4-0": {
+   "slug": "mistralai/mistral-large-4-0",
+   "endpoints": 2,
+   "short": true
+  },
+  "glm-5.3-flash": {
+   "slug": "z-ai/glm-5.3-flash",
+   "endpoints": 42,
+   "short": false
+  },
+  "gemma-4-31b-it": {
+   "slug": "google/gemma-4-31b-it",
+   "endpoints": 18,
+   "short": false
+  },
+  "mimo-v2.6-pro": {
+   "slug": "xiaomi/mimo-v2.6-pro",
+   "endpoints": 5,
+   "short": true
+  }
+ },
+ "prompts": {
+  "fixed": 120,
+  "fresh": 24,
+  "kept": 144,
+  "dropped": 0
+ },
+ "dropped_prompt_ids": [],
+ "estimate": {
+  "usd": 6.9146,
+  "per_model": {
+   "gpt-oss-120b": 0.5406,
+   "deepseek-v4-pro": 2.1901,
+   "deepseek-v4.1-flash-1017": 1.6788,
+   "mistral-large-4-0": 0.2418,
+   "glm-5.3-flash": 0.8991,
+   "gemma-4-31b-it": 0.5533,
+   "mimo-v2.6-pro": 0.8109
+  }
+ },
+ "cap_usd": 7.75,
+ "aborted_on_estimate": false,
+ "summary": {
+  "rows": 22320,
+  "by_status": {
+   "ok": 22112,
+   "error": 208
+  },
+  "errors": 208,
+  "misrouted": 0,
+  "skipped_budget": 0,
+  "truncated": 64,
+  "billed_cost_usd": 3.8839,
+  "estimated_cost_rows": 0
+ },
+ "runtime_budget_stop": true,
+ "time_stop": false,
+ "concurrency": 8,
+ "finished": "2026-11-14T23:54:57Z",
+ "total_billed_usd": 5.3329,
+ "parts": {
+  "gpt-oss-120b": {
+   "cap_usd": 0.6059,
+   "billed_usd": 0.5513,
+   "rows": 3744,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-14T14:13:25Z",
+   "finished": "2026-11-14T15:37:06Z"
+  },
+  "deepseek-v4-pro": {
+   "cap_usd": 2.4548,
+   "billed_usd": 1.7227,
+   "rows": 1872,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-14T15:37:34Z",
+   "finished": "2026-11-14T16:49:57Z"
+  },
+  "deepseek-v4.1-flash-1017": {
+   "cap_usd": 1.8814,
+   "billed_usd": 0.9781,
+   "rows": 7056,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-14T16:50:17Z",
+   "finished": "2026-11-14T18:27:59Z"
+  },
+  "mistral-large-4-0": {
+   "cap_usd": 0.271,
+   "billed_usd": 0.2775,
+   "rows": 288,
+   "time_stop": false,
+   "runtime_budget_stop": true,
+   "started": "2026-11-14T18:28:17Z",
+   "finished": "2026-11-14T19:33:47Z"
+  },
+  "glm-5.3-flash": {
+   "cap_usd": 1.0078,
+   "billed_usd": 0.7416,
+   "rows": 6048,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-14T19:34:05Z",
+   "finished": "2026-11-14T21:13:20Z"
+  },
+  "gemma-4-31b-it": {
+   "cap_usd": 0.6201,
+   "billed_usd": 0.4966,
+   "rows": 2592,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-14T21:13:38Z",
+   "finished": "2026-11-14T22:37:03Z"
+  },
+  "mimo-v2.6-pro": {
+   "cap_usd": 0.9088,
+   "billed_usd": 0.5651,
+   "rows": 720,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-14T22:37:18Z",
+   "finished": "2026-11-14T23:54:57Z"
+  }
+ },
+ "missing_parts": [],
+ "selfcheck": {
+  "prompts": 36,
+  "prompt_ids": [
+   "fixed-math-001",
+   "fixed-json-001",
+   "fixed-string-001",
+   "fixed-needle-001",
+   "fixed-echo-001",
+   "fixed-math-002",
+   "fixed-json-002",
+   "fixed-string-002",
+   "fixed-needle-002",
+   "fixed-echo-002",
+   "fixed-math-003",
+   "fixed-json-003",
+   "fixed-string-003",
+   "fixed-needle-003",
+   "fixed-echo-003",
+   "fixed-math-004",
+   "fixed-json-004",
+   "fixed-string-004",
+   "fixed-needle-004",
+   "fixed-echo-004",
+   "fixed-math-005",
+   "fixed-json-005",
+   "fixed-string-005",
+   "fixed-needle-005",
+   "fixed-echo-005",
+   "fixed-math-006",
+   "fixed-json-006",
+   "fixed-string-006",
+   "fixed-needle-006",
+   "fixed-echo-006",
+   "fixed-math-007",
+   "fixed-json-007",
+   "fixed-string-007",
+   "fixed-needle-007",
+   "fixed-echo-007",
+   "fixed-math-008"
+  ],
+  "wait_seconds": 3600,
+  "pass_a": {
+   "rows": 5580,
+   "by_status": {
+    "ok": 5528,
+    "error": 52
+   },
+   "errors": 52,
+   "misrouted": 0,
+   "skipped_budget": 0,
+   "truncated": 24,
+   "billed_cost_usd": 0.6813,
+   "estimated_cost_rows": 0
+  },
+  "pass_b": {
+   "rows": 5580,
+   "by_status": {
+    "ok": 5470,
+    "error": 46,
+    "skipped_budget": 64
+   },
+   "errors": 46,
+   "misrouted": 0,
+   "skipped_budget": 64,
+   "truncated": 12,
+   "billed_cost_usd": 0.7678,
+   "estimated_cost_rows": 0
+  }
+ }
+}
