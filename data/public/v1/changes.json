@@ -1,77 +1,21 @@
 {
  "schema": "bitdepth.changes.v1",
- "as_of": "2026-11-14",
+ "as_of": "2026-11-15",
  "baseline": false,
- "count": 26,
+ "count": 15,
  "changes": [
   {
    "model": "deepseek/deepseek-v4-pro",
    "label": "deepseek-v4-pro",
-   "tag": "baidu/fp8",
-   "field": "price_in_per_m",
-   "from": 0.8382,
-   "to": 0.2079
+   "tag": "deepinfra/fp8/flex",
+   "field": "listed",
+   "from": null,
+   "to": "new"
   },
   {
    "model": "deepseek/deepseek-v4-pro",
    "label": "deepseek-v4-pro",
-   "tag": "baidu/fp8",
-   "field": "price_out_per_m",
-   "from": 1.6765,
-   "to": 0.4157
-  },
-  {
-   "model": "deepseek/deepseek-v4-pro",
-   "label": "deepseek-v4-pro",
-   "tag": "streamlake/fp8",
-   "field": "price_in_per_m",
-   "from": 0.8295,
-   "to": 0.2088
-  },
-  {
-   "model": "deepseek/deepseek-v4-pro",
-   "label": "deepseek-v4-pro",
-   "tag": "streamlake/fp8",
-   "field": "price_out_per_m",
-   "from": 1.6589,
-   "to": 0.4176
-  },
-  {
-   "model": "deepseek/deepseek-v4.1-flash-1017",
-   "label": "deepseek-v4.1-flash-1017",
-   "tag": "baidu/fp8",
-   "field": "price_in_per_m",
-   "from": 0.1498,
-   "to": 0.0977
-  },
-  {
-   "model": "deepseek/deepseek-v4.1-flash-1017",
-   "label": "deepseek-v4.1-flash-1017",
-   "tag": "baidu/fp8",
-   "field": "price_out_per_m",
-   "from": 0.6046,
-   "to": 0.3944
-  },
-  {
-   "model": "deepseek/deepseek-v4.1-flash-1017",
-   "label": "deepseek-v4.1-flash-1017",
-   "tag": "ionstream",
-   "field": "price_in_per_m",
-   "from": 0.165,
-   "to": 0.21
-  },
-  {
-   "model": "deepseek/deepseek-v4.1-flash-1017",
-   "label": "deepseek-v4.1-flash-1017",
-   "tag": "ionstream",
-   "field": "price_out_per_m",
-   "from": 0.495,
-   "to": 0.62
-  },
-  {
-   "model": "deepseek/deepseek-v4.1-flash-1017",
-   "label": "deepseek-v4.1-flash-1017",
-   "tag": "morph/fast",
+   "tag": "deepinfra/fp8/priority",
    "field": "listed",
    "from": null,
    "to": "new"
@@ -79,138 +23,106 @@
   {
    "model": "deepseek/deepseek-v4.1-flash-1017",
    "label": "deepseek-v4.1-flash-1017",
+   "tag": "baidu/fp8",
+   "field": "price_in_per_m",
+   "from": 0.0977,
+   "to": 0.0888
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "baidu/fp8",
+   "field": "price_out_per_m",
+   "from": 0.3944,
+   "to": 0.3582
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "morph/fast",
+   "field": "price_in_per_m",
+   "from": 0.104,
+   "to": null
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "morph/fast",
+   "field": "price_out_per_m",
+   "from": 0.583,
+   "to": null
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
    "tag": "morph/fp8",
    "field": "price_in_per_m",
-   "from": 0.089,
-   "to": 0.104
+   "from": 0.104,
+   "to": 0.072
   },
   {
    "model": "deepseek/deepseek-v4.1-flash-1017",
    "label": "deepseek-v4.1-flash-1017",
    "tag": "morph/fp8",
    "field": "price_out_per_m",
-   "from": 0.5,
-   "to": 0.583
+   "from": 0.583,
+   "to": 0.636
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "river",
+   "field": "price_in_per_m",
+   "from": 0.12,
+   "to": 0.108
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "river",
+   "field": "price_out_per_m",
+   "from": 0.48,
+   "to": 0.432
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "sail-research/fp4",
+   "field": "price_in_per_m",
+   "from": 0.0727,
+   "to": 0.02
   },
   {
    "model": "deepseek/deepseek-v4.1-flash-1017",
    "label": "deepseek-v4.1-flash-1017",
    "tag": "wafer/mxfp4",
    "field": "price_in_per_m",
-   "from": 0.079,
-   "to": 0.066
+   "from": 0.066,
+   "to": 0.07
   },
   {
    "model": "openai/gpt-oss-120b",
    "label": "gpt-oss-120b",
-   "tag": "io-net/fp4",
+   "tag": "mancer/fp8",
    "field": "price_in_per_m",
-   "from": 0.03,
-   "to": 0.25
-  },
-  {
-   "model": "openai/gpt-oss-120b",
-   "label": "gpt-oss-120b",
-   "tag": "io-net/fp4",
-   "field": "price_out_per_m",
-   "from": 0.15,
-   "to": 0.45
+   "from": 0.055,
+   "to": 0.07
   },
   {
    "model": "openai/gpt-oss-120b",
    "label": "gpt-oss-120b",
    "tag": "primeintellect/fp4",
    "field": "price_in_per_m",
-   "from": 0.071,
-   "to": 0.04
+   "from": 0.04,
+   "to": 0.035
   },
   {
    "model": "openai/gpt-oss-120b",
    "label": "gpt-oss-120b",
    "tag": "primeintellect/fp4",
    "field": "price_out_per_m",
-   "from": 0.152,
-   "to": 0.086
-  },
-  {
-   "model": "z-ai/glm-5.3-flash",
-   "label": "glm-5.3-flash",
-   "tag": "baseten/fp8/us",
-   "field": "price_in_per_m",
-   "from": 0.15,
-   "to": null
-  },
-  {
-   "model": "z-ai/glm-5.3-flash",
-   "label": "glm-5.3-flash",
-   "tag": "baseten/fp8/us",
-   "field": "price_out_per_m",
-   "from": 0.5,
-   "to": null
-  },
-  {
-   "model": "z-ai/glm-5.3-flash",
-   "label": "glm-5.3-flash",
-   "tag": "fireworks/us",
-   "field": "listed",
-   "from": null,
-   "to": "new"
-  },
-  {
-   "model": "z-ai/glm-5.3-flash",
-   "label": "glm-5.3-flash",
-   "tag": "morph/fp8",
-   "field": "price_in_per_m",
-   "from": 0.116,
-   "to": 0.099
-  },
-  {
-   "model": "z-ai/glm-5.3-flash",
-   "label": "glm-5.3-flash",
-   "tag": "morph/fp8",
-   "field": "price_out_per_m",
-   "from": 0.122,
-   "to": 0.105
-  },
-  {
-   "model": "z-ai/glm-5.3-flash",
-   "label": "glm-5.3-flash",
-   "tag": "particle-ai/nvfp4",
-   "field": "price_in_per_m",
-   "from": 0.13,
-   "to": 0.12
-  },
-  {
-   "model": "z-ai/glm-5.3-flash",
-   "label": "glm-5.3-flash",
-   "tag": "primeintellect",
-   "field": "price_in_per_m",
-   "from": 0.0525,
-   "to": null
-  },
-  {
-   "model": "z-ai/glm-5.3-flash",
-   "label": "glm-5.3-flash",
-   "tag": "primeintellect",
-   "field": "price_out_per_m",
-   "from": 0.25,
-   "to": null
-  },
-  {
-   "model": "z-ai/glm-5.3-flash",
-   "label": "glm-5.3-flash",
-   "tag": "river",
-   "field": "price_in_per_m",
-   "from": null,
-   "to": 0.12
-  },
-  {
-   "model": "z-ai/glm-5.3-flash",
-   "label": "glm-5.3-flash",
-   "tag": "river",
-   "field": "price_out_per_m",
-   "from": null,
-   "to": 0.4
+   "from": 0.086,
+   "to": 0.075
   }
  ],
  "footer": "Numbers against a stated reference. Not a claim about intent."
