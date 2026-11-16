@@ -1,0 +1,148 @@
+{
+ "run_id": "2026-11-16-live",
+ "date": "2026-11-16",
+ "source": "live",
+ "started": "2026-11-16T17:06:52Z",
+ "models": {
+  "gpt-oss-120b": {
+   "slug": "openai/gpt-oss-120b",
+   "endpoints": 24,
+   "short": false
+  },
+  "deepseek-v4-pro": {
+   "slug": "deepseek/deepseek-v4-pro",
+   "endpoints": 15,
+   "short": false
+  },
+  "deepseek-v4.1-flash-1017": {
+   "slug": "deepseek/deepseek-v4.1-flash-1017",
+   "endpoints": 48,
+   "short": false
+  },
+  "mistral-large-4-0": {
+   "slug": "mistralai/mistral-large-4-0",
+   "endpoints": 2,
+   "short": true
+  },
+  "glm-5.3-flash": {
+   "slug": "z-ai/glm-5.3-flash",
+   "endpoints": 43,
+   "short": false
+  },
+  "gemma-4-31b-it": {
+   "slug": "google/gemma-4-31b-it",
+   "endpoints": 17,
+   "short": false
+  },
+  "mimo-v2.6-pro": {
+   "slug": "xiaomi/mimo-v2.6-pro",
+   "endpoints": 5,
+   "short": true
+  }
+ },
+ "prompts": {
+  "fixed": 120,
+  "fresh": 24,
+  "kept": 144,
+  "dropped": 0
+ },
+ "dropped_prompt_ids": [],
+ "estimate": {
+  "usd": 7.4555,
+  "per_model": {
+   "gpt-oss-120b": 0.4682,
+   "deepseek-v4-pro": 2.8061,
+   "deepseek-v4.1-flash-1017": 1.7112,
+   "mistral-large-4-0": 0.2418,
+   "glm-5.3-flash": 0.9025,
+   "gemma-4-31b-it": 0.5147,
+   "mimo-v2.6-pro": 0.811
+  }
+ },
+ "cap_usd": 7.75,
+ "aborted_on_estimate": false,
+ "summary": {
+  "rows": 22176,
+  "by_status": {
+   "ok": 21210,
+   "error": 966
+  },
+  "errors": 966,
+  "misrouted": 0,
+  "skipped_budget": 0,
+  "truncated": 63,
+  "billed_cost_usd": 3.9495,
+  "estimated_cost_rows": 1
+ },
+ "runtime_budget_stop": false,
+ "time_stop": false,
+ "concurrency": 8,
+ "finished": "2026-11-16T22:55:13Z",
+ "total_billed_usd": 3.9494,
+ "parts": {
+  "gpt-oss-120b": {
+   "cap_usd": 0.4861,
+   "billed_usd": 0.302,
+   "rows": 3456,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-16T17:06:52Z",
+   "finished": "2026-11-16T17:23:28Z"
+  },
+  "deepseek-v4-pro": {
+   "cap_usd": 2.9148,
+   "billed_usd": 1.4218,
+   "rows": 2160,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-16T17:23:58Z",
+   "finished": "2026-11-16T17:33:54Z"
+  },
+  "deepseek-v4.1-flash-1017": {
+   "cap_usd": 1.7775,
+   "billed_usd": 0.7365,
+   "rows": 6912,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-16T17:34:26Z",
+   "finished": "2026-11-16T21:19:13Z"
+  },
+  "mistral-large-4-0": {
+   "cap_usd": 0.2516,
+   "billed_usd": 0.227,
+   "rows": 288,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-16T21:19:38Z",
+   "finished": "2026-11-16T21:23:32Z"
+  },
+  "glm-5.3-flash": {
+   "cap_usd": 0.9388,
+   "billed_usd": 0.494,
+   "rows": 6192,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-16T21:23:56Z",
+   "finished": "2026-11-16T22:06:44Z"
+  },
+  "gemma-4-31b-it": {
+   "cap_usd": 0.5351,
+   "billed_usd": 0.2772,
+   "rows": 2448,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-16T22:07:05Z",
+   "finished": "2026-11-16T22:51:04Z"
+  },
+  "mimo-v2.6-pro": {
+   "cap_usd": 0.843,
+   "billed_usd": 0.4909,
+   "rows": 720,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-16T22:51:39Z",
+   "finished": "2026-11-16T22:55:13Z"
+  }
+ },
+ "missing_parts": []
+}
