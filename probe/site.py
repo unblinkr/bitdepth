@@ -620,7 +620,7 @@ def table(m: dict[str, Any], limit: int | None = None) -> str:
 
 def footer() -> str:
     return """<footer><div class="wrap">
-<div><span class="fm">Bitdepth</span>Routine AI jobs moved to cheaper open models, and the nightly grades that keep them honest.<br><br>hello@bitdepth.dev<br>Autumn Sun LLC, Sheridan, WY</div>
+<div><span class="fm">Bitdepth</span>Routine AI jobs moved to cheaper open models, and the nightly grades that keep them honest.<br><br>hello@bitdepth.dev<br>Autumn Sun LLC, 30 N Gould St, Ste R, Sheridan, WY 82801</div>
 <div><h4>Savings</h4><ul><li><a href="/#report">Free savings report</a></li><li><a href="/pricing">Pricing</a></li></ul></div>
 <div><h4>Data</h4><ul><li><a href="/leaderboard">Leaderboard</a></li><li><a href="/charts">Charts</a></li><li><a href="/market">Market</a></li><li><a href="/api-access">API</a></li></ul></div>
 <div><h4>Trust</h4><ul><li><a href="/method">Method</a></li><li><a href="/method#policy">Publication policy</a></li></ul></div>
