@@ -554,7 +554,7 @@ def nav(base: str, current: str) -> str:
 
     return f"""<header class="top"><div class="wrap">
 <div class="brand"><a class="wordmark" href="{base}/">Bitdepth</a><span class="line-tag">Independent grades for inference endpoints</span></div>
-<nav aria-label="Site">{a(base + "/", "Leaderboard", "board")}{a(base + "/charts", "Charts", "charts")}{'' if base else '<a href="/compare">Compare</a>'}<a href="/market">Market</a><a href="/method">Method</a><a href="/pricing">Pricing</a><a href="/about">About</a></nav>
+<nav aria-label="Site">{'' if base else a("/", "Savings", "home")}{a(base + ("/" if base else "/leaderboard"), "Leaderboard", "board")}{a(base + "/charts", "Charts", "charts")}<a href="/market">Market</a><a href="/method">Method</a><a href="/pricing">Pricing</a><a href="/about">About</a>{'' if base else '<a class="nav-cta" href="/#report">Free report</a>'}</nav>
 </div></header>
 """
 
@@ -621,7 +621,8 @@ def table(m: dict[str, Any], limit: int | None = None) -> str:
 def footer() -> str:
     return """<footer><div class="wrap">
 <div><span class="fm">Bitdepth</span>Independent grades for AI inference endpoints.<br><br>hello@bitdepth.dev<br>Autumn Sun LLC, Sheridan, WY</div>
-<div><h4>Data</h4><ul><li><a href="/">Leaderboard</a></li><li><a href="/charts">Charts</a></li><li><a href="/market">Market</a></li></ul></div>
+<div><h4>Savings</h4><ul><li><a href="/#report">Free savings report</a></li><li><a href="/pricing">Pricing</a></li></ul></div>
+<div><h4>Data</h4><ul><li><a href="/leaderboard">Leaderboard</a></li><li><a href="/charts">Charts</a></li><li><a href="/market">Market</a></li><li><a href="/api-access">API</a></li></ul></div>
 <div><h4>Trust</h4><ul><li><a href="/method">Method</a></li><li><a href="/method#policy">Publication policy</a></li></ul></div>
 <div><h4>Company</h4><ul><li><a href="/about">About</a></li><li><a href="mailto:hello@bitdepth.dev">Contact</a></li></ul></div>
 </div></footer>
@@ -646,7 +647,7 @@ def page_board(data: dict[str, Any], base: str, depth: str, preview: bool, abs_b
     n_ep = sum(len(m["endpoints"]) for m in ms)
     n_out = sum(1 for m in ms for e in m["endpoints"] if e.get("state") == "outside")
     nights = data["index"].get("nights", max(model_nights(m) for m in ms))
-    url = abs_base + "/"
+    url = abs_base + ("/" if base else "/leaderboard")
     title = "Who actually serves the model: the inference endpoint leaderboard | Bitdepth"
     desc = ("Every OpenRouter endpoint for each open-weight model, graded nightly against a full-precision reference "
             "and ranked by quality-adjusted price.")
@@ -940,6 +941,175 @@ def badge_svg(model_name: str, as_of: str, url: str) -> str:
     )
 
 
+# ---------------------------------------------------------------- savings home page
+
+# The Nov 13, 2026 routine-jobs test (data/routine/2026-11-13-pass2/report.md). Fixed: it is a dated result,
+# not a nightly number. (job, schedule, cost a month on Claude Sonnet 5.5, cost after the move or None if kept)
+ROUTINE_TEST = [
+    ("Monitor", "Every 15 min", 119.52, 1.52),
+    ("Ticket tagging", "50 batches a day", 63.14, 0.69),
+    ("Heartbeat", "Every 30 min", 57.57, 2.65),
+    ("Daily briefing", "Once a day", 12.24, 0.12),
+    ("Inbox digest", "Once a day", 6.06, None),
+]
+ROUTINE_DATE = "Nov 13, 2026"
+
+WHERE_OPTIONS = ["OpenRouter", "Anthropic API", "OpenAI API", "Google Gemini API", "Hermes Agent or OpenClaw", "More than one"]
+BILL_OPTIONS = ["Under $100", "$100 to $500", "$500 to $5,000", "Over $5,000"]
+JOB_OPTIONS = ["Status checks", "Monitoring", "Tagging or sorting", "Pulling fields to JSON", "Summaries", "Something else"]
+
+
+def routine_totals() -> tuple[float, float]:
+    before = sum(r[2] for r in ROUTINE_TEST)
+    after = sum(r[3] if r[3] is not None else r[2] for r in ROUTINE_TEST)
+    return round(before, 2), round(after, 2)
+
+
+def _hero_chart() -> str:
+    before, after = routine_totals()
+    top = max(r[2] for r in ROUTINE_TEST)
+    rows_ = []
+    for name, sched, b, a in ROUTINE_TEST:
+        wb = b / top * 70
+        if a is None:
+            low = (f'<div class="hb"><i class="bar was" style="width:{wb:.2f}%"></i>'
+                   f'<span class="keep">Stays. Cheaper models failed it.</span></div>')
+        else:
+            low = (f'<div class="hb"><i class="bar now" style="width:{a / top * 70:.2f}%"></i>'
+                   f'<span class="v b">{money(a)}</span></div>')
+        rows_.append(f'<div class="hrow"><div><b>{escape(name)}</b><span>{escape(sched)}</span></div><div class="hbars">'
+                     f'<div class="hb"><i class="bar was" style="width:{wb:.2f}%"></i><span class="v">{money(b)}</span></div>{low}</div></div>')
+    cut = (1 - after / before) * 100
+    return f"""<div class="hcard">
+<div class="hk">Five routine jobs, cost per month</div>
+<div class="hnum"><s>{money(before)}</s><b>{money(after)}</b><em>{cut:.1f}% lower</em></div>
+<div class="legend"><span><i class="sw was"></i>Today, on Claude Sonnet 5.5</span><span><i class="sw now"></i>After, on an open model</span></div>
+<div class="hrows" role="img" aria-label="Five routine jobs cost {money(before)} a month on Claude Sonnet 5.5 and {money(after)} after four moved to open models.">{"".join(rows_)}</div>
+<p class="hnote">Bitdepth test, {ROUTINE_DATE}. Sample jobs, 10 runs each. Your report uses your own.</p>
+</div>"""
+
+
+def _range_row(label: str, lo: float, hi: float, cls: str) -> str:
+    return (f'<div class="rr"><b>{escape(label)}</b><div class="rt"><i class="{cls}" style="left:{lo:.1f}%;width:{max(hi - lo, 1.5):.1f}%"></i>'
+            f'<span style="left:{min(hi + 3, 80):.1f}%">{lo:.0f} to {hi:.0f}%</span></div></div>')
+
+
+def _word(n: int) -> str:
+    return ["None", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"][n] if 0 <= n < 10 else str(n)
+
+
+def home_cards(ms: list[dict[str, Any]], as_of: str) -> list[str]:
+    """Up to three live cards from last night's files: the spread on one model, one host that moved, the cheapest host that passes."""
+    cards = []
+    lead = next((m for m in ms if not is_first_look(m) and rows(m)["outside"] and rows(m)["ranked"]), None)
+    if lead:
+        r = rows(lead)
+        inside = [agreement(lead, e) for e in r["ranked"] if agreement(lead, e) is not None]
+        out = [agreement(lead, e) for e in r["outside"] if agreement(lead, e) is not None]
+        if inside and out:
+            label = {"exact": "Exact match", "string": "String tasks, match"}.get(primary(lead), primary(lead))
+            n_in, n_out = len(r["ranked"]), len(r["outside"])
+            cards.append(f"""<div class="dcard"><div class="dk">One model, {len(lead["endpoints"])} hosts</div>
+<h3>{_word(n_out)} of them {"falls" if n_out == 1 else "fall"} well short.</h3>
+<div class="rng" role="img" aria-label="{escape(nice_name(lead))}: {n_in} ranked hosts score {min(inside):.0f} to {max(inside):.0f} percent; {n_out} hosts outside the reference score {min(out):.0f} to {max(out):.0f} percent.">
+{_range_row(f"{n_in} hosts", min(inside), max(inside), "in")}{_range_row(f"{n_out} host{'s' if n_out != 1 else ''}", min(out), max(out), "out")}
+<div class="rr"><b></b><div class="ax"><span>0%</span><span>50%</span><span>100%</span></div></div></div>
+<p class="dn">{escape(nice_name(lead))}. {escape(label)} to the reference. <a href="/m/{slug_of(lead)}">Full table</a></p></div>""")
+    pick = drift_pick(ms)
+    if pick:
+        m, e = pick
+        pts = [p["exact"] for p in (e.get("nightly_exact") or []) if p.get("exact") is not None]
+        if len(pts) >= 6:
+            a, b = sum(pts[:3]) / 3, sum(pts[-3:]) / 3
+            cards.append(f"""<div class="dcard"><div class="dk">One host, over time</div>
+<h3>Hosts change. We see the night.</h3>
+<div class="cols" role="img" aria-label="{escape(e["tag"])} on {escape(nice_name(m))} matched the reference on {a:.0f} percent of prompts in its first three nights and {b:.0f} percent in its last three.">
+<div class="col"><span>{a:.0f}%</span><i class="in" style="height:{a * 1.2:.0f}px"></i><em>First 3 nights</em></div>
+<div class="col"><span>{b:.0f}%</span><i class="{"out" if b < a else "in"}" style="height:{b * 1.2:.0f}px"></i><em>Last 3 nights</em></div></div>
+<p class="dn">{escape(e["tag"])} on {escape(nice_name(m))}. Prompts matching the reference.</p></div>""")
+    cheap = []
+    for m in ms:
+        r = rows(m)
+        if not is_first_look(m) and r["ranked"]:
+            best = min(r["ranked"], key=lambda x: x.get("price_out_per_m") if x.get("price_out_per_m") is not None else 1e9)
+            cheap.append((m, best))
+    if cheap:
+        lis = "".join(f'<li><div><b>{escape(nice_name(m))}</b><span>{escape(e["tag"])}</span></div><em>{money(e.get("price_out_per_m"))}</em></li>'
+                      for m, e in sorted(cheap, key=lambda t: t[1].get("price_out_per_m") or 1e9)[:4])
+        cards.append(f"""<div class="dcard"><div class="dk">Where your jobs go</div>
+<h3>The cheapest host that passes.</h3><ul class="cheap">{lis}</ul>
+<p class="dn">Per million output tokens, {_md(as_of)}.</p></div>""")
+    return cards
+
+
+def _form() -> str:
+    where = "".join(f"<option>{escape(o)}</option>" for o in WHERE_OPTIONS)
+    bill = "".join(f"<option>{escape(o)}</option>" for o in BILL_OPTIONS)
+    jobs = "".join(f'<label class="ck"><input type="checkbox" name="jobs" value="{escape(o)}">{escape(o)}</label>' for o in JOB_OPTIONS)
+    return f"""<form class="rform" id="report-form" novalidate>
+<div class="fld"><label for="f-email">Work email</label><input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required></div>
+<div class="two"><div class="fld"><label for="f-where">Where your AI calls go</label><select id="f-where" name="where">{where}</select></div>
+<div class="fld"><label for="f-bill">Model bill a month</label><select id="f-bill" name="bill">{bill}</select></div></div>
+<fieldset><legend>Jobs that repeat</legend><div class="cks">{jobs}</div></fieldset>
+<div class="hp" aria-hidden="true"><label for="f-website">Leave this empty</label><input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+<button type="submit">Start my free report</button>
+<p class="fnote" id="report-status" role="status" aria-live="polite">Next, an email that says exactly what to send. We delete your files once the report is sent.</p>
+</form>"""
+
+
+def page_home(data: dict[str, Any], abs_base: str) -> str:
+    ms = lead_order(data["models"])
+    as_of = data["index"]["as_of"]
+    n_ep = sum(len(m["endpoints"]) for m in ms)
+    n_out = sum(1 for m in ms for e in m["endpoints"] if e.get("state") == "outside")
+    nights = data["index"].get("nights", max(model_nights(m) for m in ms))
+    before, after = routine_totals()
+    title = "Stop paying frontier prices for routine AI jobs | Bitdepth"
+    desc = (f"Bitdepth tests each routine AI job on cheaper open models and moves the ones that pass. "
+            f"Five sample jobs: {money(before)} a month on a frontier model, {money(after)} after. Free report.")
+    h = [head(title, desc, abs_base + "/", abs_base + "/og/board.png", False, "/"),
+         '<link rel="stylesheet" href="/assets/home.css">\n', nav("", "home")]
+    h.append(f"""<section class="hero"><div class="wrap hwrap">
+<div class="hcopy"><div class="kick">For teams with a model bill</div>
+<h1>Stop paying frontier prices for routine AI jobs.</h1>
+<p class="sub">We test each job on cheaper open models. You move the ones that pass.</p>
+<div class="hcta"><a class="btn" href="#report">Get my free report</a><span>Free. Two-minute form.</span></div></div>
+{_hero_chart()}
+</div></section>
+<div class="tiles"><div class="wrap tiles-wrap">
+<div class="tile"><div class="v">{n_ep}</div><div class="l">hosts graded</div></div>
+<div class="tile"><div class="v">{len(ms)}</div><div class="l">open models</div></div>
+<div class="tile"><div class="v">{nights}</div><div class="l">nights of data</div></div>
+<div class="tile"><div class="v">{n_out}</div><div class="l">hosts off the reference</div></div>
+<div class="tile asof-t">Last run {_md(as_of)}, {as_of[:4]}</div>
+</div></div>
+<main class="wrap body">""")
+    cards = home_cards(ms, as_of)
+    if cards:
+        h.append(f"""<div class="sec" id="data"><div class="shead"><div><div class="k">The nightly data</div><h2>Same model. Different answers.</h2>
+<p class="lede">Every host gets the same prompts, every night. Your jobs only go to hosts that hold up.</p></div>
+<div class="legend"><span><i class="sw in"></i>Within the reference</span><span><i class="sw out"></i>Outside</span></div></div>
+<div class="dcards">{"".join(cards)}</div>
+<p class="more"><a href="/leaderboard">Open the full leaderboard</a> &middot; <a href="/api-access">Get the data as JSON or MCP</a></p></div>""")
+    h.append(f"""<div class="sec rsec" id="report"><div class="steps"><div class="k">The free report</div><h2>Three steps. About a week.</h2>
+<ol>
+<li><b>Tell us what runs</b><span>This form. Two minutes.</span></li>
+<li><b>Send two files</b><span>A 30-day usage export, and 20 recent runs of your three biggest jobs. Redact what you like.</span></li>
+<li><b>Get your report</b><span>A private link: each job, what it costs, what passed on a cheaper model, and the saving.</span></li>
+</ol>
+<p class="muted">Under $50 a month to save? The report says so, and tells you not to subscribe.</p></div>
+{_form()}</div>
+<div class="sec" id="pricing"><h2>Free to see it. Paid to keep it.</h2><div class="plans">
+<div class="plan"><h3>Savings report</h3><div class="pv">$0</div><p>Your jobs, their cost, and which can move.</p></div>
+<div class="plan dark"><h3>Autopilot <span class="soon">Soon</span></h3><div class="pv">$19 <small>per agent a month</small></div><p>Moves the jobs, tests them weekly, moves them back.</p></div>
+<div class="plan"><h3>Teams</h3><div class="pv">Custom</div><p>Many agents, or a model bill you pay for your users.</p></div>
+</div><p class="muted">Want the grades themselves? The data has its own plans: free JSON and MCP, Watch, and pay per call. <a href="/pricing">Data pricing</a>.</p></div>
+</main>""")
+    h.append(footer())
+    h.append('<script src="/assets/home.js" defer></script></body></html>\n')
+    return "".join(h)
+
+
 # ---------------------------------------------------------------- build
 
 
@@ -955,10 +1125,12 @@ def build(data: dict[str, Any], out: Path, base: str, preview: bool, abs_base: s
 
     depth_root = "../" if base else ""
     board_html = page_board(data, base, "/", preview, abs_base)
-    if home or base:
+    if base:
         w("index.html", board_html)
     else:
         w("leaderboard/index.html", board_html)
+        if home:
+            w("index.html", page_home(data, abs_base))
     w("charts/index.html", page_charts(data, base, "/", preview, abs_base))
     for m in data["models"]:
         s = slug_of(m)
@@ -989,7 +1161,7 @@ def sitemap(site: Path, data: dict[str, Any]) -> None:
     text = p.read_text() if p.exists() else (
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n</urlset>\n')
     as_of = data["index"]["as_of"]
-    urls = [f"{SITE}/charts", f"{SITE}/compare"] + [f"{SITE}/m/{slug_of(m)}" for m in data["models"]]
+    urls = [f"{SITE}/leaderboard", f"{SITE}/charts", f"{SITE}/compare"] + [f"{SITE}/m/{slug_of(m)}" for m in data["models"]]
     add = "".join(f"  <url><loc>{u}</loc><lastmod>{as_of}</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>\n"
                   for u in urls if f"<loc>{u}</loc>" not in text)
     text = text.replace(f"<loc>{SITE}/</loc><lastmod>", f"<loc>{SITE}/</loc><lastmod>{as_of}</lastmod><x>", 1)
@@ -1004,7 +1176,7 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     g = ap.add_mutually_exclusive_group(required=True)
     g.add_argument("--preview", action="store_true", help="placeholder data into site/lab/")
-    g.add_argument("--live", action="store_true", help="real data into site/ (leaderboard becomes the home page)")
+    g.add_argument("--live", action="store_true", help="real data into site/ (savings page at /, leaderboard at /leaderboard)")
     ap.add_argument("--data", default=str(ROOT / "data" / "public" / "v1"))
     ap.add_argument("--site", default=str(ROOT / "site"))
     a = ap.parse_args(argv)

@@ -78,3 +78,27 @@ def test_findings_lead_and_delisted_marker():
     html = site.findings(ms, "", "https://bitdepth.dev", "2026-11-10")
     assert "gone" in html and "not listed since" in html and "drop" in html
     assert "—" not in html
+
+
+def test_live_build_puts_savings_page_home_and_board_at_leaderboard(tmp_path):
+    data = site.load(DATA)
+    site.build(data, tmp_path, "", False, site.SITE, home=True)
+    home = (tmp_path / "index.html").read_text()
+    board = (tmp_path / "leaderboard" / "index.html").read_text()
+    assert "Stop paying frontier prices for routine AI jobs." in home
+    assert 'id="report-form"' in home and "/api/report-request" not in home  # posted by home.js
+    assert "Who actually serves the model." in board
+    assert '<link rel="canonical" href="https://bitdepth.dev/leaderboard">' in board
+    assert 'href="/leaderboard"' in home
+    before, after = site.routine_totals()
+    assert (before, after) == (258.53, 11.04)
+    assert "$258.53" in home and "$11.04" in home and "95.7% lower" in home
+    assert "—" not in home
+
+
+def test_home_cards_come_from_the_files():
+    data = site.load(DATA)
+    ms = site.lead_order(data["models"])
+    cards = site.home_cards(ms, data["index"]["as_of"])
+    assert 1 <= len(cards) <= 3
+    assert "The cheapest host that passes." in cards[-1]
