@@ -1,6 +1,6 @@
 # Bitdepth
 
-This repository probes every OpenRouter endpoint serving two open-weight models with a fixed set of generated prompts at temperature zero, every night. A scorecard is one Markdown table per model with one row per endpoint, scoring each endpoint's outputs against a reference built from the endpoints that declare full precision. The one secret is `OPENROUTER_API_KEY`, set as a GitHub Actions secret and read from the environment. The repository is public so the nightly job runs on free Actions minutes; the scorecards in it are working data from an experiment in progress, scored against a stated reference, and are not findings about any provider.
+This repository probes every OpenRouter endpoint serving each model in `probe/__init__.py` (seven today) with a fixed set of generated prompts at temperature zero, every night. A scorecard is one Markdown table per model with one row per endpoint, scoring each endpoint's outputs against a published reference (the plurality answer of endpoints declaring full precision, or of all endpoints where fewer than two do). The one secret is `OPENROUTER_API_KEY`, set as a GitHub Actions secret and read from the environment. The repository is public so the nightly job runs on free Actions minutes; the scorecards in it are working data from an experiment in progress, scored against a stated reference, and are not findings about any provider.
 
 ## Run
 

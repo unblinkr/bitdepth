@@ -1,6 +1,6 @@
 # Bitdepth probe harness
 
-Nightly probe of OpenRouter inference endpoints. The repository is public so that GitHub Actions minutes are free, but it is not a published surface: scorecards here are working data, not findings, and nothing in this repository is linked from anywhere.
+Nightly probe of OpenRouter inference endpoints. The repository is public so that GitHub Actions minutes are free. Two parts of it are published surfaces: `site/` is the live bitdepth.dev, and `data/public/v1/` is read by the live API and MCP server. Everything else (scorecards, trend files, run folders) is working data, not findings.
 
 ## Rules
 

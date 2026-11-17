@@ -553,7 +553,7 @@ def nav(base: str, current: str) -> str:
         return f'<a href="{href}"{cur}>{label}</a>'
 
     return f"""<header class="top"><div class="wrap">
-<div class="brand"><a class="wordmark" href="{base}/">Bitdepth</a><span class="line-tag">Independent grades for inference endpoints</span></div>
+<div class="brand"><a class="wordmark" href="{base}/">Bitdepth</a><span class="line-tag">Cheaper routine AI jobs, checked nightly</span></div>
 <nav aria-label="Site">{'' if base else a("/", "Savings", "home")}{a(base + ("/" if base else "/leaderboard"), "Leaderboard", "board")}{a(base + "/charts", "Charts", "charts")}<a href="/market">Market</a><a href="/method">Method</a><a href="/pricing">Pricing</a><a href="/about">About</a>{'' if base else '<a class="nav-cta" href="/#report">Free report</a>'}</nav>
 </div></header>
 """
@@ -620,7 +620,7 @@ def table(m: dict[str, Any], limit: int | None = None) -> str:
 
 def footer() -> str:
     return """<footer><div class="wrap">
-<div><span class="fm">Bitdepth</span>Independent grades for AI inference endpoints.<br><br>hello@bitdepth.dev<br>Autumn Sun LLC, Sheridan, WY</div>
+<div><span class="fm">Bitdepth</span>Routine AI jobs moved to cheaper open models, and the nightly grades that keep them honest.<br><br>hello@bitdepth.dev<br>Autumn Sun LLC, Sheridan, WY</div>
 <div><h4>Savings</h4><ul><li><a href="/#report">Free savings report</a></li><li><a href="/pricing">Pricing</a></li></ul></div>
 <div><h4>Data</h4><ul><li><a href="/leaderboard">Leaderboard</a></li><li><a href="/charts">Charts</a></li><li><a href="/market">Market</a></li><li><a href="/api-access">API</a></li></ul></div>
 <div><h4>Trust</h4><ul><li><a href="/method">Method</a></li><li><a href="/method#policy">Publication policy</a></li></ul></div>
@@ -649,12 +649,12 @@ def page_board(data: dict[str, Any], base: str, depth: str, preview: bool, abs_b
     nights = data["index"].get("nights", max(model_nights(m) for m in ms))
     url = abs_base + ("/" if base else "/leaderboard")
     title = "Who actually serves the model: the inference endpoint leaderboard | Bitdepth"
-    desc = ("Every OpenRouter endpoint for each open-weight model, graded nightly against a full-precision reference "
+    desc = ("Every OpenRouter endpoint for each open-weight model, graded nightly against a published reference "
             "and ranked by quality-adjusted price.")
     h = [head(title, desc, url, abs_base + "/og/board.png", preview, depth), banner(preview), nav(base, "board")]
     h.append(f"""<section class="hero"><div class="wrap hero-wrap">
 <div><div class="kick">Endpoint leaderboard</div><h1>Who actually serves the model.</h1>
-<p class="sub">Every OpenRouter endpoint for each open-weight model, sent the same prompts at temperature zero every night, graded against a full-precision reference, and ranked by what a correct answer costs.</p></div>
+<p class="sub">Every OpenRouter endpoint for each open-weight model, sent the same prompts at temperature zero every night, graded against a published reference, and ranked by what a correct answer costs.</p></div>
 <div class="asof">Last run <b>{_md(as_of)}, {as_of[:4]}</b><br>{nights} nights measured</div>
 </div></section>
 <div class="tiles"><div class="wrap tiles-wrap">
@@ -784,7 +784,7 @@ def page_charts(data: dict[str, Any], base: str, depth: str, preview: bool, abs_
     as_of = data["index"]["as_of"]
     url = abs_base + "/charts"
     title = "Inference endpoints over time, in charts | Bitdepth"
-    desc = "Agreement with a full-precision reference, price and declared quantization for every OpenRouter endpoint, nightly."
+    desc = "Agreement with a published reference, price and declared quantization for every OpenRouter endpoint, nightly."
     h = [head(title, desc, url, abs_base + "/og/board.png", preview, depth), banner(preview), nav(base, "charts")]
     ms = lead_order(ms)
     graded = [m for m in ms if not is_first_look(m)] or ms
@@ -919,7 +919,7 @@ def og_board(data: dict[str, Any], path: Path, preview: bool) -> None:
         d.text((x, 360), v, font=_font("Inter-SemiBold.otf", 64), fill=CREAM)
         d.text((x, 440), l, font=_font("Inter-Regular.otf", 22), fill=SAGE)
         x += 360
-    foot = f"bitdepth.dev   ·   graded nightly against a full-precision reference   ·   as of {data['index']['as_of']}"
+    foot = f"bitdepth.dev   ·   graded nightly against a published reference   ·   as of {data['index']['as_of']}"
     if preview:
         foot = "PREVIEW · PLACEHOLDER DATA · NOT A MEASUREMENT"
     d.text((64, H - 56), foot, font=_font("Inter-Regular.otf", 20), fill=SAGE)
@@ -1161,7 +1161,7 @@ def sitemap(site: Path, data: dict[str, Any]) -> None:
     text = p.read_text() if p.exists() else (
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n</urlset>\n')
     as_of = data["index"]["as_of"]
-    urls = [f"{SITE}/leaderboard", f"{SITE}/charts", f"{SITE}/compare"] + [f"{SITE}/m/{slug_of(m)}" for m in data["models"]]
+    urls = [f"{SITE}/leaderboard", f"{SITE}/charts"] + [f"{SITE}/m/{slug_of(m)}" for m in data["models"]]
     add = "".join(f"  <url><loc>{u}</loc><lastmod>{as_of}</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>\n"
                   for u in urls if f"<loc>{u}</loc>" not in text)
     text = text.replace(f"<loc>{SITE}/</loc><lastmod>", f"<loc>{SITE}/</loc><lastmod>{as_of}</lastmod><x>", 1)
