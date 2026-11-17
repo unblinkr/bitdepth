@@ -59,21 +59,30 @@ export function requesterEmail(r) {
     "",
     "Mancy Thurston",
     "Bitdepth.dev",
+    "",
+    "Autumn Sun LLC, 30 N Gould St, Ste R, Sheridan, WY 82801",
   );
   return { subject: "Your Bitdepth savings report: two files to send", text: lines.join("\n") };
 }
 
 export function founderEmail(r) {
   return {
-    subject: `Report request: ${r.email} (${r.bill}, ${r.where})`,
+    subject: `New free report request from ${r.email}`,
     text: [
-      `Email: ${r.email}`,
-      `Where calls go: ${r.where}`,
-      `Monthly bill: ${r.bill}`,
-      `Jobs that repeat: ${r.jobs.length ? r.jobs.join(", ") : "none ticked"}`,
-      `Received: ${new Date().toISOString()}`,
+      "Someone asked for a free savings report on bitdepth.dev.",
       "",
-      "They have been sent the two-file instructions. Their reply comes to this inbox.",
+      "What they told us:",
+      `- Email: ${r.email}`,
+      `- Their AI calls go to: ${r.where}`,
+      `- Their model bill a month: ${r.bill}`,
+      `- Jobs that repeat: ${r.jobs.length ? r.jobs.join(", ") : "none ticked"}`,
+      "",
+      "What happens next:",
+      "1. They were just emailed, asking them to reply with two files: a 30-day usage export and 20 recent runs of their three biggest jobs.",
+      "2. Their reply will land in this inbox.",
+      "3. When it does, start a Claude session, attach the two files and say \"make the savings report\".",
+      "",
+      "Nothing to do until they reply. Reply to this email to write to them directly.",
     ].join("\n"),
   };
 }
