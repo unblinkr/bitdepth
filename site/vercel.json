@@ -17,6 +17,11 @@
       "source": "/lab/:path*",
       "destination": "/:path*",
       "permanent": false
+    },
+    {
+      "source": "/compare",
+      "destination": "/leaderboard",
+      "permanent": false
     }
   ],
   "rewrites": [

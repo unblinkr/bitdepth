@@ -1,12 +1,13 @@
 # Bitdepth
 
-> Independent nightly grades for AI inference endpoints. Every endpoint serving the same open-weight model is probed each night with the same prompt set, scored against a published reference, and shown beside its price.
+> Bitdepth moves routine AI jobs (status checks, monitoring, tagging, summaries) from frontier models to cheaper open models that pass the same job, and re-tests them weekly. A free savings report is at https://bitdepth.dev/#report. Underneath are independent nightly grades for AI inference endpoints. Every endpoint serving the same open-weight model is probed each night with the same prompt set, scored against a published reference, and shown beside its price.
 
 Contact: hello@bitdepth.dev
 
 ## Pages
 
-- [Home](https://bitdepth.dev/): what a grade is, what it answers, and how to request a model.
+- [Home](https://bitdepth.dev/): the savings report for routine AI jobs, with the Nov 13, 2026 test ($258.53 a month on a frontier model, $11.04 after) and last night's grades.
+- [Leaderboard](https://bitdepth.dev/leaderboard): every endpoint for each model, ranked by quality-adjusted price.
 - [About](https://bitdepth.dev/about): what Bitdepth does in plain words, how a request reaches a provider, why it is called Bitdepth, a glossary and common questions.
 - [Method](https://bitdepth.dev/method): the unit, the nightly procedure, the reference rule, the noise floor, rubric v0 and the publication policy.
 - [Market](https://bitdepth.dev/market): reserving inference capacity at a fixed price with the grade checked nightly.

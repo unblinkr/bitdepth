@@ -82,13 +82,14 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 
 footer .fm{font-family:var(--display);font-size:16px;color:var(--ink)}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What does fp8 mean on an inference provider's model page?", "acceptedAnswer": {"@type": "Answer", "text": "It is the provider's declaration that its copy of the model's weights runs at eight bits per value, half the memory of bf16. Some models are trained and released in fp8, in which case it is the original format. The field is a declaration of format, not a measurement of output."}}, {"@type": "Question", "name": "Is an fp4 endpoint worse than a bf16 endpoint?", "acceptedAnswer": {"@type": "Answer", "text": "Not automatically. Quantization quality depends on calibration, which layers stay at higher precision, whether activations and the key-value cache are reduced, and the kernels used. A careful four-bit endpoint can track the full-precision reference more closely than a careless eight-bit one. Measure the output rather than reading the bit count."}}, {"@type": "Question", "name": "What does the precision field not tell you?", "acceptedAnswer": {"@type": "Answer", "text": "The inference engine and kernels, whether activations and the cache are reduced too, how the quantization was calibrated, the context length actually honored, and anything that changed after listing. Each changes outputs; none appears in the response."}}]}</script>
+<style>.nav-cta{background:#1E3B2F;color:#F4EEE2!important;padding:10px 14px!important;border-radius:2px;font-weight:600;text-decoration:none}</style>
 </head>
 <body>
 
 <header class="top">
   <div class="wrap">
-    <div class="brand"><a class="wordmark" href="/">Bitdepth</a><span class="line-tag">Independent grades for inference endpoints</span></div>
-    <nav aria-label="Site"><a href="/">Grades</a><a href="/#compare">Compare</a><a href="/market">Market</a><a href="/method">Method</a><a href="/questions" aria-current="page">Questions</a><a href="/pricing">Pricing</a><a href="/about">About</a></nav>
+    <div class="brand"><a class="wordmark" href="/">Bitdepth</a><span class="line-tag">Cheaper routine AI jobs, checked nightly</span></div>
+    <nav aria-label="Site"><a href="/">Savings</a><a href="/leaderboard">Leaderboard</a><a href="/charts">Charts</a><a href="/market">Market</a><a href="/method">Method</a><a href="/pricing">Pricing</a><a href="/about">About</a><a class="nav-cta" href="/#report">Free report</a></nav>
   </div>
 </header>
 

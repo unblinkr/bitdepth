@@ -82,13 +82,14 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 
 footer .fm{font-family:var(--display);font-size:16px;color:var(--ink)}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why does the same model give different answers on different providers?", "acceptedAnswer": {"@type": "Answer", "text": "Because the model is only the weights. Each provider adds a serving stack: the precision the weights run at, the inference engine and kernels, batching, sampling defaults, the context window it honors, and changes made after listing. Two endpoints can differ on all of these under one model name."}}, {"@type": "Question", "name": "Does temperature zero make outputs identical across providers?", "acceptedAnswer": {"@type": "Answer", "text": "No. Floating-point sums come out differently depending on batch composition and kernel order, so the most likely token can flip on a close call, and one flipped token changes the rest of the answer. Temperature zero removes sampling randomness, not serving differences."}}, {"@type": "Question", "name": "How can I tell which provider serves a model faithfully?", "acceptedAnswer": {"@type": "Answer", "text": "Run the same prompt with identical settings on two endpoints and compare on a task with one right answer. Read the declared precision as a declaration, pin the provider, check effective price including cache pass-through, and re-check over time. Bitdepth runs this nightly for every endpoint of the models it covers."}}]}</script>
+<style>.nav-cta{background:#1E3B2F;color:#F4EEE2!important;padding:10px 14px!important;border-radius:2px;font-weight:600;text-decoration:none}</style>
 </head>
 <body>
 
 <header class="top">
   <div class="wrap">
-    <div class="brand"><a class="wordmark" href="/">Bitdepth</a><span class="line-tag">Independent grades for inference endpoints</span></div>
-    <nav aria-label="Site"><a href="/">Grades</a><a href="/#compare">Compare</a><a href="/market">Market</a><a href="/method">Method</a><a href="/questions" aria-current="page">Questions</a><a href="/pricing">Pricing</a><a href="/about">About</a></nav>
+    <div class="brand"><a class="wordmark" href="/">Bitdepth</a><span class="line-tag">Cheaper routine AI jobs, checked nightly</span></div>
+    <nav aria-label="Site"><a href="/">Savings</a><a href="/leaderboard">Leaderboard</a><a href="/charts">Charts</a><a href="/market">Market</a><a href="/method">Method</a><a href="/pricing">Pricing</a><a href="/about">About</a><a class="nav-cta" href="/#report">Free report</a></nav>
   </div>
 </header>
 

@@ -7,6 +7,8 @@ description: Check which inference endpoint serves an open-weight model closest 
 
 Bitdepth probes every OpenRouter endpoint serving the same open-weight model, every night, with the same fixed prompt set. Each endpoint is scored against a stated reference and shown beside its price. Method: https://bitdepth.dev/method
 
+Running routine jobs (status checks, monitoring, tagging, summaries) on a frontier model? Bitdepth's free savings report tests each one on cheaper open models: https://bitdepth.dev/#report
+
 ## Connect
 
 MCP server, free, no key: `https://bitdepth.dev/api/mcp/mcp` (streamable HTTP).
