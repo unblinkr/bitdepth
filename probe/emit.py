@@ -43,6 +43,13 @@ MIN_NIGHTS = 7
 # Models held as first look (unranked, no endpoint named outside) until a date, so
 # providers get notice before their rows are graded in public. Mancy, Nov 11 2026.
 FIRST_LOOK_UNTIL = {"deepseek/deepseek-v4.1-flash-1017": "2026-11-19"}
+# Endpoints the floor test leaves as they are, per model. They still count toward the
+# pack median and the gap test still applies. DigitalOcean on V4.1 Flash read 0.1 points
+# under the floor on the 2026-11-17 trend while Artificial Analysis's Endpoint Accuracy
+# Index v1.1 puts the same host in line with its reference. Mancy, Nov 18 2026.
+FLOOR_EXEMPT: dict[str, frozenset[str]] = {
+    "deepseek/deepseek-v4.1-flash-1017": frozenset({"digitalocean"}),
+}
 STALE_DAYS = 3
 # Calibrated 2026-11-10: 10 was reachable by noise (V4.1 Flash stepfun/fp8 at 10.2, mid-pack).
 # At 15 the four V4 Pro outliers keep a 5-point margin and no mid-pack endpoint reaches it.
@@ -89,15 +96,18 @@ def _median(xs: list[float]) -> float:
     return xs[n // 2] if n % 2 else (xs[n // 2 - 1] + xs[n // 2]) / 2
 
 
-def apply_floor(rows: list[dict[str, Any]], column: str) -> None:
+def apply_floor(rows: list[dict[str, Any]], column: str, exempt: frozenset[str] = frozenset()) -> None:
     """Floor test: a `within` endpoint more than FLOOR_MAX points below the median of the
-    endpoints with MIN_NIGHTS+ nights on the primary column becomes `outside`."""
+    endpoints with MIN_NIGHTS+ nights on the primary column becomes `outside`. Tags in
+    `exempt` still count toward the median but keep their state."""
     vals = [r.get(column) for r in rows if (r.get("nights") or 0) >= MIN_NIGHTS and r.get(column) is not None]
     if len(vals) < 3:
         return
     med = _median([float(v) for v in vals])
     for r in rows:
         v = r.get(column)
+        if r.get("tag") in exempt:
+            continue
         if r.get("state") == "within" and v is not None and float(v) < med - FLOOR_MAX:
             r["state"] = "outside"
 
@@ -129,7 +139,7 @@ def endpoint_row(e: dict[str, Any], prices: dict[str, tuple[float, float]], as_o
 def model_doc(m: dict[str, Any], prices: dict[str, tuple[float, float]], as_of: str, nights: int, today: str) -> dict[str, Any]:
     fams = m.get("families", {})
     rows = [endpoint_row(e, prices, as_of, today) for e in m["endpoints"]]
-    apply_floor(rows, primary_columns(m["slug"], fams)[0])
+    apply_floor(rows, primary_columns(m["slug"], fams)[0], FLOOR_EXEMPT.get(m["slug"], frozenset()))
     hold = FIRST_LOOK_UNTIL.get(m["slug"])
     held = bool(hold and as_of < hold)
     if held:

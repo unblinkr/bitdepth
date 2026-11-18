@@ -148,3 +148,19 @@ def test_floor_test_marks_far_below_pack_outside():
 def test_flash_is_pinned_to_exact():
     from probe.emit import primary_columns
     assert primary_columns("deepseek/deepseek-v4.1-flash-1017", {"math": {"stable": False}}) == ["exact"]
+
+
+def test_floor_exempt_tag_keeps_state_and_still_counts_toward_median():
+    from probe.emit import apply_floor
+    base = [("a", 96.0), ("b", 95.0), ("c", 97.0), ("d", 94.0), ("low", 85.9), ("other", 85.0)]
+    rows = [{"tag": t, "nights": 13, "exact": v, "state": "within"} for t, v in base]
+    apply_floor(rows, "exact", frozenset({"low"}))
+    states = {r["tag"]: r["state"] for r in rows}
+    assert states["low"] == "within"
+    assert states["other"] == "outside"
+    assert states["a"] == "within"
+
+
+def test_flash_digitalocean_is_floor_exempt_and_nothing_else():
+    from probe.emit import FLOOR_EXEMPT
+    assert FLOOR_EXEMPT == {"deepseek/deepseek-v4.1-flash-1017": frozenset({"digitalocean"})}
