@@ -12,7 +12,7 @@ const REPLY_TO = "hello@bitdepth.dev";
 
 export const WHERE = ["OpenRouter", "Anthropic API", "OpenAI API", "Google Gemini API", "Hermes Agent or OpenClaw", "More than one"];
 export const BILL = ["Under $100", "$100 to $500", "$500 to $5,000", "Over $5,000"];
-export const JOBS = ["Status checks", "Monitoring", "Tagging or sorting", "Pulling fields to JSON", "Summaries", "Something else"];
+export const JOBS = ["Status checks", "Monitoring", "Tagging or sorting", "Pulling out data", "Summaries", "Something else"];
 
 const EMAIL_RE = /^[^\s@<>"',;]{1,64}@[^\s@<>"',;]{1,190}\.[a-z]{2,24}$/i;
 

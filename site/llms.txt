@@ -6,7 +6,8 @@ Contact: hello@bitdepth.dev
 
 ## Pages
 
-- [Home](https://bitdepth.dev/): the savings report for routine AI jobs, with the Nov 13, 2026 test ($258.53 a month on a frontier model, $11.04 after) and last night's grades.
+- [Home](https://bitdepth.dev/): cut your AI bill, keep the quality. Bitdepth tests repeat AI jobs on cheaper models and shows which can switch. Nov 13, 2026 test: $258.53 a month on a frontier model, $11.04 after.
+- [Sample report](https://bitdepth.dev/sample-report): what a savings report contains, job by job.
 - [Leaderboard](https://bitdepth.dev/leaderboard): every endpoint for each model, ranked by quality-adjusted price.
 - [About](https://bitdepth.dev/about): what Bitdepth does in plain words, how a request reaches a provider, why it is called Bitdepth, a glossary and common questions.
 - [Method](https://bitdepth.dev/method): the unit, the nightly procedure, the reference rule, the noise floor, rubric v0 and the publication policy.
