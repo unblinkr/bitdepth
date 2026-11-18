@@ -3,7 +3,8 @@ from pathlib import Path
 
 from probe import site
 
-DATA = Path(__file__).resolve().parent.parent / "data" / "public" / "v1"
+ROOT = Path(__file__).resolve().parent.parent
+DATA = ROOT / "data" / "public" / "v1"
 
 
 def _model(endpoints, primary="string"):
@@ -85,20 +86,32 @@ def test_live_build_puts_savings_page_home_and_board_at_leaderboard(tmp_path):
     site.build(data, tmp_path, "", False, site.SITE, home=True)
     home = (tmp_path / "index.html").read_text()
     board = (tmp_path / "leaderboard" / "index.html").read_text()
-    assert "Stop paying frontier prices for routine AI jobs." in home
+    assert "Cut your AI bill.<br>Keep the quality." in home
     assert 'id="report-form"' in home and "/api/report-request" not in home  # posted by home.js
     assert "Who actually serves the model." in board
     assert '<link rel="canonical" href="https://bitdepth.dev/leaderboard">' in board
-    assert 'href="/leaderboard"' in home
+    assert 'href="/sample-report"' in home and 'href="/leaderboard"' in home
     before, after = site.routine_totals()
     assert (before, after) == (258.53, 11.04)
-    assert "$258.53" in home and "$11.04" in home and "95.7% lower" in home
-    assert "—" not in home
+    assert "$258.53" in home and "$11.04" in home and "$247.49" in home
+    assert 'class="subnav"' in board and 'class="subnav"' not in home
+    assert "\u2014" not in home
+    assert (tmp_path / "og" / "home.png").exists()
 
 
-def test_home_cards_come_from_the_files():
+def test_sample_report_matches_the_test_and_says_it_is_a_sample(tmp_path):
     data = site.load(DATA)
-    ms = site.lead_order(data["models"])
-    cards = site.home_cards(ms, data["index"]["as_of"])
-    assert 1 <= len(cards) <= 3
-    assert "The cheapest host that passes." in cards[-1]
+    site.build(data, tmp_path, "", False, site.SITE, home=True)
+    page = (tmp_path / "sample-report" / "index.html").read_text()
+    assert "our own test jobs, not a customer" in page
+    for r in site.ROUTINE_TEST:
+        assert r["job"] in page and f"{r['calls']:,}" in page
+    assert "$258.53" in page and "$11.04" in page and "$247.49" in page and "95.7% lower" in page
+    assert sum(r["calls"] for r in site.ROUTINE_TEST) == 6270
+    assert "\u2014" not in page
+
+
+def test_form_options_match_the_endpoint():
+    js = (ROOT / "site" / "api" / "report-request.js").read_text()
+    for o in site.WHERE_OPTIONS + site.BILL_OPTIONS + site.JOB_OPTIONS:
+        assert f'"{o}"' in js, o
