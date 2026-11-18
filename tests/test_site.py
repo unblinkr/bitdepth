@@ -111,6 +111,28 @@ def test_sample_report_matches_the_test_and_says_it_is_a_sample(tmp_path):
     assert "\u2014" not in page
 
 
+def test_article_matches_the_test(tmp_path):
+    data = site.load(DATA)
+    site.build(data, tmp_path, "", False, site.SITE, home=True)
+    page = (tmp_path / site.ARTICLE_PATH / "index.html").read_text()
+    assert '<link rel="canonical" href="https://bitdepth.dev/blog/five-routine-ai-jobs">' in page
+    assert "$258.53" in page and "$11.04" in page and "$247.49" in page and "95.7% cut" in page
+    assert "$14.89" in page and "$2.97" in page
+    for job, calls, *_ in site.ARTICLE_ROWS:
+        assert job in page and f"{calls:,}" in page
+    by_job = {r["job"]: r for r in site.ROUTINE_TEST}
+    for job, calls, before, dsk, _, oss, _, verdict in site.ARTICLE_ROWS:
+        r = by_job[job]
+        assert (r["calls"], r["before"]) == (calls, before)
+        assert (r["after"] is None) == (verdict == "Keep")
+        if r["after"] is not None:
+            assert r["after"] == (dsk if "DeepSeek" in verdict else oss)
+    assert 'class="subnav"' not in page
+    assert "\u2014" not in page
+    sample = (tmp_path / "sample-report" / "index.html").read_text()
+    assert 'href="/blog/five-routine-ai-jobs"' in sample
+
+
 def test_form_options_match_the_endpoint():
     js = (ROOT / "site" / "api" / "report-request.js").read_text()
     for o in site.WHERE_OPTIONS + site.BILL_OPTIONS + site.JOB_OPTIONS:

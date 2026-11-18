@@ -124,3 +124,13 @@
 .rep.doc td:last-child{white-space:nowrap}
 .rep.doc td:first-child small{display:block}
 .rep.doc td:first-child{white-space:nowrap}
+.art{max-width:720px;margin:0 auto}
+.art p,.art li{font-size:18px;line-height:1.65}
+.art p{margin:0 0 20px}
+.art h2{font-family:var(--display);font-weight:400;font-size:clamp(26px,3.6vw,34px);letter-spacing:-.5px;margin:48px 0 16px}
+.art ul,.art ol{margin:0 0 20px;padding-left:24px}
+.art li{margin:0 0 10px}
+.art a{color:var(--pine);text-underline-offset:3px}
+.art .art-by{font-size:14px;color:var(--muted)}
+.art-t{margin:8px 0 32px}
+.art-t td small{display:block;font-family:var(--body);font-size:13px}

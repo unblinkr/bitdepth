@@ -8,6 +8,7 @@ Contact: hello@bitdepth.dev
 
 - [Home](https://bitdepth.dev/): cut your AI bill, keep the quality. Bitdepth tests repeat AI jobs on cheaper models and shows which can switch. Nov 13, 2026 test: $258.53 a month on a frontier model, $11.04 after.
 - [Sample report](https://bitdepth.dev/sample-report): what a savings report contains, job by job.
+- [Five routine AI jobs: $258 on a top model, $11 on open models](https://bitdepth.dev/blog/five-routine-ai-jobs): the Nov 13, 2026 test in full. Cost and pass rate per job on Claude Sonnet 5.5, DeepSeek V4 Pro and gpt-oss-120b, the one job that should not move, and the limits of the test.
 - [Leaderboard](https://bitdepth.dev/leaderboard): every endpoint for each model, ranked by quality-adjusted price.
 - [About](https://bitdepth.dev/about): what Bitdepth does in plain words, how a request reaches a provider, why it is called Bitdepth, a glossary and common questions.
 - [Method](https://bitdepth.dev/method): the unit, the nightly procedure, the reference rule, the noise floor, rubric v0 and the publication policy.
