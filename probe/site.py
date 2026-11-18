@@ -562,7 +562,7 @@ def nav(base: str, current: str) -> str:
 <nav aria-label="Site">{links}</nav>
 </div></header>
 """
-    in_data = current not in ("home", "sample", "about")
+    in_data = current not in ("home", "sample", "about", "article")
     sub = ""
     if in_data:
         sub = ('<div class="subnav"><div class="wrap"><span>The data</span>'
@@ -636,7 +636,7 @@ def table(m: dict[str, Any], limit: int | None = None) -> str:
 def footer() -> str:
     return """<footer><div class="wrap">
 <div><span class="fm">Bitdepth</span>Cut your AI bill. Keep the quality.<br><br>hello@bitdepth.dev<br>Autumn Sun LLC, 30 N Gould St, Ste R, Sheridan, WY 82801</div>
-<div><h4>Savings</h4><ul><li><a href="/#report">Free report</a></li><li><a href="/sample-report">Sample report</a></li><li><a href="/#how">How it works</a></li></ul></div>
+<div><h4>Savings</h4><ul><li><a href="/#report">Free report</a></li><li><a href="/sample-report">Sample report</a></li><li><a href="/blog/five-routine-ai-jobs">The test, in full</a></li><li><a href="/#how">How it works</a></li></ul></div>
 <div><h4>The data</h4><ul><li><a href="/leaderboard">Leaderboard</a></li><li><a href="/charts">Charts</a></li><li><a href="/method">Method</a></li><li><a href="/api-access">API</a></li><li><a href="/pricing">Data pricing</a></li><li><a href="/market">Market</a></li></ul></div>
 <div><h4>Company</h4><ul><li><a href="/about">About</a></li><li><a href="/privacy">Privacy</a></li><li><a href="mailto:hello@bitdepth.dev">hello@bitdepth.dev</a></li></ul></div>
 </div></footer>
@@ -970,6 +970,19 @@ ROUTINE_DATE = "Nov 13, 2026"
 ROUTINE_BASELINE = "Claude Sonnet 5.5"
 HEADLINE = "Cut your AI bill. Keep the quality."
 
+# The article on the same test. Per job: calls a month, the baseline's monthly cost, then monthly cost and passes for
+# DeepSeek V4 Pro and gpt-oss-120b on the two cheapest allowed hosts, and the answer. Same source file as ROUTINE_TEST.
+ARTICLE_PATH = "blog/five-routine-ai-jobs"
+ARTICLE_DATE = "Nov 18, 2026"
+ARTICLE_DATE_ISO = "2026-11-18"
+ARTICLE_ROWS = [
+    ("Status check", 1440, 57.57, 2.65, "10 of 10", 0.58, "9 of 10", "Switch to DeepSeek V4 Pro"),
+    ("Monitoring", 2880, 119.52, 7.89, "9 of 10", 1.52, "10 of 10", "Switch to gpt-oss-120b"),
+    ("Inbox digest", 150, 6.06, 0.30, "9 of 10", 0.06, "7 of 10", "Keep"),
+    ("Daily briefing", 300, 12.24, 0.53, "10 of 10", 0.12, "10 of 10", "Switch to gpt-oss-120b"),
+    ("Ticket tagging", 1500, 63.14, 3.52, "10 of 10", 0.69, "10 of 10", "Switch to gpt-oss-120b"),
+]
+
 WHERE_OPTIONS = ["OpenRouter", "Anthropic API", "OpenAI API", "Google Gemini API", "Hermes Agent or OpenClaw", "More than one"]
 BILL_OPTIONS = ["Under $100", "$100 to $500", "$500 to $5,000", "Over $5,000"]
 JOB_OPTIONS = ["Status checks", "Monitoring", "Tagging or sorting", "Pulling out data", "Summaries", "Something else"]
@@ -1118,11 +1131,107 @@ def page_sample(abs_base: str) -> str:
 <div class="dsec"><h3>One thing to know before you switch</h3>
 <p>The cheaper models were slower: 6 to 8 seconds an answer, against about 2.4. That is fine for background jobs. It is not fine for anything a person waits on.</p></div>
 <div class="dsec"><h3>How we tested</h3>
-<p>Each job ran 10 times on each cheaper model, across two hosts, with the same instructions and inputs. Code graded every answer. No model graded another model. In your report, the answer key is what your current model already said.</p></div>
+<p>Each job ran 10 times on each cheaper model, across two hosts, with the same instructions and inputs. Code graded every answer. No model graded another model. In your report, the answer key is what your current model already said. <a href="/{ARTICLE_PATH}">Read the full test.</a></p></div>
 <div class="dsec"><h3>What happens next</h3>
 <p>You change one setting per job. If the report finds less than $50 a month to save, it says so and tells you not to bother.</p></div>
 <div class="dsec fine"><p>About this sample: five test jobs written by Bitdepth, short and without tool calls. It is a small test. Real jobs can pass at different rates, which is why your report runs on your own.</p></div>
 </div>
+<div class="lcta" style="margin-top:36px"><a class="btn" href="/#report">Get my free report</a></div>
+</div></section>
+""")
+    h.append(footer())
+    h.append("</div></body></html>\n")
+    return "".join(h)
+
+
+def page_article(abs_base: str) -> str:
+    """/blog/five-routine-ai-jobs: the Nov 13 routine-jobs test written up as an article. A dated result, not a nightly number."""
+    before, after = routine_totals()
+    cut = (1 - after / before) * 100
+    b_dsk = sum(r[3] for r in ARTICLE_ROWS)
+    b_oss = sum(r[5] for r in ARTICLE_ROWS)
+    title = "Five routine AI jobs: $258 on a top model, $11 on open models | Bitdepth"
+    desc = (f"We ran five routine AI jobs on {ROUTINE_BASELINE} and on two open models. A month cost {money(before)} on the top model "
+            f"and {money(after)} on the cheapest setup that got every answer right. One job should not move.")
+    url = f"{abs_base}/{ARTICLE_PATH}"
+    rows_ = "".join(
+        f'<tr{" class=\"keep\"" if v == "Keep" else ""}><td><b>{escape(j)}</b></td><td class="num">{c:,}</td>'
+        f'<td class="num{" now" if v == "Keep" else " was"}">${b:,.2f} <small>5 of 5</small></td>'
+        f'<td class="num{" now" if "DeepSeek" in v else ""}">${d:,.2f} <small>{escape(dp)}</small></td>'
+        f'<td class="num{" now" if "gpt-oss" in v else ""}">${o:,.2f} <small>{escape(op)}</small></td>'
+        f'<td>{"<span class=\"dot keep\"></span>Keep" if v == "Keep" else "<span class=\"dot\"></span>Switch"}</td></tr>'
+        for j, c, b, d, dp, o, op, v in ARTICLE_ROWS)
+    ld = json.dumps({"@context": "https://schema.org", "@type": "Article",
+                     "headline": "Five routine AI jobs: $258 on a top model, $11 on open models",
+                     "datePublished": ARTICLE_DATE_ISO, "author": {"@type": "Organization", "name": "Bitdepth"},
+                     "publisher": {"@type": "Organization", "name": "Bitdepth"}, "mainEntityOfPage": url, "description": desc})
+    h = [head(title, desc, url, abs_base + "/og/home.png", False, "/"),
+         '<link rel="stylesheet" href="/assets/home.css">\n'
+         f'<script type="application/ld+json">{ld}</script>\n<div class="home">\n', nav("", "article")]
+    h.append(f"""<section class="lhero shero"><div class="wrap"><div class="lhead">
+<h1>Five routine AI jobs: $258 on a top model, $11 on open models</h1>
+<p class="sub">Four of the five moved without one wrong answer. The fifth should stay where it is.</p></div></div></section>
+<section class="hsec"><div class="wrap narrow"><article class="art">
+<p class="art-by">Bitdepth &middot; {ARTICLE_DATE} &middot; test run {ROUTINE_DATE}</p>
+<p>We ran five routine AI jobs on a top closed model and on two open models. A month of that work cost {money(before)} on {ROUTINE_BASELINE}. It cost {money(after)} on the cheapest setup that got every answer right. Four of the five jobs moved without one wrong answer. The fifth did not, and it should stay where it is.</p>
+<p>That is a {cut:.1f}% cut. The part worth reading is which job failed, and why.</p>
+
+<h2>Why the bill is high</h2>
+<p>An AI agent re-reads its whole instruction book every time it does anything. In this test that book was about 14,000 tokens, roughly 20 pages. {ROUTINE_BASELINE} billed about 20,000 input tokens on each call.</p>
+<p>At $2 per million input tokens, each call costs about 4 cents before the model answers. A check that runs every 30 minutes is 1,440 calls a month. That is $57.57 a month, mostly to hear "nothing new".</p>
+<p>The open models charge far less for the same pages. gpt-oss-120b lists at $0.03 per million input tokens. DeepSeek V4 Pro lists at about $0.66. A call that cost 4 cents on {ROUTINE_BASELINE} cost about a fifth of a cent on DeepSeek V4 Pro and about a twentieth of a cent on gpt-oss-120b.</p>
+
+<h2>The test</h2>
+<p>Five made-up jobs, each with an answer that code can check:</p>
+<ul>
+<li><b>Status check.</b> Every 30 minutes: is anything due? 1,440 calls a month.</li>
+<li><b>Monitoring.</b> Every 15 minutes: is any service worth flagging? 2,880 calls a month.</li>
+<li><b>Inbox digest.</b> Once a day: which emails need action? 150 calls a month.</li>
+<li><b>Daily briefing.</b> Once a day. 300 calls a month.</li>
+<li><b>Ticket tagging.</b> 50 batches of 20 tickets a day. 1,500 calls a month.</li>
+</ul>
+<p>The baseline was {ROUTINE_BASELINE}, five runs per job. The open side was gpt-oss-120b and DeepSeek V4 Pro, ten runs per job each, on the two cheapest hosts our nightly grades allow. Temperature was zero. Code graded every answer against a stated answer. No model graded another model. The whole test billed $1.29.</p>
+
+<h2>What it cost, and what passed</h2>
+<p>The rule for moving a job: the cheapest model that got every run right. The winning price for each job is in bold.</p>
+</article>
+<div class="rep doc art-t"><div class="rep-s"><table><thead><tr><th scope="col">Job</th><th scope="col" class="num">Calls a month</th><th scope="col" class="num">{ROUTINE_BASELINE}</th><th scope="col" class="num">DeepSeek V4 Pro</th><th scope="col" class="num">gpt-oss-120b</th><th scope="col">Answer</th></tr></thead>
+<tbody>{rows_}<tr class="tot"><td colspan="2">A month</td><td class="num was">{money(before)}</td><td class="num">{money(b_dsk)}</td><td class="num">{money(b_oss)}</td><td>{money(after)} with the mix</td></tr></tbody></table></div></div>
+<article class="art">
+<p>The mix costs {money(after)} a month. That saves {money(before - after)} against {ROUTINE_BASELINE} on everything.</p>
+<p>Note what the rule does. gpt-oss-120b was cheapest on the status check, but it missed one run in ten. So the status check goes to DeepSeek V4 Pro at $2.65. Cheapest is not the goal. Cheapest that passes is.</p>
+
+<h2>The job that should stay</h2>
+<p>The inbox digest failed on both open models. gpt-oss-120b returned no action emails at all on 3 of 10 runs. DeepSeek V4 Pro missed on 1 of 10.</p>
+<p>This job is different from the other four. A status check has one right answer. A digest has to judge what matters. And a missed email is the quiet kind of error: nothing breaks, so nobody notices.</p>
+<p>The digest costs $6.06 a month on {ROUTINE_BASELINE}. Moving it would save under $6 and risk a missed email. Leave it.</p>
+
+<h2>What broke that was not the model</h2>
+<p><b>Settings broke more than models did.</b> Our first pass capped replies at 64 to 400 tokens. gpt-oss-120b returned empty text on most rows, and {ROUTINE_BASELINE} was cut off mid-answer on the monitoring job. That pass measured the cap, not the job. We raised the cap to 1,500 to 2,000 tokens and ran it again. Everything above is from the second pass.</p>
+<p><b>Cheap is slower.</b> {ROUTINE_BASELINE} answered in 2.4 seconds on average. gpt-oss-120b took 6.2 and DeepSeek V4 Pro took 8.1. That is fine for a job on a schedule. It is not fine if a person is waiting.</p>
+<p><b>The host mattered less than we expected.</b> We also ran hosts that our nightly grades place outside the reference. On these simple jobs one of them passed 25 of 25. The model and the settings decided the result here.</p>
+
+<h2>What this test does not show</h2>
+<ul>
+<li><b>It is a small sample.</b> Five runs per job on {ROUTINE_BASELINE}, ten on each open model. Treat a pass rate as a first read.</li>
+<li><b>The jobs are made up and short.</b> Each is one call with no tools. A real agent chains calls and carries a longer history.</li>
+<li><b>The monthly figure is one measured call times a stated schedule.</b> Your schedule will differ.</li>
+<li><b>Caching was left at each host's default.</b> Tuned caching would lower the {ROUTINE_BASELINE} figure.</li>
+<li><b>One baseline.</b> We have not yet run a cheap closed model as a second baseline. That is next.</li>
+</ul>
+
+<h2>What to do with this</h2>
+<p>You can do this by hand:</p>
+<ol>
+<li>List the jobs that run on a schedule or on every incoming item, with nobody asking.</li>
+<li>Keep the ones whose answer is short and can be checked: a label, a yes or no, a number, a field.</li>
+<li>Replay the last 20 real runs of each on a cheaper model, with a generous output cap.</li>
+<li>Move a job only if it matches every time. Leave anything that needs judgment about what matters.</li>
+<li>Test again when a price or a model changes.</li>
+</ol>
+<p>Or we do it for you. Send us a sample of your routine AI jobs and we send back a report: what each job costs now, which ones pass on a cheaper model, and which should stay. It is free. <a href="/sample-report">See a sample report.</a></p>
+<p class="art-by">The raw data for this test is public: <a href="https://github.com/unblinkr/bitdepth/tree/main/data/routine/2026-11-13-pass2">data/routine/2026-11-13-pass2</a>. Numbers against a stated answer. Not a claim about why any host answers as it does.</p>
+</article>
 <div class="lcta" style="margin-top:36px"><a class="btn" href="/#report">Get my free report</a></div>
 </div></section>
 """)
@@ -1176,6 +1285,7 @@ def build(data: dict[str, Any], out: Path, base: str, preview: bool, abs_base: s
         if home:
             w("index.html", page_home(data, abs_base))
             w("sample-report/index.html", page_sample(abs_base))
+            w(f"{ARTICLE_PATH}/index.html", page_article(abs_base))
             og_home(out / "og" / "home.png")
             written.append(out / "og" / "home.png")
     w("charts/index.html", page_charts(data, base, "/", preview, abs_base))
@@ -1208,7 +1318,7 @@ def sitemap(site: Path, data: dict[str, Any]) -> None:
     text = p.read_text() if p.exists() else (
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n</urlset>\n')
     as_of = data["index"]["as_of"]
-    urls = [f"{SITE}/sample-report", f"{SITE}/leaderboard", f"{SITE}/charts"] + [f"{SITE}/m/{slug_of(m)}" for m in data["models"]]
+    urls = [f"{SITE}/sample-report", f"{SITE}/{ARTICLE_PATH}", f"{SITE}/leaderboard", f"{SITE}/charts"] + [f"{SITE}/m/{slug_of(m)}" for m in data["models"]]
     add = "".join(f"  <url><loc>{u}</loc><lastmod>{as_of}</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>\n"
                   for u in urls if f"<loc>{u}</loc>" not in text)
     text = text.replace(f"<loc>{SITE}/</loc><lastmod>", f"<loc>{SITE}/</loc><lastmod>{as_of}</lastmod><x>", 1)
