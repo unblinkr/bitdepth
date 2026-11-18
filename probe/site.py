@@ -973,7 +973,7 @@ def _hero_chart() -> str:
         wb = b / top * 70
         if a is None:
             low = (f'<div class="hb"><i class="bar was" style="width:{wb:.2f}%"></i>'
-                   f'<span class="keep">Stays. Cheaper models failed it.</span></div>')
+                   f'<span class="keep">Stays. No open model passed all 10 runs.</span></div>')
         else:
             low = (f'<div class="hb"><i class="bar now" style="width:{a / top * 70:.2f}%"></i>'
                    f'<span class="v b">{money(a)}</span></div>')
