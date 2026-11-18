@@ -11,6 +11,7 @@
 .lhead{text-align:center;display:flex;flex-direction:column;align-items:center;gap:20px}
 .lhead h1{font-family:var(--display);font-weight:400;font-size:clamp(40px,6.4vw,68px);line-height:1.04;letter-spacing:-1.6px;margin:0;text-wrap:balance}
 .lhead .sub{font-size:20px;line-height:1.45;color:var(--muted);margin:0;max-width:30em}
+.lfor{font-size:14px;color:var(--muted);margin:0}
 .lcta{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 20px;align-items:center;margin-top:8px}
 .btn{display:inline-flex;align-items:center;min-height:50px;padding:0 26px;background:var(--pine);color:var(--pine-ink)!important;font-weight:600;text-decoration:none;border-radius:25px}
 .btn:hover{background:var(--pine-deep)}

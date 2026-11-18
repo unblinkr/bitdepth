@@ -1076,8 +1076,9 @@ def page_home(data: dict[str, Any], abs_base: str) -> str:
          '<link rel="stylesheet" href="/assets/home.css">\n<div class="home">\n', nav("", "home")]
     h.append(f"""<section class="lhero"><div class="wrap">
 <div class="lhead"><h1>Cut your AI bill.<br>Keep the quality.</h1>
-<p class="sub">We test your repeat AI jobs on cheaper models and show you which ones can switch.</p>
-<div class="lcta"><a class="btn" href="#report">Get my free report</a><a class="lnk" href="/sample-report">See a sample report</a></div></div>
+<p class="sub">We test your repeat AI jobs on cheaper models and show you which ones can switch. A job only moves when it meets your quality bar.</p>
+<div class="lcta"><a class="btn" href="#report">Get my free report</a><a class="lnk" href="/sample-report">See a sample report</a></div>
+<p class="lfor">For SaaS teams, AI agent builders, and crypto and trading teams.</p></div>
 {_money_card(f"Bitdepth test on sample jobs, {ROUTINE_DATE}. Your report uses your own.")}
 </div></section>
 <section class="hsec" id="how"><div class="wrap"><h2>How it works</h2><div class="cards3">
@@ -1090,8 +1091,8 @@ def page_home(data: dict[str, Any], abs_base: str) -> str:
 <div class="rep"><div class="rep-h"><b>Savings report</b><span>Sample, from our {ROUTINE_DATE[:6]} test</span></div>{_report_table(False)}</div>
 <p class="more"><a href="/sample-report">Open the full sample report</a></p></div></section>
 <section class="nightly" id="data"><div class="wrap">
-<div class="txt"><h2>Checked every night.</h2>
-<p>Not every company running a cheap model runs it well. We test them all nightly, so your jobs only go where the answers hold up.</p>
+<div class="txt"><h2>A provider choice, not just a model choice.</h2>
+<p>The same open model can answer differently depending on who hosts it. We test every host nightly on price and answer quality, so your jobs only go to hosts that hold up.</p>
 <a href="/leaderboard">See the nightly data</a></div>
 <div class="nums"><div><b>{n_ep}</b><span>hosts tested</span></div><div><b>{len(ms)}</b><span>models</span></div><div><b>{nights}</b><span>nights so far</span></div></div>
 </div></section>
