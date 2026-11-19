@@ -1,0 +1,99 @@
+{
+ "run_id": "agentlogs-2026-11-19-211141",
+ "source": "dispatch",
+ "date": "2026-11-19",
+ "written": "2026-11-19T21:15:27+00:00",
+ "cap_usd": 1.0,
+ "total_billed_usd": 0.3463,
+ "skipped_budget": 0,
+ "inputs": [
+  "akenove_my-personal-codex-data.jsonl"
+ ],
+ "targets": [
+  {
+   "label": "gpt-oss-120b",
+   "slug": "openai/gpt-oss-120b",
+   "tag": "near-ai/fp4"
+  },
+  {
+   "label": "deepseek-v4.1-flash-1017",
+   "slug": "deepseek/deepseek-v4.1-flash-1017",
+   "tag": "particle-ai/us/flex"
+  },
+  {
+   "label": "deepseek-v4-pro",
+   "slug": "deepseek/deepseek-v4-pro",
+   "tag": "relace/fp4"
+  }
+ ],
+ "bar": 0.9,
+ "unattended_share": 0.1606,
+ "results": [
+  {
+   "job": "cron:0274287d-5308-4bb4-a738-19f46d766d74",
+   "model": "deepseek-v4-pro",
+   "tag": "relace/fp4",
+   "sent": 20,
+   "passed": 12,
+   "pass_rate": 0.6,
+   "now_per_month_usd": 3735.86,
+   "option_per_month_usd": 652.9,
+   "billed_usd": 0.0549
+  },
+  {
+   "job": "cron:0274287d-5308-4bb4-a738-19f46d766d74",
+   "model": "deepseek-v4.1-flash-1017",
+   "tag": "particle-ai/us/flex",
+   "sent": 20,
+   "passed": 16,
+   "pass_rate": 0.8,
+   "now_per_month_usd": 3735.86,
+   "option_per_month_usd": 23.07,
+   "billed_usd": 0.0027
+  },
+  {
+   "job": "cron:0274287d-5308-4bb4-a738-19f46d766d74",
+   "model": "gpt-oss-120b",
+   "tag": "near-ai/fp4",
+   "sent": 20,
+   "passed": 13,
+   "pass_rate": 0.65,
+   "now_per_month_usd": 3735.86,
+   "option_per_month_usd": 22.42,
+   "billed_usd": 0.0025
+  },
+  {
+   "job": "cron:e81bf234-b277-4890-8869-8fbb5aa17912",
+   "model": "deepseek-v4-pro",
+   "tag": "relace/fp4",
+   "sent": 20,
+   "passed": 16,
+   "pass_rate": 0.8,
+   "now_per_month_usd": 2975.34,
+   "option_per_month_usd": 521.97,
+   "billed_usd": 0.2637
+  },
+  {
+   "job": "cron:e81bf234-b277-4890-8869-8fbb5aa17912",
+   "model": "deepseek-v4.1-flash-1017",
+   "tag": "particle-ai/us/flex",
+   "sent": 20,
+   "passed": 18,
+   "pass_rate": 0.9,
+   "now_per_month_usd": 2975.34,
+   "option_per_month_usd": 18.31,
+   "billed_usd": 0.012
+  },
+  {
+   "job": "cron:e81bf234-b277-4890-8869-8fbb5aa17912",
+   "model": "gpt-oss-120b",
+   "tag": "near-ai/fp4",
+   "sent": 20,
+   "passed": 18,
+   "pass_rate": 0.9,
+   "now_per_month_usd": 2975.34,
+   "option_per_month_usd": 17.85,
+   "billed_usd": 0.0104
+  }
+ ]
+}
