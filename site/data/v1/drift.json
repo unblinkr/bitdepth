@@ -1,23 +1,29 @@
 {
   "schema": "bitdepth.or.v1",
-  "as_of": "2026-11-18",
+  "as_of": "2026-11-19",
   "items": [
     {
       "model": "openai/gpt-oss-120b",
       "tag": "venice/int4",
-      "movement": -16.8,
+      "movement": -14.0,
       "compared": "mean exact of the last 3 nights minus the first 3"
     },
     {
       "model": "deepseek/deepseek-v4-pro",
       "tag": "baidu/fp8",
-      "movement": -16.0,
+      "movement": -16.2,
       "compared": "mean exact of the last 3 nights minus the first 3"
     },
     {
       "model": "deepseek/deepseek-v4-pro",
       "tag": "digitalocean",
-      "movement": 15.4,
+      "movement": 23.5,
+      "compared": "mean exact of the last 3 nights minus the first 3"
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "tag": "digitalocean",
+      "movement": 11.9,
       "compared": "mean exact of the last 3 nights minus the first 3"
     }
   ],
