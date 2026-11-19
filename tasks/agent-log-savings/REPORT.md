@@ -1,7 +1,7 @@
 # REPORT: agent-log-savings
 
 **Run by:** the claude.ai chat session, 2026-11-19 (Mancy asked for it to run without her).
-**Status:** stages 1 and 2 done on four public datasets. Stage 3 (replay) built, tested and estimated; not yet sent, because the OpenRouter key is only available inside GitHub Actions. One click runs it (see "Next").
+**Status:** done. Stages 1 and 2 on four public datasets; stage 3 replay dispatched from the session through the GitHub API (run 44616159334), billed $0.3463 of a $1.00 cap.
 
 ## What was built
 
@@ -32,17 +32,27 @@ Spend weight is input tokens plus 4 times output tokens. Across all four: 17%.
 3. **The Hermes user already did Bitdepth's job by hand.** 246 of 278 sessions are a programmatic review pipeline, and every one runs on cheap open models (Kimi K2.6, GLM 5.1, MiniMax M2.7, DeepSeek V4 Pro). Whole set: about $13 at list price (a floor; the export has no token counts, so tokens are estimated from visible text). Power users who notice the bill move on their own.
 4. **Coding-agent logs have no unattended work.** Both coding-only datasets show 0%. Consistent with risk 14: interactive coding is not the market.
 
-## Replay estimate (stage 3, not yet sent)
+## Replay result (stage 3)
 
-- 2 gradable jobs (monitor, self-review loop), 20 sampled runs each, both decisions kept in the sample.
-- 3 targets: cheapest allowed endpoint today for gpt-oss-120b, deepseek-v4.1-flash-1017, deepseek-v4-pro.
-- Expected cost **$0.19**. Cap $1.00 by default (hard ceiling $3.00, also bounded by the nightly cap).
+Targets: cheapest allowed endpoint for gpt-oss-120b (near-ai/fp4), deepseek-v4.1-flash-1017 (particle-ai/us/flex), deepseek-v4-pro (relace/fp4). 20 sampled runs per job. Bar: 90% same decision.
 
-## Next
+| Job | Option | Same decision | Cost a month now | On option | Verdict |
+| --- | --- | --- | --- | --- | --- |
+| Monitor | deepseek-v4.1-flash | 16/20 (80%) | ~$3,736 | ~$23 | fail |
+| Monitor | gpt-oss-120b | 13/20 (65%) | ~$3,736 | ~$22 | fail |
+| Monitor | deepseek-v4-pro | 12/20 (60%) | ~$3,736 | ~$653 | fail |
+| Self-review loop | any | 16 to 18 of 20 | ~$2,975 | $18 to $522 | **not valid** |
 
-Run the workflow once: GitHub, Actions, "agent log savings", Run workflow, type RUN in confirm, leave the rest as is. https://github.com/unblinkr/bitdepth/actions/workflows/agent-logs.yml
+- Monitor, Flash: 3 extra alerts where the original stayed quiet, 1 missed alert. deepseek-v4-pro returned an empty message on 5 quiet runs.
+- Self-review loop: the sample had only 2 quiet runs, so a target that always writes a report scores 90%. That is what happened. The result says nothing. Fixed after the run: a job is gradable only with at least 5 runs of each decision (`MIN_EACH`).
+- The replay sends no agent system prompt (the export lacks it), and that prompt holds the rules for when to alert. Real pass rates with the full prompt should be higher; this run cannot show it.
+
+## Reading
+
+- A real OpenClaw user runs a monitor on a frontier model that a $23 a month option matches on 4 of 5 decisions without even seeing the agent's rules. That is the Bitdepth pitch on real data, with an honest fail at a 90% bar.
+- The next useful test needs a customer's full logs, system prompt included. Public data has gone as far as it can.
 
 ## Housekeeping
 
 - Nothing from any dataset is committed. Downloads and outputs live under `packets/agentlogs/` (git ignored) or in the workflow artifact.
-- `pytest`: 125 pass. The 3 failures are the known `tests/test_actor_probe.py` failures on main (open item 5 in the Nov 18 decisions doc), unrelated to this task.
+- `pytest`: all agentlogs tests pass. The 3 failures are the known `tests/test_actor_probe.py` failures on main (open item 5 in the Nov 18 decisions doc), unrelated to this task.

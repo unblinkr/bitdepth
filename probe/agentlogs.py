@@ -47,6 +47,7 @@ SEED = 20261119
 MAX_JOBS = 5
 MAX_SAMPLES = 20
 MIN_SESSIONS = 10
+MIN_EACH = 5
 TOOL_OUTPUT_CHARS = 3000
 REPLY_MAX_TOKENS = 1200
 HOURS_PER_MONTH = 730.0
@@ -246,7 +247,8 @@ def build_jobs(sessions: list[dict[str, Any]], prices: dict[str, tuple[float, fl
             "window_hours": round(hours, 2), "runs_per_month": round(per_month) if per_month else None,
             "cost_per_month_usd": (round(cost / n * per_month, 2) if per_month and prices and priced else None),
             "decisions": dict(decisions),
-            "gradable": unattended and decisions.get(NO_REPLY, 0) > 0 and decisions.get("report", 0) > 0,
+            # Both decisions need real support, or a target that always reports passes by default.
+            "gradable": unattended and min(decisions.get(NO_REPLY, 0), decisions.get("report", 0)) >= MIN_EACH,
         })
     jobs.sort(key=lambda j: (-(j["input_tokens"] + 4 * j["output_tokens"])))
     return jobs
@@ -435,7 +437,8 @@ def report_md(record: dict[str, Any], summ: list[dict[str, Any]], names: dict[st
     return "\n".join(lines)
 
 
-def agentlogs_billed(date: str, out_dir: Path = OUT_DIR) -> float:
+def agentlogs_billed(date: str, out_dir: Path | None = None) -> float:
+    out_dir = out_dir or OUT_DIR
     total = 0.0
     for p in sorted(out_dir.glob(f"{date}*/run.json")):
         try:
