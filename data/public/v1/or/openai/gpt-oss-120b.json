@@ -2,8 +2,8 @@
   "schema": "bitdepth.or.v1",
   "model": "openai/gpt-oss-120b",
   "label": "gpt-oss-120b",
-  "as_of": "2026-11-19",
-  "nights": 23,
+  "as_of": "2026-11-20",
+  "nights": 24,
   "endpoint_count": 30,
   "reference_rule": "plurality among endpoints declaring bf16 or fp16",
   "method_url": "https://bitdepth.dev/method",
@@ -12,8 +12,8 @@
   ],
   "state_rule": "outside when self-agreement exceeds agreement with the reference by more than 15 points, or when the endpoint's mean on the model's first primary column is more than 8 points below the median of endpoints with 7+ nights; no_data under 7 nights; stale when the data is more than 3 days old.",
   "noise_floor": {
-    "math": 100.0,
-    "json": 77.1,
+    "math": 99.9,
+    "json": 77.2,
     "string": 83.6,
     "needle": 100.0,
     "echo": 99.6
@@ -29,7 +29,7 @@
       "provider_slug": "cerebras",
       "declared_quant": "fp16",
       "declared_changed": false,
-      "nights": 22,
+      "nights": 23,
       "exact": 98.2,
       "exact_sd": 1.3,
       "string": 87.1,
@@ -41,7 +41,7 @@
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": 2.8,
+      "movement": 3.0,
       "movement_flag": false,
       "price_in_per_m": 0.35,
       "price_out_per_m": 0.75,
@@ -134,6 +134,10 @@
         {
           "date": "2026-11-19",
           "exact": 98.6
+        },
+        {
+          "date": "2026-11-20",
+          "exact": 100.0
         }
       ]
     },
@@ -142,19 +146,19 @@
       "provider_slug": "baseten",
       "declared_quant": "fp4",
       "declared_changed": false,
-      "nights": 22,
+      "nights": 23,
       "exact": 98.0,
       "exact_sd": 0.9,
-      "string": 81.1,
+      "string": 81.2,
       "self_agree": 97.7,
       "families": {
         "math": 99.8,
         "json": 100.0,
-        "string": 81.1,
+        "string": 81.2,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": 0.2,
+      "movement": 0.7,
       "movement_flag": false,
       "price_in_per_m": 0.1,
       "price_out_per_m": 0.5,
@@ -247,6 +251,10 @@
         {
           "date": "2026-11-19",
           "exact": 97.2
+        },
+        {
+          "date": "2026-11-20",
+          "exact": 99.3
         }
       ]
     },
@@ -255,19 +263,19 @@
       "provider_slug": "baseten",
       "declared_quant": "fp4",
       "declared_changed": false,
-      "nights": 22,
-      "exact": 97.6,
+      "nights": 23,
+      "exact": 97.7,
       "exact_sd": 0.8,
-      "string": 80.7,
+      "string": 80.8,
       "self_agree": 97.2,
       "families": {
         "math": 99.7,
         "json": 99.8,
-        "string": 80.7,
+        "string": 80.8,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": 0.2,
+      "movement": 0.5,
       "movement_flag": false,
       "price_in_per_m": 0.1,
       "price_out_per_m": 0.5,
@@ -360,6 +368,10 @@
         {
           "date": "2026-11-19",
           "exact": 98.6
+        },
+        {
+          "date": "2026-11-20",
+          "exact": 99.3
         }
       ]
     },
@@ -368,19 +380,19 @@
       "provider_slug": "crusoe",
       "declared_quant": "bf16",
       "declared_changed": false,
-      "nights": 22,
-      "exact": 97.6,
+      "nights": 23,
+      "exact": 97.5,
       "exact_sd": 1.3,
-      "string": 80.1,
-      "self_agree": 95.5,
+      "string": 80.0,
+      "self_agree": 95.3,
       "families": {
-        "math": 99.9,
+        "math": 99.8,
         "json": 100.0,
-        "string": 80.1,
+        "string": 80.0,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": -0.7,
+      "movement": -1.0,
       "movement_flag": false,
       "price_in_per_m": 0.05,
       "price_out_per_m": 0.25,
@@ -473,6 +485,10 @@
         {
           "date": "2026-11-19",
           "exact": 95.8
+        },
+        {
+          "date": "2026-11-20",
+          "exact": 95.7
         }
       ]
     },
@@ -566,19 +582,19 @@
       "provider_slug": "together",
       "declared_quant": "unknown",
       "declared_changed": false,
-      "nights": 22,
-      "exact": 97.4,
+      "nights": 23,
+      "exact": 97.5,
       "exact_sd": 0.8,
-      "string": 75.9,
+      "string": 76.0,
       "self_agree": 97.1,
       "families": {
-        "math": 99.9,
+        "math": 99.8,
         "json": 100.0,
-        "string": 75.9,
+        "string": 76.0,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": 0.5,
+      "movement": 0.9,
       "movement_flag": false,
       "price_in_per_m": 0.15,
       "price_out_per_m": 0.6,
@@ -671,6 +687,10 @@
         {
           "date": "2026-11-19",
           "exact": 98.6
+        },
+        {
+          "date": "2026-11-20",
+          "exact": 98.6
         }
       ]
     },
@@ -679,19 +699,19 @@
       "provider_slug": "sambanova",
       "declared_quant": "unknown",
       "declared_changed": false,
-      "nights": 22,
+      "nights": 23,
       "exact": 97.3,
       "exact_sd": 1.4,
-      "string": 79.9,
+      "string": 79.7,
       "self_agree": 96.0,
       "families": {
         "math": 100.0,
         "json": 100.0,
-        "string": 79.9,
+        "string": 79.7,
         "needle": 99.8,
         "echo": 100.0
       },
-      "movement": 0.5,
+      "movement": 2.1,
       "movement_flag": false,
       "price_in_per_m": 0.14,
       "price_out_per_m": 0.95,
@@ -784,6 +804,10 @@
         {
           "date": "2026-11-19",
           "exact": 97.2
+        },
+        {
+          "date": "2026-11-20",
+          "exact": 98.6
         }
       ]
     },
@@ -792,19 +816,19 @@
       "provider_slug": "deepinfra",
       "declared_quant": "bf16",
       "declared_changed": false,
-      "nights": 22,
+      "nights": 23,
       "exact": 97.2,
-      "exact_sd": 2.9,
+      "exact_sd": 2.8,
       "string": 80.0,
-      "self_agree": 96.7,
+      "self_agree": 96.6,
       "families": {
-        "math": 99.2,
+        "math": 99.1,
         "json": 99.6,
         "string": 80.0,
         "needle": 98.9,
         "echo": 99.8
       },
-      "movement": 0.1,
+      "movement": 0.2,
       "movement_flag": false,
       "price_in_per_m": 0.037,
       "price_out_per_m": 0.17,
@@ -897,6 +921,10 @@
         {
           "date": "2026-11-19",
           "exact": 97.2
+        },
+        {
+          "date": "2026-11-20",
+          "exact": 97.9
         }
       ]
     },
@@ -1007,15 +1035,15 @@
       "provider_slug": "groq",
       "declared_quant": "unknown",
       "declared_changed": false,
-      "nights": 22,
+      "nights": 23,
       "exact": 96.9,
       "exact_sd": 1.0,
-      "string": 79.6,
+      "string": 79.7,
       "self_agree": 98.3,
       "families": {
         "math": 100.0,
         "json": 100.0,
-        "string": 79.6,
+        "string": 79.7,
         "needle": 100.0,
         "echo": 100.0
       },
@@ -1112,6 +1140,10 @@
         {
           "date": "2026-11-19",
           "exact": 97.2
+        },
+        {
+          "date": "2026-11-20",
+          "exact": 97.9
         }
       ]
     },
@@ -1120,19 +1152,19 @@
       "provider_slug": "dekallm",
       "declared_quant": "bf16",
       "declared_changed": false,
-      "nights": 22,
+      "nights": 23,
       "exact": 96.8,
       "exact_sd": 1.4,
-      "string": 79.7,
+      "string": 79.9,
       "self_agree": 94.5,
       "families": {
         "math": 99.8,
         "json": 100.0,
-        "string": 79.7,
+        "string": 79.9,
         "needle": 99.8,
         "echo": 100.0
       },
-      "movement": 1.4,
+      "movement": 0.6,
       "movement_flag": false,
       "price_in_per_m": 0.03,
       "price_out_per_m": 0.18,
@@ -1225,6 +1257,91 @@
         {
           "date": "2026-11-19",
           "exact": 98.6
+        },
+        {
+          "date": "2026-11-20",
+          "exact": 95.6
+        }
+      ]
+    },
+    {
+      "tag": "parasail/fast",
+      "provider_slug": "parasail",
+      "declared_quant": "fp4",
+      "declared_changed": false,
+      "nights": 14,
+      "exact": 96.5,
+      "exact_sd": 1.6,
+      "string": 79.8,
+      "self_agree": 93.5,
+      "families": {
+        "math": 99.9,
+        "json": 100.0,
+        "string": 79.8,
+        "needle": 99.7,
+        "echo": 100.0
+      },
+      "movement": 1.4,
+      "movement_flag": false,
+      "price_in_per_m": 0.15,
+      "price_out_per_m": 0.75,
+      "state": "within",
+      "nightly_exact": [
+        {
+          "date": "2026-11-05",
+          "exact": 97.1
+        },
+        {
+          "date": "2026-11-06",
+          "exact": 93.8
+        },
+        {
+          "date": "2026-11-07",
+          "exact": 98.6
+        },
+        {
+          "date": "2026-11-08",
+          "exact": 95.1
+        },
+        {
+          "date": "2026-11-10",
+          "exact": 97.2
+        },
+        {
+          "date": "2026-11-12",
+          "exact": 95.0
+        },
+        {
+          "date": "2026-11-13",
+          "exact": 93.6
+        },
+        {
+          "date": "2026-11-14",
+          "exact": 97.2
+        },
+        {
+          "date": "2026-11-15",
+          "exact": 97.2
+        },
+        {
+          "date": "2026-11-16",
+          "exact": 95.1
+        },
+        {
+          "date": "2026-11-17",
+          "exact": 97.9
+        },
+        {
+          "date": "2026-11-18",
+          "exact": 97.9
+        },
+        {
+          "date": "2026-11-19",
+          "exact": 97.9
+        },
+        {
+          "date": "2026-11-20",
+          "exact": 97.9
         }
       ]
     },
@@ -1233,19 +1350,19 @@
       "provider_slug": "amazon-bedrock",
       "declared_quant": "unknown",
       "declared_changed": false,
-      "nights": 22,
+      "nights": 23,
       "exact": 96.4,
-      "exact_sd": 1.5,
-      "string": 77.6,
-      "self_agree": 94.4,
+      "exact_sd": 1.4,
+      "string": 77.5,
+      "self_agree": 94.5,
       "families": {
         "math": 100.0,
         "json": 100.0,
-        "string": 77.6,
+        "string": 77.5,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": 0.5,
+      "movement": 0.2,
       "movement_flag": false,
       "price_in_per_m": 0.15,
       "price_out_per_m": 0.6,
@@ -1338,289 +1455,10 @@
         {
           "date": "2026-11-19",
           "exact": 97.9
-        }
-      ]
-    },
-    {
-      "tag": "parasail/fast",
-      "provider_slug": "parasail",
-      "declared_quant": "fp4",
-      "declared_changed": false,
-      "nights": 13,
-      "exact": 96.4,
-      "exact_sd": 1.6,
-      "string": 79.2,
-      "self_agree": 93.3,
-      "families": {
-        "math": 99.8,
-        "json": 100.0,
-        "string": 79.2,
-        "needle": 99.7,
-        "echo": 100.0
-      },
-      "movement": 1.4,
-      "movement_flag": false,
-      "price_in_per_m": 0.15,
-      "price_out_per_m": 0.75,
-      "state": "within",
-      "nightly_exact": [
-        {
-          "date": "2026-11-05",
-          "exact": 97.1
         },
         {
-          "date": "2026-11-06",
-          "exact": 93.8
-        },
-        {
-          "date": "2026-11-07",
-          "exact": 98.6
-        },
-        {
-          "date": "2026-11-08",
-          "exact": 95.1
-        },
-        {
-          "date": "2026-11-10",
-          "exact": 97.2
-        },
-        {
-          "date": "2026-11-12",
-          "exact": 95.0
-        },
-        {
-          "date": "2026-11-13",
-          "exact": 93.6
-        },
-        {
-          "date": "2026-11-14",
-          "exact": 97.2
-        },
-        {
-          "date": "2026-11-15",
-          "exact": 97.2
-        },
-        {
-          "date": "2026-11-16",
-          "exact": 95.1
-        },
-        {
-          "date": "2026-11-17",
-          "exact": 97.9
-        },
-        {
-          "date": "2026-11-18",
-          "exact": 97.9
-        },
-        {
-          "date": "2026-11-19",
-          "exact": 97.9
-        }
-      ]
-    },
-    {
-      "tag": "sail-research/fp4",
-      "provider_slug": "sail-research",
-      "declared_quant": "fp4",
-      "declared_changed": false,
-      "nights": 22,
-      "exact": 96.4,
-      "exact_sd": 1.6,
-      "string": 75.3,
-      "self_agree": 94.6,
-      "families": {
-        "math": 100.0,
-        "json": 100.0,
-        "string": 75.3,
-        "needle": 99.8,
-        "echo": 100.0
-      },
-      "movement": 1.7,
-      "movement_flag": false,
-      "price_in_per_m": 0.06,
-      "price_out_per_m": 0.4,
-      "state": "within",
-      "nightly_exact": [
-        {
-          "date": "2026-10-27",
-          "exact": 95.6
-        },
-        {
-          "date": "2026-10-28",
-          "exact": 95.1
-        },
-        {
-          "date": "2026-10-29",
-          "exact": 94.4
-        },
-        {
-          "date": "2026-10-30",
-          "exact": 95.8
-        },
-        {
-          "date": "2026-10-31",
-          "exact": 100.0
-        },
-        {
-          "date": "2026-11-01",
-          "exact": 93.1
-        },
-        {
-          "date": "2026-11-02",
-          "exact": 95.1
-        },
-        {
-          "date": "2026-11-03",
-          "exact": 97.7
-        },
-        {
-          "date": "2026-11-04",
-          "exact": 97.2
-        },
-        {
-          "date": "2026-11-05",
-          "exact": 97.1
-        },
-        {
-          "date": "2026-11-06",
+          "date": "2026-11-20",
           "exact": 96.5
-        },
-        {
-          "date": "2026-11-07",
-          "exact": 95.0
-        },
-        {
-          "date": "2026-11-08",
-          "exact": 97.9
-        },
-        {
-          "date": "2026-11-10",
-          "exact": 95.1
-        },
-        {
-          "date": "2026-11-12",
-          "exact": 97.9
-        },
-        {
-          "date": "2026-11-13",
-          "exact": 96.4
-        },
-        {
-          "date": "2026-11-14",
-          "exact": 95.7
-        },
-        {
-          "date": "2026-11-15",
-          "exact": 98.6
-        },
-        {
-          "date": "2026-11-16",
-          "exact": 97.2
-        },
-        {
-          "date": "2026-11-17",
-          "exact": 97.2
-        },
-        {
-          "date": "2026-11-18",
-          "exact": 94.3
-        },
-        {
-          "date": "2026-11-19",
-          "exact": 98.6
-        }
-      ]
-    },
-    {
-      "tag": "primeintellect/fp4",
-      "provider_slug": "primeintellect",
-      "declared_quant": "fp4",
-      "declared_changed": false,
-      "nights": 17,
-      "exact": 96.3,
-      "exact_sd": 1.5,
-      "string": 76.3,
-      "self_agree": 95.0,
-      "families": {
-        "math": 100.0,
-        "json": 100.0,
-        "string": 76.3,
-        "needle": 99.8,
-        "echo": 100.0
-      },
-      "movement": 2.5,
-      "movement_flag": false,
-      "price_in_per_m": 0.35,
-      "price_out_per_m": 0.75,
-      "state": "within",
-      "nightly_exact": [
-        {
-          "date": "2026-11-01",
-          "exact": 93.1
-        },
-        {
-          "date": "2026-11-02",
-          "exact": 96.4
-        },
-        {
-          "date": "2026-11-03",
-          "exact": 95.8
-        },
-        {
-          "date": "2026-11-04",
-          "exact": 95.8
-        },
-        {
-          "date": "2026-11-05",
-          "exact": 97.1
-        },
-        {
-          "date": "2026-11-06",
-          "exact": 94.4
-        },
-        {
-          "date": "2026-11-07",
-          "exact": 96.4
-        },
-        {
-          "date": "2026-11-08",
-          "exact": 96.5
-        },
-        {
-          "date": "2026-11-10",
-          "exact": 98.6
-        },
-        {
-          "date": "2026-11-12",
-          "exact": 94.3
-        },
-        {
-          "date": "2026-11-13",
-          "exact": 97.1
-        },
-        {
-          "date": "2026-11-14",
-          "exact": 97.2
-        },
-        {
-          "date": "2026-11-15",
-          "exact": 94.4
-        },
-        {
-          "date": "2026-11-16",
-          "exact": 96.5
-        },
-        {
-          "date": "2026-11-17",
-          "exact": 98.6
-        },
-        {
-          "date": "2026-11-18",
-          "exact": 95.7
-        },
-        {
-          "date": "2026-11-19",
-          "exact": 98.6
         }
       ]
     },
@@ -1629,19 +1467,19 @@
       "provider_slug": "amazon-bedrock",
       "declared_quant": "unknown",
       "declared_changed": false,
-      "nights": 22,
-      "exact": 96.2,
+      "nights": 23,
+      "exact": 96.3,
       "exact_sd": 1.4,
-      "string": 76.1,
-      "self_agree": 94.6,
+      "string": 76.3,
+      "self_agree": 94.7,
       "families": {
         "math": 100.0,
         "json": 100.0,
-        "string": 76.1,
+        "string": 76.3,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": 1.3,
+      "movement": 1.6,
       "movement_flag": false,
       "price_in_per_m": 0.15,
       "price_out_per_m": 0.6,
@@ -1734,67 +1572,71 @@
         {
           "date": "2026-11-19",
           "exact": 95.8
+        },
+        {
+          "date": "2026-11-20",
+          "exact": 97.2
         }
       ]
     },
     {
-      "tag": "mancer/fp8",
-      "provider_slug": "mancer",
-      "declared_quant": "fp8",
+      "tag": "sail-research/fp4",
+      "provider_slug": "sail-research",
+      "declared_quant": "fp4",
       "declared_changed": false,
-      "nights": 22,
-      "exact": 96.2,
-      "exact_sd": 1.9,
-      "string": 81.0,
-      "self_agree": 94.4,
+      "nights": 23,
+      "exact": 96.3,
+      "exact_sd": 1.7,
+      "string": 75.2,
+      "self_agree": 94.5,
       "families": {
-        "math": 99.8,
+        "math": 100.0,
         "json": 100.0,
-        "string": 81.0,
-        "needle": 100.0,
-        "echo": 99.8
+        "string": 75.2,
+        "needle": 99.8,
+        "echo": 100.0
       },
-      "movement": -0.3,
+      "movement": 0.4,
       "movement_flag": false,
-      "price_in_per_m": 0.095,
-      "price_out_per_m": 0.375,
+      "price_in_per_m": 0.06,
+      "price_out_per_m": 0.4,
       "state": "within",
       "nightly_exact": [
         {
           "date": "2026-10-27",
-          "exact": 95.1
+          "exact": 95.6
         },
         {
           "date": "2026-10-28",
-          "exact": 95.8
+          "exact": 95.1
         },
         {
           "date": "2026-10-29",
-          "exact": 97.9
+          "exact": 94.4
         },
         {
           "date": "2026-10-30",
-          "exact": 94.4
+          "exact": 95.8
         },
         {
           "date": "2026-10-31",
-          "exact": 99.3
+          "exact": 100.0
         },
         {
           "date": "2026-11-01",
-          "exact": 94.4
+          "exact": 93.1
         },
         {
           "date": "2026-11-02",
-          "exact": 95.8
+          "exact": 95.1
         },
         {
           "date": "2026-11-03",
-          "exact": 95.8
+          "exact": 97.7
         },
         {
           "date": "2026-11-04",
-          "exact": 91.5
+          "exact": 97.2
         },
         {
           "date": "2026-11-05",
@@ -1802,51 +1644,55 @@
         },
         {
           "date": "2026-11-06",
-          "exact": 94.4
-        },
-        {
-          "date": "2026-11-07",
-          "exact": 97.9
-        },
-        {
-          "date": "2026-11-08",
-          "exact": 95.8
-        },
-        {
-          "date": "2026-11-10",
-          "exact": 94.4
-        },
-        {
-          "date": "2026-11-12",
-          "exact": 97.2
-        },
-        {
-          "date": "2026-11-13",
-          "exact": 95.7
-        },
-        {
-          "date": "2026-11-14",
-          "exact": 99.3
-        },
-        {
-          "date": "2026-11-15",
           "exact": 96.5
         },
         {
-          "date": "2026-11-16",
-          "exact": 99.3
+          "date": "2026-11-07",
+          "exact": 95.0
         },
         {
-          "date": "2026-11-17",
+          "date": "2026-11-08",
+          "exact": 97.9
+        },
+        {
+          "date": "2026-11-10",
           "exact": 95.1
         },
         {
-          "date": "2026-11-18",
+          "date": "2026-11-12",
+          "exact": 97.9
+        },
+        {
+          "date": "2026-11-13",
+          "exact": 96.4
+        },
+        {
+          "date": "2026-11-14",
           "exact": 95.7
         },
         {
-          "date": "2026-11-19",
+          "date": "2026-11-15",
+          "exact": 98.6
+        },
+        {
+          "date": "2026-11-16",
           "exact": 97.2
+        },
+        {
+          "date": "2026-11-17",
+          "exact": 97.2
+        },
+        {
+          "date": "2026-11-18",
+          "exact": 94.3
+        },
+        {
+          "date": "2026-11-19",
+          "exact": 98.6
+        },
+        {
+          "date": "2026-11-20",
+          "exact": 93.3
         }
       ]
     },
@@ -1855,7 +1701,7 @@
       "provider_slug": "near-ai",
       "declared_quant": "fp4",
       "declared_changed": false,
-      "nights": 22,
+      "nights": 23,
       "exact": 96.2,
       "exact_sd": 1.6,
       "string": 78.8,
@@ -1960,6 +1806,10 @@
         {
           "date": "2026-11-19",
           "exact": 96.5
+        },
+        {
+          "date": "2026-11-20",
+          "exact": 95.0
         }
       ]
     },
@@ -1968,19 +1818,19 @@
       "provider_slug": "nebius",
       "declared_quant": "fp4",
       "declared_changed": false,
-      "nights": 22,
+      "nights": 23,
       "exact": 96.2,
       "exact_sd": 1.4,
-      "string": 77.6,
+      "string": 77.7,
       "self_agree": 95.2,
       "families": {
         "math": 99.9,
         "json": 100.0,
-        "string": 77.6,
+        "string": 77.7,
         "needle": 99.8,
         "echo": 100.0
       },
-      "movement": 1.3,
+      "movement": 0.6,
       "movement_flag": false,
       "price_in_per_m": 0.15,
       "price_out_per_m": 0.6,
@@ -2073,6 +1923,224 @@
         {
           "date": "2026-11-19",
           "exact": 95.8
+        },
+        {
+          "date": "2026-11-20",
+          "exact": 95.7
+        }
+      ]
+    },
+    {
+      "tag": "primeintellect/fp4",
+      "provider_slug": "primeintellect",
+      "declared_quant": "fp4",
+      "declared_changed": false,
+      "nights": 18,
+      "exact": 96.2,
+      "exact_sd": 1.5,
+      "string": 76.7,
+      "self_agree": 95.0,
+      "families": {
+        "math": 100.0,
+        "json": 100.0,
+        "string": 76.7,
+        "needle": 99.8,
+        "echo": 100.0
+      },
+      "movement": 1.3,
+      "movement_flag": false,
+      "price_in_per_m": 0.326,
+      "price_out_per_m": 0.698,
+      "state": "within",
+      "nightly_exact": [
+        {
+          "date": "2026-11-01",
+          "exact": 93.1
+        },
+        {
+          "date": "2026-11-02",
+          "exact": 96.4
+        },
+        {
+          "date": "2026-11-03",
+          "exact": 95.8
+        },
+        {
+          "date": "2026-11-04",
+          "exact": 95.8
+        },
+        {
+          "date": "2026-11-05",
+          "exact": 97.1
+        },
+        {
+          "date": "2026-11-06",
+          "exact": 94.4
+        },
+        {
+          "date": "2026-11-07",
+          "exact": 96.4
+        },
+        {
+          "date": "2026-11-08",
+          "exact": 96.5
+        },
+        {
+          "date": "2026-11-10",
+          "exact": 98.6
+        },
+        {
+          "date": "2026-11-12",
+          "exact": 94.3
+        },
+        {
+          "date": "2026-11-13",
+          "exact": 97.1
+        },
+        {
+          "date": "2026-11-14",
+          "exact": 97.2
+        },
+        {
+          "date": "2026-11-15",
+          "exact": 94.4
+        },
+        {
+          "date": "2026-11-16",
+          "exact": 96.5
+        },
+        {
+          "date": "2026-11-17",
+          "exact": 98.6
+        },
+        {
+          "date": "2026-11-18",
+          "exact": 95.7
+        },
+        {
+          "date": "2026-11-19",
+          "exact": 98.6
+        },
+        {
+          "date": "2026-11-20",
+          "exact": 95.0
+        }
+      ]
+    },
+    {
+      "tag": "mancer/fp8",
+      "provider_slug": "mancer",
+      "declared_quant": "fp8",
+      "declared_changed": false,
+      "nights": 23,
+      "exact": 96.1,
+      "exact_sd": 1.9,
+      "string": 81.1,
+      "self_agree": 94.4,
+      "families": {
+        "math": 99.8,
+        "json": 100.0,
+        "string": 81.1,
+        "needle": 100.0,
+        "echo": 99.8
+      },
+      "movement": -0.8,
+      "movement_flag": false,
+      "price_in_per_m": 0.085,
+      "price_out_per_m": 0.375,
+      "state": "within",
+      "nightly_exact": [
+        {
+          "date": "2026-10-27",
+          "exact": 95.1
+        },
+        {
+          "date": "2026-10-28",
+          "exact": 95.8
+        },
+        {
+          "date": "2026-10-29",
+          "exact": 97.9
+        },
+        {
+          "date": "2026-10-30",
+          "exact": 94.4
+        },
+        {
+          "date": "2026-10-31",
+          "exact": 99.3
+        },
+        {
+          "date": "2026-11-01",
+          "exact": 94.4
+        },
+        {
+          "date": "2026-11-02",
+          "exact": 95.8
+        },
+        {
+          "date": "2026-11-03",
+          "exact": 95.8
+        },
+        {
+          "date": "2026-11-04",
+          "exact": 91.5
+        },
+        {
+          "date": "2026-11-05",
+          "exact": 97.1
+        },
+        {
+          "date": "2026-11-06",
+          "exact": 94.4
+        },
+        {
+          "date": "2026-11-07",
+          "exact": 97.9
+        },
+        {
+          "date": "2026-11-08",
+          "exact": 95.8
+        },
+        {
+          "date": "2026-11-10",
+          "exact": 94.4
+        },
+        {
+          "date": "2026-11-12",
+          "exact": 97.2
+        },
+        {
+          "date": "2026-11-13",
+          "exact": 95.7
+        },
+        {
+          "date": "2026-11-14",
+          "exact": 99.3
+        },
+        {
+          "date": "2026-11-15",
+          "exact": 96.5
+        },
+        {
+          "date": "2026-11-16",
+          "exact": 99.3
+        },
+        {
+          "date": "2026-11-17",
+          "exact": 95.1
+        },
+        {
+          "date": "2026-11-18",
+          "exact": 95.7
+        },
+        {
+          "date": "2026-11-19",
+          "exact": 97.2
+        },
+        {
+          "date": "2026-11-20",
+          "exact": 93.6
         }
       ]
     },
@@ -2081,19 +2149,19 @@
       "provider_slug": "parasail",
       "declared_quant": "fp4",
       "declared_changed": false,
-      "nights": 22,
+      "nights": 23,
       "exact": 96.1,
       "exact_sd": 1.5,
-      "string": 80.3,
+      "string": 80.6,
       "self_agree": 93.7,
       "families": {
         "math": 99.7,
         "json": 100.0,
-        "string": 80.3,
+        "string": 80.6,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": -1.2,
+      "movement": -0.0,
       "movement_flag": false,
       "price_in_per_m": 0.1,
       "price_out_per_m": 0.75,
@@ -2186,119 +2254,10 @@
         {
           "date": "2026-11-19",
           "exact": 97.9
-        }
-      ]
-    },
-    {
-      "tag": "siliconflow/fp8",
-      "provider_slug": "siliconflow",
-      "declared_quant": "fp8",
-      "declared_changed": false,
-      "nights": 22,
-      "exact": 95.9,
-      "exact_sd": 1.7,
-      "string": 89.1,
-      "self_agree": 95.3,
-      "families": {
-        "math": 98.8,
-        "json": 100.0,
-        "string": 89.1,
-        "needle": 99.8,
-        "echo": 99.8
-      },
-      "movement": 3.9,
-      "movement_flag": false,
-      "price_in_per_m": 0.15,
-      "price_out_per_m": 0.6,
-      "state": "within",
-      "nightly_exact": [
-        {
-          "date": "2026-10-27",
-          "exact": 93.1
         },
         {
-          "date": "2026-10-28",
-          "exact": 93.1
-        },
-        {
-          "date": "2026-10-29",
-          "exact": 95.0
-        },
-        {
-          "date": "2026-10-30",
-          "exact": 95.8
-        },
-        {
-          "date": "2026-10-31",
-          "exact": 95.7
-        },
-        {
-          "date": "2026-11-01",
+          "date": "2026-11-20",
           "exact": 97.2
-        },
-        {
-          "date": "2026-11-02",
-          "exact": 95.8
-        },
-        {
-          "date": "2026-11-03",
-          "exact": 95.7
-        },
-        {
-          "date": "2026-11-04",
-          "exact": 94.4
-        },
-        {
-          "date": "2026-11-05",
-          "exact": 97.1
-        },
-        {
-          "date": "2026-11-06",
-          "exact": 97.2
-        },
-        {
-          "date": "2026-11-07",
-          "exact": 95.7
-        },
-        {
-          "date": "2026-11-08",
-          "exact": 91.5
-        },
-        {
-          "date": "2026-11-10",
-          "exact": 97.9
-        },
-        {
-          "date": "2026-11-12",
-          "exact": 95.7
-        },
-        {
-          "date": "2026-11-13",
-          "exact": 95.0
-        },
-        {
-          "date": "2026-11-14",
-          "exact": 97.2
-        },
-        {
-          "date": "2026-11-15",
-          "exact": 96.5
-        },
-        {
-          "date": "2026-11-16",
-          "exact": 97.2
-        },
-        {
-          "date": "2026-11-17",
-          "exact": 96.5
-        },
-        {
-          "date": "2026-11-18",
-          "exact": 98.6
-        },
-        {
-          "date": "2026-11-19",
-          "exact": 97.9
         }
       ]
     },
@@ -2364,11 +2323,11 @@
       "provider_slug": "coreweave",
       "declared_quant": "fp4",
       "declared_changed": false,
-      "nights": 22,
-      "exact": 95.5,
-      "exact_sd": 2.2,
+      "nights": 23,
+      "exact": 95.6,
+      "exact_sd": 2.1,
       "string": 77.7,
-      "self_agree": 93.6,
+      "self_agree": 93.8,
       "families": {
         "math": 99.7,
         "json": 100.0,
@@ -2376,7 +2335,7 @@
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": 1.1,
+      "movement": 1.3,
       "movement_flag": false,
       "price_in_per_m": 0.03,
       "price_out_per_m": 0.17,
@@ -2469,6 +2428,10 @@
         {
           "date": "2026-11-19",
           "exact": 98.6
+        },
+        {
+          "date": "2026-11-20",
+          "exact": 97.2
         }
       ]
     },
@@ -2477,19 +2440,19 @@
       "provider_slug": "akashml",
       "declared_quant": "fp4",
       "declared_changed": false,
-      "nights": 14,
-      "exact": 95.2,
-      "exact_sd": 1.0,
-      "string": 78.3,
-      "self_agree": 93.8,
+      "nights": 15,
+      "exact": 95.3,
+      "exact_sd": 1.1,
+      "string": 78.6,
+      "self_agree": 93.9,
       "families": {
         "math": 100.0,
         "json": 100.0,
-        "string": 78.3,
+        "string": 78.6,
         "needle": 99.7,
         "echo": 100.0
       },
-      "movement": 0.7,
+      "movement": 1.2,
       "movement_flag": false,
       "price_in_per_m": 0.03,
       "price_out_per_m": 0.187,
@@ -2550,6 +2513,127 @@
         {
           "date": "2026-11-19",
           "exact": 95.1
+        },
+        {
+          "date": "2026-11-20",
+          "exact": 97.2
+        }
+      ]
+    },
+    {
+      "tag": "siliconflow/fp8",
+      "provider_slug": "siliconflow",
+      "declared_quant": "fp8",
+      "declared_changed": false,
+      "nights": 23,
+      "exact": 94.4,
+      "exact_sd": 7.0,
+      "string": 87.3,
+      "self_agree": 93.9,
+      "families": {
+        "math": 97.8,
+        "json": 95.7,
+        "string": 87.3,
+        "needle": 99.8,
+        "echo": 99.5
+      },
+      "movement": -7.4,
+      "movement_flag": false,
+      "price_in_per_m": 0.15,
+      "price_out_per_m": 0.6,
+      "state": "within",
+      "nightly_exact": [
+        {
+          "date": "2026-10-27",
+          "exact": 93.1
+        },
+        {
+          "date": "2026-10-28",
+          "exact": 93.1
+        },
+        {
+          "date": "2026-10-29",
+          "exact": 95.0
+        },
+        {
+          "date": "2026-10-30",
+          "exact": 95.8
+        },
+        {
+          "date": "2026-10-31",
+          "exact": 95.7
+        },
+        {
+          "date": "2026-11-01",
+          "exact": 97.2
+        },
+        {
+          "date": "2026-11-02",
+          "exact": 95.8
+        },
+        {
+          "date": "2026-11-03",
+          "exact": 95.7
+        },
+        {
+          "date": "2026-11-04",
+          "exact": 94.4
+        },
+        {
+          "date": "2026-11-05",
+          "exact": 97.1
+        },
+        {
+          "date": "2026-11-06",
+          "exact": 97.2
+        },
+        {
+          "date": "2026-11-07",
+          "exact": 95.7
+        },
+        {
+          "date": "2026-11-08",
+          "exact": 91.5
+        },
+        {
+          "date": "2026-11-10",
+          "exact": 97.9
+        },
+        {
+          "date": "2026-11-12",
+          "exact": 95.7
+        },
+        {
+          "date": "2026-11-13",
+          "exact": 95.0
+        },
+        {
+          "date": "2026-11-14",
+          "exact": 97.2
+        },
+        {
+          "date": "2026-11-15",
+          "exact": 96.5
+        },
+        {
+          "date": "2026-11-16",
+          "exact": 97.2
+        },
+        {
+          "date": "2026-11-17",
+          "exact": 96.5
+        },
+        {
+          "date": "2026-11-18",
+          "exact": 98.6
+        },
+        {
+          "date": "2026-11-19",
+          "exact": 97.9
+        },
+        {
+          "date": "2026-11-20",
+          "exact": 62.4
         }
       ]
     },
@@ -2558,17 +2642,17 @@
       "provider_slug": "google-vertex",
       "declared_quant": "unknown",
       "declared_changed": false,
-      "nights": 22,
+      "nights": 23,
       "exact": 94.2,
       "exact_sd": 2.0,
-      "string": 74.6,
-      "self_agree": 93.2,
+      "string": 74.7,
+      "self_agree": 93.1,
       "families": {
-        "math": 95.6,
-        "json": 99.4,
-        "string": 74.6,
+        "math": 95.4,
+        "json": 99.5,
+        "string": 74.7,
         "needle": 100.0,
-        "echo": 99.2
+        "echo": 99.3
       },
       "movement": -0.1,
       "movement_flag": false,
@@ -2663,6 +2747,10 @@
         {
           "date": "2026-11-19",
           "exact": 95.1
+        },
+        {
+          "date": "2026-11-20",
+          "exact": 92.9
         }
       ]
     },
@@ -2748,19 +2836,19 @@
       "provider_slug": "digitalocean",
       "declared_quant": "unknown",
       "declared_changed": false,
-      "nights": 22,
-      "exact": 92.8,
+      "nights": 23,
+      "exact": 92.9,
       "exact_sd": 2.1,
-      "string": 85.2,
-      "self_agree": 90.2,
+      "string": 85.3,
+      "self_agree": 90.4,
       "families": {
-        "math": 99.9,
+        "math": 99.8,
         "json": 100.0,
-        "string": 85.2,
+        "string": 85.3,
         "needle": 99.8,
         "echo": 99.8
       },
-      "movement": 4.1,
+      "movement": 3.8,
       "movement_flag": false,
       "price_in_per_m": 0.06,
       "price_out_per_m": 0.42,
@@ -2853,6 +2941,10 @@
         {
           "date": "2026-11-19",
           "exact": 98.6
+        },
+        {
+          "date": "2026-11-20",
+          "exact": 95.0
         }
       ]
     },
@@ -2914,19 +3006,19 @@
       "provider_slug": "venice",
       "declared_quant": "int4",
       "declared_changed": false,
-      "nights": 22,
+      "nights": 23,
       "exact": 84.2,
-      "exact_sd": 6.7,
-      "string": 76.9,
+      "exact_sd": 6.5,
+      "string": 76.8,
       "self_agree": 77.6,
       "families": {
-        "math": 79.3,
+        "math": 79.4,
         "json": 100.0,
-        "string": 76.9,
+        "string": 76.8,
         "needle": 100.0,
-        "echo": 87.7
+        "echo": 87.5
       },
-      "movement": -14.0,
+      "movement": -13.2,
       "movement_flag": true,
       "price_in_per_m": 0.03,
       "price_out_per_m": 0.15,
@@ -3019,6 +3111,10 @@
         {
           "date": "2026-11-19",
           "exact": 83.1
+        },
+        {
+          "date": "2026-11-20",
+          "exact": 84.2
         }
       ]
     }
