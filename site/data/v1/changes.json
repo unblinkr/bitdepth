@@ -1,168 +1,288 @@
 {
  "schema": "bitdepth.changes.v1",
- "as_of": "2026-11-20",
+ "as_of": "2026-11-21",
  "baseline": false,
- "count": 20,
+ "count": 35,
  "changes": [
   {
    "model": "deepseek/deepseek-v4-pro",
    "label": "deepseek-v4-pro",
+   "tag": "atlas-cloud/fp4",
+   "field": "price_in_per_m",
+   "from": 1.68,
+   "to": null
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "label": "deepseek-v4-pro",
+   "tag": "atlas-cloud/fp4",
+   "field": "price_out_per_m",
+   "from": 3.38,
+   "to": null
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "label": "deepseek-v4-pro",
    "tag": "baidu/fp8",
    "field": "price_in_per_m",
-   "from": 0.8585,
-   "to": 0.823
+   "from": 0.823,
+   "to": 0.6608
   },
   {
    "model": "deepseek/deepseek-v4-pro",
    "label": "deepseek-v4-pro",
    "tag": "baidu/fp8",
    "field": "price_out_per_m",
-   "from": 1.717,
-   "to": 1.6461
+   "from": 1.6461,
+   "to": 1.3216
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "label": "deepseek-v4-pro",
+   "tag": "deepinfra/fp8/flex",
+   "field": "state",
+   "from": "no_data",
+   "to": "within"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "label": "deepseek-v4-pro",
+   "tag": "deepinfra/fp8/priority",
+   "field": "state",
+   "from": "no_data",
+   "to": "within"
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "label": "deepseek-v4-pro",
+   "tag": "gmicloud/fp8",
+   "field": "price_in_per_m",
+   "from": 0.957,
+   "to": null
+  },
+  {
+   "model": "deepseek/deepseek-v4-pro",
+   "label": "deepseek-v4-pro",
+   "tag": "gmicloud/fp8",
+   "field": "price_out_per_m",
+   "from": 1.914,
+   "to": null
   },
   {
    "model": "deepseek/deepseek-v4-pro",
    "label": "deepseek-v4-pro",
    "tag": "streamlake/fp8",
    "field": "price_in_per_m",
-   "from": 0.8568,
-   "to": 0.8143
+   "from": 0.8143,
+   "to": 0.6622
   },
   {
    "model": "deepseek/deepseek-v4-pro",
    "label": "deepseek-v4-pro",
    "tag": "streamlake/fp8",
    "field": "price_out_per_m",
-   "from": 1.7136,
-   "to": 1.6286
+   "from": 1.6286,
+   "to": 1.3245
   },
   {
    "model": "deepseek/deepseek-v4.1-flash-1017",
    "label": "deepseek-v4.1-flash-1017",
-   "tag": "ambient/fp4",
+   "tag": "atlas-cloud/fp8",
    "field": "price_in_per_m",
-   "from": 0.08,
-   "to": 0.045
+   "from": 0.195,
+   "to": null
   },
   {
    "model": "deepseek/deepseek-v4.1-flash-1017",
    "label": "deepseek-v4.1-flash-1017",
-   "tag": "ambient/fp4",
+   "tag": "atlas-cloud/fp8",
    "field": "price_out_per_m",
-   "from": 0.52,
-   "to": 0.25
+   "from": 0.78,
+   "to": null
   },
   {
    "model": "deepseek/deepseek-v4.1-flash-1017",
    "label": "deepseek-v4.1-flash-1017",
-   "tag": "cohere/fp8",
+   "tag": "baidu/fp8",
    "field": "price_in_per_m",
-   "from": 0.15,
-   "to": 0.115
+   "from": 0.1498,
+   "to": 0.0977
   },
   {
    "model": "deepseek/deepseek-v4.1-flash-1017",
    "label": "deepseek-v4.1-flash-1017",
-   "tag": "cohere/fp8",
+   "tag": "baidu/fp8",
    "field": "price_out_per_m",
-   "from": 0.5,
-   "to": 0.4
+   "from": 0.6046,
+   "to": 0.3944
   },
   {
    "model": "deepseek/deepseek-v4.1-flash-1017",
    "label": "deepseek-v4.1-flash-1017",
-   "tag": "fireworks/spot",
+   "tag": "digitalocean",
    "field": "price_in_per_m",
-   "from": 0.21,
+   "from": 0.18,
    "to": 0.15
   },
   {
    "model": "deepseek/deepseek-v4.1-flash-1017",
    "label": "deepseek-v4.1-flash-1017",
-   "tag": "fireworks/spot",
+   "tag": "digitalocean",
    "field": "price_out_per_m",
-   "from": 0.84,
+   "from": 0.72,
    "to": 0.6
   },
   {
    "model": "deepseek/deepseek-v4.1-flash-1017",
    "label": "deepseek-v4.1-flash-1017",
-   "tag": "inference-net/fp8",
-   "field": "price_out_per_m",
-   "from": 0.635,
-   "to": 0.666
-  },
-  {
-   "model": "deepseek/deepseek-v4.1-flash-1017",
-   "label": "deepseek-v4.1-flash-1017",
-   "tag": "inference-net/us",
-   "field": "price_out_per_m",
-   "from": 0.635,
-   "to": 0.666
-  },
-  {
-   "model": "deepseek/deepseek-v4.1-flash-1017",
-   "label": "deepseek-v4.1-flash-1017",
-   "tag": "mistral/fp8",
+   "tag": "gmicloud/fp8",
    "field": "price_in_per_m",
-   "from": 0.24,
-   "to": 0.3
+   "from": 0.18,
+   "to": null
   },
   {
    "model": "deepseek/deepseek-v4.1-flash-1017",
    "label": "deepseek-v4.1-flash-1017",
-   "tag": "mistral/fp8",
+   "tag": "gmicloud/fp8",
    "field": "price_out_per_m",
-   "from": 0.96,
-   "to": 1.2
+   "from": 0.72,
+   "to": null
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "morph/fast",
+   "field": "state",
+   "from": "no_data",
+   "to": "within"
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "open-inference/fp4",
+   "field": "price_in_per_m",
+   "from": 0.06,
+   "to": 0.05
   },
   {
    "model": "deepseek/deepseek-v4.1-flash-1017",
    "label": "deepseek-v4.1-flash-1017",
    "tag": "open-inference/fp4",
    "field": "price_out_per_m",
-   "from": 0.9,
-   "to": 0.8
+   "from": 0.8,
+   "to": 0.75
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "particle-ai/us",
+   "field": "price_out_per_m",
+   "from": 0.5,
+   "to": 0.55
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "particle-ai/us/flex",
+   "field": "price_out_per_m",
+   "from": 0.25,
+   "to": 0.275
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "primeintellect",
+   "field": "price_in_per_m",
+   "from": 0.0437,
+   "to": 0.0568
   },
   {
    "model": "deepseek/deepseek-v4.1-flash-1017",
    "label": "deepseek-v4.1-flash-1017",
    "tag": "reka",
+   "field": "state",
+   "from": "outside",
+   "to": "within"
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "sail-research/fp4",
    "field": "price_in_per_m",
    "from": null,
+   "to": 0.04
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "sail-research/fp4",
+   "field": "price_out_per_m",
+   "from": null,
+   "to": 0.1
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "sail-research/fp4/us",
+   "field": "price_in_per_m",
+   "from": null,
+   "to": 0.04
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "sail-research/fp4/us",
+   "field": "price_out_per_m",
+   "from": null,
+   "to": 0.1
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "streamlake/fp8",
+   "field": "price_in_per_m",
+   "from": 0.111,
+   "to": 0.075
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "streamlake/fp8",
+   "field": "price_out_per_m",
+   "from": 0.444,
    "to": 0.3
   },
   {
-   "model": "deepseek/deepseek-v4.1-flash-1017",
-   "label": "deepseek-v4.1-flash-1017",
-   "tag": "reka",
-   "field": "price_out_per_m",
-   "from": null,
-   "to": 1.2
-  },
-  {
-   "model": "openai/gpt-oss-120b",
-   "label": "gpt-oss-120b",
-   "tag": "mancer/fp8",
-   "field": "price_in_per_m",
-   "from": 0.095,
-   "to": 0.085
-  },
-  {
    "model": "openai/gpt-oss-120b",
    "label": "gpt-oss-120b",
    "tag": "primeintellect/fp4",
    "field": "price_in_per_m",
-   "from": 0.35,
-   "to": 0.326
+   "from": 0.326,
+   "to": 0.35
   },
   {
    "model": "openai/gpt-oss-120b",
    "label": "gpt-oss-120b",
    "tag": "primeintellect/fp4",
    "field": "price_out_per_m",
-   "from": 0.75,
-   "to": 0.698
+   "from": 0.698,
+   "to": 0.75
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "label": "gpt-oss-120b",
+   "tag": "sail-research/fp4",
+   "field": "price_in_per_m",
+   "from": 0.06,
+   "to": null
+  },
+  {
+   "model": "openai/gpt-oss-120b",
+   "label": "gpt-oss-120b",
+   "tag": "sail-research/fp4",
+   "field": "price_out_per_m",
+   "from": 0.4,
+   "to": null
   }
  ],
  "footer": "Numbers against a stated reference. Not a claim about intent."

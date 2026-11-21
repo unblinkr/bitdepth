@@ -2,80 +2,101 @@
   "schema": "bitdepth.routelist.v1",
   "model": "deepseek/deepseek-v4-pro",
   "label": "deepseek-v4-pro",
-  "as_of": "2026-11-20",
+  "as_of": "2026-11-21",
   "rule": "state within and 7+ nights (the check_before_route rule); allowed endpoints ordered by blended price, cheapest first",
   "allow": [
-    "streamlake/fp8",
     "baidu/fp8",
+    "streamlake/fp8",
     "relace/fp4",
     "siliconflow/fp8",
+    "deepinfra/fp8/flex",
     "digitalocean",
+    "deepinfra/fp8",
     "alibaba/fp8",
     "alibaba/fp8/us-east-1",
     "venice",
-    "atlas-cloud/fp4",
-    "azure/us"
+    "azure/us",
+    "deepinfra/fp8/priority",
+    "atlas-cloud/fp4"
   ],
   "allowed": [
     {
-      "tag": "streamlake/fp8",
-      "declared_quant": "fp8",
-      "nights": 24,
-      "blended_price_per_m": 1.0179
-    },
-    {
       "tag": "baidu/fp8",
       "declared_quant": "fp8",
-      "nights": 24,
-      "blended_price_per_m": 1.0288
+      "nights": 25,
+      "blended_price_per_m": 0.826
+    },
+    {
+      "tag": "streamlake/fp8",
+      "declared_quant": "fp8",
+      "nights": 25,
+      "blended_price_per_m": 0.8278
     },
     {
       "tag": "relace/fp4",
       "declared_quant": "fp4",
-      "nights": 24,
+      "nights": 25,
       "blended_price_per_m": 1.05
     },
     {
       "tag": "siliconflow/fp8",
       "declared_quant": "fp8",
-      "nights": 24,
+      "nights": 25,
       "blended_price_per_m": 1.1
+    },
+    {
+      "tag": "deepinfra/fp8/flex",
+      "declared_quant": "fp8",
+      "nights": 7,
+      "blended_price_per_m": 1.3
     },
     {
       "tag": "digitalocean",
       "declared_quant": "unknown",
-      "nights": 24,
+      "nights": 25,
       "blended_price_per_m": 1.305
+    },
+    {
+      "tag": "deepinfra/fp8",
+      "declared_quant": "fp8",
+      "nights": 25,
+      "blended_price_per_m": 1.625
     },
     {
       "tag": "alibaba/fp8",
       "declared_quant": "fp8",
-      "nights": 24,
+      "nights": 25,
       "blended_price_per_m": 1.77
     },
     {
       "tag": "alibaba/fp8/us-east-1",
       "declared_quant": "fp8",
-      "nights": 24,
+      "nights": 25,
       "blended_price_per_m": 1.95
     },
     {
       "tag": "venice",
       "declared_quant": "unknown",
-      "nights": 24,
+      "nights": 25,
       "blended_price_per_m": 2.0627
+    },
+    {
+      "tag": "azure/us",
+      "declared_quant": "unknown",
+      "nights": 25,
+      "blended_price_per_m": 2.39
+    },
+    {
+      "tag": "deepinfra/fp8/priority",
+      "declared_quant": "fp8",
+      "nights": 7,
+      "blended_price_per_m": 2.4375
     },
     {
       "tag": "atlas-cloud/fp4",
       "declared_quant": "fp4",
       "nights": 24,
-      "blended_price_per_m": 2.105
-    },
-    {
-      "tag": "azure/us",
-      "declared_quant": "unknown",
-      "nights": 24,
-      "blended_price_per_m": 2.39
+      "blended_price_per_m": null
     }
   ],
   "excluded": [
@@ -86,18 +107,6 @@
     {
       "tag": "crusoe/fp8",
       "why": "outside"
-    },
-    {
-      "tag": "deepinfra/fp8",
-      "why": "would also match deepinfra/fp8/priority, deepinfra/fp8/flex"
-    },
-    {
-      "tag": "deepinfra/fp8/flex",
-      "why": "only 6 nights; 7 needed"
-    },
-    {
-      "tag": "deepinfra/fp8/priority",
-      "why": "only 6 nights; 7 needed"
     },
     {
       "tag": "gmicloud/fp8",
@@ -115,16 +124,19 @@
   "openrouter": {
     "provider": {
       "only": [
-        "streamlake/fp8",
         "baidu/fp8",
+        "streamlake/fp8",
         "relace/fp4",
         "siliconflow/fp8",
+        "deepinfra/fp8/flex",
         "digitalocean",
+        "deepinfra/fp8",
         "alibaba/fp8",
         "alibaba/fp8/us-east-1",
         "venice",
-        "atlas-cloud/fp4",
-        "azure/us"
+        "azure/us",
+        "deepinfra/fp8/priority",
+        "atlas-cloud/fp4"
       ],
       "sort": "price",
       "allow_fallbacks": true
