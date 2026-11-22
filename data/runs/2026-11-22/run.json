@@ -1,0 +1,88 @@
+{
+ "run_id": "2026-11-22-live",
+ "date": "2026-11-22",
+ "source": "live",
+ "started": "2026-11-22T15:25:01Z",
+ "models": {
+  "gpt-oss-120b": {
+   "slug": "openai/gpt-oss-120b",
+   "endpoints": 24,
+   "short": false
+  },
+  "deepseek-v4-pro": {
+   "slug": "deepseek/deepseek-v4-pro",
+   "endpoints": 13,
+   "short": false
+  },
+  "deepseek-v4.1-flash-1017": {
+   "slug": "deepseek/deepseek-v4.1-flash-1017",
+   "endpoints": 50,
+   "short": false
+  }
+ },
+ "prompts": {
+  "fixed": 120,
+  "fresh": 24,
+  "kept": 144,
+  "dropped": 0
+ },
+ "dropped_prompt_ids": [],
+ "estimate": {
+  "usd": 4.5327,
+  "per_model": {
+   "gpt-oss-120b": 0.5287,
+   "deepseek-v4-pro": 2.3196,
+   "deepseek-v4.1-flash-1017": 1.6844
+  }
+ },
+ "cap_usd": 7.75,
+ "aborted_on_estimate": false,
+ "summary": {
+  "rows": 12528,
+  "by_status": {
+   "ok": 12220,
+   "error": 308
+  },
+  "errors": 308,
+  "misrouted": 0,
+  "skipped_budget": 0,
+  "truncated": 23,
+  "billed_cost_usd": 2.221,
+  "estimated_cost_rows": 0
+ },
+ "runtime_budget_stop": false,
+ "time_stop": false,
+ "concurrency": 8,
+ "finished": "2026-11-22T16:15:43Z",
+ "total_billed_usd": 2.221,
+ "parts": {
+  "gpt-oss-120b": {
+   "cap_usd": 0.904,
+   "billed_usd": 0.3234,
+   "rows": 3456,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-22T15:25:01Z",
+   "finished": "2026-11-22T15:40:33Z"
+  },
+  "deepseek-v4-pro": {
+   "cap_usd": 3.9681,
+   "billed_usd": 1.1556,
+   "rows": 1872,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-22T15:41:06Z",
+   "finished": "2026-11-22T15:54:57Z"
+  },
+  "deepseek-v4.1-flash-1017": {
+   "cap_usd": 2.8815,
+   "billed_usd": 0.742,
+   "rows": 7200,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-22T15:55:32Z",
+   "finished": "2026-11-22T16:15:43Z"
+  }
+ },
+ "missing_parts": []
+}

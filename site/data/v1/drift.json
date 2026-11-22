@@ -1,29 +1,35 @@
 {
   "schema": "bitdepth.or.v1",
-  "as_of": "2026-11-21",
+  "as_of": "2026-11-22",
   "items": [
     {
       "model": "openai/gpt-oss-120b",
       "tag": "siliconflow/fp8",
-      "movement": -18.1,
+      "movement": -28.8,
       "compared": "mean exact of the last 3 nights minus the first 3"
     },
     {
       "model": "openai/gpt-oss-120b",
       "tag": "venice/int4",
-      "movement": -12.2,
+      "movement": -12.9,
       "compared": "mean exact of the last 3 nights minus the first 3"
     },
     {
       "model": "deepseek/deepseek-v4-pro",
       "tag": "digitalocean",
-      "movement": 23.0,
+      "movement": 25.0,
       "compared": "mean exact of the last 3 nights minus the first 3"
     },
     {
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "tag": "digitalocean",
-      "movement": 12.3,
+      "movement": 10.2,
+      "compared": "mean exact of the last 3 nights minus the first 3"
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "tag": "reka",
+      "movement": 10.6,
       "compared": "mean exact of the last 3 nights minus the first 3"
     }
   ],
