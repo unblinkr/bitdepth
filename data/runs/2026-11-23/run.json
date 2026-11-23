@@ -1,0 +1,216 @@
+{
+ "run_id": "2026-11-23-live",
+ "date": "2026-11-23",
+ "source": "live",
+ "started": "2026-11-23T19:17:33Z",
+ "models": {
+  "gpt-oss-120b": {
+   "slug": "openai/gpt-oss-120b",
+   "endpoints": 22,
+   "short": false
+  },
+  "deepseek-v4-pro": {
+   "slug": "deepseek/deepseek-v4-pro",
+   "endpoints": 12,
+   "short": false
+  },
+  "deepseek-v4.1-flash-1017": {
+   "slug": "deepseek/deepseek-v4.1-flash-1017",
+   "endpoints": 49,
+   "short": false
+  },
+  "mistral-large-4-0": {
+   "slug": "mistralai/mistral-large-4-0",
+   "endpoints": 2,
+   "short": true
+  },
+  "glm-5.3-flash": {
+   "slug": "z-ai/glm-5.3-flash",
+   "endpoints": 37,
+   "short": false
+  },
+  "gemma-4-31b-it": {
+   "slug": "google/gemma-4-31b-it",
+   "endpoints": 17,
+   "short": false
+  },
+  "mimo-v2.6-pro": {
+   "slug": "xiaomi/mimo-v2.6-pro",
+   "endpoints": 4,
+   "short": true
+  }
+ },
+ "prompts": {
+  "fixed": 120,
+  "fresh": 24,
+  "kept": 144,
+  "dropped": 0
+ },
+ "dropped_prompt_ids": [],
+ "estimate": {
+  "usd": 6.4592,
+  "per_model": {
+   "gpt-oss-120b": 0.4952,
+   "deepseek-v4-pro": 2.1218,
+   "deepseek-v4.1-flash-1017": 1.6352,
+   "mistral-large-4-0": 0.2419,
+   "glm-5.3-flash": 0.8065,
+   "gemma-4-31b-it": 0.601,
+   "mimo-v2.6-pro": 0.5576
+  }
+ },
+ "cap_usd": 7.75,
+ "aborted_on_estimate": false,
+ "summary": {
+  "rows": 20592,
+  "by_status": {
+   "ok": 20044,
+   "error": 548
+  },
+  "errors": 548,
+  "misrouted": 0,
+  "skipped_budget": 0,
+  "truncated": 70,
+  "billed_cost_usd": 3.3821,
+  "estimated_cost_rows": 0
+ },
+ "runtime_budget_stop": false,
+ "time_stop": false,
+ "concurrency": 8,
+ "finished": "2026-11-23T21:16:42Z",
+ "total_billed_usd": 3.3821,
+ "parts": {
+  "gpt-oss-120b": {
+   "cap_usd": 0.5928,
+   "billed_usd": 0.3013,
+   "rows": 3168,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-23T19:17:33Z",
+   "finished": "2026-11-23T19:27:28Z"
+  },
+  "deepseek-v4-pro": {
+   "cap_usd": 2.5531,
+   "billed_usd": 0.9839,
+   "rows": 1728,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-23T19:28:05Z",
+   "finished": "2026-11-23T20:04:41Z"
+  },
+  "deepseek-v4.1-flash-1017": {
+   "cap_usd": 2.0109,
+   "billed_usd": 0.7264,
+   "rows": 7056,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-23T20:05:30Z",
+   "finished": "2026-11-23T20:33:49Z"
+  },
+  "mistral-large-4-0": {
+   "cap_usd": 0.2955,
+   "billed_usd": 0.2294,
+   "rows": 288,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-23T20:34:27Z",
+   "finished": "2026-11-23T20:39:47Z"
+  },
+  "glm-5.3-flash": {
+   "cap_usd": 0.9856,
+   "billed_usd": 0.443,
+   "rows": 5328,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-23T20:40:29Z",
+   "finished": "2026-11-23T21:02:50Z"
+  },
+  "gemma-4-31b-it": {
+   "cap_usd": 0.7345,
+   "billed_usd": 0.3548,
+   "rows": 2448,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-23T21:03:29Z",
+   "finished": "2026-11-23T21:13:07Z"
+  },
+  "mimo-v2.6-pro": {
+   "cap_usd": 0.6811,
+   "billed_usd": 0.3433,
+   "rows": 576,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-23T21:13:44Z",
+   "finished": "2026-11-23T21:16:42Z"
+  }
+ },
+ "missing_parts": [],
+ "trust": {
+  "zdr": [
+   "ok"
+  ],
+  "flagged": {
+   "gpt-oss-120b": {
+    "akashml/bf16": "delisted 2026-11-04",
+    "deepinfra/fp8": "delisted 2026-11-16",
+    "dekallm/bf16": "delisted 2026-11-23",
+    "io-net/fp4": "delisted 2026-11-16",
+    "mara": "delisted 2026-11-05",
+    "novita/fp4": "open incident: Novita 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+    "phala": "open incident: Phala 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+    "sail-research/fp4": "delisted 2026-11-21",
+    "together": "open incident: Together 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
+   },
+   "deepseek-v4-pro": {
+    "atlas-cloud/fp4": "delisted 2026-11-21",
+    "cloudflare": "delisted 2026-11-04",
+    "crusoe/fp8": "delisted 2026-11-04",
+    "digitalocean": "delisted 2026-11-23",
+    "gmicloud/fp8": "open incident: GMICloud 2026-11-21 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+    "nebius/fp8": "delisted 2026-11-10",
+    "novita/fp8": "open incident: Novita 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
+   },
+   "deepseek-v4.1-flash-1017": {
+    "atlas-cloud/fp8": "delisted 2026-11-21",
+    "cohere": "delisted 2026-11-07",
+    "decart/fp4": "delisted 2026-11-05",
+    "decart/fp8": "delisted 2026-11-11",
+    "dekallm": "delisted 2026-11-23",
+    "fireworks/ultrafast": "delisted 2026-11-10",
+    "gmicloud/fp8": "open incident: GMICloud 2026-11-21 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+    "ionstream/flex": "delisted 2026-11-18",
+    "nebius/fp8": "delisted 2026-11-18",
+    "novita/fp8": "open incident: Novita 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+    "phala": "open incident: Phala 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+    "relace/fast": "delisted 2026-11-10",
+    "stepfun/fp8": "delisted 2026-11-22",
+    "together": "open incident: Together 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+    "together/us": "open incident: Together 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
+   },
+   "mistral-large-4-0": {},
+   "glm-5.3-flash": {
+    "atlas-cloud/fp8": "delisted 2026-11-19",
+    "baseten/fp8/us": "delisted 2026-11-14",
+    "dekallm": "delisted 2026-11-23",
+    "gmicloud/fp8": "open incident: GMICloud 2026-11-21 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+    "nextbit/fp4": "delisted 2026-11-19",
+    "novita/fp8": "open incident: Novita 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+    "parasail/fp4": "delisted 2026-11-19",
+    "phala/nvfp4": "open incident: Phala 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+    "primeintellect": "delisted 2026-11-14",
+    "together": "open incident: Together 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+    "together/us": "open incident: Together 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+    "wafer/us": "delisted 2026-11-23"
+   },
+   "gemma-4-31b-it": {
+    "dekallm": "delisted 2026-11-16",
+    "io-net": "delisted 2026-11-11",
+    "novita/bf16": "open incident: Novita 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+    "primeintellect/fp4": "delisted 2026-11-16"
+   },
+   "mimo-v2.6-pro": {
+    "gmicloud/bf16": "open incident: GMICloud 2026-11-21 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
+   }
+  }
+ }
+}

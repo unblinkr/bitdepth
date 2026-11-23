@@ -2,12 +2,11 @@
   "schema": "bitdepth.routelist.v1",
   "model": "openai/gpt-oss-120b",
   "label": "gpt-oss-120b",
-  "as_of": "2026-11-22",
-  "rule": "state within and 7+ nights (the check_before_route rule); allowed endpoints ordered by blended price, cheapest first",
+  "as_of": "2026-11-23",
+  "rule": "state within and 7+ nights (the check_before_route rule) and no trust flag (delisted, lost ZDR, open incident); allowed endpoints ordered by blended price, cheapest first",
   "allow": [
     "near-ai/fp4",
     "coreweave/fp4",
-    "dekallm/bf16",
     "akashml/fp4",
     "deepinfra/bf16",
     "crusoe/bf16",
@@ -21,197 +20,174 @@
     "groq",
     "nebius/fp4",
     "siliconflow/fp8",
-    "together",
     "parasail/fp4",
     "parasail/fast",
     "sambanova",
-    "primeintellect/fp4",
     "cerebras/fp16",
-    "akashml/bf16",
-    "deepinfra/fp8",
-    "mara",
-    "novita/fp4",
-    "phala",
-    "sail-research/fp4"
+    "primeintellect/fp4"
   ],
   "allowed": [
     {
       "tag": "near-ai/fp4",
       "declared_quant": "fp4",
-      "nights": 25,
+      "nights": 26,
       "blended_price_per_m": 0.06
     },
     {
       "tag": "coreweave/fp4",
       "declared_quant": "fp4",
-      "nights": 25,
+      "nights": 26,
       "blended_price_per_m": 0.065
-    },
-    {
-      "tag": "dekallm/bf16",
-      "declared_quant": "bf16",
-      "nights": 25,
-      "blended_price_per_m": 0.0675
     },
     {
       "tag": "akashml/fp4",
       "declared_quant": "fp4",
-      "nights": 17,
+      "nights": 18,
       "blended_price_per_m": 0.0693
     },
     {
       "tag": "deepinfra/bf16",
       "declared_quant": "bf16",
-      "nights": 25,
+      "nights": 26,
       "blended_price_per_m": 0.0703
     },
     {
       "tag": "crusoe/bf16",
       "declared_quant": "bf16",
-      "nights": 25,
+      "nights": 26,
       "blended_price_per_m": 0.1
     },
     {
       "tag": "digitalocean",
       "declared_quant": "unknown",
-      "nights": 25,
+      "nights": 26,
       "blended_price_per_m": 0.15
     },
     {
       "tag": "google-vertex/global",
       "declared_quant": "unknown",
-      "nights": 25,
+      "nights": 26,
       "blended_price_per_m": 0.1575
     },
     {
       "tag": "mancer/fp8",
       "declared_quant": "fp8",
-      "nights": 25,
+      "nights": 26,
       "blended_price_per_m": 0.1575
     },
     {
       "tag": "baseten/fp4",
       "declared_quant": "fp4",
-      "nights": 25,
+      "nights": 26,
       "blended_price_per_m": 0.2
     },
     {
       "tag": "baseten/fp4/us",
       "declared_quant": "fp4",
-      "nights": 25,
+      "nights": 26,
       "blended_price_per_m": 0.2
     },
     {
       "tag": "amazon-bedrock",
       "declared_quant": "unknown",
-      "nights": 25,
+      "nights": 26,
       "blended_price_per_m": 0.2625
     },
     {
       "tag": "amazon-bedrock/eu-west-1",
       "declared_quant": "unknown",
-      "nights": 25,
+      "nights": 26,
       "blended_price_per_m": 0.2625
     },
     {
       "tag": "groq",
       "declared_quant": "unknown",
-      "nights": 25,
+      "nights": 26,
       "blended_price_per_m": 0.2625
     },
     {
       "tag": "nebius/fp4",
       "declared_quant": "fp4",
-      "nights": 25,
+      "nights": 26,
       "blended_price_per_m": 0.2625
     },
     {
       "tag": "siliconflow/fp8",
       "declared_quant": "fp8",
-      "nights": 25,
-      "blended_price_per_m": 0.2625
-    },
-    {
-      "tag": "together",
-      "declared_quant": "unknown",
-      "nights": 25,
+      "nights": 26,
       "blended_price_per_m": 0.2625
     },
     {
       "tag": "parasail/fp4",
       "declared_quant": "fp4",
-      "nights": 25,
+      "nights": 26,
       "blended_price_per_m": 0.2625
     },
     {
       "tag": "parasail/fast",
       "declared_quant": "fp4",
-      "nights": 16,
+      "nights": 17,
       "blended_price_per_m": 0.3
     },
     {
       "tag": "sambanova",
       "declared_quant": "unknown",
-      "nights": 25,
+      "nights": 26,
       "blended_price_per_m": 0.3425
-    },
-    {
-      "tag": "primeintellect/fp4",
-      "declared_quant": "fp4",
-      "nights": 20,
-      "blended_price_per_m": 0.4385
     },
     {
       "tag": "cerebras/fp16",
       "declared_quant": "fp16",
-      "nights": 25,
+      "nights": 26,
       "blended_price_per_m": 0.45
     },
     {
-      "tag": "akashml/bf16",
-      "declared_quant": "bf16",
-      "nights": 8,
-      "blended_price_per_m": null
-    },
-    {
-      "tag": "deepinfra/fp8",
-      "declared_quant": "fp8",
-      "nights": 15,
-      "blended_price_per_m": null
-    },
-    {
-      "tag": "mara",
-      "declared_quant": "unknown",
-      "nights": 9,
-      "blended_price_per_m": null
-    },
-    {
-      "tag": "novita/fp4",
+      "tag": "primeintellect/fp4",
       "declared_quant": "fp4",
-      "nights": 7,
-      "blended_price_per_m": null
-    },
-    {
-      "tag": "phala",
-      "declared_quant": "unknown",
-      "nights": 13,
-      "blended_price_per_m": null
-    },
-    {
-      "tag": "sail-research/fp4",
-      "declared_quant": "fp4",
-      "nights": 23,
-      "blended_price_per_m": null
+      "nights": 21,
+      "blended_price_per_m": 0.45
     }
   ],
   "excluded": [
     {
+      "tag": "akashml/bf16",
+      "why": "delisted 2026-11-04"
+    },
+    {
+      "tag": "deepinfra/fp8",
+      "why": "delisted 2026-11-16"
+    },
+    {
+      "tag": "dekallm/bf16",
+      "why": "delisted 2026-11-23"
+    },
+    {
       "tag": "fireworks",
-      "why": "only 1 nights; 7 needed"
+      "why": "only 2 nights; 7 needed"
     },
     {
       "tag": "io-net/fp4",
-      "why": "only 4 nights; 7 needed"
+      "why": "delisted 2026-11-16"
+    },
+    {
+      "tag": "mara",
+      "why": "delisted 2026-11-05"
+    },
+    {
+      "tag": "novita/fp4",
+      "why": "open incident: Novita 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
+    },
+    {
+      "tag": "phala",
+      "why": "open incident: Phala 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
+    },
+    {
+      "tag": "sail-research/fp4",
+      "why": "delisted 2026-11-21"
+    },
+    {
+      "tag": "together",
+      "why": "open incident: Together 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
     },
     {
       "tag": "venice/int4",
@@ -223,7 +199,6 @@
       "only": [
         "near-ai/fp4",
         "coreweave/fp4",
-        "dekallm/bf16",
         "akashml/fp4",
         "deepinfra/bf16",
         "crusoe/bf16",
@@ -237,18 +212,11 @@
         "groq",
         "nebius/fp4",
         "siliconflow/fp8",
-        "together",
         "parasail/fp4",
         "parasail/fast",
         "sambanova",
-        "primeintellect/fp4",
         "cerebras/fp16",
-        "akashml/bf16",
-        "deepinfra/fp8",
-        "mara",
-        "novita/fp4",
-        "phala",
-        "sail-research/fp4"
+        "primeintellect/fp4"
       ],
       "sort": "price",
       "allow_fallbacks": true

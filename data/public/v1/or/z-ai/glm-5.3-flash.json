@@ -2,8 +2,8 @@
   "schema": "bitdepth.or.v1",
   "model": "z-ai/glm-5.3-flash",
   "label": "glm-5.3-flash",
-  "as_of": "2026-11-22",
-  "nights": 26,
+  "as_of": "2026-11-23",
+  "nights": 27,
   "endpoint_count": 48,
   "reference_rule": "plurality across all endpoints (fewer than two declare bf16 or fp16)",
   "method_url": "https://bitdepth.dev/method",
@@ -12,9 +12,9 @@
   ],
   "state_rule": "outside when self-agreement exceeds agreement with the reference by more than 15 points, or when the endpoint's mean on the model's first primary column is more than 8 points below the median of endpoints with 7+ nights; no_data under 7 nights; stale when the data is more than 3 days old.",
   "noise_floor": {
-    "math": 97.5,
-    "json": 83.2,
-    "string": 80.0,
+    "math": 96.9,
+    "json": 85.0,
+    "string": 81.7,
     "needle": 100.0,
     "echo": 100.0
   },
@@ -25,60 +25,27 @@
   ],
   "endpoints": [
     {
-      "tag": "particle-ai/nvfp4/flex",
-      "provider_slug": "particle-ai",
-      "declared_quant": "nvfp4",
+      "tag": "darkbloom/fp4",
+      "provider_slug": "darkbloom",
+      "declared_quant": "fp4",
       "declared_changed": false,
-      "nights": 2,
-      "exact": 98.9,
-      "exact_sd": 0.4,
-      "string": 97.9,
-      "self_agree": 99.2,
+      "nights": 7,
+      "exact": 98.8,
+      "exact_sd": 0.5,
+      "string": 94.4,
+      "self_agree": 98.9,
       "families": {
         "math": 99.0,
         "json": 100.0,
-        "string": 97.9,
+        "string": 94.4,
         "needle": 100.0,
         "echo": 100.0
       },
       "movement": 0.0,
       "movement_flag": false,
       "price_in_per_m": 0.065,
-      "price_out_per_m": 0.25,
-      "state": "no_data",
-      "nightly_exact": [
-        {
-          "date": "2026-11-16",
-          "exact": 98.6
-        },
-        {
-          "date": "2026-11-19",
-          "exact": 99.3
-        }
-      ]
-    },
-    {
-      "tag": "darkbloom/fp4",
-      "provider_slug": "darkbloom",
-      "declared_quant": "fp4",
-      "declared_changed": false,
-      "nights": 6,
-      "exact": 98.7,
-      "exact_sd": 0.5,
-      "string": 93.3,
-      "self_agree": 99.1,
-      "families": {
-        "math": 99.2,
-        "json": 100.0,
-        "string": 93.3,
-        "needle": 100.0,
-        "echo": 100.0
-      },
-      "movement": -0.2,
-      "movement_flag": false,
-      "price_in_per_m": 0.065,
       "price_out_per_m": 0.18,
-      "state": "no_data",
+      "state": "within",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -103,35 +70,47 @@
         {
           "date": "2026-11-19",
           "exact": 99.3
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 99.3
         }
       ]
     },
     {
-      "tag": "parasail/fp8",
-      "provider_slug": "parasail",
-      "declared_quant": "fp8",
+      "tag": "particle-ai/nvfp4/flex",
+      "provider_slug": "particle-ai",
+      "declared_quant": "nvfp4",
       "declared_changed": false,
-      "nights": 1,
+      "nights": 3,
       "exact": 98.6,
-      "exact_sd": 0.0,
+      "exact_sd": 0.6,
       "string": 95.8,
-      "self_agree": null,
+      "self_agree": 98.3,
       "families": {
-        "math": 97.9,
+        "math": 98.6,
         "json": 100.0,
         "string": 95.8,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": null,
+      "movement": 0.0,
       "movement_flag": false,
-      "price_in_per_m": 0.15,
-      "price_out_per_m": 0.5,
+      "price_in_per_m": 0.065,
+      "price_out_per_m": 0.325,
       "state": "no_data",
       "nightly_exact": [
         {
-          "date": "2026-11-19",
+          "date": "2026-11-16",
           "exact": 98.6
+        },
+        {
+          "date": "2026-11-19",
+          "exact": 99.3
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 97.9
         }
       ]
     },
@@ -140,23 +119,23 @@
       "provider_slug": "deepinfra",
       "declared_quant": "fp4",
       "declared_changed": false,
-      "nights": 6,
-      "exact": 98.3,
-      "exact_sd": 0.6,
-      "string": 92.5,
-      "self_agree": 96.7,
+      "nights": 7,
+      "exact": 98.4,
+      "exact_sd": 0.5,
+      "string": 93.0,
+      "self_agree": 96.9,
       "families": {
-        "math": 99.2,
+        "math": 99.3,
         "json": 100.0,
-        "string": 92.5,
+        "string": 93.0,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": 0.0,
+      "movement": 0.5,
       "movement_flag": false,
-      "price_in_per_m": 0.15,
-      "price_out_per_m": 0.5,
-      "state": "no_data",
+      "price_in_per_m": 0.1005,
+      "price_out_per_m": 0.335,
+      "state": "within",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -181,51 +160,43 @@
         {
           "date": "2026-11-19",
           "exact": 98.6
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 98.6
         }
       ]
     },
     {
-      "tag": "kt",
-      "provider_slug": "kt",
-      "declared_quant": "unknown",
+      "tag": "parasail/fp8",
+      "provider_slug": "parasail",
+      "declared_quant": "fp8",
       "declared_changed": false,
-      "nights": 5,
+      "nights": 2,
       "exact": 98.2,
-      "exact_sd": 0.8,
-      "string": 94.8,
-      "self_agree": 97.2,
+      "exact_sd": 0.3,
+      "string": 93.8,
+      "self_agree": 96.7,
       "families": {
         "math": 99.0,
         "json": 100.0,
-        "string": 94.8,
+        "string": 93.8,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": 0.5,
+      "movement": 0.0,
       "movement_flag": false,
       "price_in_per_m": 0.15,
       "price_out_per_m": 0.5,
       "state": "no_data",
       "nightly_exact": [
         {
-          "date": "2026-11-11",
-          "exact": null
-        },
-        {
-          "date": "2026-11-12",
-          "exact": 97.2
-        },
-        {
-          "date": "2026-11-14",
-          "exact": 97.9
-        },
-        {
-          "date": "2026-11-16",
-          "exact": 99.3
-        },
-        {
           "date": "2026-11-19",
           "exact": 98.6
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 97.9
         }
       ]
     },
@@ -234,23 +205,23 @@
       "provider_slug": "particle-ai",
       "declared_quant": "nvfp4",
       "declared_changed": false,
-      "nights": 6,
-      "exact": 98.2,
-      "exact_sd": 1.5,
-      "string": 95.0,
-      "self_agree": 98.6,
+      "nights": 7,
+      "exact": 98.1,
+      "exact_sd": 1.4,
+      "string": 94.5,
+      "self_agree": 98.3,
       "families": {
-        "math": 99.2,
+        "math": 99.0,
         "json": 100.0,
-        "string": 95.0,
+        "string": 94.5,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": 0.2,
+      "movement": -0.5,
       "movement_flag": false,
       "price_in_per_m": 0.13,
-      "price_out_per_m": 0.5,
-      "state": "no_data",
+      "price_out_per_m": 0.65,
+      "state": "within",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -275,6 +246,10 @@
         {
           "date": "2026-11-19",
           "exact": 98.6
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 97.9
         }
       ]
     },
@@ -283,23 +258,23 @@
       "provider_slug": "relace",
       "declared_quant": "fp4",
       "declared_changed": false,
-      "nights": 6,
-      "exact": 98.2,
-      "exact_sd": 1.1,
-      "string": 89.4,
-      "self_agree": 98.3,
+      "nights": 7,
+      "exact": 98.1,
+      "exact_sd": 1.0,
+      "string": 89.8,
+      "self_agree": 97.6,
       "families": {
-        "math": 99.1,
+        "math": 98.9,
         "json": 100.0,
-        "string": 89.4,
+        "string": 89.8,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": -0.6,
+      "movement": -1.3,
       "movement_flag": false,
-      "price_in_per_m": 0.0399,
-      "price_out_per_m": 0.0784,
-      "state": "no_data",
+      "price_in_per_m": 0.0475,
+      "price_out_per_m": 0.0729,
+      "state": "within",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -324,52 +299,12 @@
         {
           "date": "2026-11-19",
           "exact": 98.6
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 97.2
         }
       ]
-    },
-    {
-      "tag": "river",
-      "provider_slug": "river",
-      "declared_quant": "unknown",
-      "declared_changed": false,
-      "nights": 4,
-      "exact": 98.1,
-      "exact_sd": 0.6,
-      "string": 92.7,
-      "self_agree": 97.8,
-      "families": {
-        "math": 98.4,
-        "json": 100.0,
-        "string": 92.7,
-        "needle": 100.0,
-        "echo": 100.0
-      },
-      "movement": 0.2,
-      "movement_flag": false,
-      "price_in_per_m": 0.12,
-      "price_out_per_m": 0.4,
-      "state": "untrusted",
-      "nightly_exact": [
-        {
-          "date": "2026-11-10",
-          "exact": 97.2
-        },
-        {
-          "date": "2026-11-14",
-          "exact": 98.6
-        },
-        {
-          "date": "2026-11-16",
-          "exact": 98.6
-        },
-        {
-          "date": "2026-11-19",
-          "exact": 97.9
-        }
-      ],
-      "graded_state": "no_data",
-      "trust_reason": "delisted 2026-11-11; listed again 2026-11-14, 3 of 7 fresh nights",
-      "trust_source_url": "https://openrouter.ai/api/v1/models/z-ai/glm-5.3-flash/endpoints"
     },
     {
       "tag": "dekallm",
@@ -390,8 +325,8 @@
       },
       "movement": 0.0,
       "movement_flag": false,
-      "price_in_per_m": 0.1,
-      "price_out_per_m": 0.5,
+      "price_in_per_m": null,
+      "price_out_per_m": null,
       "state": "untrusted",
       "nightly_exact": [
         {
@@ -420,56 +355,75 @@
       "trust_source_url": "https://openrouter.ai/api/v1/models/z-ai/glm-5.3-flash/endpoints"
     },
     {
-      "tag": "baidu/fp8",
-      "provider_slug": "baidu",
-      "declared_quant": "fp8",
+      "tag": "river",
+      "provider_slug": "river",
+      "declared_quant": "unknown",
       "declared_changed": false,
-      "nights": 1,
-      "exact": 97.9,
-      "exact_sd": 0.0,
-      "string": 95.8,
-      "self_agree": null,
+      "nights": 5,
+      "exact": 98.0,
+      "exact_sd": 0.5,
+      "string": 91.7,
+      "self_agree": 97.5,
       "families": {
-        "math": 97.9,
+        "math": 98.7,
         "json": 100.0,
-        "string": 95.8,
+        "string": 91.7,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": null,
+      "movement": 0.0,
       "movement_flag": false,
-      "price_in_per_m": 0.15,
-      "price_out_per_m": 0.5,
-      "state": "no_data",
+      "price_in_per_m": 0.12,
+      "price_out_per_m": 0.4,
+      "state": "untrusted",
       "nightly_exact": [
+        {
+          "date": "2026-11-10",
+          "exact": 97.2
+        },
+        {
+          "date": "2026-11-14",
+          "exact": 98.6
+        },
+        {
+          "date": "2026-11-16",
+          "exact": 98.6
+        },
         {
           "date": "2026-11-19",
           "exact": 97.9
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 97.9
         }
-      ]
+      ],
+      "graded_state": "no_data",
+      "trust_reason": "delisted 2026-11-11; listed again 2026-11-14, 4 of 7 fresh nights",
+      "trust_source_url": "https://openrouter.ai/api/v1/models/z-ai/glm-5.3-flash/endpoints"
     },
     {
       "tag": "streamlake/fp8",
       "provider_slug": "streamlake",
       "declared_quant": "fp8",
       "declared_changed": false,
-      "nights": 6,
+      "nights": 7,
       "exact": 97.8,
-      "exact_sd": 1.0,
-      "string": 91.7,
-      "self_agree": 97.8,
+      "exact_sd": 0.9,
+      "string": 92.4,
+      "self_agree": 97.9,
       "families": {
         "math": 97.9,
         "json": 100.0,
-        "string": 91.7,
+        "string": 92.4,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": 0.9,
+      "movement": 0.7,
       "movement_flag": false,
       "price_in_per_m": 0.0885,
       "price_out_per_m": 0.295,
-      "state": "no_data",
+      "state": "within",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -494,104 +448,10 @@
         {
           "date": "2026-11-19",
           "exact": 99.3
-        }
-      ]
-    },
-    {
-      "tag": "venice",
-      "provider_slug": "venice",
-      "declared_quant": "unknown",
-      "declared_changed": false,
-      "nights": 6,
-      "exact": 97.8,
-      "exact_sd": 0.5,
-      "string": 90.8,
-      "self_agree": 95.8,
-      "families": {
-        "math": 98.7,
-        "json": 100.0,
-        "string": 90.8,
-        "needle": 100.0,
-        "echo": 100.0
-      },
-      "movement": 0.0,
-      "movement_flag": false,
-      "price_in_per_m": 0.15,
-      "price_out_per_m": 0.5,
-      "state": "no_data",
-      "nightly_exact": [
+        },
         {
-          "date": "2026-11-10",
+          "date": "2026-11-23",
           "exact": 97.9
-        },
-        {
-          "date": "2026-11-11",
-          "exact": null
-        },
-        {
-          "date": "2026-11-12",
-          "exact": 97.9
-        },
-        {
-          "date": "2026-11-14",
-          "exact": 97.2
-        },
-        {
-          "date": "2026-11-16",
-          "exact": 97.2
-        },
-        {
-          "date": "2026-11-19",
-          "exact": 98.6
-        }
-      ]
-    },
-    {
-      "tag": "cohere/nvfp4",
-      "provider_slug": "cohere",
-      "declared_quant": "nvfp4",
-      "declared_changed": false,
-      "nights": 6,
-      "exact": 97.5,
-      "exact_sd": 0.7,
-      "string": 90.0,
-      "self_agree": 96.4,
-      "families": {
-        "math": 98.7,
-        "json": 100.0,
-        "string": 90.0,
-        "needle": 100.0,
-        "echo": 100.0
-      },
-      "movement": -0.2,
-      "movement_flag": false,
-      "price_in_per_m": 0.15,
-      "price_out_per_m": 0.5,
-      "state": "no_data",
-      "nightly_exact": [
-        {
-          "date": "2026-11-10",
-          "exact": 97.2
-        },
-        {
-          "date": "2026-11-11",
-          "exact": null
-        },
-        {
-          "date": "2026-11-12",
-          "exact": 98.6
-        },
-        {
-          "date": "2026-11-14",
-          "exact": 96.5
-        },
-        {
-          "date": "2026-11-16",
-          "exact": 97.9
-        },
-        {
-          "date": "2026-11-19",
-          "exact": 97.2
         }
       ]
     },
@@ -614,8 +474,8 @@
       },
       "movement": 1.6,
       "movement_flag": false,
-      "price_in_per_m": 0.075,
-      "price_out_per_m": 0.25,
+      "price_in_per_m": null,
+      "price_out_per_m": null,
       "state": "untrusted",
       "nightly_exact": [
         {
@@ -648,31 +508,31 @@
       "trust_source_url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
     },
     {
-      "tag": "inceptron/fp8",
-      "provider_slug": "inceptron",
-      "declared_quant": "fp8",
+      "tag": "parasail/fast",
+      "provider_slug": "parasail",
+      "declared_quant": "fp4",
       "declared_changed": false,
-      "nights": 6,
+      "nights": 7,
       "exact": 97.5,
-      "exact_sd": 0.8,
-      "string": 88.3,
+      "exact_sd": 1.3,
+      "string": 92.9,
       "self_agree": 95.0,
       "families": {
-        "math": 99.2,
+        "math": 99.0,
         "json": 100.0,
-        "string": 88.3,
+        "string": 92.9,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": -0.2,
+      "movement": 1.7,
       "movement_flag": false,
-      "price_in_per_m": 0.15,
-      "price_out_per_m": 0.5,
-      "state": "no_data",
+      "price_in_per_m": 0.1875,
+      "price_out_per_m": 0.625,
+      "state": "within",
       "nightly_exact": [
         {
           "date": "2026-11-10",
-          "exact": 97.9
+          "exact": 97.1
         },
         {
           "date": "2026-11-11",
@@ -684,14 +544,18 @@
         },
         {
           "date": "2026-11-14",
-          "exact": 96.5
+          "exact": 95.1
         },
         {
           "date": "2026-11-16",
-          "exact": 96.5
+          "exact": 99.3
         },
         {
           "date": "2026-11-19",
+          "exact": 97.2
+        },
+        {
+          "date": "2026-11-23",
           "exact": 98.6
         }
       ]
@@ -737,27 +601,133 @@
       "trust_source_url": "https://openrouter.ai/api/v1/models/z-ai/glm-5.3-flash/endpoints"
     },
     {
+      "tag": "venice",
+      "provider_slug": "venice",
+      "declared_quant": "unknown",
+      "declared_changed": false,
+      "nights": 7,
+      "exact": 97.5,
+      "exact_sd": 0.7,
+      "string": 89.6,
+      "self_agree": 95.8,
+      "families": {
+        "math": 98.6,
+        "json": 100.0,
+        "string": 89.6,
+        "needle": 100.0,
+        "echo": 100.0
+      },
+      "movement": -0.2,
+      "movement_flag": false,
+      "price_in_per_m": 0.15,
+      "price_out_per_m": 0.5,
+      "state": "within",
+      "nightly_exact": [
+        {
+          "date": "2026-11-10",
+          "exact": 97.9
+        },
+        {
+          "date": "2026-11-11",
+          "exact": null
+        },
+        {
+          "date": "2026-11-12",
+          "exact": 97.9
+        },
+        {
+          "date": "2026-11-14",
+          "exact": 97.2
+        },
+        {
+          "date": "2026-11-16",
+          "exact": 97.2
+        },
+        {
+          "date": "2026-11-19",
+          "exact": 98.6
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 96.5
+        }
+      ]
+    },
+    {
+      "tag": "inceptron/fp8",
+      "provider_slug": "inceptron",
+      "declared_quant": "fp8",
+      "declared_changed": false,
+      "nights": 7,
+      "exact": 97.4,
+      "exact_sd": 0.8,
+      "string": 88.2,
+      "self_agree": 95.4,
+      "families": {
+        "math": 99.3,
+        "json": 100.0,
+        "string": 88.2,
+        "needle": 100.0,
+        "echo": 100.0
+      },
+      "movement": 0.0,
+      "movement_flag": false,
+      "price_in_per_m": 0.17,
+      "price_out_per_m": 0.5,
+      "state": "within",
+      "nightly_exact": [
+        {
+          "date": "2026-11-10",
+          "exact": 97.9
+        },
+        {
+          "date": "2026-11-11",
+          "exact": null
+        },
+        {
+          "date": "2026-11-12",
+          "exact": 97.9
+        },
+        {
+          "date": "2026-11-14",
+          "exact": 96.5
+        },
+        {
+          "date": "2026-11-16",
+          "exact": 96.5
+        },
+        {
+          "date": "2026-11-19",
+          "exact": 98.6
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 97.2
+        }
+      ]
+    },
+    {
       "tag": "morph/fp8",
       "provider_slug": "morph",
       "declared_quant": "fp8",
       "declared_changed": false,
-      "nights": 6,
-      "exact": 97.3,
-      "exact_sd": 1.1,
-      "string": 92.5,
-      "self_agree": 96.4,
+      "nights": 7,
+      "exact": 97.4,
+      "exact_sd": 1.0,
+      "string": 91.6,
+      "self_agree": 96.5,
       "families": {
-        "math": 98.3,
+        "math": 98.6,
         "json": 100.0,
-        "string": 92.5,
+        "string": 91.6,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": 1.2,
+      "movement": 1.4,
       "movement_flag": false,
-      "price_in_per_m": 0.123,
-      "price_out_per_m": 0.355,
-      "state": "no_data",
+      "price_in_per_m": 0.124,
+      "price_out_per_m": 0.356,
+      "state": "within",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -782,6 +752,63 @@
         {
           "date": "2026-11-19",
           "exact": 99.3
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 97.9
+        }
+      ]
+    },
+    {
+      "tag": "near-ai/fp8",
+      "provider_slug": "near-ai",
+      "declared_quant": "fp8",
+      "declared_changed": false,
+      "nights": 7,
+      "exact": 97.3,
+      "exact_sd": 1.2,
+      "string": 91.0,
+      "self_agree": 95.8,
+      "families": {
+        "math": 98.5,
+        "json": 100.0,
+        "string": 91.0,
+        "needle": 100.0,
+        "echo": 100.0
+      },
+      "movement": 1.6,
+      "movement_flag": false,
+      "price_in_per_m": 0.08,
+      "price_out_per_m": 0.5,
+      "state": "within",
+      "nightly_exact": [
+        {
+          "date": "2026-11-10",
+          "exact": 97.9
+        },
+        {
+          "date": "2026-11-11",
+          "exact": null
+        },
+        {
+          "date": "2026-11-12",
+          "exact": 95.7
+        },
+        {
+          "date": "2026-11-14",
+          "exact": 95.8
+        },
+        {
+          "date": "2026-11-16",
+          "exact": 97.1
+        },
+        {
+          "date": "2026-11-19",
+          "exact": 98.5
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 98.6
         }
       ]
     },
@@ -790,23 +817,23 @@
       "provider_slug": "open-inference",
       "declared_quant": "fp4",
       "declared_changed": false,
-      "nights": 6,
+      "nights": 7,
       "exact": 97.3,
-      "exact_sd": 0.8,
-      "string": 85.0,
-      "self_agree": 97.8,
+      "exact_sd": 0.7,
+      "string": 85.4,
+      "self_agree": 97.5,
       "families": {
-        "math": 98.3,
+        "math": 98.2,
         "json": 100.0,
-        "string": 85.0,
+        "string": 85.4,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": -0.5,
+      "movement": -0.7,
       "movement_flag": false,
       "price_in_per_m": 0.05,
       "price_out_per_m": 0.45,
-      "state": "no_data",
+      "state": "within",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -831,35 +858,39 @@
         {
           "date": "2026-11-19",
           "exact": 96.5
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 97.2
         }
       ]
     },
     {
-      "tag": "parasail/fast",
-      "provider_slug": "parasail",
-      "declared_quant": "fp4",
+      "tag": "cohere/nvfp4",
+      "provider_slug": "cohere",
+      "declared_quant": "nvfp4",
       "declared_changed": false,
-      "nights": 6,
-      "exact": 97.3,
-      "exact_sd": 1.4,
-      "string": 92.3,
-      "self_agree": 94.7,
+      "nights": 7,
+      "exact": 97.2,
+      "exact_sd": 0.9,
+      "string": 90.2,
+      "self_agree": 96.2,
       "families": {
-        "math": 98.7,
+        "math": 98.6,
         "json": 100.0,
-        "string": 92.3,
+        "string": 90.2,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": 0.5,
+      "movement": -0.5,
       "movement_flag": false,
-      "price_in_per_m": 0.1875,
-      "price_out_per_m": 0.625,
-      "state": "no_data",
+      "price_in_per_m": 0.105,
+      "price_out_per_m": 0.34,
+      "state": "within",
       "nightly_exact": [
         {
           "date": "2026-11-10",
-          "exact": 97.1
+          "exact": 97.2
         },
         {
           "date": "2026-11-11",
@@ -867,19 +898,23 @@
         },
         {
           "date": "2026-11-12",
-          "exact": 97.9
+          "exact": 98.6
         },
         {
           "date": "2026-11-14",
-          "exact": 95.1
+          "exact": 96.5
         },
         {
           "date": "2026-11-16",
-          "exact": 99.3
+          "exact": 97.9
         },
         {
           "date": "2026-11-19",
           "exact": 97.2
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 95.8
         }
       ]
     },
@@ -980,125 +1015,27 @@
       "trust_source_url": "https://openrouter.ai/api/v1/models/z-ai/glm-5.3-flash/endpoints"
     },
     {
-      "tag": "near-ai/fp8",
-      "provider_slug": "near-ai",
-      "declared_quant": "fp8",
+      "tag": "sail-research/us",
+      "provider_slug": "sail-research",
+      "declared_quant": "fp4",
       "declared_changed": false,
-      "nights": 6,
-      "exact": 97.0,
-      "exact_sd": 1.1,
-      "string": 90.8,
-      "self_agree": 95.6,
+      "nights": 7,
+      "exact": 97.1,
+      "exact_sd": 1.0,
+      "string": 88.8,
+      "self_agree": 96.2,
       "families": {
-        "math": 98.3,
+        "math": 98.2,
         "json": 100.0,
-        "string": 90.8,
+        "string": 88.8,
         "needle": 100.0,
         "echo": 100.0
       },
       "movement": 0.7,
       "movement_flag": false,
-      "price_in_per_m": 0.08,
-      "price_out_per_m": 0.5,
-      "state": "no_data",
-      "nightly_exact": [
-        {
-          "date": "2026-11-10",
-          "exact": 97.9
-        },
-        {
-          "date": "2026-11-11",
-          "exact": null
-        },
-        {
-          "date": "2026-11-12",
-          "exact": 95.7
-        },
-        {
-          "date": "2026-11-14",
-          "exact": 95.8
-        },
-        {
-          "date": "2026-11-16",
-          "exact": 97.1
-        },
-        {
-          "date": "2026-11-19",
-          "exact": 98.5
-        }
-      ]
-    },
-    {
-      "tag": "sail-research/fp4",
-      "provider_slug": "sail-research",
-      "declared_quant": "fp4",
-      "declared_changed": false,
-      "nights": 6,
-      "exact": 96.9,
-      "exact_sd": 1.0,
-      "string": 86.3,
-      "self_agree": 96.6,
-      "families": {
-        "math": 97.9,
-        "json": 100.0,
-        "string": 86.3,
-        "needle": 100.0,
-        "echo": 100.0
-      },
-      "movement": 1.0,
-      "movement_flag": false,
       "price_in_per_m": 0.175,
       "price_out_per_m": 0.625,
-      "state": "no_data",
-      "nightly_exact": [
-        {
-          "date": "2026-11-10",
-          "exact": 95.8
-        },
-        {
-          "date": "2026-11-11",
-          "exact": null
-        },
-        {
-          "date": "2026-11-12",
-          "exact": 96.3
-        },
-        {
-          "date": "2026-11-14",
-          "exact": 97.2
-        },
-        {
-          "date": "2026-11-16",
-          "exact": 96.5
-        },
-        {
-          "date": "2026-11-19",
-          "exact": 98.6
-        }
-      ]
-    },
-    {
-      "tag": "sail-research/us",
-      "provider_slug": "sail-research",
-      "declared_quant": "fp4",
-      "declared_changed": false,
-      "nights": 6,
-      "exact": 96.9,
-      "exact_sd": 1.0,
-      "string": 88.2,
-      "self_agree": 96.0,
-      "families": {
-        "math": 97.9,
-        "json": 100.0,
-        "string": 88.2,
-        "needle": 100.0,
-        "echo": 100.0
-      },
-      "movement": 0.5,
-      "movement_flag": false,
-      "price_in_per_m": 0.175,
-      "price_out_per_m": 0.625,
-      "state": "no_data",
+      "state": "within",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -1123,6 +1060,10 @@
         {
           "date": "2026-11-19",
           "exact": 97.9
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 97.9
         }
       ]
     },
@@ -1131,23 +1072,23 @@
       "provider_slug": "friendli",
       "declared_quant": "unknown",
       "declared_changed": false,
-      "nights": 6,
-      "exact": 96.8,
+      "nights": 7,
+      "exact": 97.0,
       "exact_sd": 1.4,
-      "string": 85.8,
-      "self_agree": 94.7,
+      "string": 87.5,
+      "self_agree": 95.6,
       "families": {
-        "math": 99.6,
+        "math": 99.3,
         "json": 100.0,
-        "string": 85.8,
+        "string": 87.5,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": 0.7,
+      "movement": 0.9,
       "movement_flag": false,
       "price_in_per_m": 0.15,
       "price_out_per_m": 0.5,
-      "state": "no_data",
+      "state": "within",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -1172,6 +1113,145 @@
         {
           "date": "2026-11-19",
           "exact": 99.3
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 97.9
+        }
+      ]
+    },
+    {
+      "tag": "sail-research/fp4",
+      "provider_slug": "sail-research",
+      "declared_quant": "fp4",
+      "declared_changed": false,
+      "nights": 7,
+      "exact": 97.0,
+      "exact_sd": 1.0,
+      "string": 87.2,
+      "self_agree": 96.8,
+      "families": {
+        "math": 98.2,
+        "json": 100.0,
+        "string": 87.2,
+        "needle": 100.0,
+        "echo": 100.0
+      },
+      "movement": 1.2,
+      "movement_flag": false,
+      "price_in_per_m": 0.175,
+      "price_out_per_m": 0.625,
+      "state": "within",
+      "nightly_exact": [
+        {
+          "date": "2026-11-10",
+          "exact": 95.8
+        },
+        {
+          "date": "2026-11-11",
+          "exact": null
+        },
+        {
+          "date": "2026-11-12",
+          "exact": 96.3
+        },
+        {
+          "date": "2026-11-14",
+          "exact": 97.2
+        },
+        {
+          "date": "2026-11-16",
+          "exact": 96.5
+        },
+        {
+          "date": "2026-11-19",
+          "exact": 98.6
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 97.9
+        }
+      ]
+    },
+    {
+      "tag": "baidu/fp8",
+      "provider_slug": "baidu",
+      "declared_quant": "fp8",
+      "declared_changed": false,
+      "nights": 2,
+      "exact": 96.8,
+      "exact_sd": 1.1,
+      "string": 91.7,
+      "self_agree": 95.8,
+      "families": {
+        "math": 97.9,
+        "json": 100.0,
+        "string": 91.7,
+        "needle": 100.0,
+        "echo": 100.0
+      },
+      "movement": 0.0,
+      "movement_flag": false,
+      "price_in_per_m": 0.15,
+      "price_out_per_m": 0.5,
+      "state": "no_data",
+      "nightly_exact": [
+        {
+          "date": "2026-11-19",
+          "exact": 97.9
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 95.8
+        }
+      ]
+    },
+    {
+      "tag": "kt",
+      "provider_slug": "kt",
+      "declared_quant": "unknown",
+      "declared_changed": false,
+      "nights": 6,
+      "exact": 96.7,
+      "exact_sd": 3.3,
+      "string": 93.3,
+      "self_agree": 95.6,
+      "families": {
+        "math": 96.7,
+        "json": 100.0,
+        "string": 93.3,
+        "needle": 100.0,
+        "echo": 100.0
+      },
+      "movement": -2.1,
+      "movement_flag": false,
+      "price_in_per_m": 0.15,
+      "price_out_per_m": 0.5,
+      "state": "no_data",
+      "nightly_exact": [
+        {
+          "date": "2026-11-11",
+          "exact": null
+        },
+        {
+          "date": "2026-11-12",
+          "exact": 97.2
+        },
+        {
+          "date": "2026-11-14",
+          "exact": 97.9
+        },
+        {
+          "date": "2026-11-16",
+          "exact": 99.3
+        },
+        {
+          "date": "2026-11-19",
+          "exact": 98.6
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 90.3
         }
       ]
     },
@@ -1180,23 +1260,23 @@
       "provider_slug": "nebius",
       "declared_quant": "fp4",
       "declared_changed": false,
-      "nights": 6,
-      "exact": 96.8,
+      "nights": 7,
+      "exact": 96.6,
       "exact_sd": 1.2,
-      "string": 85.9,
-      "self_agree": 97.8,
+      "string": 86.8,
+      "self_agree": 97.7,
       "families": {
-        "math": 97.9,
+        "math": 97.2,
         "json": 100.0,
-        "string": 85.9,
+        "string": 86.8,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": -0.2,
+      "movement": 0.2,
       "movement_flag": false,
       "price_in_per_m": 0.15,
       "price_out_per_m": 0.5,
-      "state": "no_data",
+      "state": "within",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -1221,6 +1301,10 @@
         {
           "date": "2026-11-19",
           "exact": 97.2
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 95.8
         }
       ]
     },
@@ -1229,23 +1313,23 @@
       "provider_slug": "crusoe",
       "declared_quant": "fp4",
       "declared_changed": false,
-      "nights": 6,
-      "exact": 96.4,
-      "exact_sd": 1.9,
-      "string": 86.7,
-      "self_agree": 94.4,
+      "nights": 7,
+      "exact": 96.3,
+      "exact_sd": 1.7,
+      "string": 88.2,
+      "self_agree": 94.6,
       "families": {
-        "math": 97.5,
+        "math": 97.6,
         "json": 100.0,
-        "string": 86.7,
+        "string": 88.2,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": -0.9,
+      "movement": -1.8,
       "movement_flag": false,
       "price_in_per_m": 0.15,
       "price_out_per_m": 0.5,
-      "state": "no_data",
+      "state": "within",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -1270,6 +1354,63 @@
         {
           "date": "2026-11-19",
           "exact": 97.2
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 95.8
+        }
+      ]
+    },
+    {
+      "tag": "baseten/fp8",
+      "provider_slug": "baseten",
+      "declared_quant": "fp8",
+      "declared_changed": false,
+      "nights": 7,
+      "exact": 96.1,
+      "exact_sd": 1.3,
+      "string": 88.2,
+      "self_agree": 96.2,
+      "families": {
+        "math": 98.2,
+        "json": 100.0,
+        "string": 88.2,
+        "needle": 100.0,
+        "echo": 100.0
+      },
+      "movement": 1.2,
+      "movement_flag": false,
+      "price_in_per_m": 0.15,
+      "price_out_per_m": 0.5,
+      "state": "within",
+      "nightly_exact": [
+        {
+          "date": "2026-11-10",
+          "exact": 94.4
+        },
+        {
+          "date": "2026-11-11",
+          "exact": null
+        },
+        {
+          "date": "2026-11-12",
+          "exact": 95.8
+        },
+        {
+          "date": "2026-11-14",
+          "exact": 96.5
+        },
+        {
+          "date": "2026-11-16",
+          "exact": 95.1
+        },
+        {
+          "date": "2026-11-19",
+          "exact": 96.5
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 98.6
         }
       ]
     },
@@ -1278,23 +1419,23 @@
       "provider_slug": "coreweave",
       "declared_quant": "nvfp4",
       "declared_changed": false,
-      "nights": 6,
-      "exact": 95.9,
-      "exact_sd": 1.1,
-      "string": 88.3,
-      "self_agree": 95.0,
+      "nights": 7,
+      "exact": 96.0,
+      "exact_sd": 1.0,
+      "string": 89.6,
+      "self_agree": 94.4,
       "families": {
-        "math": 98.3,
+        "math": 98.2,
         "json": 100.0,
-        "string": 88.3,
+        "string": 89.6,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": 0.2,
+      "movement": 0.9,
       "movement_flag": false,
       "price_in_per_m": 0.12,
       "price_out_per_m": 0.38,
-      "state": "no_data",
+      "state": "within",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -1319,6 +1460,10 @@
         {
           "date": "2026-11-19",
           "exact": 95.8
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 96.5
         }
       ]
     },
@@ -1341,8 +1486,8 @@
       },
       "movement": 1.8,
       "movement_flag": false,
-      "price_in_per_m": 0.15,
-      "price_out_per_m": 0.5,
+      "price_in_per_m": null,
+      "price_out_per_m": null,
       "state": "untrusted",
       "nightly_exact": [
         {
@@ -1373,55 +1518,6 @@
       "graded_state": "no_data",
       "trust_reason": "open incident: Together 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
       "trust_source_url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
-    },
-    {
-      "tag": "baseten/fp8",
-      "provider_slug": "baseten",
-      "declared_quant": "fp8",
-      "declared_changed": false,
-      "nights": 6,
-      "exact": 95.7,
-      "exact_sd": 0.8,
-      "string": 86.7,
-      "self_agree": 96.1,
-      "families": {
-        "math": 98.3,
-        "json": 100.0,
-        "string": 86.7,
-        "needle": 100.0,
-        "echo": 100.0
-      },
-      "movement": 0.5,
-      "movement_flag": false,
-      "price_in_per_m": 0.15,
-      "price_out_per_m": 0.5,
-      "state": "no_data",
-      "nightly_exact": [
-        {
-          "date": "2026-11-10",
-          "exact": 94.4
-        },
-        {
-          "date": "2026-11-11",
-          "exact": null
-        },
-        {
-          "date": "2026-11-12",
-          "exact": 95.8
-        },
-        {
-          "date": "2026-11-14",
-          "exact": 96.5
-        },
-        {
-          "date": "2026-11-16",
-          "exact": 95.1
-        },
-        {
-          "date": "2026-11-19",
-          "exact": 96.5
-        }
-      ]
     },
     {
       "tag": "atlas-cloud/fp8",
@@ -1476,23 +1572,23 @@
       "provider_slug": "mistral",
       "declared_quant": "unknown",
       "declared_changed": false,
-      "nights": 6,
+      "nights": 7,
       "exact": 95.0,
-      "exact_sd": 1.0,
+      "exact_sd": 0.9,
       "string": 83.3,
-      "self_agree": 97.2,
+      "self_agree": 97.5,
       "families": {
-        "math": 97.5,
+        "math": 97.6,
         "json": 100.0,
         "string": 83.3,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": 0.4,
+      "movement": 0.7,
       "movement_flag": false,
       "price_in_per_m": 0.15,
       "price_out_per_m": 0.5,
-      "state": "no_data",
+      "state": "within",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -1517,6 +1613,63 @@
         {
           "date": "2026-11-19",
           "exact": 94.4
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 95.1
+        }
+      ]
+    },
+    {
+      "tag": "tenstorrent/fp8",
+      "provider_slug": "tenstorrent",
+      "declared_quant": "fp8",
+      "declared_changed": false,
+      "nights": 7,
+      "exact": 95.0,
+      "exact_sd": 2.2,
+      "string": 79.3,
+      "self_agree": 95.6,
+      "families": {
+        "math": 95.9,
+        "json": 99.2,
+        "string": 79.3,
+        "needle": 100.0,
+        "echo": 100.0
+      },
+      "movement": 3.5,
+      "movement_flag": false,
+      "price_in_per_m": 0.075,
+      "price_out_per_m": 0.25,
+      "state": "within",
+      "nightly_exact": [
+        {
+          "date": "2026-11-10",
+          "exact": 92.7
+        },
+        {
+          "date": "2026-11-11",
+          "exact": null
+        },
+        {
+          "date": "2026-11-12",
+          "exact": 95.5
+        },
+        {
+          "date": "2026-11-14",
+          "exact": 91.7
+        },
+        {
+          "date": "2026-11-16",
+          "exact": 95.4
+        },
+        {
+          "date": "2026-11-19",
+          "exact": 97.6
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 97.3
         }
       ]
     },
@@ -1525,15 +1678,15 @@
       "provider_slug": "fireworks",
       "declared_quant": "unknown",
       "declared_changed": false,
-      "nights": 6,
-      "exact": 94.9,
+      "nights": 7,
+      "exact": 94.7,
       "exact_sd": 0.9,
-      "string": 76.3,
-      "self_agree": 94.0,
+      "string": 75.4,
+      "self_agree": 93.8,
       "families": {
-        "math": 99.2,
+        "math": 99.0,
         "json": 100.0,
-        "string": 76.3,
+        "string": 75.4,
         "needle": 100.0,
         "echo": 100.0
       },
@@ -1541,7 +1694,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.15,
       "price_out_per_m": 0.5,
-      "state": "no_data",
+      "state": "within",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -1566,6 +1719,10 @@
         {
           "date": "2026-11-19",
           "exact": 95.8
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 93.8
         }
       ]
     },
@@ -1588,8 +1745,8 @@
       },
       "movement": 0.0,
       "movement_flag": false,
-      "price_in_per_m": 0.084,
-      "price_out_per_m": 0.28,
+      "price_in_per_m": null,
+      "price_out_per_m": null,
       "state": "untrusted",
       "nightly_exact": [
         {
@@ -1622,68 +1779,19 @@
       "trust_source_url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
     },
     {
-      "tag": "tenstorrent/fp8",
-      "provider_slug": "tenstorrent",
-      "declared_quant": "fp8",
-      "declared_changed": false,
-      "nights": 6,
-      "exact": 94.6,
-      "exact_sd": 2.1,
-      "string": 77.7,
-      "self_agree": 94.0,
-      "families": {
-        "math": 95.6,
-        "json": 99.0,
-        "string": 77.7,
-        "needle": 100.0,
-        "echo": 100.0
-      },
-      "movement": 1.6,
-      "movement_flag": false,
-      "price_in_per_m": 0.075,
-      "price_out_per_m": 0.25,
-      "state": "no_data",
-      "nightly_exact": [
-        {
-          "date": "2026-11-10",
-          "exact": 92.7
-        },
-        {
-          "date": "2026-11-11",
-          "exact": null
-        },
-        {
-          "date": "2026-11-12",
-          "exact": 95.5
-        },
-        {
-          "date": "2026-11-14",
-          "exact": 91.7
-        },
-        {
-          "date": "2026-11-16",
-          "exact": 95.4
-        },
-        {
-          "date": "2026-11-19",
-          "exact": 97.6
-        }
-      ]
-    },
-    {
       "tag": "fireworks/us",
       "provider_slug": "fireworks",
       "declared_quant": "unknown",
       "declared_changed": false,
-      "nights": 3,
-      "exact": 94.2,
-      "exact_sd": 1.1,
-      "string": 77.6,
-      "self_agree": 93.3,
+      "nights": 4,
+      "exact": 94.6,
+      "exact_sd": 1.2,
+      "string": 79.0,
+      "self_agree": 93.1,
       "families": {
-        "math": 98.6,
+        "math": 98.4,
         "json": 100.0,
-        "string": 77.6,
+        "string": 79.0,
         "needle": 100.0,
         "echo": 100.0
       },
@@ -1704,6 +1812,63 @@
         {
           "date": "2026-11-19",
           "exact": 93.1
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 95.8
+        }
+      ]
+    },
+    {
+      "tag": "siliconflow/fp8",
+      "provider_slug": "siliconflow",
+      "declared_quant": "fp8",
+      "declared_changed": false,
+      "nights": 7,
+      "exact": 94.4,
+      "exact_sd": 1.2,
+      "string": 78.5,
+      "self_agree": 92.9,
+      "families": {
+        "math": 99.3,
+        "json": 100.0,
+        "string": 78.5,
+        "needle": 100.0,
+        "echo": 99.3
+      },
+      "movement": -0.4,
+      "movement_flag": false,
+      "price_in_per_m": 0.1,
+      "price_out_per_m": 0.4,
+      "state": "within",
+      "nightly_exact": [
+        {
+          "date": "2026-11-10",
+          "exact": 93.8
+        },
+        {
+          "date": "2026-11-11",
+          "exact": null
+        },
+        {
+          "date": "2026-11-12",
+          "exact": 95.1
+        },
+        {
+          "date": "2026-11-14",
+          "exact": 95.1
+        },
+        {
+          "date": "2026-11-16",
+          "exact": 93.1
+        },
+        {
+          "date": "2026-11-19",
+          "exact": 93.1
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 96.5
         }
       ]
     },
@@ -1712,23 +1877,23 @@
       "provider_slug": "makora",
       "declared_quant": "fp4",
       "declared_changed": false,
-      "nights": 6,
-      "exact": 94.2,
-      "exact_sd": 1.4,
-      "string": 78.3,
+      "nights": 7,
+      "exact": 94.1,
+      "exact_sd": 1.3,
+      "string": 79.1,
       "self_agree": 91.9,
       "families": {
-        "math": 98.3,
+        "math": 97.9,
         "json": 100.0,
-        "string": 78.3,
+        "string": 79.1,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": -1.4,
+      "movement": -1.1,
       "movement_flag": false,
       "price_in_per_m": 0.14,
-      "price_out_per_m": 0.24,
-      "state": "no_data",
+      "price_out_per_m": 0.29,
+      "state": "within",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -1753,35 +1918,39 @@
         {
           "date": "2026-11-19",
           "exact": 94.4
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 93.8
         }
       ]
     },
     {
-      "tag": "siliconflow/fp8",
-      "provider_slug": "siliconflow",
-      "declared_quant": "fp8",
+      "tag": "digitalocean",
+      "provider_slug": "digitalocean",
+      "declared_quant": "unknown",
       "declared_changed": false,
-      "nights": 6,
-      "exact": 94.0,
-      "exact_sd": 0.9,
-      "string": 77.5,
-      "self_agree": 92.8,
+      "nights": 7,
+      "exact": 93.8,
+      "exact_sd": 4.5,
+      "string": 89.6,
+      "self_agree": 91.0,
       "families": {
-        "math": 99.2,
+        "math": 97.6,
         "json": 100.0,
-        "string": 77.5,
+        "string": 89.6,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": -0.9,
+      "movement": 7.8,
       "movement_flag": false,
-      "price_in_per_m": 0.1,
-      "price_out_per_m": 0.4,
-      "state": "no_data",
+      "price_in_per_m": 0.0975,
+      "price_out_per_m": 0.325,
+      "state": "within",
       "nightly_exact": [
         {
           "date": "2026-11-10",
-          "exact": 93.8
+          "exact": 90.3
         },
         {
           "date": "2026-11-11",
@@ -1789,19 +1958,23 @@
         },
         {
           "date": "2026-11-12",
-          "exact": 95.1
+          "exact": 93.1
         },
         {
           "date": "2026-11-14",
-          "exact": 95.1
+          "exact": 86.1
         },
         {
           "date": "2026-11-16",
-          "exact": 93.1
+          "exact": 97.9
         },
         {
           "date": "2026-11-19",
-          "exact": 93.1
+          "exact": 98.6
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 96.5
         }
       ]
     },
@@ -1838,76 +2011,27 @@
       "trust_source_url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
     },
     {
-      "tag": "digitalocean",
-      "provider_slug": "digitalocean",
-      "declared_quant": "unknown",
-      "declared_changed": false,
-      "nights": 6,
-      "exact": 93.2,
-      "exact_sd": 4.7,
-      "string": 88.3,
-      "self_agree": 89.2,
-      "families": {
-        "math": 98.3,
-        "json": 100.0,
-        "string": 88.3,
-        "needle": 100.0,
-        "echo": 100.0
-      },
-      "movement": 4.4,
-      "movement_flag": false,
-      "price_in_per_m": 0.1125,
-      "price_out_per_m": 0.375,
-      "state": "no_data",
-      "nightly_exact": [
-        {
-          "date": "2026-11-10",
-          "exact": 90.3
-        },
-        {
-          "date": "2026-11-11",
-          "exact": null
-        },
-        {
-          "date": "2026-11-12",
-          "exact": 93.1
-        },
-        {
-          "date": "2026-11-14",
-          "exact": 86.1
-        },
-        {
-          "date": "2026-11-16",
-          "exact": 97.9
-        },
-        {
-          "date": "2026-11-19",
-          "exact": 98.6
-        }
-      ]
-    },
-    {
       "tag": "modal/fp4",
       "provider_slug": "modal",
       "declared_quant": "fp4",
       "declared_changed": false,
-      "nights": 6,
-      "exact": 92.9,
-      "exact_sd": 2.2,
-      "string": 76.7,
-      "self_agree": 91.9,
+      "nights": 7,
+      "exact": 93.5,
+      "exact_sd": 2.4,
+      "string": 79.9,
+      "self_agree": 92.7,
       "families": {
-        "math": 96.6,
+        "math": 96.5,
         "json": 100.0,
-        "string": 76.7,
+        "string": 79.9,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": -1.4,
+      "movement": -0.0,
       "movement_flag": false,
       "price_in_per_m": 0.15,
       "price_out_per_m": 0.5,
-      "state": "no_data",
+      "state": "within",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -1932,6 +2056,10 @@
         {
           "date": "2026-11-19",
           "exact": 95.1
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 96.5
         }
       ]
     },
@@ -1940,15 +2068,15 @@
       "provider_slug": "z-ai",
       "declared_quant": "fp8",
       "declared_changed": false,
-      "nights": 6,
+      "nights": 7,
       "exact": 92.5,
-      "exact_sd": 1.3,
-      "string": 82.5,
-      "self_agree": 88.6,
+      "exact_sd": 1.2,
+      "string": 83.3,
+      "self_agree": 87.7,
       "families": {
-        "math": 98.7,
+        "math": 98.6,
         "json": 100.0,
-        "string": 82.5,
+        "string": 83.3,
         "needle": 100.0,
         "echo": 100.0
       },
@@ -1956,7 +2084,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.15,
       "price_out_per_m": 0.5,
-      "state": "no_data",
+      "state": "within",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -1981,104 +2109,10 @@
         {
           "date": "2026-11-19",
           "exact": 91.7
-        }
-      ]
-    },
-    {
-      "tag": "inference-net/fp4",
-      "provider_slug": "inference-net",
-      "declared_quant": "fp4",
-      "declared_changed": false,
-      "nights": 6,
-      "exact": 91.4,
-      "exact_sd": 2.2,
-      "string": 80.8,
-      "self_agree": 86.4,
-      "families": {
-        "math": 96.7,
-        "json": 100.0,
-        "string": 80.8,
-        "needle": 100.0,
-        "echo": 98.3
-      },
-      "movement": -1.1,
-      "movement_flag": false,
-      "price_in_per_m": 0.108,
-      "price_out_per_m": 0.35,
-      "state": "no_data",
-      "nightly_exact": [
-        {
-          "date": "2026-11-10",
-          "exact": 95.1
         },
         {
-          "date": "2026-11-11",
-          "exact": null
-        },
-        {
-          "date": "2026-11-12",
-          "exact": 91.0
-        },
-        {
-          "date": "2026-11-14",
-          "exact": 88.2
-        },
-        {
-          "date": "2026-11-16",
-          "exact": 91.0
-        },
-        {
-          "date": "2026-11-19",
-          "exact": 91.7
-        }
-      ]
-    },
-    {
-      "tag": "inference-net/us",
-      "provider_slug": "inference-net",
-      "declared_quant": "fp4",
-      "declared_changed": false,
-      "nights": 6,
-      "exact": 90.2,
-      "exact_sd": 1.2,
-      "string": 82.5,
-      "self_agree": 85.6,
-      "families": {
-        "math": 97.1,
-        "json": 98.3,
-        "string": 82.5,
-        "needle": 100.0,
-        "echo": 99.2
-      },
-      "movement": 0.7,
-      "movement_flag": false,
-      "price_in_per_m": 0.108,
-      "price_out_per_m": 0.35,
-      "state": "no_data",
-      "nightly_exact": [
-        {
-          "date": "2026-11-10",
-          "exact": 90.3
-        },
-        {
-          "date": "2026-11-11",
-          "exact": null
-        },
-        {
-          "date": "2026-11-12",
-          "exact": 88.2
-        },
-        {
-          "date": "2026-11-14",
-          "exact": 91.7
-        },
-        {
-          "date": "2026-11-16",
-          "exact": 89.6
-        },
-        {
-          "date": "2026-11-19",
-          "exact": 91.0
+          "date": "2026-11-23",
+          "exact": 92.4
         }
       ]
     },
@@ -2087,23 +2121,23 @@
       "provider_slug": "reka",
       "declared_quant": "unknown",
       "declared_changed": false,
-      "nights": 6,
-      "exact": 89.7,
-      "exact_sd": 4.1,
-      "string": 84.1,
-      "self_agree": 93.8,
+      "nights": 7,
+      "exact": 91.2,
+      "exact_sd": 5.0,
+      "string": 86.8,
+      "self_agree": 94.5,
       "families": {
-        "math": 99.2,
+        "math": 98.6,
         "json": 100.0,
-        "string": 84.1,
+        "string": 86.8,
         "needle": 100.0,
         "echo": 100.0
       },
-      "movement": 3.0,
+      "movement": 6.5,
       "movement_flag": false,
       "price_in_per_m": 0.12,
       "price_out_per_m": 0.3,
-      "state": "no_data",
+      "state": "within",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -2128,6 +2162,116 @@
         {
           "date": "2026-11-19",
           "exact": 97.9
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 98.6
+        }
+      ]
+    },
+    {
+      "tag": "inference-net/fp4",
+      "provider_slug": "inference-net",
+      "declared_quant": "fp4",
+      "declared_changed": false,
+      "nights": 7,
+      "exact": 91.1,
+      "exact_sd": 2.1,
+      "string": 82.6,
+      "self_agree": 86.0,
+      "families": {
+        "math": 97.2,
+        "json": 100.0,
+        "string": 82.6,
+        "needle": 100.0,
+        "echo": 97.9
+      },
+      "movement": -0.7,
+      "movement_flag": false,
+      "price_in_per_m": 0.108,
+      "price_out_per_m": 0.35,
+      "state": "within",
+      "nightly_exact": [
+        {
+          "date": "2026-11-10",
+          "exact": 95.1
+        },
+        {
+          "date": "2026-11-11",
+          "exact": null
+        },
+        {
+          "date": "2026-11-12",
+          "exact": 91.0
+        },
+        {
+          "date": "2026-11-14",
+          "exact": 88.2
+        },
+        {
+          "date": "2026-11-16",
+          "exact": 91.0
+        },
+        {
+          "date": "2026-11-19",
+          "exact": 91.7
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 89.6
+        }
+      ]
+    },
+    {
+      "tag": "inference-net/us",
+      "provider_slug": "inference-net",
+      "declared_quant": "fp4",
+      "declared_changed": false,
+      "nights": 7,
+      "exact": 89.6,
+      "exact_sd": 1.7,
+      "string": 84.0,
+      "self_agree": 84.4,
+      "families": {
+        "math": 97.2,
+        "json": 98.6,
+        "string": 84.0,
+        "needle": 100.0,
+        "echo": 99.3
+      },
+      "movement": -0.9,
+      "movement_flag": false,
+      "price_in_per_m": 0.108,
+      "price_out_per_m": 0.35,
+      "state": "within",
+      "nightly_exact": [
+        {
+          "date": "2026-11-10",
+          "exact": 90.3
+        },
+        {
+          "date": "2026-11-11",
+          "exact": null
+        },
+        {
+          "date": "2026-11-12",
+          "exact": 88.2
+        },
+        {
+          "date": "2026-11-14",
+          "exact": 91.7
+        },
+        {
+          "date": "2026-11-16",
+          "exact": 89.6
+        },
+        {
+          "date": "2026-11-19",
+          "exact": 91.0
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 86.8
         }
       ]
     },
@@ -2150,9 +2294,9 @@
       },
       "movement": -5.5,
       "movement_flag": false,
-      "price_in_per_m": 0.042,
-      "price_out_per_m": 0.184,
-      "state": "no_data",
+      "price_in_per_m": null,
+      "price_out_per_m": null,
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -2178,30 +2322,33 @@
           "date": "2026-11-19",
           "exact": 85.4
         }
-      ]
+      ],
+      "graded_state": "no_data",
+      "trust_reason": "delisted 2026-11-23",
+      "trust_source_url": "https://openrouter.ai/api/v1/models/z-ai/glm-5.3-flash/endpoints"
     },
     {
       "tag": "wafer/nvfp4",
       "provider_slug": "wafer",
       "declared_quant": "nvfp4",
       "declared_changed": false,
-      "nights": 6,
-      "exact": 85.0,
-      "exact_sd": 4.7,
-      "string": 78.2,
-      "self_agree": 81.9,
+      "nights": 7,
+      "exact": 84.5,
+      "exact_sd": 4.5,
+      "string": 79.0,
+      "self_agree": 82.0,
       "families": {
-        "math": 93.7,
+        "math": 93.8,
         "json": 100.0,
-        "string": 78.2,
+        "string": 79.0,
         "needle": 100.0,
-        "echo": 97.5
+        "echo": 97.2
       },
-      "movement": -4.2,
+      "movement": -2.8,
       "movement_flag": false,
       "price_in_per_m": 0.065,
       "price_out_per_m": 0.24,
-      "state": "no_data",
+      "state": "outside",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -2226,6 +2373,10 @@
         {
           "date": "2026-11-19",
           "exact": 85.4
+        },
+        {
+          "date": "2026-11-23",
+          "exact": 81.9
         }
       ]
     },
@@ -2319,13 +2470,23 @@
     },
     {
       "tag": "river",
-      "reason": "delisted 2026-11-11; listed again 2026-11-14, 3 of 7 fresh nights",
+      "reason": "delisted 2026-11-11; listed again 2026-11-14, 4 of 7 fresh nights",
       "source_url": "https://openrouter.ai/api/v1/models/z-ai/glm-5.3-flash/endpoints"
     },
     {
       "tag": "together",
       "reason": "open incident: Together 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
       "source_url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
+    },
+    {
+      "tag": "together/us",
+      "reason": "open incident: Together 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+      "source_url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
+    },
+    {
+      "tag": "wafer/us",
+      "reason": "delisted 2026-11-23",
+      "source_url": "https://openrouter.ai/api/v1/models/z-ai/glm-5.3-flash/endpoints"
     }
   ],
   "footer": "Numbers against a stated reference. Not a claim about intent."

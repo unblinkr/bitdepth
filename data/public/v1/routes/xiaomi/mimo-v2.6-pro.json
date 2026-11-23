@@ -2,33 +2,58 @@
   "schema": "bitdepth.routelist.v1",
   "model": "xiaomi/mimo-v2.6-pro",
   "label": "mimo-v2.6-pro",
-  "as_of": "2026-11-22",
+  "as_of": "2026-11-23",
   "rule": "state within and 7+ nights (the check_before_route rule) and no trust flag (delisted, lost ZDR, open incident); allowed endpoints ordered by blended price, cheapest first",
-  "allow": [],
-  "allowed": [],
-  "excluded": [
+  "allow": [
+    "deepinfra/fp8",
+    "streamlake",
+    "xiaomi/fp8",
+    "primalabs/fp8"
+  ],
+  "allowed": [
     {
       "tag": "deepinfra/fp8",
-      "why": "only 6 nights; 7 needed"
-    },
-    {
-      "tag": "gmicloud/bf16",
-      "why": "open incident: GMICloud 2026-11-21 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
-    },
-    {
-      "tag": "primalabs/fp8",
-      "why": "only 6 nights; 7 needed"
+      "declared_quant": "fp8",
+      "nights": 7,
+      "blended_price_per_m": 0.486
     },
     {
       "tag": "streamlake",
-      "why": "only 6 nights; 7 needed"
+      "declared_quant": "unknown",
+      "nights": 7,
+      "blended_price_per_m": 0.5437
     },
     {
       "tag": "xiaomi/fp8",
-      "why": "only 6 nights; 7 needed"
+      "declared_quant": "fp8",
+      "nights": 7,
+      "blended_price_per_m": 0.5437
+    },
+    {
+      "tag": "primalabs/fp8",
+      "declared_quant": "fp8",
+      "nights": 7,
+      "blended_price_per_m": 3.3
     }
   ],
-  "openrouter": null,
+  "excluded": [
+    {
+      "tag": "gmicloud/bf16",
+      "why": "open incident: GMICloud 2026-11-21 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
+    }
+  ],
+  "openrouter": {
+    "provider": {
+      "only": [
+        "deepinfra/fp8",
+        "streamlake",
+        "xiaomi/fp8",
+        "primalabs/fp8"
+      ],
+      "sort": "price",
+      "allow_fallbacks": true
+    }
+  },
   "usage": "Put openrouter.provider in the request body. Fallbacks stay on and move only among the allowed endpoints. An account-wide allowed providers list in OpenRouter settings also applies; if the two do not overlap, requests fail.",
   "method_url": "https://bitdepth.dev/method",
   "footer": "Numbers against a stated reference. Not a claim about intent."

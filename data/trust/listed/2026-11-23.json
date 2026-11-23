@@ -125,10 +125,6 @@
     "provider_name": "DeepInfra"
    },
    {
-    "tag": "digitalocean",
-    "provider_name": "DigitalOcean"
-   },
-   {
     "tag": "novita/fp8",
     "provider_name": "Novita"
    },
@@ -223,6 +219,10 @@
     "provider_name": "Fireworks"
    },
    {
+    "tag": "google-vertex/global",
+    "provider_name": "Google"
+   },
+   {
     "tag": "inceptron/fp4",
     "provider_name": "Inceptron"
    },
@@ -237,6 +237,10 @@
    {
     "tag": "ionstream",
     "provider_name": "Ionstream"
+   },
+   {
+    "tag": "krea/fp8",
+    "provider_name": "Krea"
    },
    {
     "tag": "makora/fp8",
@@ -336,6 +340,10 @@
    },
    {
     "tag": "together",
+    "provider_name": "Together"
+   },
+   {
+    "tag": "together/us",
     "provider_name": "Together"
    },
    {
@@ -507,15 +515,15 @@
     "provider_name": "Together"
    },
    {
+    "tag": "together/us",
+    "provider_name": "Together"
+   },
+   {
     "tag": "venice",
     "provider_name": "Venice"
    },
    {
     "tag": "wafer/nvfp4",
-    "provider_name": "Wafer"
-   },
-   {
-    "tag": "wafer/us",
     "provider_name": "Wafer"
    },
    {
