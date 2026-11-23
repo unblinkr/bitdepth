@@ -155,5 +155,6 @@
     }
   ],
   "first_look_until": null,
+  "untrusted": [],
   "footer": "Numbers against a stated reference. Not a claim about intent."
 }

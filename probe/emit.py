@@ -22,6 +22,13 @@ nights (it is far from the pack and may also be inconsistent with itself, which 
 gap test alone cannot see). Otherwise `within`. Fewer than MIN_NIGHTS nights is
 `no_data`. A trend date more than STALE_DAYS older than the emit date is `stale`.
 
+Trust gate (probe/trust.py): an endpoint that is delisted, lost ZDR, or whose provider
+has an open incident gets state `untrusted`, keeps its past grade under `graded_state`,
+carries `trust_reason` and `trust_source_url`, and is never routable. The model file
+lists every flagged tag under `untrusted`, graded or not, and the route list puts each
+under `excluded` with the reason word for word. Trust reads data/trust/ and
+data/incidents.json next to the runs folder, files only, latest state on file.
+
 Numbers against a stated reference. Not a claim about intent.
 """
 
@@ -34,6 +41,7 @@ from datetime import date as Date
 from pathlib import Path
 from typing import Any
 
+from probe import trust as trust_mod
 from probe.packet import load_prices, load_trend
 
 SCHEMA = "bitdepth.or.v1"
@@ -136,7 +144,23 @@ def endpoint_row(e: dict[str, Any], prices: dict[str, tuple[float, float]], as_o
     }
 
 
-def model_doc(m: dict[str, Any], prices: dict[str, tuple[float, float]], as_of: str, nights: int, today: str) -> dict[str, Any]:
+def apply_trust(slug: str, rows: list[dict[str, Any]], data_dir: Path, runs_dir: Path) -> list[dict[str, Any]]:
+    """Mark flagged rows untrusted, in place, and return every flagged tag with its reason
+    and source link. Past grades stay under graded_state."""
+    fresh = trust_mod.fresh_nights_from_rows(rows, slug, data_dir, runs_dir)
+    flags = trust_mod.trust_flags(slug, data_dir=data_dir, runs_dir=runs_dir, probing=False, fresh_nights=fresh)
+    for r in rows:
+        why = flags.get(r["tag"])
+        if why:
+            r["graded_state"] = r["state"]
+            r["state"] = "untrusted"
+            r["trust_reason"] = why
+            r["trust_source_url"] = trust_mod.source_url(why, slug)
+    return [{"tag": t, "reason": why, "source_url": trust_mod.source_url(why, slug)} for t, why in sorted(flags.items())]
+
+
+def model_doc(m: dict[str, Any], prices: dict[str, tuple[float, float]], as_of: str, nights: int, today: str,
+              trust_dirs: tuple[Path, Path] | None = None) -> dict[str, Any]:
     fams = m.get("families", {})
     rows = [endpoint_row(e, prices, as_of, today) for e in m["endpoints"]]
     apply_floor(rows, primary_columns(m["slug"], fams)[0], FLOOR_EXEMPT.get(m["slug"], frozenset()))
@@ -146,6 +170,7 @@ def model_doc(m: dict[str, Any], prices: dict[str, tuple[float, float]], as_of: 
         for r in rows:
             if r["state"] in ("within", "outside"):
                 r["state"] = "no_data"
+    untrusted = apply_trust(m["slug"], rows, *trust_dirs) if trust_dirs else []
     return {
         "schema": SCHEMA,
         "model": m["slug"],
@@ -161,13 +186,15 @@ def model_doc(m: dict[str, Any], prices: dict[str, tuple[float, float]], as_of: 
         "stable_families": [f for f in FAMILIES if (fams.get(f) or {}).get("stable")],
         "endpoints": rows,
         "first_look_until": hold if held else None,
+        "untrusted": untrusted,
         "footer": FOOTER,
     }
 
 
 ROUTE_SCHEMA = "bitdepth.routelist.v1"
 MIN_ROUTE_NIGHTS = 7  # same rule as check_before_route in site/api/mcp.js
-ROUTE_RULE = f"state within and {MIN_ROUTE_NIGHTS}+ nights (the check_before_route rule); allowed endpoints ordered by blended price, cheapest first"
+ROUTE_RULE = (f"state within and {MIN_ROUTE_NIGHTS}+ nights (the check_before_route rule) "
+              "and no trust flag (delisted, lost ZDR, open incident); allowed endpoints ordered by blended price, cheapest first")
 
 
 def blended(r: dict[str, Any]) -> float | None:
@@ -177,10 +204,14 @@ def blended(r: dict[str, Any]) -> float | None:
 
 
 def routable(r: dict[str, Any]) -> bool:
+    if r.get("state") == "untrusted" or r.get("trust_reason"):
+        return False
     return r.get("state") == "within" and (r.get("nights") or 0) >= MIN_ROUTE_NIGHTS
 
 
 def exclusion_reason(r: dict[str, Any]) -> str:
+    if r.get("trust_reason"):
+        return r["trust_reason"]
     s = r.get("state")
     if s == "outside":
         return "outside"
@@ -202,6 +233,11 @@ def route_doc(doc: dict[str, Any]) -> dict[str, Any]:
     allow = [r["tag"] for r in ok]
     excluded = [{"tag": r["tag"], "why": exclusion_reason(r) if not routable(r) else f"would also match {', '.join(shadow[r['tag']])}"}
                 for r in sorted(doc["endpoints"], key=lambda r: r["tag"]) if r["tag"] not in allow]
+    # Flagged endpoints with no graded row (never probed, or not probed since the flag) are
+    # listed too, so every flagged endpoint shows under excluded with its reason.
+    graded = {r["tag"] for r in doc["endpoints"]}
+    excluded += [{"tag": u["tag"], "why": u["reason"]} for u in doc.get("untrusted", []) if u["tag"] not in graded]
+    excluded.sort(key=lambda x: x["tag"])
     return {
         "schema": ROUTE_SCHEMA,
         "model": doc["model"],
@@ -234,7 +270,8 @@ def drift_doc(models: list[dict[str, Any]], as_of: str, window: int) -> dict[str
     return {"schema": SCHEMA, "as_of": as_of, "items": items, "footer": FOOTER}
 
 
-def build(trend_dir: Path, runs_dir: Path, date: str | None, today: str | None = None) -> dict[str, Any]:
+def build(trend_dir: Path, runs_dir: Path, date: str | None, today: str | None = None,
+          trust_dir: Path | None = None) -> dict[str, Any]:
     as_of, t = load_trend(trend_dir, date)
     today = today or as_of
     prices = load_prices(runs_dir, as_of)
@@ -249,7 +286,8 @@ def build(trend_dir: Path, runs_dir: Path, date: str | None, today: str | None =
             if older.get(lbl):
                 prices[lbl] = older[lbl]
     nights = len(t["dates"])
-    models = [model_doc(m, prices.get(m["label"], {}), as_of, nights, today) for m in t["models"]]
+    dirs = (trust_dir or runs_dir.parent, runs_dir)
+    models = [model_doc(m, prices.get(m["label"], {}), as_of, nights, today, dirs) for m in t["models"]]
     index = {
         "schema": SCHEMA,
         "as_of": as_of,

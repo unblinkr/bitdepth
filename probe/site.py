@@ -99,6 +99,7 @@ def placeholder(data: dict[str, Any], seed: int = 7) -> dict[str, Any]:
             series = e.get("nightly_exact") or []
             for pt in series:
                 pt["exact"] = round(max(30.0, min(100.0, base + rnd.uniform(-6, 6))), 1)
+        m["untrusted"] = []  # real tags; the preview shows letters only
         m["placeholder"] = True
     for it in out["drift"].get("items", []):
         it["tag"] = "host-" + rnd.choice(letters).lower()
@@ -170,6 +171,8 @@ def rows(m: dict[str, Any]) -> dict[str, list[dict[str, Any]]]:
     ranked, first, outside = [], [], []
     for e in m["endpoints"]:
         st = e.get("state")
+        if st == "untrusted":
+            continue  # shown in its own table, see untrusted_table
         if st == "within" and (e.get("nights") or 0) >= MIN_NIGHTS:
             ranked.append(e)
         elif st == "outside":
@@ -633,6 +636,23 @@ def table(m: dict[str, Any], limit: int | None = None) -> str:
     return f'<div class="tw"><table class="board">{head_}<tbody>{"".join(body)}</tbody></table></div>'
 
 
+def untrusted_table(m: dict[str, Any]) -> str:
+    """Endpoints under a trust flag (delisted, lost ZDR, open incident), with the reason and source link."""
+    items = m.get("untrusted") or []
+    if not items:
+        return ""
+    body = []
+    for u in items:
+        src = u.get("source_url")
+        link = f'<a href="{escape(src)}" rel="nofollow noopener">source</a>' if src else ""
+        body.append(f'<tr class="s-untrusted"><td class="ep">{escape(u["tag"])}</td><td>{escape(u["reason"])}</td><td>{link}</td></tr>')
+    return ('<div class="sec" id="untrusted"><div class="k">Trust gate</div><h2>Not probed, not routed.</h2>'
+            '<p class="muted">Endpoints delisted by OpenRouter, dropped from its Zero Data Retention list, or whose provider has an open incident. '
+            'Past grades are kept; these endpoints are left off every route list until the flag clears.</p>'
+            '<div class="tw"><table class="board"><thead><tr><th>Endpoint</th><th>Reason</th><th>Source</th></tr></thead>'
+            f'<tbody>{"".join(body)}</tbody></table></div></div>')
+
+
 def footer() -> str:
     return """<footer><div class="wrap">
 <div><span class="fm">Bitdepth</span>Cut your AI bill. Keep the quality.<br><br>hello@bitdepth.dev<br>Autumn Sun LLC, 30 N Gould St, Ste R, Sheridan, WY 82801</div>
@@ -772,6 +792,7 @@ def page_model(data: dict[str, Any], m: dict[str, Any], base: str, depth: str, p
 {share("tbl-" + s, name + " endpoint leaderboard", hl, url + "#table")}
 <div id="tbl-{s}">{table(m)}</div>{cite(url, as_of)}
 <p class="src">Reference: {escape(m.get("reference_rule", ""))}. State rule: {escape(m.get("state_rule", ""))}</p></div>
+{untrusted_table(m)}
 <div class="sec" id="price"><div class="k">Price against agreement</div><h2>Cheap and wrong sits low on the left.</h2>
 <div class="card chart"><div class="ch"><p class="muted">Each dot is one endpoint. Across: blended price per million tokens. Up: agreement with the reference.</p>
 {share("sc-" + s, name + ": price against agreement", hl, url + "#price")}</div>

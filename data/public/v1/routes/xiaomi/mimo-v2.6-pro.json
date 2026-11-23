@@ -3,7 +3,7 @@
   "model": "xiaomi/mimo-v2.6-pro",
   "label": "mimo-v2.6-pro",
   "as_of": "2026-11-22",
-  "rule": "state within and 7+ nights (the check_before_route rule); allowed endpoints ordered by blended price, cheapest first",
+  "rule": "state within and 7+ nights (the check_before_route rule) and no trust flag (delisted, lost ZDR, open incident); allowed endpoints ordered by blended price, cheapest first",
   "allow": [],
   "allowed": [],
   "excluded": [
@@ -13,7 +13,7 @@
     },
     {
       "tag": "gmicloud/bf16",
-      "why": "only 6 nights; 7 needed"
+      "why": "open incident: GMICloud 2026-11-21 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
     },
     {
       "tag": "primalabs/fp8",

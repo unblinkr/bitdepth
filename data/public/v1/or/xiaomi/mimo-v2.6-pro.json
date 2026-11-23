@@ -242,7 +242,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.3262,
       "price_out_per_m": 0.6525,
-      "state": "no_data",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -268,9 +268,19 @@
           "date": "2026-11-19",
           "exact": 81.0
         }
-      ]
+      ],
+      "graded_state": "no_data",
+      "trust_reason": "open incident: GMICloud 2026-11-21 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+      "trust_source_url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
     }
   ],
   "first_look_until": null,
+  "untrusted": [
+    {
+      "tag": "gmicloud/bf16",
+      "reason": "open incident: GMICloud 2026-11-21 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+      "source_url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
+    }
+  ],
   "footer": "Numbers against a stated reference. Not a claim about intent."
 }

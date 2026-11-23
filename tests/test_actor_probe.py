@@ -13,6 +13,8 @@ from actor import probe_one
 from actor.probe_one import ProbeInputError
 
 DATA = Path("data")
+# An endpoint listed on the latest night; deepinfra/fp8 left the gpt-oss-120b listing on 2026-11-16.
+TAG = "deepinfra/bf16"
 
 
 def _local_client() -> httpx.Client:
@@ -50,7 +52,7 @@ def test_ungraded_model_is_refused():
 def test_perfect_endpoint_scores_100_and_is_chargeable(ref_oss, tmp_path):
     answers = {p["id"]: ref_oss["reference"][p["id"]] for p in ref_oss["prompts"] if p["id"] in ref_oss["reference"]}
     by_prompt = {p["prompt"]: answers[p["id"]] for p in ref_oss["prompts"] if p["id"] in answers}
-    target = _target(ref_oss, "deepinfra/fp8")
+    target = _target(ref_oss, TAG)
 
     def completer(slug, tag, messages):
         return probe_one.openrouter._result("ok", "disabled", text=by_prompt[messages[0]["content"]],
@@ -64,11 +66,11 @@ def test_perfect_endpoint_scores_100_and_is_chargeable(ref_oss, tmp_path):
     assert out["footer"] == probe_one.FOOTER
     col = out["against_last_night"]["columns"]["exact"]
     assert col["rank_among_last_night"] == f"1 of {len(ref_oss['nightly_fixed'])}"
-    assert out["last_night_row"]["tag"] == "deepinfra/fp8"
+    assert out["last_night_row"]["tag"] == TAG
 
 
 def test_dead_endpoint_is_not_chargeable(ref_oss, tmp_path):
-    target = _target(ref_oss, "deepinfra/fp8")
+    target = _target(ref_oss, TAG)
     dead = lambda slug, tag, messages: probe_one.openrouter._result("error", "none", error="http 503")
     out = probe_one.run_probe(ref_oss, target, dead, tmp_path, "openrouter")
     assert out["chargeable"] is False
@@ -76,7 +78,7 @@ def test_dead_endpoint_is_not_chargeable(ref_oss, tmp_path):
 
 
 def test_misrouted_answers_are_counted(ref_oss, tmp_path):
-    target = _target(ref_oss, "deepinfra/fp8")
+    target = _target(ref_oss, TAG)
     other = lambda slug, tag, messages: probe_one.openrouter._result("ok", "disabled", text="x", provider="SomeoneElse")
     out = probe_one.run_probe(ref_oss, target, other, tmp_path, "openrouter")
     assert out["result"]["misrouted"] == out["result"]["rows"]
