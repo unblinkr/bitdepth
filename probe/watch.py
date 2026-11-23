@@ -140,7 +140,8 @@ def changes_for(specs: list[str], quantity: int, changes: list[dict[str, Any]]) 
     return [c for c in changes if any(matches(s, c) for s in watched)]
 
 
-STATE_WORDS = {"within": "within the pack", "outside": "outside the pack", "no_data": "no grade yet", "stale": "stale (no fresh night)"}
+STATE_WORDS = {"within": "within the pack", "outside": "outside the pack", "no_data": "no grade yet", "stale": "stale (no fresh night)",
+               "untrusted": "trust flag (delisted, lost ZDR or open incident), not routed"}
 MIN_NIGHTS = 7
 
 

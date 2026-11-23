@@ -3,10 +3,8 @@
   "model": "deepseek/deepseek-v4.1-flash-1017",
   "label": "deepseek-v4.1-flash-1017",
   "as_of": "2026-11-22",
-  "rule": "state within and 7+ nights (the check_before_route rule); allowed endpoints ordered by blended price, cheapest first",
+  "rule": "state within and 7+ nights (the check_before_route rule) and no trust flag (delisted, lost ZDR, open incident); allowed endpoints ordered by blended price, cheapest first",
   "allow": [
-    "sail-research/fp4",
-    "sail-research/fp4/us",
     "particle-ai/us/flex",
     "deepinfra/fp8/flex",
     "streamlake/fp8",
@@ -22,14 +20,11 @@
     "primeintellect",
     "deepinfra/fp8/priority",
     "cloudflare",
-    "dekallm",
     "inference-net/fp8",
     "inference-net/us",
     "digitalocean",
     "fireworks/spot",
     "siliconflow/fp8",
-    "novita/fp8",
-    "modelrun/fp4",
     "makora/fp8",
     "primalabs",
     "modal",
@@ -38,30 +33,12 @@
     "coreweave/fp8",
     "mistral/fp8",
     "parasail/fp8",
-    "reka",
-    "together",
     "venice/fp8",
     "fireworks/us",
     "baseten/fast",
-    "morph/fast",
-    "atlas-cloud/fp8",
-    "gmicloud/fp8",
-    "nebius/fp8",
-    "stepfun/fp8"
+    "morph/fast"
   ],
   "allowed": [
-    {
-      "tag": "sail-research/fp4",
-      "declared_quant": "fp4",
-      "nights": 16,
-      "blended_price_per_m": 0.055
-    },
-    {
-      "tag": "sail-research/fp4/us",
-      "declared_quant": "fp4",
-      "nights": 16,
-      "blended_price_per_m": 0.055
-    },
     {
       "tag": "particle-ai/us/flex",
       "declared_quant": "unknown",
@@ -153,12 +130,6 @@
       "blended_price_per_m": 0.225
     },
     {
-      "tag": "dekallm",
-      "declared_quant": "unknown",
-      "nights": 18,
-      "blended_price_per_m": 0.225
-    },
-    {
       "tag": "inference-net/fp8",
       "declared_quant": "fp8",
       "nights": 18,
@@ -187,18 +158,6 @@
       "declared_quant": "fp8",
       "nights": 18,
       "blended_price_per_m": 0.2625
-    },
-    {
-      "tag": "novita/fp8",
-      "declared_quant": "fp8",
-      "nights": 18,
-      "blended_price_per_m": 0.2888
-    },
-    {
-      "tag": "modelrun/fp4",
-      "declared_quant": "fp4",
-      "nights": 12,
-      "blended_price_per_m": 0.295
     },
     {
       "tag": "makora/fp8",
@@ -249,18 +208,6 @@
       "blended_price_per_m": 0.525
     },
     {
-      "tag": "reka",
-      "declared_quant": "unknown",
-      "nights": 14,
-      "blended_price_per_m": 0.525
-    },
-    {
-      "tag": "together",
-      "declared_quant": "unknown",
-      "nights": 18,
-      "blended_price_per_m": 0.525
-    },
-    {
       "tag": "venice/fp8",
       "declared_quant": "fp8",
       "nights": 18,
@@ -283,30 +230,6 @@
       "declared_quant": "fp8",
       "nights": 8,
       "blended_price_per_m": 1.05
-    },
-    {
-      "tag": "atlas-cloud/fp8",
-      "declared_quant": "fp8",
-      "nights": 16,
-      "blended_price_per_m": null
-    },
-    {
-      "tag": "gmicloud/fp8",
-      "declared_quant": "fp8",
-      "nights": 16,
-      "blended_price_per_m": null
-    },
-    {
-      "tag": "nebius/fp8",
-      "declared_quant": "fp8",
-      "nights": 13,
-      "blended_price_per_m": null
-    },
-    {
-      "tag": "stepfun/fp8",
-      "declared_quant": "fp8",
-      "nights": 17,
-      "blended_price_per_m": null
     }
   ],
   "excluded": [
@@ -319,24 +242,32 @@
       "why": "only 5 nights; 7 needed"
     },
     {
+      "tag": "atlas-cloud/fp8",
+      "why": "delisted 2026-11-21"
+    },
+    {
       "tag": "baidu/fp8",
       "why": "outside"
     },
     {
       "tag": "cohere",
-      "why": "only 3 nights; 7 needed"
+      "why": "delisted 2026-11-07"
     },
     {
       "tag": "decart/fp4",
-      "why": "only 1 nights; 7 needed"
+      "why": "delisted 2026-11-05"
     },
     {
       "tag": "decart/fp8",
-      "why": "only 5 nights; 7 needed"
+      "why": "delisted 2026-11-11"
     },
     {
       "tag": "deepseek",
       "why": "only 18 nights; 7 needed"
+    },
+    {
+      "tag": "dekallm",
+      "why": "delisted 2026-11-23"
     },
     {
       "tag": "fireworks",
@@ -344,7 +275,11 @@
     },
     {
       "tag": "fireworks/ultrafast",
-      "why": "only 1 nights; 7 needed"
+      "why": "delisted 2026-11-10"
+    },
+    {
+      "tag": "gmicloud/fp8",
+      "why": "open incident: GMICloud 2026-11-21 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
     },
     {
       "tag": "inceptron/fp4",
@@ -356,7 +291,11 @@
     },
     {
       "tag": "ionstream/flex",
-      "why": "outside"
+      "why": "delisted 2026-11-18"
+    },
+    {
+      "tag": "modelrun/fp4",
+      "why": "delisted 2026-11-11; listed again 2026-11-17, 6 of 7 fresh nights"
     },
     {
       "tag": "near-ai",
@@ -365,6 +304,14 @@
     {
       "tag": "nebius/fp4",
       "why": "only 5 nights; 7 needed"
+    },
+    {
+      "tag": "nebius/fp8",
+      "why": "delisted 2026-11-18"
+    },
+    {
+      "tag": "novita/fp8",
+      "why": "open incident: Novita 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
     },
     {
       "tag": "open-inference/fp4",
@@ -376,18 +323,36 @@
     },
     {
       "tag": "phala",
-      "why": "only 6 nights; 7 needed"
+      "why": "open incident: Phala 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
+    },
+    {
+      "tag": "reka",
+      "why": "delisted 2026-11-16; listed again 2026-11-20, 3 of 7 fresh nights"
     },
     {
       "tag": "relace/fast",
-      "why": "only 5 nights; 7 needed"
+      "why": "delisted 2026-11-10"
+    },
+    {
+      "tag": "sail-research/fp4",
+      "why": "delisted 2026-11-19; listed again 2026-11-21, 2 of 7 fresh nights"
+    },
+    {
+      "tag": "sail-research/fp4/us",
+      "why": "delisted 2026-11-19; listed again 2026-11-21, 2 of 7 fresh nights"
+    },
+    {
+      "tag": "stepfun/fp8",
+      "why": "delisted 2026-11-22"
+    },
+    {
+      "tag": "together",
+      "why": "open incident: Together 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
     }
   ],
   "openrouter": {
     "provider": {
       "only": [
-        "sail-research/fp4",
-        "sail-research/fp4/us",
         "particle-ai/us/flex",
         "deepinfra/fp8/flex",
         "streamlake/fp8",
@@ -403,14 +368,11 @@
         "primeintellect",
         "deepinfra/fp8/priority",
         "cloudflare",
-        "dekallm",
         "inference-net/fp8",
         "inference-net/us",
         "digitalocean",
         "fireworks/spot",
         "siliconflow/fp8",
-        "novita/fp8",
-        "modelrun/fp4",
         "makora/fp8",
         "primalabs",
         "modal",
@@ -419,16 +381,10 @@
         "coreweave/fp8",
         "mistral/fp8",
         "parasail/fp8",
-        "reka",
-        "together",
         "venice/fp8",
         "fireworks/us",
         "baseten/fast",
-        "morph/fast",
-        "atlas-cloud/fp8",
-        "gmicloud/fp8",
-        "nebius/fp8",
-        "stepfun/fp8"
+        "morph/fast"
       ],
       "sort": "price",
       "allow_fallbacks": true

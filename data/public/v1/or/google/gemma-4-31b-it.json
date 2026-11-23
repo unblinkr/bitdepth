@@ -95,7 +95,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.14,
       "price_out_per_m": 0.4,
-      "state": "no_data",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -121,7 +121,10 @@
           "date": "2026-11-19",
           "exact": 100.0
         }
-      ]
+      ],
+      "graded_state": "no_data",
+      "trust_reason": "open incident: Novita 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+      "trust_source_url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
     },
     {
       "tag": "sambanova",
@@ -340,13 +343,16 @@
       "movement_flag": false,
       "price_in_per_m": null,
       "price_out_per_m": null,
-      "state": "no_data",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-10",
           "exact": 87.9
         }
-      ]
+      ],
+      "graded_state": "no_data",
+      "trust_reason": "delisted 2026-11-11",
+      "trust_source_url": "https://openrouter.ai/api/v1/models/google/gemma-4-31b-it/endpoints"
     },
     {
       "tag": "deepinfra/fp8/priority",
@@ -516,7 +522,7 @@
       "movement_flag": false,
       "price_in_per_m": null,
       "price_out_per_m": null,
-      "state": "no_data",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -534,7 +540,10 @@
           "date": "2026-11-14",
           "exact": 83.1
         }
-      ]
+      ],
+      "graded_state": "no_data",
+      "trust_reason": "delisted 2026-11-16",
+      "trust_source_url": "https://openrouter.ai/api/v1/models/google/gemma-4-31b-it/endpoints"
     },
     {
       "tag": "modelrun/fp4",
@@ -557,7 +566,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.75,
       "price_out_per_m": 1.0,
-      "state": "no_data",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -567,7 +576,10 @@
           "date": "2026-11-19",
           "exact": 82.5
         }
-      ]
+      ],
+      "graded_state": "no_data",
+      "trust_reason": "delisted 2026-11-11; listed again 2026-11-19, 1 of 7 fresh nights",
+      "trust_source_url": "https://openrouter.ai/api/v1/models/google/gemma-4-31b-it/endpoints"
     },
     {
       "tag": "coreweave/fp4",
@@ -868,7 +880,7 @@
       "movement_flag": false,
       "price_in_per_m": null,
       "price_out_per_m": null,
-      "state": "no_data",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -886,7 +898,10 @@
           "date": "2026-11-14",
           "exact": 79.4
         }
-      ]
+      ],
+      "graded_state": "no_data",
+      "trust_reason": "delisted 2026-11-16",
+      "trust_source_url": "https://openrouter.ai/api/v1/models/google/gemma-4-31b-it/endpoints"
     },
     {
       "tag": "kt",
@@ -984,5 +999,32 @@
     }
   ],
   "first_look_until": null,
+  "untrusted": [
+    {
+      "tag": "dekallm",
+      "reason": "delisted 2026-11-16",
+      "source_url": "https://openrouter.ai/api/v1/models/google/gemma-4-31b-it/endpoints"
+    },
+    {
+      "tag": "io-net",
+      "reason": "delisted 2026-11-11",
+      "source_url": "https://openrouter.ai/api/v1/models/google/gemma-4-31b-it/endpoints"
+    },
+    {
+      "tag": "modelrun/fp4",
+      "reason": "delisted 2026-11-11; listed again 2026-11-19, 1 of 7 fresh nights",
+      "source_url": "https://openrouter.ai/api/v1/models/google/gemma-4-31b-it/endpoints"
+    },
+    {
+      "tag": "novita/bf16",
+      "reason": "open incident: Novita 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+      "source_url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
+    },
+    {
+      "tag": "primeintellect/fp4",
+      "reason": "delisted 2026-11-16",
+      "source_url": "https://openrouter.ai/api/v1/models/google/gemma-4-31b-it/endpoints"
+    }
+  ],
   "footer": "Numbers against a stated reference. Not a claim about intent."
 }

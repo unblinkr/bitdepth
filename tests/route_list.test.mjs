@@ -56,8 +56,15 @@ test("routes: every model has a route list that agrees with check_before_route",
     assert.equal(r.schema, "bitdepth.routelist.v1");
     assert.equal(r.model, m.model);
     const doc = (await get(m.path)).parsed();
-    assert.equal(r.allow.length + r.excluded.length, doc.endpoints.length);
-    for (const e of r.excluded) assert.match(e.why, /^(outside|stale|only \d+ nights; 7 needed|would also match .+)$/);
+    // Trust-flagged endpoints with no graded row are listed under excluded too (probe/trust.py).
+    const graded = new Set(doc.endpoints.map((e) => e.tag));
+    const ungradedFlags = (doc.untrusted || []).filter((u) => !graded.has(u.tag)).length;
+    assert.equal(r.allow.length + r.excluded.length, doc.endpoints.length + ungradedFlags);
+    const trustWhy = new Map((doc.untrusted || []).map((u) => [u.tag, u.reason]));
+    for (const e of r.excluded) {
+      if (trustWhy.has(e.tag)) assert.equal(e.why, trustWhy.get(e.tag));
+      else assert.match(e.why, /^(outside|stale|only \d+ nights; 7 needed|would also match .+)$/);
+    }
     if (r.allow.length) assert.deepEqual(r.openrouter, { provider: { only: r.allow, sort: "price", allow_fallbacks: true } });
     else assert.equal(r.openrouter, null);
     // The file emit.py wrote and the JS fallback build the same list.

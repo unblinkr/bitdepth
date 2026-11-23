@@ -33,6 +33,7 @@ from typing import Any
 from probe import BUDGET_USD, CONCURRENCY, MAX_TOKENS, MODELS, SEED, is_active
 from probe import budget as budget_mod
 from probe import openrouter
+from probe import trust as trust_mod
 from probe.generators import FIXED_PATH, fresh_set, load_jsonl, write_jsonl
 
 MIN_ENDPOINTS = 6
@@ -65,6 +66,40 @@ def resolve_models(lister=openrouter.list_endpoints, on: str | None = None) -> d
             "short": len(eps) < MIN_ENDPOINTS,
         }
     return out
+
+
+def apply_trust(models: dict[str, dict[str, Any]], date: str, zdr_fetcher=None) -> dict[str, Any]:
+    """Run the trust gate on resolved models, in place, before anything is sent.
+
+    Flagged endpoints are taken out of each model's endpoints (no request is sent to
+    them) and recorded under `untrusted` with state "untrusted" and the reason. The full
+    live listing is kept under `listed`, so later nights can tell a delisting. A failed
+    ZDR fetch leaves the flags from earlier snapshots in force and is recorded."""
+    fetch = zdr_fetcher or trust_mod.fetch_zdr
+    zdr_today: list[dict[str, Any]] | None
+    zdr_status = "ok"
+    try:
+        zdr_today = fetch()
+        prior = [e for d, e in trust_mod.load_zdr_snapshots() if d < date]
+        trust_mod.check_zdr_size(zdr_today, prior[-1] if prior else None)
+    except Exception as exc:  # noqa: BLE001 - the gate still applies earlier snapshots and incidents
+        zdr_today = None
+        zdr_status = f"not fetched: {type(exc).__name__}"
+    record: dict[str, Any] = {"zdr": zdr_status, "flagged": {}}
+    for label, m in models.items():
+        live = m["endpoints"]
+        flags = trust_mod.trust_flags(m["slug"], live, date=date, zdr_today=zdr_today, probing=True)
+        names = {e["tag"]: e.get("provider_name") for e in live}
+        for _, tags in trust_mod.listings(m["slug"]):
+            for t, pn in tags.items():
+                names.setdefault(t, pn)
+        m["listed"] = [{"tag": e["tag"], "provider_name": e.get("provider_name")} for e in live]
+        m["untrusted"] = [{"tag": t, "provider_name": names.get(t), "state": "untrusted", "reason": why}
+                          for t, why in sorted(flags.items())]
+        m["endpoints"] = [e for e in live if e["tag"] not in flags]
+        m["short"] = len(m["endpoints"]) < MIN_ENDPOINTS
+        record["flagged"][label] = dict(sorted(flags.items()))
+    return record
 
 
 def _norm(s: str | None) -> str:
@@ -282,6 +317,12 @@ def main(argv: list[str] | None = None) -> int:
 
     started = now_iso()
     models = resolve_models(on=args.date)
+    trust_record = apply_trust(models, args.date)
+    for label, flags in trust_record["flagged"].items():
+        if flags:
+            print(f"  trust gate, {label}: {len(flags)} endpoints not probed")
+            for t, why in flags.items():
+                print(f"    {t}: {why}")
     print("resolved models:")
     for label, m in models.items():
         quants: dict[str, int] = {}
@@ -344,6 +385,7 @@ def main(argv: list[str] | None = None) -> int:
         "estimate": {"usd": est["usd"], "per_model": est["per_model"]},
         "cap_usd": cap,
         "aborted_on_estimate": aborted,
+        "trust": trust_record,
     }
     if args.model:
         record["part"] = args.model
@@ -455,6 +497,8 @@ def merge_parts(date: str) -> int:
                         "runtime_budget_stop": r.get("runtime_budget_stop"),
                         "started": r.get("started"), "finished": r.get("finished")} for lbl, r in recs},
         "missing_parts": missing,
+        "trust": {"zdr": sorted({str((r.get("trust") or {}).get("zdr")) for _, r in recs if r.get("trust")}),
+                  "flagged": {lbl: f for _, r in recs for lbl, f in ((r.get("trust") or {}).get("flagged") or {}).items()}},
     }
     sc = [r["selfcheck"] for _, r in recs if r.get("selfcheck")]
     if sc:

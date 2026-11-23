@@ -1,0 +1,620 @@
+{
+ "date": "2026-11-23",
+ "models": {
+  "openai/gpt-oss-120b": [
+   {
+    "tag": "akashml/fp4",
+    "provider_name": "AkashML"
+   },
+   {
+    "tag": "amazon-bedrock",
+    "provider_name": "Amazon Bedrock"
+   },
+   {
+    "tag": "amazon-bedrock/eu-west-1",
+    "provider_name": "Amazon Bedrock"
+   },
+   {
+    "tag": "baseten/fp4",
+    "provider_name": "BaseTen"
+   },
+   {
+    "tag": "baseten/fp4/us",
+    "provider_name": "BaseTen"
+   },
+   {
+    "tag": "cerebras/fp16",
+    "provider_name": "Cerebras"
+   },
+   {
+    "tag": "coreweave/fp4",
+    "provider_name": "CoreWeave"
+   },
+   {
+    "tag": "crusoe/bf16",
+    "provider_name": "Crusoe"
+   },
+   {
+    "tag": "deepinfra/bf16",
+    "provider_name": "DeepInfra"
+   },
+   {
+    "tag": "digitalocean",
+    "provider_name": "DigitalOcean"
+   },
+   {
+    "tag": "fireworks",
+    "provider_name": "Fireworks"
+   },
+   {
+    "tag": "google-vertex/global",
+    "provider_name": "Google"
+   },
+   {
+    "tag": "groq",
+    "provider_name": "Groq"
+   },
+   {
+    "tag": "mancer/fp8",
+    "provider_name": "Mancer 2"
+   },
+   {
+    "tag": "near-ai/fp4",
+    "provider_name": "Near AI"
+   },
+   {
+    "tag": "nebius/fp4",
+    "provider_name": "Nebius"
+   },
+   {
+    "tag": "parasail/fast",
+    "provider_name": "Parasail"
+   },
+   {
+    "tag": "parasail/fp4",
+    "provider_name": "Parasail"
+   },
+   {
+    "tag": "primeintellect/fp4",
+    "provider_name": "PrimeIntellect"
+   },
+   {
+    "tag": "sambanova",
+    "provider_name": "SambaNova"
+   },
+   {
+    "tag": "siliconflow/fp8",
+    "provider_name": "SiliconFlow"
+   },
+   {
+    "tag": "together",
+    "provider_name": "Together"
+   },
+   {
+    "tag": "venice/int4",
+    "provider_name": "Venice"
+   }
+  ],
+  "deepseek/deepseek-v4-pro": [
+   {
+    "tag": "alibaba/fp8",
+    "provider_name": "Alibaba"
+   },
+   {
+    "tag": "alibaba/fp8/us-east-1",
+    "provider_name": "Alibaba"
+   },
+   {
+    "tag": "azure/us",
+    "provider_name": "Azure"
+   },
+   {
+    "tag": "baidu/fp8",
+    "provider_name": "Baidu"
+   },
+   {
+    "tag": "deepinfra/fp8",
+    "provider_name": "DeepInfra"
+   },
+   {
+    "tag": "deepinfra/fp8/flex",
+    "provider_name": "DeepInfra"
+   },
+   {
+    "tag": "deepinfra/fp8/priority",
+    "provider_name": "DeepInfra"
+   },
+   {
+    "tag": "digitalocean",
+    "provider_name": "DigitalOcean"
+   },
+   {
+    "tag": "novita/fp8",
+    "provider_name": "Novita"
+   },
+   {
+    "tag": "relace/fp4",
+    "provider_name": "Relace"
+   },
+   {
+    "tag": "siliconflow/fp8",
+    "provider_name": "SiliconFlow"
+   },
+   {
+    "tag": "streamlake/fp8",
+    "provider_name": "StreamLake"
+   },
+   {
+    "tag": "venice",
+    "provider_name": "Venice"
+   }
+  ],
+  "deepseek/deepseek-v4.1-flash-1017": [
+   {
+    "tag": "alibaba",
+    "provider_name": "Alibaba"
+   },
+   {
+    "tag": "ambient/fp4",
+    "provider_name": "Ambient"
+   },
+   {
+    "tag": "antdigital/fp8",
+    "provider_name": "Ant Digital"
+   },
+   {
+    "tag": "baidu/fp8",
+    "provider_name": "Baidu"
+   },
+   {
+    "tag": "baseten",
+    "provider_name": "BaseTen"
+   },
+   {
+    "tag": "baseten/fast",
+    "provider_name": "BaseTen"
+   },
+   {
+    "tag": "cloudflare",
+    "provider_name": "Cloudflare"
+   },
+   {
+    "tag": "cohere/fp8",
+    "provider_name": "Cohere"
+   },
+   {
+    "tag": "coreweave/fp8",
+    "provider_name": "CoreWeave"
+   },
+   {
+    "tag": "crusoe/fp8",
+    "provider_name": "Crusoe"
+   },
+   {
+    "tag": "deepinfra/fp8",
+    "provider_name": "DeepInfra"
+   },
+   {
+    "tag": "deepinfra/fp8/flex",
+    "provider_name": "DeepInfra"
+   },
+   {
+    "tag": "deepinfra/fp8/priority",
+    "provider_name": "DeepInfra"
+   },
+   {
+    "tag": "deepseek",
+    "provider_name": "DeepSeek"
+   },
+   {
+    "tag": "digitalocean",
+    "provider_name": "DigitalOcean"
+   },
+   {
+    "tag": "fireworks",
+    "provider_name": "Fireworks"
+   },
+   {
+    "tag": "fireworks/spot",
+    "provider_name": "Fireworks"
+   },
+   {
+    "tag": "fireworks/us",
+    "provider_name": "Fireworks"
+   },
+   {
+    "tag": "inceptron/fp4",
+    "provider_name": "Inceptron"
+   },
+   {
+    "tag": "inference-net/fp8",
+    "provider_name": "InferenceNet"
+   },
+   {
+    "tag": "inference-net/us",
+    "provider_name": "InferenceNet"
+   },
+   {
+    "tag": "ionstream",
+    "provider_name": "Ionstream"
+   },
+   {
+    "tag": "makora/fp8",
+    "provider_name": "Makora"
+   },
+   {
+    "tag": "mistral/fp8",
+    "provider_name": "Mistral"
+   },
+   {
+    "tag": "modal",
+    "provider_name": "Modal"
+   },
+   {
+    "tag": "modelrun/fp4",
+    "provider_name": "ModelRun"
+   },
+   {
+    "tag": "morph/fast",
+    "provider_name": "Morph"
+   },
+   {
+    "tag": "morph/fp8",
+    "provider_name": "Morph"
+   },
+   {
+    "tag": "near-ai",
+    "provider_name": "Near AI"
+   },
+   {
+    "tag": "nebius/fp4",
+    "provider_name": "Nebius"
+   },
+   {
+    "tag": "novita/fp8",
+    "provider_name": "Novita"
+   },
+   {
+    "tag": "open-inference/fp4",
+    "provider_name": "OpenInference"
+   },
+   {
+    "tag": "parasail/fp8",
+    "provider_name": "Parasail"
+   },
+   {
+    "tag": "particle-ai/us",
+    "provider_name": "Particle AI"
+   },
+   {
+    "tag": "particle-ai/us/flex",
+    "provider_name": "Particle AI"
+   },
+   {
+    "tag": "pearl-research/fp8",
+    "provider_name": "Pearl Research"
+   },
+   {
+    "tag": "primalabs",
+    "provider_name": "PrimaLabs"
+   },
+   {
+    "tag": "primeintellect",
+    "provider_name": "PrimeIntellect"
+   },
+   {
+    "tag": "reka",
+    "provider_name": "Reka"
+   },
+   {
+    "tag": "relace/fp4",
+    "provider_name": "Relace"
+   },
+   {
+    "tag": "river",
+    "provider_name": "River"
+   },
+   {
+    "tag": "sail-research/fp4",
+    "provider_name": "Sail Research"
+   },
+   {
+    "tag": "sail-research/fp4/us",
+    "provider_name": "Sail Research"
+   },
+   {
+    "tag": "siliconflow/fp8",
+    "provider_name": "SiliconFlow"
+   },
+   {
+    "tag": "streamlake/fp8",
+    "provider_name": "StreamLake"
+   },
+   {
+    "tag": "tenstorrent/fp8",
+    "provider_name": "Tenstorrent"
+   },
+   {
+    "tag": "together",
+    "provider_name": "Together"
+   },
+   {
+    "tag": "venice/fp8",
+    "provider_name": "Venice"
+   },
+   {
+    "tag": "wafer/mxfp4",
+    "provider_name": "Wafer"
+   },
+   {
+    "tag": "wafer/us",
+    "provider_name": "Wafer"
+   }
+  ],
+  "mistralai/mistral-large-4-0": [
+   {
+    "tag": "mistral/eu",
+    "provider_name": "Mistral"
+   },
+   {
+    "tag": "mistral/zdr",
+    "provider_name": "Mistral"
+   }
+  ],
+  "z-ai/glm-5.3-flash": [
+   {
+    "tag": "baidu/fp8",
+    "provider_name": "Baidu"
+   },
+   {
+    "tag": "baseten/fp8",
+    "provider_name": "BaseTen"
+   },
+   {
+    "tag": "cohere/nvfp4",
+    "provider_name": "Cohere"
+   },
+   {
+    "tag": "coreweave/nvfp4",
+    "provider_name": "CoreWeave"
+   },
+   {
+    "tag": "crusoe/fp4",
+    "provider_name": "Crusoe"
+   },
+   {
+    "tag": "darkbloom/fp4",
+    "provider_name": "Darkbloom"
+   },
+   {
+    "tag": "deepinfra/fp4",
+    "provider_name": "DeepInfra"
+   },
+   {
+    "tag": "digitalocean",
+    "provider_name": "DigitalOcean"
+   },
+   {
+    "tag": "fireworks",
+    "provider_name": "Fireworks"
+   },
+   {
+    "tag": "fireworks/us",
+    "provider_name": "Fireworks"
+   },
+   {
+    "tag": "friendli",
+    "provider_name": "Friendli"
+   },
+   {
+    "tag": "inceptron/fp8",
+    "provider_name": "Inceptron"
+   },
+   {
+    "tag": "inference-net/fp4",
+    "provider_name": "InferenceNet"
+   },
+   {
+    "tag": "inference-net/us",
+    "provider_name": "InferenceNet"
+   },
+   {
+    "tag": "kt",
+    "provider_name": "KT"
+   },
+   {
+    "tag": "makora/fp4",
+    "provider_name": "Makora"
+   },
+   {
+    "tag": "mistral",
+    "provider_name": "Mistral"
+   },
+   {
+    "tag": "modal/fp4",
+    "provider_name": "Modal"
+   },
+   {
+    "tag": "morph/fp8",
+    "provider_name": "Morph"
+   },
+   {
+    "tag": "near-ai/fp8",
+    "provider_name": "Near AI"
+   },
+   {
+    "tag": "nebius/fp4",
+    "provider_name": "Nebius"
+   },
+   {
+    "tag": "novita/fp8",
+    "provider_name": "Novita"
+   },
+   {
+    "tag": "open-inference/fp4",
+    "provider_name": "OpenInference"
+   },
+   {
+    "tag": "parasail/fast",
+    "provider_name": "Parasail"
+   },
+   {
+    "tag": "parasail/fp8",
+    "provider_name": "Parasail"
+   },
+   {
+    "tag": "particle-ai/nvfp4",
+    "provider_name": "Particle AI"
+   },
+   {
+    "tag": "particle-ai/nvfp4/flex",
+    "provider_name": "Particle AI"
+   },
+   {
+    "tag": "reka",
+    "provider_name": "Reka"
+   },
+   {
+    "tag": "relace/fp4",
+    "provider_name": "Relace"
+   },
+   {
+    "tag": "river",
+    "provider_name": "River"
+   },
+   {
+    "tag": "sail-research/fp4",
+    "provider_name": "Sail Research"
+   },
+   {
+    "tag": "sail-research/us",
+    "provider_name": "Sail Research"
+   },
+   {
+    "tag": "siliconflow/fp8",
+    "provider_name": "SiliconFlow"
+   },
+   {
+    "tag": "streamlake/fp8",
+    "provider_name": "StreamLake"
+   },
+   {
+    "tag": "tenstorrent/fp8",
+    "provider_name": "Tenstorrent"
+   },
+   {
+    "tag": "together",
+    "provider_name": "Together"
+   },
+   {
+    "tag": "venice",
+    "provider_name": "Venice"
+   },
+   {
+    "tag": "wafer/nvfp4",
+    "provider_name": "Wafer"
+   },
+   {
+    "tag": "wafer/us",
+    "provider_name": "Wafer"
+   },
+   {
+    "tag": "z-ai/fp8",
+    "provider_name": "Z.AI"
+   }
+  ],
+  "google/gemma-4-31b-it": [
+   {
+    "tag": "chutes/fp4",
+    "provider_name": "Chutes"
+   },
+   {
+    "tag": "coreweave/fp4",
+    "provider_name": "CoreWeave"
+   },
+   {
+    "tag": "crusoe/bf16",
+    "provider_name": "Crusoe"
+   },
+   {
+    "tag": "deepinfra/fp8",
+    "provider_name": "DeepInfra"
+   },
+   {
+    "tag": "deepinfra/fp8/flex",
+    "provider_name": "DeepInfra"
+   },
+   {
+    "tag": "deepinfra/fp8/priority",
+    "provider_name": "DeepInfra"
+   },
+   {
+    "tag": "deepinfra/turbo",
+    "provider_name": "DeepInfra"
+   },
+   {
+    "tag": "friendli",
+    "provider_name": "Friendli"
+   },
+   {
+    "tag": "kt",
+    "provider_name": "KT"
+   },
+   {
+    "tag": "modal",
+    "provider_name": "Modal"
+   },
+   {
+    "tag": "modelrun/fp4",
+    "provider_name": "ModelRun"
+   },
+   {
+    "tag": "nextbit/fp4",
+    "provider_name": "NextBit"
+   },
+   {
+    "tag": "novita/bf16",
+    "provider_name": "Novita"
+   },
+   {
+    "tag": "parasail/fp8",
+    "provider_name": "Parasail"
+   },
+   {
+    "tag": "primeintellect/fp8",
+    "provider_name": "PrimeIntellect"
+   },
+   {
+    "tag": "sambanova",
+    "provider_name": "SambaNova"
+   },
+   {
+    "tag": "siliconflow/fp8",
+    "provider_name": "SiliconFlow"
+   },
+   {
+    "tag": "venice/fp4",
+    "provider_name": "Venice"
+   }
+  ],
+  "xiaomi/mimo-v2.6-pro": [
+   {
+    "tag": "deepinfra/fp8",
+    "provider_name": "DeepInfra"
+   },
+   {
+    "tag": "primalabs/fp8",
+    "provider_name": "PrimaLabs"
+   },
+   {
+    "tag": "streamlake",
+    "provider_name": "StreamLake"
+   },
+   {
+    "tag": "xiaomi/fp8",
+    "provider_name": "Xiaomi"
+   }
+  ]
+ },
+ "errors": {}
+}

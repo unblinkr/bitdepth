@@ -45,13 +45,16 @@
       "movement_flag": false,
       "price_in_per_m": null,
       "price_out_per_m": null,
-      "state": "no_data",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-08",
           "exact": 89.4
         }
-      ]
+      ],
+      "graded_state": "no_data",
+      "trust_reason": "delisted 2026-11-10",
+      "trust_source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
     },
     {
       "tag": "ambient/fp4",
@@ -216,7 +219,7 @@
       "movement_flag": false,
       "price_in_per_m": null,
       "price_out_per_m": null,
-      "state": "no_data",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -230,7 +233,10 @@
           "date": "2026-11-06",
           "exact": 86.3
         }
-      ]
+      ],
+      "graded_state": "no_data",
+      "trust_reason": "delisted 2026-11-07",
+      "trust_source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
     },
     {
       "tag": "cloudflare",
@@ -1304,7 +1310,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.165,
       "price_out_per_m": 0.66,
-      "state": "within",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -1378,7 +1384,10 @@
           "date": "2026-11-22",
           "exact": 85.3
         }
-      ]
+      ],
+      "graded_state": "within",
+      "trust_reason": "open incident: Novita 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+      "trust_source_url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
     },
     {
       "tag": "sail-research/fp4/us",
@@ -1401,7 +1410,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.04,
       "price_out_per_m": 0.1,
-      "state": "within",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -1467,7 +1476,10 @@
           "date": "2026-11-22",
           "exact": 85.3
         }
-      ]
+      ],
+      "graded_state": "within",
+      "trust_reason": "delisted 2026-11-19; listed again 2026-11-21, 2 of 7 fresh nights",
+      "trust_source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
     },
     {
       "tag": "relace/fp4",
@@ -2077,7 +2089,7 @@
       "movement_flag": false,
       "price_in_per_m": null,
       "price_out_per_m": null,
-      "state": "no_data",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -2099,7 +2111,10 @@
           "date": "2026-11-08",
           "exact": 86.6
         }
-      ]
+      ],
+      "graded_state": "no_data",
+      "trust_reason": "delisted 2026-11-10",
+      "trust_source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
     },
     {
       "tag": "atlas-cloud/fp8",
@@ -2122,7 +2137,7 @@
       "movement_flag": false,
       "price_in_per_m": null,
       "price_out_per_m": null,
-      "state": "within",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -2188,7 +2203,10 @@
           "date": "2026-11-20",
           "exact": 89.6
         }
-      ]
+      ],
+      "graded_state": "within",
+      "trust_reason": "delisted 2026-11-21",
+      "trust_source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
     },
     {
       "tag": "inference-net/fp8",
@@ -2349,7 +2367,7 @@
       "movement_flag": false,
       "price_in_per_m": null,
       "price_out_per_m": null,
-      "state": "within",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -2403,7 +2421,10 @@
           "date": "2026-11-17",
           "exact": 84.6
         }
-      ]
+      ],
+      "graded_state": "within",
+      "trust_reason": "delisted 2026-11-18",
+      "trust_source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
     },
     {
       "tag": "parasail/fp8",
@@ -2620,7 +2641,7 @@
       "movement_flag": false,
       "price_in_per_m": null,
       "price_out_per_m": null,
-      "state": "within",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -2690,7 +2711,10 @@
           "date": "2026-11-21",
           "exact": 87.3
         }
-      ]
+      ],
+      "graded_state": "within",
+      "trust_reason": "delisted 2026-11-22",
+      "trust_source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
     },
     {
       "tag": "alibaba",
@@ -2810,7 +2834,7 @@
       "movement_flag": false,
       "price_in_per_m": null,
       "price_out_per_m": null,
-      "state": "no_data",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-05",
@@ -2832,7 +2856,10 @@
           "date": "2026-11-10",
           "exact": 82.5
         }
-      ]
+      ],
+      "graded_state": "no_data",
+      "trust_reason": "delisted 2026-11-11",
+      "trust_source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
     },
     {
       "tag": "wafer/mxfp4",
@@ -3049,7 +3076,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.1,
       "price_out_per_m": 0.6,
-      "state": "within",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -3123,7 +3150,10 @@
           "date": "2026-11-22",
           "exact": 85.3
         }
-      ]
+      ],
+      "graded_state": "within",
+      "trust_reason": "delisted 2026-11-23",
+      "trust_source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
     },
     {
       "tag": "primalabs",
@@ -3433,7 +3463,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.17,
       "price_out_per_m": 0.67,
-      "state": "within",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -3483,7 +3513,10 @@
           "date": "2026-11-22",
           "exact": 83.2
         }
-      ]
+      ],
+      "graded_state": "within",
+      "trust_reason": "delisted 2026-11-11; listed again 2026-11-17, 6 of 7 fresh nights",
+      "trust_source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
     },
     {
       "tag": "deepinfra/fp8",
@@ -3700,7 +3733,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.04,
       "price_out_per_m": 0.1,
-      "state": "within",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -3766,7 +3799,10 @@
           "date": "2026-11-22",
           "exact": 85.3
         }
-      ]
+      ],
+      "graded_state": "within",
+      "trust_reason": "delisted 2026-11-19; listed again 2026-11-21, 2 of 7 fresh nights",
+      "trust_source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
     },
     {
       "tag": "inceptron/fp4",
@@ -3834,7 +3870,7 @@
       "movement_flag": false,
       "price_in_per_m": null,
       "price_out_per_m": null,
-      "state": "no_data",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -3860,7 +3896,10 @@
           "date": "2026-11-10",
           "exact": 86.8
         }
-      ]
+      ],
+      "graded_state": "no_data",
+      "trust_reason": "open incident: Phala 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+      "trust_source_url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
     },
     {
       "tag": "crusoe/fp8",
@@ -3980,7 +4019,7 @@
       "movement_flag": false,
       "price_in_per_m": null,
       "price_out_per_m": null,
-      "state": "within",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -4046,7 +4085,10 @@
           "date": "2026-11-20",
           "exact": 81.2
         }
-      ]
+      ],
+      "graded_state": "within",
+      "trust_reason": "open incident: GMICloud 2026-11-21 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+      "trust_source_url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
     },
     {
       "tag": "together",
@@ -4069,7 +4111,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.3,
       "price_out_per_m": 1.2,
-      "state": "within",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -4143,7 +4185,10 @@
           "date": "2026-11-22",
           "exact": 79.7
         }
-      ]
+      ],
+      "graded_state": "within",
+      "trust_reason": "open incident: Together 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+      "trust_source_url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
     },
     {
       "tag": "streamlake/fp8",
@@ -4526,7 +4571,7 @@
       "movement_flag": true,
       "price_in_per_m": 0.3,
       "price_out_per_m": 1.2,
-      "state": "within",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-04",
@@ -4584,7 +4629,10 @@
           "date": "2026-11-22",
           "exact": 82.5
         }
-      ]
+      ],
+      "graded_state": "within",
+      "trust_reason": "delisted 2026-11-16; listed again 2026-11-20, 3 of 7 fresh nights",
+      "trust_source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
     },
     {
       "tag": "nebius/fp4",
@@ -4652,7 +4700,7 @@
       "movement_flag": false,
       "price_in_per_m": null,
       "price_out_per_m": null,
-      "state": "outside",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -4686,7 +4734,10 @@
           "date": "2026-11-17",
           "exact": 76.2
         }
-      ]
+      ],
+      "graded_state": "outside",
+      "trust_reason": "delisted 2026-11-18",
+      "trust_source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
     },
     {
       "tag": "decart/fp4",
@@ -4709,13 +4760,16 @@
       "movement_flag": false,
       "price_in_per_m": null,
       "price_out_per_m": null,
-      "state": "no_data",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-04",
           "exact": 76.4
         }
-      ]
+      ],
+      "graded_state": "no_data",
+      "trust_reason": "delisted 2026-11-05",
+      "trust_source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
     },
     {
       "tag": "baidu/fp8",
@@ -5107,5 +5161,97 @@
     }
   ],
   "first_look_until": null,
+  "untrusted": [
+    {
+      "tag": "atlas-cloud/fp8",
+      "reason": "delisted 2026-11-21",
+      "source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
+    },
+    {
+      "tag": "cohere",
+      "reason": "delisted 2026-11-07",
+      "source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
+    },
+    {
+      "tag": "decart/fp4",
+      "reason": "delisted 2026-11-05",
+      "source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
+    },
+    {
+      "tag": "decart/fp8",
+      "reason": "delisted 2026-11-11",
+      "source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
+    },
+    {
+      "tag": "dekallm",
+      "reason": "delisted 2026-11-23",
+      "source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
+    },
+    {
+      "tag": "fireworks/ultrafast",
+      "reason": "delisted 2026-11-10",
+      "source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
+    },
+    {
+      "tag": "gmicloud/fp8",
+      "reason": "open incident: GMICloud 2026-11-21 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+      "source_url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
+    },
+    {
+      "tag": "ionstream/flex",
+      "reason": "delisted 2026-11-18",
+      "source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
+    },
+    {
+      "tag": "modelrun/fp4",
+      "reason": "delisted 2026-11-11; listed again 2026-11-17, 6 of 7 fresh nights",
+      "source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
+    },
+    {
+      "tag": "nebius/fp8",
+      "reason": "delisted 2026-11-18",
+      "source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
+    },
+    {
+      "tag": "novita/fp8",
+      "reason": "open incident: Novita 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+      "source_url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
+    },
+    {
+      "tag": "phala",
+      "reason": "open incident: Phala 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+      "source_url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
+    },
+    {
+      "tag": "reka",
+      "reason": "delisted 2026-11-16; listed again 2026-11-20, 3 of 7 fresh nights",
+      "source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
+    },
+    {
+      "tag": "relace/fast",
+      "reason": "delisted 2026-11-10",
+      "source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
+    },
+    {
+      "tag": "sail-research/fp4",
+      "reason": "delisted 2026-11-19; listed again 2026-11-21, 2 of 7 fresh nights",
+      "source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
+    },
+    {
+      "tag": "sail-research/fp4/us",
+      "reason": "delisted 2026-11-19; listed again 2026-11-21, 2 of 7 fresh nights",
+      "source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
+    },
+    {
+      "tag": "stepfun/fp8",
+      "reason": "delisted 2026-11-22",
+      "source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash-1017/endpoints"
+    },
+    {
+      "tag": "together",
+      "reason": "open incident: Together 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+      "source_url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
+    }
+  ],
   "footer": "Numbers against a stated reference. Not a claim about intent."
 }

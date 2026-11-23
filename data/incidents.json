@@ -1,0 +1,33 @@
+{
+ "about": "Hand-kept. One entry per provider incident. Scope is provider-wide until a person sets closed (YYYY-MM-DD). The code never closes an entry. Read by probe/trust.py.",
+ "incidents": [
+  {
+   "provider_name": "GMICloud",
+   "opened": "2026-11-21",
+   "closed": null,
+   "source_url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+   "note": "Provider security notice; see source. Also an OpenRouter customer notice by email, 2026-11-21."
+  },
+  {
+   "provider_name": "Novita",
+   "opened": "2026-11-22",
+   "closed": null,
+   "source_url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+   "note": "Provider security notice; see source."
+  },
+  {
+   "provider_name": "Phala",
+   "opened": "2026-11-22",
+   "closed": null,
+   "source_url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+   "note": "Provider security notice; see source."
+  },
+  {
+   "provider_name": "Together",
+   "opened": "2026-11-22",
+   "closed": null,
+   "source_url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+   "note": "Provider security notice; see source."
+  }
+ ]
+}
