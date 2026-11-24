@@ -1,0 +1,133 @@
+{
+ "run_id": "2026-11-24-live",
+ "date": "2026-11-24",
+ "source": "live",
+ "started": "2026-11-24T18:56:45Z",
+ "models": {
+  "gpt-oss-120b": {
+   "slug": "openai/gpt-oss-120b",
+   "endpoints": 22,
+   "short": false
+  },
+  "deepseek-v4-pro": {
+   "slug": "deepseek/deepseek-v4-pro",
+   "endpoints": 11,
+   "short": false
+  },
+  "deepseek-v4.1-flash-1017": {
+   "slug": "deepseek/deepseek-v4.1-flash-1017",
+   "endpoints": 50,
+   "short": false
+  }
+ },
+ "prompts": {
+  "fixed": 120,
+  "fresh": 24,
+  "kept": 144,
+  "dropped": 0
+ },
+ "dropped_prompt_ids": [],
+ "estimate": {
+  "usd": 4.1216,
+  "per_model": {
+   "gpt-oss-120b": 0.4951,
+   "deepseek-v4-pro": 1.9853,
+   "deepseek-v4.1-flash-1017": 1.6412
+  }
+ },
+ "cap_usd": 7.75,
+ "aborted_on_estimate": false,
+ "summary": {
+  "rows": 11952,
+  "by_status": {
+   "ok": 11585,
+   "error": 367
+  },
+  "errors": 367,
+  "misrouted": 0,
+  "skipped_budget": 0,
+  "truncated": 20,
+  "billed_cost_usd": 2.0239,
+  "estimated_cost_rows": 1
+ },
+ "runtime_budget_stop": false,
+ "time_stop": false,
+ "concurrency": 8,
+ "finished": "2026-11-24T19:49:48Z",
+ "total_billed_usd": 2.0239,
+ "parts": {
+  "gpt-oss-120b": {
+   "cap_usd": 0.9302,
+   "billed_usd": 0.303,
+   "rows": 3168,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-24T18:56:45Z",
+   "finished": "2026-11-24T19:07:11Z"
+  },
+  "deepseek-v4-pro": {
+   "cap_usd": 3.733,
+   "billed_usd": 1.0041,
+   "rows": 1584,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-24T19:07:52Z",
+   "finished": "2026-11-24T19:21:39Z"
+  },
+  "deepseek-v4.1-flash-1017": {
+   "cap_usd": 3.0876,
+   "billed_usd": 0.7168,
+   "rows": 7200,
+   "time_stop": false,
+   "runtime_budget_stop": false,
+   "started": "2026-11-24T19:22:20Z",
+   "finished": "2026-11-24T19:49:48Z"
+  }
+ },
+ "missing_parts": [],
+ "trust": {
+  "zdr": [
+   "ok"
+  ],
+  "flagged": {
+   "gpt-oss-120b": {
+    "akashml/bf16": "delisted 2026-11-04",
+    "deepinfra/fp8": "delisted 2026-11-16",
+    "dekallm/bf16": "delisted 2026-11-23",
+    "io-net/fp4": "delisted 2026-11-16",
+    "mara": "delisted 2026-11-05",
+    "novita/fp4": "open incident: Novita 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+    "phala": "open incident: Phala 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+    "sail-research/fp4": "delisted 2026-11-21",
+    "together": "open incident: Together 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
+   },
+   "deepseek-v4-pro": {
+    "atlas-cloud/fp4": "delisted 2026-11-21",
+    "cloudflare": "delisted 2026-11-04",
+    "crusoe/fp8": "delisted 2026-11-04",
+    "digitalocean": "delisted 2026-11-23",
+    "gmicloud/fp8": "open incident: GMICloud 2026-11-21 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+    "nebius/fp8": "delisted 2026-11-10",
+    "novita/fp8": "open incident: Novita 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
+   },
+   "deepseek-v4.1-flash-1017": {
+    "atlas-cloud/fp8": "delisted 2026-11-21",
+    "cohere": "delisted 2026-11-07",
+    "decart/fp4": "delisted 2026-11-05",
+    "decart/fp8": "delisted 2026-11-11",
+    "dekallm": "delisted 2026-11-23",
+    "fireworks/ultrafast": "delisted 2026-11-10",
+    "gmicloud/fp8": "open incident: GMICloud 2026-11-21 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+    "ionstream/flex": "delisted 2026-11-18",
+    "krea/fp8": "lost ZDR 2026-11-24",
+    "nebius/fp8": "delisted 2026-11-18",
+    "novita/fp8": "open incident: Novita 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+    "phala": "open incident: Phala 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+    "relace/fast": "delisted 2026-11-10",
+    "stepfun/fp8": "delisted 2026-11-22",
+    "together": "open incident: Together 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
+    "together/us": "open incident: Together 2026-11-22 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
+   }
+  }
+ }
+}

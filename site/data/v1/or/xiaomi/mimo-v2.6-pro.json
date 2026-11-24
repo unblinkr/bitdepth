@@ -2,8 +2,8 @@
   "schema": "bitdepth.or.v1",
   "model": "xiaomi/mimo-v2.6-pro",
   "label": "mimo-v2.6-pro",
-  "as_of": "2026-11-23",
-  "nights": 27,
+  "as_of": "2026-11-24",
+  "nights": 28,
   "endpoint_count": 5,
   "reference_rule": "plurality across all endpoints (fewer than two declare bf16 or fp16)",
   "method_url": "https://bitdepth.dev/method",
@@ -152,7 +152,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.435,
       "price_out_per_m": 0.87,
-      "state": "within",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-10",
@@ -182,7 +182,10 @@
           "date": "2026-11-23",
           "exact": 90.6
         }
-      ]
+      ],
+      "graded_state": "within",
+      "trust_reason": "delisted 2026-11-24",
+      "trust_source_url": "https://openrouter.ai/api/v1/models/xiaomi/mimo-v2.6-pro/endpoints"
     },
     {
       "tag": "deepinfra/fp8",
@@ -296,6 +299,11 @@
       "tag": "gmicloud/bf16",
       "reason": "open incident: GMICloud 2026-11-21 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
       "source_url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
+    },
+    {
+      "tag": "streamlake",
+      "reason": "delisted 2026-11-24",
+      "source_url": "https://openrouter.ai/api/v1/models/xiaomi/mimo-v2.6-pro/endpoints"
     }
   ],
   "footer": "Numbers against a stated reference. Not a claim about intent."

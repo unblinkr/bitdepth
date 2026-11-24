@@ -2,7 +2,7 @@
   "schema": "bitdepth.routelist.v1",
   "model": "z-ai/glm-5.3-flash",
   "label": "glm-5.3-flash",
-  "as_of": "2026-11-23",
+  "as_of": "2026-11-24",
   "rule": "state within and 7+ nights (the check_before_route rule) and no trust flag (delisted, lost ZDR, open incident); allowed endpoints ordered by blended price, cheapest first",
   "allow": [
     "relace/fp4",
@@ -284,7 +284,7 @@
     },
     {
       "tag": "wafer/us",
-      "why": "delisted 2026-11-23"
+      "why": "delisted 2026-11-23; listed again 2026-11-24, 0 of 7 fresh nights"
     }
   ],
   "openrouter": {

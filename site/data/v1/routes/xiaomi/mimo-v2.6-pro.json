@@ -2,11 +2,10 @@
   "schema": "bitdepth.routelist.v1",
   "model": "xiaomi/mimo-v2.6-pro",
   "label": "mimo-v2.6-pro",
-  "as_of": "2026-11-23",
+  "as_of": "2026-11-24",
   "rule": "state within and 7+ nights (the check_before_route rule) and no trust flag (delisted, lost ZDR, open incident); allowed endpoints ordered by blended price, cheapest first",
   "allow": [
     "deepinfra/fp8",
-    "streamlake",
     "xiaomi/fp8",
     "primalabs/fp8"
   ],
@@ -16,12 +15,6 @@
       "declared_quant": "fp8",
       "nights": 7,
       "blended_price_per_m": 0.486
-    },
-    {
-      "tag": "streamlake",
-      "declared_quant": "unknown",
-      "nights": 7,
-      "blended_price_per_m": 0.5437
     },
     {
       "tag": "xiaomi/fp8",
@@ -40,13 +33,16 @@
     {
       "tag": "gmicloud/bf16",
       "why": "open incident: GMICloud 2026-11-21 https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/"
+    },
+    {
+      "tag": "streamlake",
+      "why": "delisted 2026-11-24"
     }
   ],
   "openrouter": {
     "provider": {
       "only": [
         "deepinfra/fp8",
-        "streamlake",
         "xiaomi/fp8",
         "primalabs/fp8"
       ],
