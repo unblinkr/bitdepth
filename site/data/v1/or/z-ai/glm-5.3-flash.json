@@ -2,8 +2,8 @@
   "schema": "bitdepth.or.v1",
   "model": "z-ai/glm-5.3-flash",
   "label": "glm-5.3-flash",
-  "as_of": "2026-11-24",
-  "nights": 28,
+  "as_of": "2026-11-25",
+  "nights": 29,
   "endpoint_count": 48,
   "reference_rule": "plurality across all endpoints (fewer than two declare bf16 or fp16)",
   "method_url": "https://bitdepth.dev/method",
@@ -98,7 +98,7 @@
       "movement_flag": false,
       "price_in_per_m": 0.065,
       "price_out_per_m": 0.325,
-      "state": "no_data",
+      "state": "untrusted",
       "nightly_exact": [
         {
           "date": "2026-11-16",
@@ -112,7 +112,10 @@
           "date": "2026-11-23",
           "exact": 97.9
         }
-      ]
+      ],
+      "graded_state": "no_data",
+      "trust_reason": "lost ZDR 2026-11-25",
+      "trust_source_url": "https://openrouter.ai/api/v1/endpoints/zdr"
     },
     {
       "tag": "deepinfra/fp4",
@@ -2457,6 +2460,11 @@
       "tag": "parasail/fp4",
       "reason": "delisted 2026-11-19",
       "source_url": "https://openrouter.ai/api/v1/models/z-ai/glm-5.3-flash/endpoints"
+    },
+    {
+      "tag": "particle-ai/nvfp4/flex",
+      "reason": "lost ZDR 2026-11-25",
+      "source_url": "https://openrouter.ai/api/v1/endpoints/zdr"
     },
     {
       "tag": "phala/nvfp4",

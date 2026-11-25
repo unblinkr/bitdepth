@@ -1,117 +1,118 @@
-# Bitdepth scorecard 2026-11-24
+# Bitdepth scorecard 2026-11-25
 
-Run `2026-11-24-live`, source `live`, started 2026-11-24T18:56:45Z, finished 2026-11-24T19:49:48Z.
+Run `2026-11-25-live`, source `live`, started 2026-11-25T18:01:13Z, finished 2026-11-25T20:42:07Z.
 Each row is one OpenRouter endpoint. Exact match is against the reference output for the same prompt; the reference rule per model is in the footer. Family columns are graded against the generated answer. All numbers are percentages unless the column says otherwise.
 
 ## gpt-oss-120b (`openai/gpt-oss-120b`)
 
 | Endpoint | Declared quant | Seed | Exact % | Compared | Div. word | Len ratio | Math | JSON | String | Needle | Echo | Err % | Misrouted | Truncated | Latency ms | Cost USD |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| baseten/fp4/us | fp4 | no | 99.3 | 143 | 0 | 1.00 | 100.0 | 100.0 | 87.5 | 100.0 | 100.0 | 0.00 | 0 | 1 | 510.5 | 0.0128 |
-| cerebras/fp16 | fp16 | yes | 99.3 | 143 | 0 | 1.00 | 100.0 | 100.0 | 91.7 | 100.0 | 100.0 | 0.00 | 0 | 1 | 264.5 | 0.0366 |
-| amazon-bedrock/eu-west-1 | unknown | no | 98.6 | 143 | 0.00 | 1.00 | 100.0 | 100.0 | 83.3 | 100.0 | 100.0 | 0.00 | 0 | 0 | 511.0 | 0.0181 |
-| deepinfra/bf16 | bf16 | yes | 98.6 | 142 | 0.00 | 1.00 | 97.9 | 100.0 | 87.5 | 100.0 | 100.0 | 0.70 | 0 | 0 | 6319.0 | 0.0041 |
-| parasail/fp4 | fp4 | yes | 97.9 | 143 | 0 | 1.00 | 100.0 | 100.0 | 87.5 | 100.0 | 100.0 | 0.00 | 0 | 1 | 566.0 | 0.0148 |
-| amazon-bedrock | unknown | no | 97.2 | 143 | 0.00 | 1.00 | 100.0 | 100.0 | 83.3 | 100.0 | 100.0 | 0.00 | 0 | 0 | 567.5 | 0.0179 |
-| baseten/fp4 | fp4 | no | 97.2 | 143 | 0.00 | 1.00 | 97.9 | 100.0 | 75.0 | 100.0 | 100.0 | 0.00 | 0 | 1 | 508.0 | 0.0130 |
-| nebius/fp4 | fp4 | yes | 97.2 | 143 | 0.00 | 1.00 | 100.0 | 100.0 | 83.3 | 100.0 | 100.0 | 0.00 | 0 | 0 | 446.0 | 0.0174 |
-| crusoe/bf16 | bf16 | yes | 96.5 | 143 | 0 | 1.00 | 100.0 | 100.0 | 79.2 | 100.0 | 100.0 | 0.00 | 0 | 1 | 640.0 | 0.0066 |
-| groq | unknown | yes | 96.5 | 143 | 0 | 1.00 | 100.0 | 100.0 | 79.2 | 100.0 | 100.0 | 0.00 | 0 | 0 | 331.0 | 0.0182 |
-| mancer/fp8 | fp8 | yes | 95.8 | 143 | 0.00 | 1.00 | 100.0 | 100.0 | 83.3 | 100.0 | 100.0 | 0.00 | 0 | 0 | 857.5 | 0.0103 |
-| parasail/fast | fp4 | yes | 95.8 | 143 | 0.00 | 1.00 | 100.0 | 100.0 | 91.7 | 100.0 | 100.0 | 0.00 | 0 | 0 | 493.0 | 0.0196 |
-| google-vertex/global | unknown | yes | 95.1 | 143 | 0 | 1.00 | 91.7 | 100.0 | 75.0 | 100.0 | 100.0 | 0.00 | 0 | 1 | 377.5 | 0.0108 |
-| near-ai/fp4 | fp4 | yes | 95.1 | 143 | 0 | 1.00 | 100.0 | 100.0 | 83.3 | 100.0 | 100.0 | 0.00 | 0 | 0 | 1327.5 | 0.0037 |
-| digitalocean | unknown | no | 94.4 | 143 | 0.00 | 1.00 | 100.0 | 100.0 | 83.3 | 100.0 | 100.0 | 0.00 | 0 | 1 | 1144.0 | 0.0083 |
-| primeintellect/fp4 | fp4 | yes | 94.4 | 143 | 0.00 | 1.00 | 100.0 | 100.0 | 75.0 | 100.0 | 100.0 | 0.00 | 0 | 1 | 581.5 | 0.0362 |
-| sambanova | unknown | no | 94.4 | 143 | 0.00 | 1.00 | 100.0 | 100.0 | 79.2 | 100.0 | 100.0 | 0.00 | 0 | 1 | 553.5 | 0.0207 |
-| akashml/fp4 | fp4 | yes | 93.7 | 143 | 0 | 1.00 | 100.0 | 100.0 | 79.2 | 100.0 | 100.0 | 0.00 | 0 | 0 | 1320.0 | 0.0041 |
-| coreweave/fp4 | fp4 | yes | 93.7 | 143 | 0 | 1.00 | 97.9 | 100.0 | 75.0 | 100.0 | 100.0 | 0.00 | 0 | 1 | 657.5 | 0.0041 |
-| venice/int4 | int4 | no | 83.2 | 143 | 0.00 | 1.00 | 81.2 | 100.0 | 70.8 | 95.8 | 91.7 | 0.00 | 0 | 10 | 2172.5 | 0.0045 |
-| siliconflow/fp8 | fp8 | no | 65.7 | 143 | 1 | 1.00 | 81.2 | 4.20 | 70.8 | 100.0 | 75.0 | 0.00 | 0 | 0 | 2174.5 | 0.0214 |
+| deepinfra/bf16 | bf16 | yes | 100.0 | 143 | n/a | 1.00 | 100.0 | 100.0 | 79.2 | 100.0 | 100.0 | 0.70 | 0 | 0 | 3653.0 | 0.0042 |
+| cerebras/fp16 | fp16 | yes | 97.2 | 144 | 0.00 | 1.00 | 100.0 | 100.0 | 87.5 | 100.0 | 100.0 | 0.00 | 0 | 1 | 313.5 | 0.0372 |
+| digitalocean | unknown | no | 97.2 | 144 | 0.00 | 1.00 | 100.0 | 100.0 | 83.3 | 100.0 | 100.0 | 0.00 | 0 | 2 | 1253.0 | 0.0086 |
+| groq | unknown | yes | 97.2 | 144 | 0.00 | 1.00 | 100.0 | 100.0 | 79.2 | 100.0 | 100.0 | 0.00 | 0 | 0 | 354.5 | 0.0183 |
+| baseten/fp4 | fp4 | no | 96.5 | 144 | 0 | 1.00 | 100.0 | 100.0 | 79.2 | 100.0 | 100.0 | 0.00 | 0 | 1 | 574.0 | 0.0129 |
+| near-ai/fp4 | fp4 | yes | 96.5 | 144 | 0 | 1.00 | 100.0 | 100.0 | 75.0 | 100.0 | 100.0 | 0.00 | 0 | 2 | 1570.5 | 0.0038 |
+| nebius/fp4 | fp4 | yes | 96.5 | 144 | 0 | 1.00 | 100.0 | 100.0 | 75.0 | 100.0 | 100.0 | 0.00 | 0 | 1 | 490.0 | 0.0177 |
+| amazon-bedrock | unknown | no | 95.8 | 144 | 0.00 | 1.00 | 100.0 | 100.0 | 75.0 | 100.0 | 100.0 | 0.00 | 0 | 1 | 734.5 | 0.0184 |
+| baseten/fp4/us | fp4 | no | 95.8 | 144 | 0.00 | 1.00 | 100.0 | 100.0 | 79.2 | 100.0 | 100.0 | 0.00 | 0 | 2 | 555.5 | 0.0130 |
+| crusoe/bf16 | bf16 | yes | 95.8 | 144 | 0.00 | 1.00 | 100.0 | 100.0 | 70.8 | 100.0 | 100.0 | 0.00 | 0 | 2 | 712.0 | 0.0067 |
+| parasail/fp4 | fp4 | yes | 95.8 | 144 | 0.00 | 1.00 | 100.0 | 100.0 | 79.2 | 100.0 | 100.0 | 0.00 | 0 | 3 | 588.5 | 0.0155 |
+| primeintellect/fp4 | fp4 | yes | 95.8 | 144 | 0.00 | 1.00 | 100.0 | 100.0 | 70.8 | 100.0 | 100.0 | 0.00 | 0 | 1 | 599.0 | 0.0363 |
+| sambanova | unknown | no | 95.8 | 144 | 0.00 | 1.00 | 100.0 | 100.0 | 79.2 | 100.0 | 100.0 | 0.00 | 0 | 0 | 406.5 | 0.0206 |
+| akashml/fp4 | fp4 | yes | 95.1 | 144 | 0 | 1.00 | 100.0 | 100.0 | 70.8 | 100.0 | 100.0 | 0.00 | 0 | 1 | 954.5 | 0.0043 |
+| mancer/fp8 | fp8 | yes | 95.1 | 144 | 0 | 1.00 | 100.0 | 100.0 | 75.0 | 100.0 | 100.0 | 0.00 | 0 | 1 | 794.5 | 0.0106 |
+| coreweave/fp4 | fp4 | yes | 94.4 | 143 | 0.00 | 1.00 | 100.0 | 100.0 | 79.2 | 100.0 | 100.0 | 0.70 | 0 | 0 | 790.0 | 0.0042 |
+| google-vertex/global | unknown | yes | 94.4 | 144 | 0.00 | 1.00 | 93.8 | 100.0 | 75.0 | 100.0 | 100.0 | 0.00 | 0 | 1 | 420.0 | 0.0110 |
+| amazon-bedrock/eu-west-1 | unknown | no | 93.8 | 144 | 0 | 1.00 | 100.0 | 100.0 | 75.0 | 100.0 | 100.0 | 0.00 | 0 | 2 | 726.0 | 0.0185 |
+| parasail/fast | fp4 | yes | 92.4 | 144 | 0 | 1.00 | 100.0 | 100.0 | 70.8 | 100.0 | 100.0 | 0.00 | 0 | 2 | 501.0 | 0.0201 |
+| venice/int4 | int4 | no | 84.7 | 144 | 0.00 | 1.00 | 95.8 | 100.0 | 62.5 | 100.0 | 91.7 | 0.00 | 0 | 6 | 3918.5 | 0.0043 |
+| siliconflow/fp8 | fp8 | no | 70.8 | 144 | 0.00 | 1.00 | 77.1 | 37.5 | 66.7 | 100.0 | 91.7 | 0.00 | 0 | 0 | 1548.0 | 0.0217 |
 | fireworks | unknown | no | n/a | 0 | n/a | n/a | n/a | n/a | n/a | n/a | n/a | 100.0 | 0 | 0 | n/a | 0.0000 |
 
-Reference rule: plurality among endpoints declaring bf16 or fp16. Reference endpoints: deepinfra/bf16, crusoe/bf16, cerebras/fp16. Prompts with no plurality (excluded from exact match): 1.
+Reference rule: plurality among endpoints declaring bf16 or fp16. Reference endpoints: deepinfra/bf16, crusoe/bf16, cerebras/fp16. Prompts with no plurality (excluded from exact match): 0.
 
 ## deepseek-v4-pro (`deepseek/deepseek-v4-pro`)
 
 | Endpoint | Declared quant | Seed | Exact % | Compared | Div. word | Len ratio | Math | JSON | String | Needle | Echo | Err % | Misrouted | Truncated | Latency ms | Cost USD |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| alibaba/fp8 | fp8 | yes | 82.4 | 136 | 6.50 | 1.00 | 100.0 | 100.0 | 50.0 | 100.0 | 95.8 | 0.00 | 0 | 0 | 1917.5 | 0.1289 |
-| alibaba/fp8/us-east-1 | fp8 | yes | 80.9 | 136 | 4.00 | 1.00 | 100.0 | 100.0 | 50.0 | 100.0 | 95.8 | 0.00 | 0 | 0 | 1945.5 | 0.1270 |
-| deepinfra/fp8/priority | fp8 | yes | 80.1 | 136 | 8 | 1.00 | 100.0 | 100.0 | 62.5 | 100.0 | 95.8 | 0.00 | 0 | 0 | 1283.5 | 0.0712 |
-| streamlake/fp8 | fp8 | no | 79.4 | 136 | 6.50 | 1.00 | 100.0 | 100.0 | 58.3 | 100.0 | 95.8 | 0.00 | 0 | 0 | 2208.0 | 0.0275 |
-| venice | unknown | no | 77.9 | 136 | 6.50 | 1.00 | 100.0 | 100.0 | 54.2 | 100.0 | 100.0 | 0.00 | 0 | 0 | 1884.0 | 0.0694 |
-| relace/fp4 | fp4 | no | 77.2 | 136 | 4 | 1.00 | 100.0 | 100.0 | 54.2 | 100.0 | 95.8 | 0.00 | 0 | 0 | 740.5 | 0.0654 |
-| baidu/fp8 | fp8 | no | 75.0 | 136 | 4.50 | 1.00 | 100.0 | 100.0 | 58.3 | 100.0 | 95.8 | 0.00 | 0 | 0 | 1475.5 | 0.0653 |
-| deepinfra/fp8 | fp8 | yes | 74.3 | 136 | 4 | 1.00 | 100.0 | 100.0 | 58.3 | 100.0 | 100.0 | 0.00 | 0 | 0 | 1442.0 | 0.1481 |
-| deepinfra/fp8/flex | fp8 | yes | 69.2 | 107 | 3 | 1.00 | 100.0 | 100.0 | 37.5 | 100.0 | 94.4 | 20.8 | 0 | 0 | 1788.5 | 0.0457 |
-| siliconflow/fp8 | fp8 | no | 64.0 | 136 | 3 | 1.00 | 100.0 | 100.0 | 54.2 | 100.0 | 100.0 | 0.00 | 0 | 0 | 1933.0 | 0.0808 |
-| azure/us | unknown | no | 58.1 | 136 | 1 | 1.00 | 95.8 | 100.0 | 50.0 | 100.0 | 95.8 | 0.00 | 0 | 0 | 1094.5 | 0.1748 |
+| alibaba/fp8/us-east-1 | fp8 | yes | 82.8 | 128 | 12.0 | 1.00 | 100.0 | 100.0 | 62.5 | 100.0 | 91.7 | 0.00 | 0 | 0 | 2009.5 | 0.1302 |
+| alibaba/fp8 | fp8 | yes | 80.5 | 128 | 9 | 1.00 | 100.0 | 100.0 | 62.5 | 100.0 | 91.7 | 0.00 | 0 | 0 | 1946.5 | 0.1289 |
+| deepinfra/fp8 | fp8 | yes | 80.5 | 128 | 7 | 1.00 | 100.0 | 100.0 | 62.5 | 100.0 | 95.8 | 0.00 | 0 | 0 | 1368.0 | 0.1361 |
+| venice | unknown | no | 78.9 | 128 | 4 | 1.00 | 100.0 | 100.0 | 62.5 | 100.0 | 91.7 | 0.00 | 0 | 0 | 1793.0 | 0.0690 |
+| deepinfra/fp8/priority | fp8 | yes | 78.1 | 128 | 2.00 | 1.00 | 100.0 | 100.0 | 66.7 | 100.0 | 95.8 | 0.00 | 0 | 0 | 1296.5 | 0.0663 |
+| relace/fp4 | fp4 | no | 76.6 | 128 | 4.00 | 1.00 | 100.0 | 100.0 | 54.2 | 100.0 | 91.7 | 0.00 | 0 | 0 | 811.5 | 0.0672 |
+| deepinfra/fp8/flex | fp8 | yes | 75.2 | 109 | 4 | 1.00 | 100.0 | 100.0 | 65.0 | 100.0 | 90.0 | 15.3 | 0 | 0 | 1858.5 | 0.0521 |
+| baidu/fp8 | fp8 | no | 73.4 | 128 | 4.00 | 1.00 | 100.0 | 100.0 | 58.3 | 100.0 | 91.7 | 0.00 | 0 | 0 | 1361.0 | 0.0673 |
+| streamlake/fp8 | fp8 | no | 68.8 | 128 | 4.00 | 1.00 | 100.0 | 100.0 | 62.5 | 100.0 | 91.7 | 0.00 | 0 | 0 | 2538.0 | 0.0280 |
+| siliconflow/fp8 | fp8 | no | 64.8 | 128 | 3 | 1.00 | 100.0 | 100.0 | 58.3 | 100.0 | 95.8 | 0.00 | 0 | 0 | 2127.5 | 0.0807 |
+| azure/us | unknown | no | 54.7 | 128 | 0.00 | 1.00 | 100.0 | 100.0 | 54.2 | 100.0 | 91.7 | 0.00 | 0 | 0 | 1173.0 | 0.1697 |
 
-Reference rule: plurality across all endpoints (fewer than two declare bf16 or fp16). Reference endpoints: streamlake/fp8, baidu/fp8, relace/fp4, siliconflow/fp8, deepinfra/fp8/flex, deepinfra/fp8, alibaba/fp8, alibaba/fp8/us-east-1, venice, azure/us, deepinfra/fp8/priority. Prompts with no plurality (excluded from exact match): 8.
+Reference rule: plurality across all endpoints (fewer than two declare bf16 or fp16). Reference endpoints: relace/fp4, streamlake/fp8, baidu/fp8, siliconflow/fp8, deepinfra/fp8/flex, deepinfra/fp8, alibaba/fp8, alibaba/fp8/us-east-1, venice, azure/us, deepinfra/fp8/priority. Prompts with no plurality (excluded from exact match): 16.
 
 ## deepseek-v4.1-flash-1017 (`deepseek/deepseek-v4.1-flash-1017`)
 
 | Endpoint | Declared quant | Seed | Exact % | Compared | Div. word | Len ratio | Math | JSON | String | Needle | Echo | Err % | Misrouted | Truncated | Latency ms | Cost USD |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| baseten/fast | unknown | no | 92.7 | 110 | 0.00 | 1.00 | 60.5 | 100.0 | 52.9 | 100.0 | 100.0 | 22.9 | 0 | 0 | 330.0 | 0.0429 |
-| primeintellect | unknown | no | 91.6 | 143 | 0.00 | 1.00 | 72.9 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 457.5 | 0.0160 |
-| venice/fp8 | fp8 | no | 89.5 | 143 | 0 | 1.00 | 70.8 | 100.0 | 54.2 | 100.0 | 100.0 | 0.00 | 0 | 0 | 1038.0 | 0.0278 |
-| inference-net/fp8 | fp8 | yes | 88.8 | 143 | 0.00 | 1.00 | 68.8 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 459.0 | 0.0077 |
-| cloudflare | unknown | yes | 88.1 | 143 | 0 | 1.00 | 72.9 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 1110.5 | 0.0069 |
-| google-vertex/global | unknown | yes | 88.1 | 143 | 0 | 1.00 | 75.0 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 556.5 | 0.0276 |
-| inference-net/us | fp8 | yes | 88.1 | 143 | 0 | 1.00 | 75.0 | 100.0 | 54.2 | 100.0 | 100.0 | 0.00 | 0 | 0 | 480.0 | 0.0081 |
-| modal | unknown | no | 88.1 | 143 | 0 | 1.00 | 79.2 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 728.5 | 0.0233 |
-| parasail/fp8 | fp8 | yes | 88.1 | 143 | 0 | 1.00 | 72.9 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 343.5 | 0.0273 |
-| relace/fp4 | fp4 | no | 88.1 | 143 | 0 | 1.00 | 70.8 | 100.0 | 54.2 | 100.0 | 100.0 | 0.00 | 0 | 0 | 1066.5 | 0.0111 |
-| coreweave/fp8 | fp8 | yes | 87.4 | 143 | 0.00 | 1.00 | 68.8 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 301.5 | 0.0276 |
-| ambient/fp4 | fp4 | yes | 86.7 | 143 | 0 | 1.00 | 77.1 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 887.0 | 0.0045 |
-| baseten | unknown | no | 86.7 | 143 | 0 | 1.00 | 70.8 | 100.0 | 54.2 | 100.0 | 100.0 | 0.00 | 0 | 0 | 600.0 | 0.0277 |
-| digitalocean | unknown | no | 86.7 | 143 | 0 | 1.00 | 75.0 | 100.0 | 54.2 | 100.0 | 100.0 | 0.00 | 0 | 0 | 681.0 | 0.0179 |
-| fireworks/spot | unknown | no | 86.7 | 143 | 0 | 1.00 | 72.9 | 100.0 | 54.2 | 100.0 | 100.0 | 0.00 | 0 | 0 | 887.0 | 0.0140 |
-| sail-research/fp4 | fp4 | yes | 86.7 | 143 | 0 | 1.00 | 77.1 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 2013.5 | 0.0033 |
-| deepinfra/fp8/priority | fp8 | yes | 86.0 | 143 | 0.00 | 1.00 | 68.8 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 980.5 | 0.0034 |
-| inceptron/fp4 | fp4 | yes | 86.0 | 143 | 0.00 | 1.00 | 70.8 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 1122.0 | 0.0101 |
-| makora/fp8 | fp8 | yes | 86.0 | 143 | 0.00 | 1.00 | 70.8 | 100.0 | 50.0 | 100.0 | 95.8 | 0.00 | 0 | 0 | 506.5 | 0.0145 |
-| wafer/mxfp4 | mxfp4 | yes | 86.0 | 143 | 0.00 | 1.00 | 75.0 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 454.0 | 0.0031 |
-| morph/fast | fp8 | yes | 85.7 | 140 | 0.00 | 1.00 | 68.1 | 100.0 | 50.0 | 100.0 | 100.0 | 2.10 | 0 | 0 | 477.0 | 0.0514 |
-| cohere/fp8 | fp8 | yes | 85.3 | 143 | 0 | 1.00 | 70.8 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 416.0 | 0.0104 |
-| fireworks | unknown | no | 85.3 | 143 | 0 | 1.00 | 70.8 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 866.5 | 0.0043 |
-| pearl-research/fp8 | fp8 | yes | 85.3 | 143 | 0 | 1.00 | 72.9 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 1308.5 | 0.0051 |
-| siliconflow/fp8 | fp8 | no | 85.3 | 143 | 0 | 1.00 | 66.7 | 100.0 | 54.2 | 100.0 | 100.0 | 0.00 | 0 | 0 | 707.0 | 0.0137 |
-| fireworks/us | unknown | no | 84.6 | 143 | 0.00 | 1.00 | 70.8 | 100.0 | 54.2 | 100.0 | 100.0 | 0.00 | 0 | 0 | 506.5 | 0.0415 |
-| modelrun/fp4 | fp4 | no | 84.6 | 143 | 0.00 | 1.00 | 75.0 | 100.0 | 45.8 | 100.0 | 100.0 | 0.00 | 0 | 0 | 863.5 | 0.0098 |
-| tenstorrent/fp8 | fp8 | yes | 84.5 | 142 | 0.00 | 1.00 | 64.6 | 100.0 | 50.0 | 100.0 | 100.0 | 0.70 | 0 | 0 | 773.0 | 0.0030 |
-| crusoe/fp8 | fp8 | yes | 83.9 | 143 | 0 | 1.00 | 60.4 | 100.0 | 58.3 | 100.0 | 100.0 | 0.00 | 0 | 0 | 677.0 | 0.0173 |
-| deepinfra/fp8 | fp8 | yes | 83.9 | 143 | 0 | 1.00 | 68.8 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 894.5 | 0.0087 |
-| deepinfra/fp8/flex | fp8 | yes | 83.9 | 143 | 0 | 1.00 | 66.7 | 100.0 | 54.2 | 100.0 | 100.0 | 0.00 | 0 | 0 | 1252.0 | 0.0069 |
-| pareto-inference/fp8 | fp8 | yes | 83.9 | 143 | 0 | 1.00 | 72.9 | 100.0 | 54.2 | 100.0 | 100.0 | 0.00 | 0 | 0 | 1360.5 | 0.0070 |
-| sail-research/fp4/us | fp4 | yes | 83.9 | 143 | 0 | 1.00 | 77.1 | 100.0 | 54.2 | 100.0 | 100.0 | 0.00 | 0 | 0 | 1894.5 | 0.0035 |
-| alibaba | unknown | yes | 82.5 | 143 | 0 | 1.00 | 75.0 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 755.0 | 0.0084 |
-| morph/fp8 | fp8 | yes | 82.5 | 143 | 0 | 1.00 | 70.8 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 649.5 | 0.0056 |
-| wafer/us | mxfp4 | yes | 82.5 | 143 | 0 | 1.00 | 81.2 | 100.0 | 54.2 | 100.0 | 100.0 | 0.00 | 0 | 0 | 417.5 | 0.0049 |
-| mistral/fp8 | fp8 | yes | 81.8 | 143 | 0.00 | 1.00 | 72.9 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 885.0 | 0.0278 |
-| particle-ai/us/flex | unknown | yes | 81.8 | 143 | 0.00 | 1.00 | 70.8 | 100.0 | 54.2 | 100.0 | 100.0 | 0.00 | 0 | 0 | 592.0 | 0.0037 |
-| reka | unknown | no | 81.8 | 143 | 0.00 | 1.00 | 66.7 | 100.0 | 54.2 | 100.0 | 100.0 | 0.00 | 0 | 0 | 452.0 | 0.0275 |
-| particle-ai/us | unknown | yes | 81.1 | 143 | 0 | 1.00 | 64.6 | 100.0 | 54.2 | 100.0 | 100.0 | 0.00 | 0 | 0 | 484.0 | 0.0043 |
-| primalabs | unknown | yes | 81.1 | 132 | 0 | 1.00 | 77.1 | 100.0 | 50.0 | 100.0 | 100.0 | 7.60 | 0 | 0 | 937.0 | 0.0198 |
-| antdigital/fp8 | fp8 | yes | 79.7 | 143 | 0 | 1.00 | 70.8 | 100.0 | 54.2 | 100.0 | 100.0 | 0.00 | 0 | 0 | 1138.0 | 0.0082 |
-| river | unknown | yes | 79.0 | 143 | 0.00 | 1.00 | 70.8 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 885.5 | 0.0110 |
-| baidu/fp8 | fp8 | no | 76.2 | 143 | 0.00 | 1.00 | 70.8 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 767.0 | 0.0091 |
-| ionstream | unknown | yes | 75.5 | 143 | 0 | 1.00 | 62.5 | 100.0 | 45.8 | 100.0 | 100.0 | 0.00 | 0 | 0 | 830.5 | 0.0186 |
-| near-ai | unknown | no | 74.1 | 143 | 0 | 1.00 | 77.1 | 100.0 | 70.8 | 100.0 | 100.0 | 0.00 | 0 | 0 | 1253.0 | 0.0278 |
-| nebius/fp4 | fp4 | yes | 72.7 | 143 | 0 | 1.00 | 83.3 | 100.0 | 54.2 | 100.0 | 100.0 | 0.00 | 0 | 0 | 507.0 | 0.0173 |
-| streamlake/fp8 | fp8 | no | 72.0 | 143 | 0.00 | 1.00 | 70.8 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 1345.0 | 0.0083 |
-| open-inference/fp4 | fp4 | yes | 70.6 | 143 | 0.00 | 1.00 | 64.6 | 100.0 | 54.2 | 100.0 | 100.0 | 0.00 | 0 | 0 | 902.0 | 0.0069 |
+| baseten/fast | unknown | no | 91.6 | 131 | 0 | 1.00 | 76.7 | 100.0 | 39.1 | 100.0 | 100.0 | 6.90 | 0 | 0 | 332.0 | 0.0508 |
+| featherless/fp8 | fp8 | yes | 90.1 | 141 | 0.00 | 1.00 | 81.2 | 100.0 | 41.7 | 100.0 | 100.0 | 0.00 | 0 | 0 | 896.0 | 0.0208 |
+| deepinfra/fp8 | fp8 | yes | 89.4 | 141 | 0 | 1.00 | 75.0 | 100.0 | 41.7 | 100.0 | 100.0 | 0.00 | 0 | 0 | 750.0 | 0.0087 |
+| google-vertex/global | unknown | yes | 89.4 | 141 | 0 | 1.00 | 79.2 | 100.0 | 45.8 | 100.0 | 100.0 | 0.00 | 0 | 0 | 547.0 | 0.0276 |
+| modal | unknown | no | 89.4 | 141 | 0 | 1.00 | 75.0 | 100.0 | 41.7 | 100.0 | 100.0 | 0.00 | 0 | 0 | 743.5 | 0.0230 |
+| morph/fast | fp8 | yes | 89.2 | 139 | 0 | 1.00 | 76.6 | 100.0 | 43.5 | 100.0 | 100.0 | 1.40 | 0 | 0 | 507.0 | 0.0549 |
+| pearl-research/fp8 | fp8 | yes | 89.0 | 136 | 0 | 1.00 | 78.7 | 100.0 | 41.7 | 100.0 | 100.0 | 3.50 | 0 | 0 | 1766.0 | 0.0047 |
+| venice/fp8 | fp8 | no | 88.7 | 141 | 0.00 | 1.00 | 70.8 | 100.0 | 45.8 | 100.0 | 100.0 | 0.00 | 0 | 0 | 1009.0 | 0.0274 |
+| fireworks/spot | unknown | no | 88.6 | 79 | 0 | 1.00 | 64.0 | 100.0 | 53.8 | 100.0 | 100.0 | 45.1 | 0 | 0 | 707.0 | 0.0074 |
+| ambient/fp4 | fp4 | yes | 87.9 | 141 | 0 | 1.00 | 81.2 | 100.0 | 41.7 | 100.0 | 100.0 | 0.00 | 0 | 0 | 859.5 | 0.0045 |
+| cloudflare | unknown | yes | 87.9 | 141 | 0 | 1.00 | 75.0 | 100.0 | 54.2 | 100.0 | 100.0 | 0.00 | 0 | 0 | 1171.0 | 0.0042 |
+| morph/fp8 | fp8 | yes | 87.9 | 141 | 0 | 1.00 | 81.2 | 100.0 | 45.8 | 100.0 | 100.0 | 0.00 | 0 | 0 | 576.0 | 0.0057 |
+| fireworks/us | unknown | no | 87.4 | 135 | 0 | 1.00 | 75.6 | 100.0 | 45.8 | 100.0 | 100.0 | 4.20 | 0 | 0 | 520.0 | 0.0336 |
+| coreweave/fp8 | fp8 | yes | 87.2 | 141 | 0.00 | 1.00 | 77.1 | 100.0 | 41.7 | 100.0 | 100.0 | 0.00 | 0 | 0 | 362.5 | 0.0276 |
+| particle-ai/us | unknown | yes | 87.2 | 141 | 0.00 | 1.00 | 72.9 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 543.0 | 0.0044 |
+| particle-ai/us/flex | unknown | yes | 87.2 | 141 | 0.00 | 1.00 | 70.8 | 100.0 | 45.8 | 100.0 | 100.0 | 0.00 | 0 | 0 | 642.5 | 0.0043 |
+| primalabs | unknown | yes | 87.2 | 141 | 0.00 | 1.00 | 79.2 | 100.0 | 45.8 | 100.0 | 100.0 | 0.00 | 0 | 0 | 639.5 | 0.0222 |
+| reka | unknown | no | 87.2 | 141 | 0.00 | 1.00 | 75.0 | 100.0 | 37.5 | 100.0 | 100.0 | 0.00 | 0 | 0 | 434.5 | 0.0278 |
+| baseten | unknown | no | 86.5 | 141 | 0 | 1.00 | 75.0 | 100.0 | 45.8 | 100.0 | 100.0 | 0.00 | 0 | 0 | 684.0 | 0.0274 |
+| parasail/fp8 | fp8 | yes | 86.5 | 141 | 0 | 1.00 | 77.1 | 100.0 | 41.7 | 100.0 | 100.0 | 0.00 | 0 | 0 | 350.0 | 0.0274 |
+| primeintellect | unknown | no | 86.5 | 141 | 0 | 1.00 | 72.9 | 100.0 | 45.8 | 100.0 | 100.0 | 0.00 | 0 | 0 | 484.5 | 0.0159 |
+| siliconflow/fp8 | fp8 | no | 86.5 | 141 | 0 | 1.00 | 70.8 | 100.0 | 41.7 | 100.0 | 100.0 | 0.00 | 0 | 0 | 723.0 | 0.0136 |
+| mistral/fp8 | fp8 | yes | 85.8 | 141 | 0.00 | 1.00 | 75.0 | 100.0 | 41.7 | 100.0 | 100.0 | 0.00 | 0 | 0 | 873.5 | 0.0276 |
+| pareto-inference/fp8 | fp8 | yes | 85.8 | 141 | 0.00 | 1.00 | 77.1 | 100.0 | 41.7 | 100.0 | 100.0 | 0.00 | 0 | 0 | 1149.5 | 0.0069 |
+| fireworks | unknown | no | 85.7 | 140 | 0.00 | 1.00 | 72.9 | 100.0 | 45.8 | 100.0 | 100.0 | 0.70 | 0 | 0 | 594.0 | 0.0208 |
+| cohere/fp8 | fp8 | yes | 85.1 | 141 | 0 | 1.00 | 77.1 | 100.0 | 41.7 | 100.0 | 100.0 | 0.00 | 0 | 0 | 444.0 | 0.0105 |
+| modelrun/fp4 | fp4 | no | 85.1 | 141 | 0 | 1.00 | 75.0 | 100.0 | 41.7 | 100.0 | 100.0 | 0.00 | 0 | 0 | 860.5 | 0.0096 |
+| relace/fp4 | fp4 | no | 85.1 | 141 | 0 | 1.00 | 77.1 | 100.0 | 45.8 | 100.0 | 100.0 | 0.00 | 0 | 0 | 598.5 | 0.0113 |
+| tenstorrent/fp8 | fp8 | yes | 85.1 | 141 | 0 | 1.00 | 70.8 | 100.0 | 41.7 | 100.0 | 100.0 | 0.00 | 0 | 0 | 646.0 | 0.0087 |
+| wafer/mxfp4 | mxfp4 | yes | 85.1 | 141 | 0 | 1.00 | 79.2 | 100.0 | 41.7 | 100.0 | 100.0 | 0.00 | 0 | 0 | 402.5 | 0.0029 |
+| alibaba | unknown | yes | 84.4 | 141 | 0.00 | 1.00 | 75.0 | 100.0 | 45.8 | 100.0 | 100.0 | 0.00 | 0 | 0 | 756.0 | 0.0083 |
+| digitalocean | unknown | no | 84.4 | 141 | 0.00 | 1.00 | 79.2 | 100.0 | 45.8 | 100.0 | 100.0 | 0.00 | 0 | 0 | 718.0 | 0.0182 |
+| wafer/us | mxfp4 | yes | 84.4 | 141 | 0.00 | 1.00 | 75.0 | 100.0 | 45.8 | 100.0 | 100.0 | 0.00 | 0 | 0 | 379.5 | 0.0046 |
+| antdigital/fp8 | fp8 | yes | 83.7 | 141 | 0 | 1.00 | 77.1 | 100.0 | 45.8 | 100.0 | 100.0 | 0.00 | 0 | 0 | 1201.5 | 0.0083 |
+| crusoe/fp8 | fp8 | yes | 83.7 | 141 | 0 | 1.00 | 83.3 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 703.0 | 0.0176 |
+| inceptron/fp4 | fp4 | yes | 83.7 | 141 | 0 | 1.00 | 72.9 | 100.0 | 41.7 | 100.0 | 100.0 | 0.00 | 0 | 0 | 937.0 | 0.0099 |
+| inference-net/fp8 | fp8 | yes | 83.7 | 141 | 0 | 1.00 | 83.3 | 100.0 | 45.8 | 100.0 | 100.0 | 0.00 | 0 | 0 | 404.5 | 0.0066 |
+| inference-net/us | fp8 | yes | 83.7 | 141 | 0 | 1.00 | 79.2 | 100.0 | 45.8 | 100.0 | 100.0 | 0.00 | 0 | 0 | 372.0 | 0.0088 |
+| makora/fp8 | fp8 | yes | 83.7 | 141 | 0 | 1.00 | 77.1 | 100.0 | 41.7 | 100.0 | 100.0 | 0.00 | 0 | 0 | 586.5 | 0.0146 |
+| deepinfra/fp8/priority | fp8 | yes | 82.6 | 138 | 0.00 | 1.00 | 78.3 | 100.0 | 47.8 | 100.0 | 91.7 | 2.10 | 0 | 0 | 805.0 | 0.0033 |
+| deepinfra/fp8/flex | fp8 | yes | 82.3 | 141 | 0 | 1.00 | 79.2 | 100.0 | 45.8 | 100.0 | 100.0 | 0.00 | 0 | 0 | 6618.0 | 0.0070 |
+| ionstream | unknown | yes | 80.9 | 141 | 0 | 1.00 | 68.8 | 100.0 | 37.5 | 100.0 | 100.0 | 0.00 | 0 | 0 | 659.0 | 0.0184 |
+| river | unknown | yes | 80.1 | 141 | 0.00 | 1.00 | 75.0 | 100.0 | 41.7 | 100.0 | 100.0 | 0.00 | 0 | 0 | 806.0 | 0.0110 |
+| nebius/fp4 | fp4 | yes | 76.6 | 141 | 0 | 1.00 | 87.5 | 100.0 | 41.7 | 100.0 | 100.0 | 0.00 | 0 | 0 | 496.0 | 0.0172 |
+| baidu/fp8 | fp8 | no | 75.9 | 141 | 0.00 | 1.00 | 83.3 | 100.0 | 37.5 | 100.0 | 100.0 | 0.00 | 0 | 0 | 811.5 | 0.0092 |
+| open-inference/fp4 | fp4 | yes | 75.9 | 141 | 0.00 | 1.00 | 72.9 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 921.0 | 0.0067 |
+| near-ai | unknown | no | 73.8 | 141 | 0 | 1.00 | 81.2 | 100.0 | 50.0 | 100.0 | 100.0 | 0.00 | 0 | 0 | 1463.0 | 0.0281 |
+| streamlake/fp8 | fp8 | no | 70.9 | 141 | 0 | 1.00 | 77.1 | 100.0 | 41.7 | 100.0 | 100.0 | 0.00 | 0 | 0 | 1290.0 | 0.0084 |
 | deepseek | unknown | no | n/a | 0 | n/a | n/a | n/a | n/a | n/a | n/a | n/a | 100.0 | 0 | 0 | n/a | 0.0000 |
+| sail-research/fp4 | fp4 | yes | n/a | 0 | n/a | n/a | n/a | n/a | n/a | n/a | n/a | 100.0 | 0 | 0 | n/a | 0.0000 |
+| sail-research/fp4/us | fp4 | yes | n/a | 0 | n/a | n/a | n/a | n/a | n/a | n/a | n/a | 100.0 | 0 | 0 | n/a | 0.0000 |
 
-Reference rule: plurality across all endpoints (fewer than two declare bf16 or fp16). Reference endpoints: particle-ai/us/flex, tenstorrent/fp8, wafer/us, sail-research/fp4/us, sail-research/fp4, ambient/fp4, open-inference/fp4, pearl-research/fp8, particle-ai/us, morph/fp8, pareto-inference/fp8, cloudflare, deepinfra/fp8/flex, wafer/mxfp4, inference-net/us, inference-net/fp8, antdigital/fp8, streamlake/fp8, alibaba, baidu/fp8, deepinfra/fp8, modelrun/fp4, inceptron/fp4, cohere/fp8, river, relace/fp4, deepinfra/fp8/priority, fireworks/spot, siliconflow/fp8, deepseek, makora/fp8, primeintellect, nebius/fp4, crusoe/fp8, digitalocean, ionstream, primalabs, modal, google-vertex/global, coreweave/fp8, near-ai, venice/fp8, mistral/fp8, reka, fireworks, baseten, parasail/fp8, fireworks/us, morph/fast, baseten/fast. Prompts with no plurality (excluded from exact match): 1.
+Reference rule: plurality across all endpoints (fewer than two declare bf16 or fp16). Reference endpoints: particle-ai/us/flex, wafer/us, sail-research/fp4/us, sail-research/fp4, ambient/fp4, open-inference/fp4, pearl-research/fp8, particle-ai/us, morph/fp8, wafer/mxfp4, pareto-inference/fp8, cloudflare, deepinfra/fp8/flex, inference-net/us, inference-net/fp8, antdigital/fp8, streamlake/fp8, alibaba, tenstorrent/fp8, baidu/fp8, deepinfra/fp8, modelrun/fp4, inceptron/fp4, cohere/fp8, river, relace/fp4, deepinfra/fp8/priority, fireworks/spot, siliconflow/fp8, deepseek, makora/fp8, primeintellect, nebius/fp4, crusoe/fp8, digitalocean, ionstream, featherless/fp8, primalabs, modal, google-vertex/global, coreweave/fp8, near-ai, venice/fp8, mistral/fp8, reka, fireworks, baseten, parasail/fp8, fireworks/us, morph/fast, baseten/fast. Prompts with no plurality (excluded from exact match): 3.
 
 ## Footer
 
-- Rows: 11952; errors 367; misrouted 0; truncated (finish_reason length) 20; skipped by runtime budget stop 0.
+- Rows: 12096; errors 692; misrouted 0; truncated (finish_reason length) 29; skipped by runtime budget stop 0.
 - Prompts kept 144 of 144; dropped for budget: 0 ().
-- Estimate before sending: $4.1216; billed: $2.0239; cap $7.75; runtime budget stop: False.
+- Estimate before sending: $4.188; billed: $2.0518; cap $7.75; runtime budget stop: False.
 - Div. word is the median index of the first differing word, on whitespace-split words, over non-matching outputs only. Len ratio is the median of output words divided by reference words.
 - Misrouted means the provider named in the response differs from the pinned provider; those rows are excluded from every metric. Detection is at provider level, not endpoint-variant level.
 - A row counts as truncated when the endpoint stopped at max_tokens; its output is still scored as returned.

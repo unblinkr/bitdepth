@@ -2,7 +2,7 @@
   "schema": "bitdepth.routelist.v1",
   "model": "z-ai/glm-5.3-flash",
   "label": "glm-5.3-flash",
-  "as_of": "2026-11-24",
+  "as_of": "2026-11-25",
   "rule": "state within and 7+ nights (the check_before_route rule) and no trust flag (delisted, lost ZDR, open incident); allowed endpoints ordered by blended price, cheapest first",
   "allow": [
     "relace/fp4",
@@ -256,7 +256,7 @@
     },
     {
       "tag": "particle-ai/nvfp4/flex",
-      "why": "only 3 nights; 7 needed"
+      "why": "lost ZDR 2026-11-25"
     },
     {
       "tag": "phala/nvfp4",

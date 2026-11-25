@@ -2,7 +2,7 @@
   "schema": "bitdepth.routelist.v1",
   "model": "openai/gpt-oss-120b",
   "label": "gpt-oss-120b",
-  "as_of": "2026-11-24",
+  "as_of": "2026-11-25",
   "rule": "state within and 7+ nights (the check_before_route rule) and no trust flag (delisted, lost ZDR, open incident); allowed endpoints ordered by blended price, cheapest first",
   "allow": [
     "near-ai/fp4",
@@ -30,121 +30,121 @@
     {
       "tag": "near-ai/fp4",
       "declared_quant": "fp4",
-      "nights": 27,
+      "nights": 28,
       "blended_price_per_m": 0.06
     },
     {
       "tag": "coreweave/fp4",
       "declared_quant": "fp4",
-      "nights": 27,
+      "nights": 28,
       "blended_price_per_m": 0.065
     },
     {
       "tag": "akashml/fp4",
       "declared_quant": "fp4",
-      "nights": 19,
+      "nights": 20,
       "blended_price_per_m": 0.0693
     },
     {
       "tag": "deepinfra/bf16",
       "declared_quant": "bf16",
-      "nights": 27,
+      "nights": 28,
       "blended_price_per_m": 0.0703
     },
     {
       "tag": "crusoe/bf16",
       "declared_quant": "bf16",
-      "nights": 27,
+      "nights": 28,
       "blended_price_per_m": 0.1
     },
     {
       "tag": "digitalocean",
       "declared_quant": "unknown",
-      "nights": 27,
+      "nights": 28,
       "blended_price_per_m": 0.15
     },
     {
       "tag": "google-vertex/global",
       "declared_quant": "unknown",
-      "nights": 27,
+      "nights": 28,
       "blended_price_per_m": 0.1575
     },
     {
       "tag": "mancer/fp8",
       "declared_quant": "fp8",
-      "nights": 27,
+      "nights": 28,
       "blended_price_per_m": 0.1575
     },
     {
       "tag": "baseten/fp4",
       "declared_quant": "fp4",
-      "nights": 27,
+      "nights": 28,
       "blended_price_per_m": 0.2
     },
     {
       "tag": "baseten/fp4/us",
       "declared_quant": "fp4",
-      "nights": 27,
+      "nights": 28,
       "blended_price_per_m": 0.2
     },
     {
       "tag": "amazon-bedrock",
       "declared_quant": "unknown",
-      "nights": 27,
+      "nights": 28,
       "blended_price_per_m": 0.2625
     },
     {
       "tag": "amazon-bedrock/eu-west-1",
       "declared_quant": "unknown",
-      "nights": 27,
+      "nights": 28,
       "blended_price_per_m": 0.2625
     },
     {
       "tag": "groq",
       "declared_quant": "unknown",
-      "nights": 27,
+      "nights": 28,
       "blended_price_per_m": 0.2625
     },
     {
       "tag": "nebius/fp4",
       "declared_quant": "fp4",
-      "nights": 27,
+      "nights": 28,
       "blended_price_per_m": 0.2625
     },
     {
       "tag": "siliconflow/fp8",
       "declared_quant": "fp8",
-      "nights": 27,
+      "nights": 28,
       "blended_price_per_m": 0.2625
     },
     {
       "tag": "parasail/fp4",
       "declared_quant": "fp4",
-      "nights": 27,
+      "nights": 28,
       "blended_price_per_m": 0.2625
     },
     {
       "tag": "parasail/fast",
       "declared_quant": "fp4",
-      "nights": 18,
+      "nights": 19,
       "blended_price_per_m": 0.3
     },
     {
       "tag": "sambanova",
       "declared_quant": "unknown",
-      "nights": 27,
+      "nights": 28,
       "blended_price_per_m": 0.3425
     },
     {
       "tag": "cerebras/fp16",
       "declared_quant": "fp16",
-      "nights": 27,
+      "nights": 28,
       "blended_price_per_m": 0.45
     },
     {
       "tag": "primeintellect/fp4",
       "declared_quant": "fp4",
-      "nights": 22,
+      "nights": 23,
       "blended_price_per_m": 0.45
     }
   ],
@@ -163,7 +163,7 @@
     },
     {
       "tag": "fireworks",
-      "why": "only 3 nights; 7 needed"
+      "why": "only 4 nights; 7 needed"
     },
     {
       "tag": "io-net/fp4",

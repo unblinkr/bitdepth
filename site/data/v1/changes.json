@@ -1,149 +1,61 @@
 {
  "schema": "bitdepth.changes.v1",
- "as_of": "2026-11-24",
+ "as_of": "2026-11-25",
  "baseline": false,
- "count": 23,
+ "count": 14,
  "changes": [
   {
    "model": "deepseek/deepseek-v4-pro",
    "label": "deepseek-v4-pro",
    "tag": "baidu/fp8",
    "field": "price_in_per_m",
-   "from": 0.6118,
-   "to": 0.7182
+   "from": 0.7182,
+   "to": 0.7453
   },
   {
    "model": "deepseek/deepseek-v4-pro",
    "label": "deepseek-v4-pro",
    "tag": "baidu/fp8",
    "field": "price_out_per_m",
-   "from": 1.2236,
-   "to": 1.4365
-  },
-  {
-   "model": "deepseek/deepseek-v4-pro",
-   "label": "deepseek-v4-pro",
-   "tag": "digitalocean",
-   "field": "price_in_per_m",
-   "from": 1.044,
-   "to": null
-  },
-  {
-   "model": "deepseek/deepseek-v4-pro",
-   "label": "deepseek-v4-pro",
-   "tag": "digitalocean",
-   "field": "price_out_per_m",
-   "from": 2.088,
-   "to": null
+   "from": 1.4365,
+   "to": 1.4906
   },
   {
    "model": "deepseek/deepseek-v4-pro",
    "label": "deepseek-v4-pro",
    "tag": "relace/fp4",
    "field": "price_in_per_m",
-   "from": 0.9,
-   "to": 0.7184
+   "from": 0.7184,
+   "to": 0.737
   },
   {
    "model": "deepseek/deepseek-v4-pro",
    "label": "deepseek-v4-pro",
    "tag": "relace/fp4",
    "field": "price_out_per_m",
-   "from": 1.5,
-   "to": 1.5346
+   "from": 1.5346,
+   "to": 1.5016
   },
   {
    "model": "deepseek/deepseek-v4-pro",
    "label": "deepseek-v4-pro",
    "tag": "streamlake/fp8",
    "field": "price_in_per_m",
-   "from": 0.61,
-   "to": 0.7165
+   "from": 0.7165,
+   "to": 0.7452
   },
   {
    "model": "deepseek/deepseek-v4-pro",
    "label": "deepseek-v4-pro",
    "tag": "streamlake/fp8",
    "field": "price_out_per_m",
-   "from": 1.2201,
-   "to": 1.4331
+   "from": 1.4331,
+   "to": 1.4905
   },
   {
    "model": "deepseek/deepseek-v4.1-flash-1017",
    "label": "deepseek-v4.1-flash-1017",
-   "tag": "antdigital/fp8",
-   "field": "state",
-   "from": "no_data",
-   "to": "within"
-  },
-  {
-   "model": "deepseek/deepseek-v4.1-flash-1017",
-   "label": "deepseek-v4.1-flash-1017",
-   "tag": "cloudflare",
-   "field": "price_in_per_m",
-   "from": 0.1,
-   "to": 0.075
-  },
-  {
-   "model": "deepseek/deepseek-v4.1-flash-1017",
-   "label": "deepseek-v4.1-flash-1017",
-   "tag": "cloudflare",
-   "field": "price_out_per_m",
-   "from": 0.6,
-   "to": 0.3
-  },
-  {
-   "model": "deepseek/deepseek-v4.1-flash-1017",
-   "label": "deepseek-v4.1-flash-1017",
-   "tag": "inceptron/fp4",
-   "field": "state",
-   "from": "no_data",
-   "to": "within"
-  },
-  {
-   "model": "deepseek/deepseek-v4.1-flash-1017",
-   "label": "deepseek-v4.1-flash-1017",
-   "tag": "modelrun/fp4",
-   "field": "price_in_per_m",
-   "from": 0.17,
-   "to": 0.1
-  },
-  {
-   "model": "deepseek/deepseek-v4.1-flash-1017",
-   "label": "deepseek-v4.1-flash-1017",
-   "tag": "modelrun/fp4",
-   "field": "price_out_per_m",
-   "from": 0.67,
-   "to": 0.5
-  },
-  {
-   "model": "deepseek/deepseek-v4.1-flash-1017",
-   "label": "deepseek-v4.1-flash-1017",
-   "tag": "nebius/fp4",
-   "field": "state",
-   "from": "no_data",
-   "to": "outside"
-  },
-  {
-   "model": "deepseek/deepseek-v4.1-flash-1017",
-   "label": "deepseek-v4.1-flash-1017",
-   "tag": "open-inference/fp4",
-   "field": "price_in_per_m",
-   "from": 0.055,
-   "to": 0.047
-  },
-  {
-   "model": "deepseek/deepseek-v4.1-flash-1017",
-   "label": "deepseek-v4.1-flash-1017",
-   "tag": "open-inference/fp4",
-   "field": "price_out_per_m",
-   "from": 0.54,
-   "to": 0.8
-  },
-  {
-   "model": "deepseek/deepseek-v4.1-flash-1017",
-   "label": "deepseek-v4.1-flash-1017",
-   "tag": "pareto-inference/fp8",
+   "tag": "featherless/fp8",
    "field": "listed",
    "from": null,
    "to": "new"
@@ -151,41 +63,57 @@
   {
    "model": "deepseek/deepseek-v4.1-flash-1017",
    "label": "deepseek-v4.1-flash-1017",
-   "tag": "primeintellect",
-   "field": "price_in_per_m",
-   "from": 0.075,
-   "to": 0.175
+   "tag": "open-inference/fp4",
+   "field": "price_out_per_m",
+   "from": 0.8,
+   "to": 0.95
   },
   {
    "model": "deepseek/deepseek-v4.1-flash-1017",
    "label": "deepseek-v4.1-flash-1017",
-   "tag": "streamlake/fp8",
+   "tag": "particle-ai/us/flex",
    "field": "price_in_per_m",
-   "from": 0.111,
+   "from": 0.025,
+   "to": 0.035
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "pearl-research/fp8",
+   "field": "state",
+   "from": "no_data",
+   "to": "within"
+  },
+  {
+   "model": "deepseek/deepseek-v4.1-flash-1017",
+   "label": "deepseek-v4.1-flash-1017",
+   "tag": "tenstorrent/fp8",
+   "field": "price_in_per_m",
+   "from": 0.03,
    "to": 0.09
   },
   {
    "model": "deepseek/deepseek-v4.1-flash-1017",
    "label": "deepseek-v4.1-flash-1017",
-   "tag": "streamlake/fp8",
+   "tag": "tenstorrent/fp8",
    "field": "price_out_per_m",
-   "from": 0.444,
-   "to": 0.36
+   "from": 0.2,
+   "to": 0.5
   },
   {
    "model": "deepseek/deepseek-v4.1-flash-1017",
    "label": "deepseek-v4.1-flash-1017",
    "tag": "wafer/mxfp4",
    "field": "price_in_per_m",
-   "from": 0.07,
-   "to": 0.079
+   "from": 0.079,
+   "to": 0.07
   },
   {
-   "model": "xiaomi/mimo-v2.6-pro",
-   "label": "mimo-v2.6-pro",
-   "tag": "streamlake",
+   "model": "z-ai/glm-5.3-flash",
+   "label": "glm-5.3-flash",
+   "tag": "particle-ai/nvfp4/flex",
    "field": "state",
-   "from": "within",
+   "from": "no_data",
    "to": "untrusted"
   }
  ],
