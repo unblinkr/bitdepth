@@ -1,14 +1,14 @@
 {
   "schema": "bitdepth.or.v1",
-  "as_of": "2026-11-25",
-  "nights": 29,
+  "as_of": "2026-11-26",
+  "nights": 30,
   "first_night": "2026-10-27",
   "method_url": "https://bitdepth.dev/method",
   "models": [
     {
       "model": "openai/gpt-oss-120b",
       "label": "gpt-oss-120b",
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-26",
       "endpoint_count": 31,
       "path": "or/openai/gpt-oss-120b.json",
       "routes_path": "routes/openai/gpt-oss-120b.json"
@@ -16,7 +16,7 @@
     {
       "model": "deepseek/deepseek-v4-pro",
       "label": "deepseek-v4-pro",
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-26",
       "endpoint_count": 18,
       "path": "or/deepseek/deepseek-v4-pro.json",
       "routes_path": "routes/deepseek/deepseek-v4-pro.json"
@@ -24,15 +24,15 @@
     {
       "model": "deepseek/deepseek-v4.1-flash-1017",
       "label": "deepseek-v4.1-flash-1017",
-      "as_of": "2026-11-25",
-      "endpoint_count": 65,
+      "as_of": "2026-11-26",
+      "endpoint_count": 66,
       "path": "or/deepseek/deepseek-v4.1-flash-1017.json",
       "routes_path": "routes/deepseek/deepseek-v4.1-flash-1017.json"
     },
     {
       "model": "mistralai/mistral-large-4-0",
       "label": "mistral-large-4-0",
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-26",
       "endpoint_count": 2,
       "path": "or/mistralai/mistral-large-4-0.json",
       "routes_path": "routes/mistralai/mistral-large-4-0.json"
@@ -40,15 +40,15 @@
     {
       "model": "z-ai/glm-5.3-flash",
       "label": "glm-5.3-flash",
-      "as_of": "2026-11-25",
-      "endpoint_count": 48,
+      "as_of": "2026-11-26",
+      "endpoint_count": 50,
       "path": "or/z-ai/glm-5.3-flash.json",
       "routes_path": "routes/z-ai/glm-5.3-flash.json"
     },
     {
       "model": "google/gemma-4-31b-it",
       "label": "gemma-4-31b-it",
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-26",
       "endpoint_count": 21,
       "path": "or/google/gemma-4-31b-it.json",
       "routes_path": "routes/google/gemma-4-31b-it.json"
@@ -56,7 +56,7 @@
     {
       "model": "xiaomi/mimo-v2.6-pro",
       "label": "mimo-v2.6-pro",
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-26",
       "endpoint_count": 5,
       "path": "or/xiaomi/mimo-v2.6-pro.json",
       "routes_path": "routes/xiaomi/mimo-v2.6-pro.json"

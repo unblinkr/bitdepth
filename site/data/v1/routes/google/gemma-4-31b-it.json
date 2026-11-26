@@ -2,10 +2,11 @@
   "schema": "bitdepth.routelist.v1",
   "model": "google/gemma-4-31b-it",
   "label": "gemma-4-31b-it",
-  "as_of": "2026-11-25",
+  "as_of": "2026-11-26",
   "rule": "state within and 7+ nights (the check_before_route rule) and no trust flag (delisted, lost ZDR, open incident); allowed endpoints ordered by blended price, cheapest first",
   "allow": [
     "coreweave/fp4",
+    "kt",
     "nextbit/fp4",
     "venice/fp4",
     "chutes/fp4",
@@ -24,85 +25,91 @@
     {
       "tag": "coreweave/fp4",
       "declared_quant": "fp4",
+      "nights": 8,
+      "blended_price_per_m": 0.16
+    },
+    {
+      "tag": "kt",
+      "declared_quant": "unknown",
       "nights": 7,
       "blended_price_per_m": 0.16
     },
     {
       "tag": "nextbit/fp4",
       "declared_quant": "fp4",
-      "nights": 7,
+      "nights": 8,
       "blended_price_per_m": 0.1788
     },
     {
       "tag": "venice/fp4",
       "declared_quant": "fp4",
-      "nights": 7,
+      "nights": 8,
       "blended_price_per_m": 0.18
     },
     {
       "tag": "chutes/fp4",
       "declared_quant": "fp4",
-      "nights": 7,
+      "nights": 8,
       "blended_price_per_m": 0.1825
     },
     {
       "tag": "deepinfra/fp8/flex",
       "declared_quant": "fp8",
-      "nights": 7,
+      "nights": 8,
       "blended_price_per_m": 0.2
     },
     {
       "tag": "crusoe/bf16",
       "declared_quant": "bf16",
-      "nights": 7,
+      "nights": 8,
       "blended_price_per_m": 0.205
     },
     {
       "tag": "friendli",
       "declared_quant": "unknown",
-      "nights": 7,
+      "nights": 8,
       "blended_price_per_m": 0.205
     },
     {
       "tag": "parasail/fp8",
       "declared_quant": "fp8",
-      "nights": 7,
+      "nights": 8,
       "blended_price_per_m": 0.2125
     },
     {
       "tag": "deepinfra/turbo",
       "declared_quant": "fp4",
-      "nights": 7,
+      "nights": 8,
       "blended_price_per_m": 0.2288
     },
     {
       "tag": "deepinfra/fp8",
       "declared_quant": "fp8",
-      "nights": 7,
+      "nights": 8,
       "blended_price_per_m": 0.25
     },
     {
       "tag": "modal",
       "declared_quant": "unknown",
-      "nights": 7,
+      "nights": 8,
       "blended_price_per_m": 0.28
     },
     {
       "tag": "deepinfra/fp8/priority",
       "declared_quant": "fp8",
-      "nights": 7,
+      "nights": 8,
       "blended_price_per_m": 0.375
     },
     {
       "tag": "sambanova",
       "declared_quant": "unknown",
-      "nights": 7,
+      "nights": 8,
       "blended_price_per_m": 0.5725
     },
     {
       "tag": "siliconflow/fp8",
       "declared_quant": "fp8",
-      "nights": 7,
+      "nights": 8,
       "blended_price_per_m": 0.8125
     }
   ],
@@ -116,12 +123,8 @@
       "why": "delisted 2026-11-11"
     },
     {
-      "tag": "kt",
-      "why": "only 6 nights; 7 needed"
-    },
-    {
       "tag": "modelrun/fp4",
-      "why": "delisted 2026-11-11; listed again 2026-11-19, 2 of 7 fresh nights"
+      "why": "delisted 2026-11-11; listed again 2026-11-19, 3 of 7 fresh nights"
     },
     {
       "tag": "novita/bf16",
@@ -133,13 +136,14 @@
     },
     {
       "tag": "primeintellect/fp8",
-      "why": "only 3 nights; 7 needed"
+      "why": "only 4 nights; 7 needed"
     }
   ],
   "openrouter": {
     "provider": {
       "only": [
         "coreweave/fp4",
+        "kt",
         "nextbit/fp4",
         "venice/fp4",
         "chutes/fp4",
