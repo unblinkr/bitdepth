@@ -2,9 +2,11 @@
   "schema": "bitdepth.routelist.v1",
   "model": "deepseek/deepseek-v4.1-flash-1017",
   "label": "deepseek-v4.1-flash-1017",
-  "as_of": "2026-11-26",
+  "as_of": "2026-11-27",
   "rule": "state within and 7+ nights (the check_before_route rule) and no trust flag (delisted, lost ZDR, open incident); allowed endpoints ordered by blended price, cheapest first",
   "allow": [
+    "sail-research/fp4",
+    "sail-research/fp4/us",
     "ambient/fp4",
     "pearl-research/fp8",
     "deepinfra/fp8/flex",
@@ -12,13 +14,11 @@
     "deepinfra/fp8",
     "wafer/us",
     "alibaba",
-    "antdigital/fp8",
     "streamlake/fp8",
     "morph/fp8",
     "wafer/mxfp4",
     "cohere/fp8",
     "modelrun/fp4",
-    "primeintellect",
     "river",
     "relace/fp4",
     "particle-ai/us/flex",
@@ -30,6 +30,8 @@
     "siliconflow/fp8",
     "particle-ai/us",
     "makora/fp8",
+    "nebius/fp4",
+    "primeintellect",
     "crusoe/fp8",
     "digitalocean",
     "primalabs",
@@ -46,235 +48,251 @@
   ],
   "allowed": [
     {
+      "tag": "sail-research/fp4",
+      "declared_quant": "fp4",
+      "nights": 21,
+      "blended_price_per_m": 0.055
+    },
+    {
+      "tag": "sail-research/fp4/us",
+      "declared_quant": "fp4",
+      "nights": 21,
+      "blended_price_per_m": 0.055
+    },
+    {
       "tag": "ambient/fp4",
       "declared_quant": "fp4",
-      "nights": 10,
+      "nights": 11,
       "blended_price_per_m": 0.0963
     },
     {
       "tag": "pearl-research/fp8",
       "declared_quant": "fp8",
-      "nights": 8,
+      "nights": 9,
       "blended_price_per_m": 0.1125
     },
     {
       "tag": "deepinfra/fp8/flex",
       "declared_quant": "fp8",
-      "nights": 22,
+      "nights": 23,
       "blended_price_per_m": 0.1176
     },
     {
       "tag": "cloudflare",
       "declared_quant": "unknown",
-      "nights": 22,
+      "nights": 23,
       "blended_price_per_m": 0.1312
     },
     {
       "tag": "deepinfra/fp8",
       "declared_quant": "fp8",
-      "nights": 22,
+      "nights": 23,
       "blended_price_per_m": 0.147
     },
     {
       "tag": "wafer/us",
       "declared_quant": "mxfp4",
-      "nights": 22,
+      "nights": 23,
       "blended_price_per_m": 0.152
     },
     {
       "tag": "alibaba",
       "declared_quant": "unknown",
-      "nights": 22,
-      "blended_price_per_m": 0.1575
-    },
-    {
-      "tag": "antdigital/fp8",
-      "declared_quant": "fp8",
-      "nights": 9,
+      "nights": 23,
       "blended_price_per_m": 0.1575
     },
     {
       "tag": "streamlake/fp8",
       "declared_quant": "fp8",
-      "nights": 22,
+      "nights": 23,
       "blended_price_per_m": 0.1575
     },
     {
       "tag": "morph/fp8",
       "declared_quant": "fp8",
-      "nights": 22,
+      "nights": 23,
       "blended_price_per_m": 0.1743
     },
     {
       "tag": "wafer/mxfp4",
       "declared_quant": "mxfp4",
-      "nights": 22,
+      "nights": 23,
       "blended_price_per_m": 0.1745
     },
     {
       "tag": "cohere/fp8",
       "declared_quant": "fp8",
-      "nights": 19,
+      "nights": 20,
       "blended_price_per_m": 0.1863
     },
     {
       "tag": "modelrun/fp4",
       "declared_quant": "fp4",
-      "nights": 16,
+      "nights": 17,
       "blended_price_per_m": 0.2
-    },
-    {
-      "tag": "primeintellect",
-      "declared_quant": "unknown",
-      "nights": 22,
-      "blended_price_per_m": 0.2078
     },
     {
       "tag": "river",
       "declared_quant": "unknown",
-      "nights": 15,
+      "nights": 16,
       "blended_price_per_m": 0.21
     },
     {
       "tag": "relace/fp4",
       "declared_quant": "fp4",
-      "nights": 22,
+      "nights": 23,
       "blended_price_per_m": 0.215
     },
     {
       "tag": "particle-ai/us/flex",
       "declared_quant": "unknown",
-      "nights": 22,
+      "nights": 23,
       "blended_price_per_m": 0.2175
     },
     {
       "tag": "deepinfra/fp8/priority",
       "declared_quant": "fp8",
-      "nights": 22,
+      "nights": 23,
       "blended_price_per_m": 0.2205
     },
     {
       "tag": "inceptron/fp4",
       "declared_quant": "fp4",
-      "nights": 9,
+      "nights": 10,
       "blended_price_per_m": 0.225
     },
     {
       "tag": "inference-net/fp8",
       "declared_quant": "fp8",
-      "nights": 22,
+      "nights": 23,
       "blended_price_per_m": 0.2265
     },
     {
       "tag": "inference-net/us",
       "declared_quant": "fp8",
-      "nights": 22,
+      "nights": 23,
       "blended_price_per_m": 0.2265
     },
     {
       "tag": "fireworks/spot",
       "declared_quant": "unknown",
-      "nights": 22,
+      "nights": 23,
       "blended_price_per_m": 0.2625
     },
     {
       "tag": "siliconflow/fp8",
       "declared_quant": "fp8",
-      "nights": 22,
+      "nights": 23,
       "blended_price_per_m": 0.2625
     },
     {
       "tag": "particle-ai/us",
       "declared_quant": "unknown",
-      "nights": 22,
+      "nights": 23,
       "blended_price_per_m": 0.2625
     },
     {
       "tag": "makora/fp8",
       "declared_quant": "fp8",
-      "nights": 22,
+      "nights": 23,
       "blended_price_per_m": 0.3125
+    },
+    {
+      "tag": "nebius/fp4",
+      "declared_quant": "fp4",
+      "nights": 10,
+      "blended_price_per_m": 0.315
+    },
+    {
+      "tag": "primeintellect",
+      "declared_quant": "unknown",
+      "nights": 23,
+      "blended_price_per_m": 0.3205
     },
     {
       "tag": "crusoe/fp8",
       "declared_quant": "fp8",
-      "nights": 22,
+      "nights": 23,
       "blended_price_per_m": 0.3364
     },
     {
       "tag": "digitalocean",
       "declared_quant": "unknown",
-      "nights": 22,
+      "nights": 23,
       "blended_price_per_m": 0.3412
     },
     {
       "tag": "primalabs",
       "declared_quant": "unknown",
-      "nights": 21,
+      "nights": 22,
       "blended_price_per_m": 0.42
     },
     {
       "tag": "modal",
       "declared_quant": "unknown",
-      "nights": 22,
+      "nights": 23,
       "blended_price_per_m": 0.4375
     },
     {
       "tag": "baseten",
       "declared_quant": "unknown",
-      "nights": 22,
+      "nights": 23,
       "blended_price_per_m": 0.525
     },
     {
       "tag": "coreweave/fp8",
       "declared_quant": "fp8",
-      "nights": 21,
+      "nights": 22,
       "blended_price_per_m": 0.525
     },
     {
       "tag": "mistral/fp8",
       "declared_quant": "fp8",
-      "nights": 22,
+      "nights": 23,
       "blended_price_per_m": 0.525
     },
     {
       "tag": "parasail/fp8",
       "declared_quant": "fp8",
-      "nights": 22,
+      "nights": 23,
       "blended_price_per_m": 0.525
     },
     {
       "tag": "reka",
       "declared_quant": "unknown",
-      "nights": 18,
+      "nights": 19,
       "blended_price_per_m": 0.525
     },
     {
       "tag": "venice/fp8",
       "declared_quant": "fp8",
-      "nights": 22,
+      "nights": 23,
       "blended_price_per_m": 0.525
     },
     {
       "tag": "fireworks/us",
       "declared_quant": "unknown",
-      "nights": 22,
+      "nights": 23,
       "blended_price_per_m": 0.7875
     },
     {
       "tag": "baseten/fast",
       "declared_quant": "unknown",
-      "nights": 21,
+      "nights": 22,
       "blended_price_per_m": 1.05
     },
     {
       "tag": "morph/fast",
       "declared_quant": "fp8",
-      "nights": 12,
+      "nights": 13,
       "blended_price_per_m": 1.05
     }
   ],
   "excluded": [
+    {
+      "tag": "antdigital/fp8",
+      "why": "delisted 2026-11-27"
+    },
     {
       "tag": "atlas-cloud/fp8",
       "why": "delisted 2026-11-21"
@@ -297,7 +315,7 @@
     },
     {
       "tag": "deepseek",
-      "why": "only 22 nights; 7 needed"
+      "why": "only 23 nights; 7 needed"
     },
     {
       "tag": "dekallm",
@@ -305,15 +323,15 @@
     },
     {
       "tag": "featherless/fp8",
-      "why": "only 2 nights; 7 needed"
+      "why": "only 3 nights; 7 needed"
     },
     {
       "tag": "fireworks",
-      "why": "would also match fireworks/ultrafast, fireworks/flex"
+      "why": "would also match fireworks/flex, fireworks/ultrafast"
     },
     {
       "tag": "fireworks/flex",
-      "why": "only 1 nights; 7 needed"
+      "why": "only 2 nights; 7 needed"
     },
     {
       "tag": "fireworks/ultrafast",
@@ -325,7 +343,7 @@
     },
     {
       "tag": "google-vertex/global",
-      "why": "only 4 nights; 7 needed"
+      "why": "only 5 nights; 7 needed"
     },
     {
       "tag": "ionstream",
@@ -344,10 +362,6 @@
       "why": "outside"
     },
     {
-      "tag": "nebius/fp4",
-      "why": "outside"
-    },
-    {
       "tag": "nebius/fp8",
       "why": "delisted 2026-11-18"
     },
@@ -361,7 +375,7 @@
     },
     {
       "tag": "pareto-inference/fp8",
-      "why": "only 3 nights; 7 needed"
+      "why": "only 4 nights; 7 needed"
     },
     {
       "tag": "phala",
@@ -372,20 +386,12 @@
       "why": "delisted 2026-11-10"
     },
     {
-      "tag": "sail-research/fp4",
-      "why": "delisted 2026-11-19; listed again 2026-11-21, 6 of 7 fresh nights"
-    },
-    {
-      "tag": "sail-research/fp4/us",
-      "why": "delisted 2026-11-19; listed again 2026-11-21, 6 of 7 fresh nights"
-    },
-    {
       "tag": "stepfun/fp8",
       "why": "delisted 2026-11-22"
     },
     {
       "tag": "tenstorrent/fp8",
-      "why": "only 4 nights; 7 needed"
+      "why": "only 5 nights; 7 needed"
     },
     {
       "tag": "together",
@@ -403,6 +409,8 @@
   "openrouter": {
     "provider": {
       "only": [
+        "sail-research/fp4",
+        "sail-research/fp4/us",
         "ambient/fp4",
         "pearl-research/fp8",
         "deepinfra/fp8/flex",
@@ -410,13 +418,11 @@
         "deepinfra/fp8",
         "wafer/us",
         "alibaba",
-        "antdigital/fp8",
         "streamlake/fp8",
         "morph/fp8",
         "wafer/mxfp4",
         "cohere/fp8",
         "modelrun/fp4",
-        "primeintellect",
         "river",
         "relace/fp4",
         "particle-ai/us/flex",
@@ -428,6 +434,8 @@
         "siliconflow/fp8",
         "particle-ai/us",
         "makora/fp8",
+        "nebius/fp4",
+        "primeintellect",
         "crusoe/fp8",
         "digitalocean",
         "primalabs",
